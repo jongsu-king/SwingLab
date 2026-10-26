@@ -1,0 +1,44 @@
+425 UI keys; 2 permission descriptions; 0 keys with missing locales.
+Generated project: 34 app sources, 3 integration sources, 1 UI test sources.
+[0/1] Planning build
+Building for debugging...
+[0/1] Write swift-version--1AB21518FC5DEDBE.txt
+Build complete! (0.14s)
+PASS independent unit conversions
+PASS language fallback
+PASS known geodesic distances
+PASS coordinate projection
+PASS date-line and invalid coordinates
+PASS 50/80/95 percent probability ellipses
+PASS hazard integration and absent geometry
+PASS invalid statistical inputs
+PASS timestamp-based tempo
+PASS invalid timing rejection
+PASS joint angles and missing joints
+PASS explainable club ranking
+PASS interrupted media deletion recovery
+13 test groups; 0 failed assertions. Portable harness, not XCTest.
+PASS tempo uses actual timestamps
+PASS manual marker provenance
+PASS estimated impact propagates to tempo
+PASS analysis JSON round trip
+PASS out-of-order timing rejected
+PASS non-finite timing rejected
+PASS missing measurements remain unavailable
+PASS head proxy uses normalized displacement
+PASS insufficient head observations rejected
+PASS shared macOS AVFoundation/Vision/Transferable service typecheck (not an iOS build)
+PASS landscape video decoding and honest no-pose result
+PASS portrait video decoding and honest no-pose result
+PASS mirrored video decoding and honest no-pose result
+PASS invalid video rejected
+PASS GPS stale/future time gates
+PASS GPS accuracy/invalid-coordinate gates
+PASS unknown scores preserved and strokes not double counted
+PASS impossible and malformed scores rejected
+PASS manual reference JSON round trip
+PASS shared macOS CoreLocation/MapKit services typecheck (not an iOS build)
+SwingLab.xcodeproj/project.pbxproj: OK
+SwingLab/Resources/Info.plist: OK
+SwingLab/Resources/PrivacyInfo.xcprivacy: OK
+Catalogs and project syntax validated. Parsing does not validate iOS compilation.

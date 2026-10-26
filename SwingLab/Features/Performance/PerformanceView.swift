@@ -1,0 +1,219 @@
+import SwiftUI
+import SwiftData
+import Charts
+import SwingLabCore
+
+struct PerformanceView: View {
+    @Environment(AppPreferences.self) private var preferences
+    @Query(sort: \SwingRecording.createdAt) private var recordings: [SwingRecording]
+    @Query(sort: \RoundSession.startedAt, order: .reverse) private var rounds: [RoundSession]
+    @Query private var clubs: [GolfClub]
+    @State private var selection = PerformanceSection.practice
+
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 24) {
+                Picker(preferences.text("Performance category"), selection: $selection) {
+                    ForEach(PerformanceSection.allCases) { item in
+                        Text(preferences.text(item.rawValue)).tag(item)
+                    }
+                }
+                .pickerStyle(.segmented)
+                switch selection {
+                case .practice: practice
+                case .bag: bag
+                case .rounds: roundPerformance
+                }
+            }
+            .padding(24)
+        }
+        .background(SLTheme.background)
+        .navigationTitle(preferences.text("Performance"))
+    }
+
+    private var practice: some View {
+        // Decode each report once for this presentation, rather than per chart mark and label.
+        let snapshots = recordings.map { TempoSnapshot(recording: $0) }
+        let tempoPoints = snapshots.filter { $0.tempo != nil }
+        return VStack(alignment: .leading, spacing: 24) {
+            if recordings.isEmpty {
+                SLEmptyState(title: preferences.text("Progress starts with a baseline."),
+                    message: preferences.text("Record or import a swing. Your saved recordings and phase-based tempo will appear here."),
+                    symbol: "chart.xyaxis.line")
+                NavigationLink { SwingView() } label: {
+                    Label(preferences.text("Open Swing"), systemImage: "video")
+                }.buttonStyle(.borderedProminent)
+            } else {
+                metric(value: recordings.count.formatted(.number.locale(preferences.locale)), label: "Saved swings")
+                if tempoPoints.count >= 2 {
+                    SLSectionHeader(title: preferences.text("Tempo over time"), subtitle: preferences.text("Backswing ÷ downswing"))
+                    Chart(tempoPoints) { recording in
+                        if let tempo = recording.tempo {
+                            PointMark(
+                                x: .value(preferences.text("Date"), recording.createdAt),
+                                y: .value(preferences.text("Tempo"), tempo)
+                            )
+                            .foregroundStyle(SLTheme.forest)
+                            .symbolSize(48)
+                            .accessibilityLabel(Text(recording.createdAt, format: .dateTime.month().day()))
+                            .accessibilityValue(Text(tempo.formatted(.number.locale(preferences.locale).precision(.fractionLength(2))) + ":1"))
+                        }
+                    }
+                    .frame(height: 210)
+                    Text(preferences.text("Tempo depends on address, top, and impact phase markers. Estimated or manually corrected phases are not sensor measurements."))
+                        .font(.caption).foregroundStyle(.secondary)
+                } else {
+                    Text(preferences.text("Analyze and review phase markers on at least two recordings to compare tempo. Missing measurements stay blank."))
+                        .foregroundStyle(.secondary)
+                }
+                Divider()
+                SLSectionHeader(title: preferences.text("Recent practice"))
+                ForEach(Array(snapshots.reversed().prefix(5))) { recording in
+                    HStack(alignment: .firstTextBaseline) {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(recording.title).font(.headline)
+                            Text(recording.createdAt, format: .dateTime.month().day().hour().minute())
+                                .font(.caption).foregroundStyle(.secondary)
+                        }
+                        Spacer(minLength: 12)
+                        if let tempo = recording.tempo {
+                            VStack(alignment: .trailing, spacing: 4) {
+                                Text(tempo.formatted(.number.locale(preferences.locale).precision(.fractionLength(2))) + ":1")
+                                    .font(.body.monospacedDigit())
+                                Text(preferences.text(recording.provenance ?? "Estimated"))
+                                    .font(.caption).foregroundStyle(.secondary)
+                            }
+                        }
+                    }
+                }
+                NavigationLink(preferences.text("View recordings")) { SwingView() }
+            }
+        }
+    }
+
+    private var bag: some View {
+        VStack(alignment: .leading, spacing: 24) {
+            if carryClubs.isEmpty {
+                SLEmptyState(title: preferences.text("Know the spaces between clubs."),
+                    message: preferences.text("Add your own carry distances in My Bag to compare club gaps. Unknown distances stay empty."),
+                    symbol: "ruler")
+            } else {
+                SLSectionHeader(title: preferences.text("Club gapping"), subtitle: preferences.text("User-entered average carry"))
+                ClubCarryChart(clubs: carryClubs)
+                if carryClubs.count >= 2 {
+                    ForEach(0..<(carryClubs.count - 1), id: \.self) { index in
+                        let longer = carryClubs[index]
+                        let shorter = carryClubs[index + 1]
+                        HStack(alignment: .firstTextBaseline) {
+                            Text(longer.name + " → " + shorter.name).font(.subheadline)
+                            Spacer(minLength: 12)
+                            Text(preferences.distance((longer.carryMeters ?? 0) - (shorter.carryMeters ?? 0)))
+                                .font(.body.monospacedDigit())
+                        }
+                        Divider()
+                    }
+                }
+                Text(preferences.text("These gaps compare your entered averages. A larger gap is not automatically a problem; consider the shots you need to play."))
+                    .font(.caption).foregroundStyle(.secondary)
+            }
+            NavigationLink { BagView() } label: {
+                Label(preferences.text("Manage My Bag"), systemImage: "figure.golf")
+            }.buttonStyle(.bordered)
+        }
+    }
+
+    private var roundPerformance: some View {
+        VStack(alignment: .leading, spacing: 24) {
+            if rounds.isEmpty {
+                SLEmptyState(title: preferences.text("Build a picture of your game."),
+                    message: preferences.text("Save a round and fill in your scorecard. Scoring, putts, and penalties will come from your own entries."),
+                    symbol: "flag.checkered")
+                NavigationLink { CourseView() } label: {
+                    Label(preferences.text("Open Course"), systemImage: "map")
+                }.buttonStyle(.borderedProminent)
+            } else {
+                if !completed18.isEmpty {
+                    metric(value: scoringAverage.formatted(.number.locale(preferences.locale).precision(.fractionLength(1))), label: "Scoring average · 18 holes")
+                }
+                if completed18.count >= 2 {
+                    Chart(completed18.reversed()) { round in
+                        PointMark(x: .value(preferences.text("Date"), round.startedAt),
+                                  y: .value(preferences.text("Strokes"), round.totalScore))
+                            .foregroundStyle(SLTheme.forest).symbolSize(48)
+                            .accessibilityLabel(Text(round.courseName))
+                            .accessibilityValue(Text(round.totalScore.formatted(.number.locale(preferences.locale))))
+                    }
+                    .chartYScale(domain: .automatic(includesZero: false))
+                    .frame(height: 190)
+                    Text(preferences.text("Gross scores from fully scored, completed 18-hole rounds. Course difficulty is not adjusted."))
+                        .font(.caption).foregroundStyle(.secondary)
+                }
+                SLSectionHeader(title: preferences.text("Round history"))
+                ForEach(Array(rounds.prefix(10))) { round in
+                    NavigationLink { ScorecardView(round: round) } label: {
+                        HStack(alignment: .firstTextBaseline) {
+                            VStack(alignment: .leading, spacing: 5) {
+                                Text(round.courseName).font(.headline).foregroundStyle(SLTheme.ink)
+                                Text(round.startedAt, format: .dateTime.month().day().year())
+                                    .font(.caption).foregroundStyle(.secondary)
+                                Text("\(round.completedHoleCount) / \(round.holeCount) \(preferences.text("holes scored"))")
+                                    .font(.caption).foregroundStyle(.secondary)
+                            }
+                            Spacer()
+                            if round.completedHoleCount > 0 {
+                                Text(round.totalScore.formatted(.number.locale(preferences.locale)))
+                                    .font(.title2.weight(.medium)).monospacedDigit().foregroundStyle(SLTheme.ink)
+                            }
+                            Image(systemName: "chevron.right").font(.caption).foregroundStyle(.secondary)
+                        }
+                    }
+                    Divider()
+                }
+                NavigationLink(preferences.text("All rounds")) { RoundHistoryView() }
+            }
+        }
+    }
+
+    private func metric(value: String, label: String) -> some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text(value).font(.system(.largeTitle, design: .rounded).weight(.medium)).monospacedDigit()
+            Text(preferences.text(label)).font(.subheadline).foregroundStyle(.secondary)
+        }.padding(.vertical, 8)
+    }
+
+    private var carryClubs: [GolfClub] {
+        clubs.filter { ($0.carryMeters ?? 0) > 0 }.sorted { ($0.carryMeters ?? 0) > ($1.carryMeters ?? 0) }
+    }
+    private var completed18: [RoundSession] {
+        rounds.filter { $0.endedAt != nil && $0.holeCount == 18 && $0.completedHoleCount == 18 }
+    }
+    private var scoringAverage: Double {
+        guard !completed18.isEmpty else { return 0 }
+        return Double(completed18.reduce(0) { $0 + $1.totalScore }) / Double(completed18.count)
+    }
+}
+
+private struct TempoSnapshot: Identifiable {
+    let id: UUID
+    let title: String
+    let createdAt: Date
+    let tempo: Double?
+    let provenance: String?
+
+    init(recording: SwingRecording) {
+        id = recording.id
+        title = recording.title
+        createdAt = recording.createdAt
+        let report = recording.analysis
+        let value = report?.tempoRatio
+        tempo = value.flatMap { $0.isFinite && $0 > 0 ? $0 : nil }
+        provenance = report?.timingProvenance
+    }
+}
+
+private enum PerformanceSection: String, CaseIterable, Identifiable {
+    case practice = "Practice"
+    case bag = "My Bag"
+    case rounds = "Rounds"
+    var id: String { rawValue }
+}

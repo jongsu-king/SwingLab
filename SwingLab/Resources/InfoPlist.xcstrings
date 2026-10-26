@@ -1,0 +1,160 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "NSCameraUsageDescription": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SwingLab uses your camera to record golf swings for analysis on this iPhone."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SwingLab은 이 iPhone에서 골프 스윙을 촬영하고 분석하기 위해 카메라를 사용합니다."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SwingLabは、このiPhoneでゴルフスイングを撮影・分析するためにカメラを使用します。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SwingLab 使用相机录制高尔夫挥杆，并在此 iPhone 上进行分析。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SwingLab 使用相機錄製高爾夫揮桿，並在此 iPhone 上進行分析。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SwingLab usa la cámara para grabar swings de golf y analizarlos en este iPhone."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O SwingLab usa a câmera para gravar swings de golfe e analisá-los neste iPhone."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SwingLab verwendet die Kamera, um Golfschwünge aufzunehmen und auf diesem iPhone zu analysieren."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SwingLab utilise la caméra pour filmer vos swings et les analyser sur cet iPhone."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SwingLab usa la fotocamera per registrare gli swing di golf e analizzarli su questo iPhone."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SwingLab ใช้กล้องบันทึกวงสวิงกอล์ฟเพื่อวิเคราะห์บน iPhone เครื่องนี้"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SwingLab dùng camera để ghi lại cú swing và phân tích trên iPhone này."
+          }
+        }
+      }
+    },
+    "NSLocationWhenInUseUsageDescription": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SwingLab uses your location while the course screen is open to calculate target distances and record shots you choose to save."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SwingLab은 코스 화면이 열려 있을 때 위치를 사용하여 목표 지점까지의 거리를 계산하고 사용자가 저장한 샷을 기록합니다."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SwingLabはコース画面を開いている間、位置情報を使って目標までの距離を計算し、保存したショットを記録します。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SwingLab 在球场界面打开时使用您的位置，计算目标距离并记录您选择保存的击球。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SwingLab 在球場畫面開啟時使用您的位置，計算目標距離並記錄您選擇儲存的擊球。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SwingLab usa tu ubicación mientras la pantalla del campo está abierta para calcular distancias al objetivo y registrar los golpes que decides guardar."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O SwingLab usa sua localização enquanto a tela do campo está aberta para calcular distâncias ao alvo e registrar as tacadas que você escolhe salvar."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SwingLab nutzt deinen Standort bei geöffneter Platzansicht, um Zielentfernungen zu berechnen und ausgewählte Schläge zu speichern."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SwingLab utilise votre position lorsque la vue du parcours est ouverte pour calculer les distances et enregistrer les coups que vous choisissez de sauvegarder."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SwingLab usa la posizione mentre la schermata del campo è aperta per calcolare le distanze e registrare i colpi che scegli di salvare."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SwingLab ใช้ตำแหน่งเมื่อเปิดหน้าสนาม เพื่อคำนวณระยะถึงเป้าหมายและบันทึกช็อตที่คุณเลือกบันทึก"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SwingLab dùng vị trí khi màn hình sân golf đang mở để tính khoảng cách đến mục tiêu và ghi lại những cú đánh bạn chọn lưu."
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}
