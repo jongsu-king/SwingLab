@@ -13784,6 +13784,83 @@
         }
       }
     },
+    "Impact timed from the impact sound. Sound travel adds about 3 ms per metre between you and the iPhone.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impact timed from the impact sound. Sound travel adds about 3 ms per metre between you and the iPhone."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "임팩트 시점은 타구음으로 측정했습니다. 골퍼와 iPhone 사이 거리 1m마다 소리가 전달되는 데 약 3ms가 더해집니다."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "インパクトは打球音から計時しました。あなたとiPhoneの距離1メートルごとに、音が届くまで約3ミリ秒かかります。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "击球时刻由击球声测定。你与 iPhone 之间每相距 1 米，声音传播约增加 3 毫秒。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "擊球時刻由擊球聲測定。你與 iPhone 之間每相距 1 公尺，聲音傳播約增加 3 毫秒。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El impacto se midió por el sonido del golpe. La propagación del sonido añade unos 3 ms por cada metro entre tú y el iPhone."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O impacto foi cronometrado pelo som da batida. A propagação do som acrescenta cerca de 3 ms por metro entre você e o iPhone."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Treffmoment wurde aus dem Schlaggeräusch bestimmt. Die Schalllaufzeit fügt etwa 3 ms pro Meter zwischen dir und dem iPhone hinzu."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’impact a été chronométré d’après le son de frappe. La propagation du son ajoute environ 3 ms par mètre entre vous et l’iPhone."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’impatto è stato misurato dal suono del colpo. La propagazione del suono aggiunge circa 3 ms per ogni metro tra te e l’iPhone."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "จับเวลาจังหวะกระทบจากเสียงตีลูก การเดินทางของเสียงเพิ่มเวลาประมาณ 3 มิลลิวินาทีต่อระยะ 1 เมตรระหว่างคุณกับ iPhone"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thời điểm chạm bóng được đo từ tiếng đánh bóng. Âm thanh truyền đi cộng thêm khoảng 3 ms cho mỗi mét giữa bạn và iPhone."
+          }
+        }
+      }
+    },
     "Import video": {
       "extractionState": "manual",
       "localizations": {
@@ -16941,6 +17018,83 @@
         }
       }
     },
+    "No clear impact sound after the top, so impact is a pose estimate.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No clear impact sound after the top, so impact is a pose estimate."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "탑 이후 뚜렷한 타구음이 없어 임팩트는 자세 기반 추정입니다."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "トップの後に明確な打球音がないため、インパクトは姿勢からの推定です。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "上杆顶点之后没有清晰的击球声，击球时刻为姿态估算。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "上桿頂點之後沒有清晰的擊球聲，擊球時刻為姿態估算。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No hay un sonido de impacto claro después del punto más alto, así que el impacto es una estimación por postura."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não há um som de impacto claro após o topo, então o impacto é uma estimativa pela postura."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nach dem höchsten Punkt gibt es kein klares Schlaggeräusch, daher ist der Treffmoment eine Schätzung aus der Haltung."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun son d’impact net après le haut du swing ; l’impact est une estimation d’après la posture."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessun suono d’impatto chiaro dopo la sommità, quindi l’impatto è una stima dalla postura."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ไม่มีเสียงกระทบที่ชัดเจนหลังจุดสูงสุด จังหวะกระทบจึงเป็นค่าประมาณจากท่าทาง"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Không có tiếng chạm bóng rõ ràng sau đỉnh swing, nên thời điểm chạm bóng là ước tính từ tư thế."
+          }
+        }
+      }
+    },
     "No places found. Try the course name with its city.": {
       "extractionState": "manual",
       "localizations": {
@@ -17168,6 +17322,160 @@
           "stringUnit": {
             "state": "translated",
             "value": "Chưa ghi cú đánh nào."
+          }
+        }
+      }
+    },
+    "No sound in this video, so impact is a pose estimate.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No sound in this video, so impact is a pose estimate."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "이 영상에는 소리가 없어 임팩트는 자세 기반 추정입니다."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "この動画には音声がないため、インパクトは姿勢からの推定です。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此视频没有声音，击球时刻为姿态估算。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此影片沒有聲音，擊球時刻為姿態估算。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este video no tiene sonido, así que el impacto es una estimación por postura."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este vídeo não tem som, então o impacto é uma estimativa pela postura."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dieses Video hat keinen Ton, daher ist der Treffmoment eine Schätzung aus der Haltung."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cette vidéo n’a pas de son ; l’impact est une estimation d’après la posture."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Questo video non ha audio, quindi l’impatto è una stima dalla postura."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "วิดีโอนี้ไม่มีเสียง จังหวะกระทบจึงเป็นค่าประมาณจากท่าทาง"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Video này không có âm thanh, nên thời điểm chạm bóng là ước tính từ tư thế."
+          }
+        }
+      }
+    },
+    "No sound · impact from pose only · tap preview to focus": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No sound · impact from pose only · tap preview to focus"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "소리 없음 · 임팩트는 자세로만 추정 · 화면을 눌러 초점 조절"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "音声なし · インパクトは姿勢のみから推定 · プレビューをタップしてピント合わせ"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无声音 · 击球时刻仅由姿态估算 · 轻点预览对焦"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無聲音 · 擊球時刻僅由姿態估算 · 輕點預覽對焦"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin sonido · impacto solo a partir de la postura · toca la vista previa para enfocar"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sem som · impacto apenas pela postura · toque na prévia para focar"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kein Ton · Treffmoment nur aus der Haltung · zum Fokussieren auf die Vorschau tippen"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pas de son · impact estimé d’après la posture seule · touchez l’aperçu pour faire la mise au point"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessun audio · impatto stimato solo dalla postura · tocca l’anteprima per mettere a fuoco"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ไม่มีเสียง · ประมาณจังหวะกระทบจากท่าทางเท่านั้น · แตะภาพตัวอย่างเพื่อโฟกัส"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Không có âm thanh · thời điểm chạm bóng chỉ ước tính từ tư thế · chạm vào bản xem trước để lấy nét"
           }
         }
       }
@@ -24179,6 +24487,83 @@
         }
       }
     },
+    "Several similar sounds after the top, so impact is a pose estimate.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Several similar sounds after the top, so impact is a pose estimate."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "탑 이후 비슷한 소리가 여러 번 들려 임팩트는 자세 기반 추정입니다."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "トップの後に似た音が複数あるため、インパクトは姿勢からの推定です。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "上杆顶点之后有多个相似的声音，击球时刻为姿态估算。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "上桿頂點之後有多個相似的聲音，擊球時刻為姿態估算。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hay varios sonidos parecidos después del punto más alto, así que el impacto es una estimación por postura."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Há vários sons parecidos após o topo, então o impacto é uma estimativa pela postura."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nach dem höchsten Punkt gibt es mehrere ähnliche Geräusche, daher ist der Treffmoment eine Schätzung aus der Haltung."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plusieurs sons similaires après le haut du swing ; l’impact est une estimation d’après la posture."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ci sono diversi suoni simili dopo la sommità, quindi l’impatto è una stima dalla postura."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "มีเสียงคล้ายกันหลายครั้งหลังจุดสูงสุด จังหวะกระทบจึงเป็นค่าประมาณจากท่าทาง"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Có nhiều âm thanh giống nhau sau đỉnh swing, nên thời điểm chạm bóng là ước tính từ tư thế."
+          }
+        }
+      }
+    },
     "Shaft": {
       "extractionState": "manual",
       "localizations": {
@@ -25022,6 +25407,83 @@
           "stringUnit": {
             "state": "translated",
             "value": "Không thể xóa một số dữ liệu. Hãy thử lại trước khi rời màn hình này."
+          }
+        }
+      }
+    },
+    "Sound on for impact timing · tap preview to focus": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sound on for impact timing · tap preview to focus"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "임팩트 타이밍용 소리 녹음 중 · 화면을 눌러 초점 조절"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "インパクト計時のため音声を録音 · プレビューをタップしてピント合わせ"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "录制声音用于击球计时 · 轻点预览对焦"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "錄製聲音用於擊球計時 · 輕點預覽對焦"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonido activado para medir el impacto · toca la vista previa para enfocar"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Som ativado para cronometrar o impacto · toque na prévia para focar"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ton an für das Timing des Treffmoments · zum Fokussieren auf die Vorschau tippen"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Son activé pour chronométrer l’impact · touchez l’aperçu pour faire la mise au point"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Audio attivo per il tempo d’impatto · tocca l’anteprima per mettere a fuoco"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เปิดเสียงเพื่อจับเวลาจังหวะกระทบ · แตะภาพตัวอย่างเพื่อโฟกัส"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bật âm thanh để xác định thời điểm chạm bóng · chạm vào bản xem trước để lấy nét"
           }
         }
       }
@@ -27567,6 +28029,160 @@
         }
       }
     },
+    "The impact sound was too faint or out of order, so impact stays a pose estimate.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The impact sound was too faint or out of order, so impact stays a pose estimate."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "타구음이 너무 작거나 순서가 맞지 않아 임팩트는 자세 기반 추정으로 유지됩니다."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打球音が小さすぎるか順序が合わないため、インパクトは姿勢からの推定のままです。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "击球声太弱或时间顺序不符，击球时刻仍为姿态估算。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "擊球聲太弱或時間順序不符，擊球時刻仍為姿態估算。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El sonido del impacto era demasiado débil o no encajaba en el orden, así que el impacto sigue siendo una estimación por postura."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O som do impacto estava fraco demais ou fora de ordem, então o impacto continua sendo uma estimativa pela postura."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das Schlaggeräusch war zu leise oder passte nicht in die Abfolge, daher bleibt der Treffmoment eine Schätzung aus der Haltung."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le son d’impact était trop faible ou mal placé dans la séquence ; l’impact reste une estimation d’après la posture."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il suono dell’impatto era troppo debole o fuori sequenza, quindi l’impatto resta una stima dalla postura."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เสียงกระทบเบาเกินไปหรือไม่ตรงลำดับ จังหวะกระทบจึงยังเป็นค่าประมาณจากท่าทาง"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tiếng chạm bóng quá nhỏ hoặc sai thứ tự, nên thời điểm chạm bóng vẫn là ước tính từ tư thế."
+          }
+        }
+      }
+    },
+    "The loudest sound did not match the swing timing, so impact is a pose estimate.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The loudest sound did not match the swing timing, so impact is a pose estimate."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "가장 큰 소리가 스윙 타이밍과 맞지 않아 임팩트는 자세 기반 추정입니다."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最も大きな音がスイングのタイミングと合わないため、インパクトは姿勢からの推定です。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最响的声音与挥杆时机不符，击球时刻为姿态估算。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最響的聲音與揮桿時機不符，擊球時刻為姿態估算。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El sonido más fuerte no coincidía con el ritmo del swing, así que el impacto es una estimación por postura."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O som mais alto não coincidiu com o tempo do swing, então o impacto é uma estimativa pela postura."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das lauteste Geräusch passte nicht zum Schwung-Timing, daher ist der Treffmoment eine Schätzung aus der Haltung."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le son le plus fort ne correspondait pas au rythme du swing ; l’impact est une estimation d’après la posture."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il suono più forte non corrispondeva ai tempi dello swing, quindi l’impatto è una stima dalla postura."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เสียงที่ดังที่สุดไม่ตรงกับจังหวะสวิง จังหวะกระทบจึงเป็นค่าประมาณจากท่าทาง"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Âm thanh lớn nhất không khớp với nhịp swing, nên thời điểm chạm bóng là ước tính từ tư thế."
+          }
+        }
+      }
+    },
     "The original video is no longer available.": {
       "extractionState": "manual",
       "localizations": {
@@ -28025,6 +28641,83 @@
           "stringUnit": {
             "state": "translated",
             "value": "Video thứ hai có backswing ngắn hơn. Lặp lại cùng bài tập và so sánh với video tiếp theo."
+          }
+        }
+      }
+    },
+    "The sound track could not be read, so impact is a pose estimate.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The sound track could not be read, so impact is a pose estimate."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "오디오 트랙을 읽을 수 없어 임팩트는 자세 기반 추정입니다."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "音声トラックを読み取れなかったため、インパクトは姿勢からの推定です。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法读取音轨，击球时刻为姿态估算。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法讀取音軌，擊球時刻為姿態估算。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo leer la pista de sonido, así que el impacto es una estimación por postura."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não foi possível ler a faixa de áudio, então o impacto é uma estimativa pela postura."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Tonspur konnte nicht gelesen werden, daher ist der Treffmoment eine Schätzung aus der Haltung."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La piste audio n’a pas pu être lue ; l’impact est une estimation d’après la posture."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non è stato possibile leggere la traccia audio, quindi l’impatto è una stima dalla postura."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "อ่านแทร็กเสียงไม่ได้ จังหวะกระทบจึงเป็นค่าประมาณจากท่าทาง"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Không đọc được rãnh âm thanh, nên thời điểm chạm bóng là ước tính từ tư thế."
           }
         }
       }

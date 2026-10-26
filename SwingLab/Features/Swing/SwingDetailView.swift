@@ -179,6 +179,10 @@ struct SwingDetailView: View {
             SLSectionHeader(title: prefs.text("Review the phases"), subtitle: prefs.text("Move to a frame, then set a marker."))
             Text(prefs.text("Automatic markers are unvalidated estimates. Wrist motion does not establish ball impact. Correct the markers before interpreting tempo."))
                 .font(.caption).foregroundStyle(.secondary)
+            if let key = audioStatusKey(report) {
+                Label(prefs.text(key), systemImage: report.marker(.impact)?.provenance == .audioDerived ? "waveform" : "waveform.slash")
+                    .font(.caption).foregroundStyle(.secondary)
+            }
             ForEach(SwingPhaseName.allCases) { phase in
                 HStack {
                     Button {
@@ -204,6 +208,24 @@ struct SwingDetailView: View {
                     .disabled(report.marker(selectedPhase) == nil)
             }.disabled(analysisTask != nil || videoURL == nil)
         }.padding(.horizontal, 20)
+    }
+
+    /// Explains where the impact time came from. Nothing is shown for a user-entered impact
+    /// or for reports analyzed before audio detection existed.
+    private func audioStatusKey(_ report: PoseAnalysisReport) -> String? {
+        guard let outcome = report.audioImpact, report.marker(.impact)?.provenance != .userEntered else { return nil }
+        if report.marker(.impact)?.provenance == .audioDerived {
+            return "Impact timed from the impact sound. Sound travel adds about 3 ms per metre between you and the iPhone."
+        }
+        if outcome.estimate != nil { return "The impact sound was too faint or out of order, so impact stays a pose estimate." }
+        switch outcome.rejection {
+        case .noAudio: return "No sound in this video, so impact is a pose estimate."
+        case .invalidSignal: return "The sound track could not be read, so impact is a pose estimate."
+        case .noTransient: return "No clear impact sound after the top, so impact is a pose estimate."
+        case .ambiguous: return "Several similar sounds after the top, so impact is a pose estimate."
+        case .inconsistentWithPose: return "The loudest sound did not match the swing timing, so impact is a pose estimate."
+        case nil: return nil
+        }
     }
 
     private func metricsSection(_ report: PoseAnalysisReport) -> some View {

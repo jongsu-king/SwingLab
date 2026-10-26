@@ -111,20 +111,24 @@ public struct PoseAnalysisReport: Codable, Sendable {
     public var poseFrameRate: Double?
     /// Legacy reports do not establish which lead/trail assumption was used.
     public var analyzedHandedness: Handedness?
+    /// Nil when no audio analysis ran (legacy reports, or clips analyzed before WP3).
+    public var audioImpact: AudioImpactOutcome?
 
     public init(schemaVersion: Int = 1, frames: [PoseFrame], markers: [SwingPhaseMarker], analyzedAt: Date,
                 sampledFrameCount: Int, poseFrameCount: Int, sampleRateLimit: Double, notes: [String],
-                analysisVersion: Int = 1, poseFrameRate: Double? = nil, analyzedHandedness: Handedness? = nil) {
+                analysisVersion: Int = 1, poseFrameRate: Double? = nil, analyzedHandedness: Handedness? = nil,
+                audioImpact: AudioImpactOutcome? = nil) {
         self.schemaVersion = schemaVersion; self.frames = frames; self.markers = markers; self.analyzedAt = analyzedAt
         self.sampledFrameCount = sampledFrameCount; self.poseFrameCount = poseFrameCount
         self.sampleRateLimit = sampleRateLimit; self.notes = notes
         self.analysisVersion = analysisVersion
         self.poseFrameRate = poseFrameRate.flatMap { $0.isFinite && $0 > 0 ? $0 : nil }
         self.analyzedHandedness = analyzedHandedness
+        self.audioImpact = audioImpact
     }
     private enum CodingKeys: String, CodingKey {
         case schemaVersion, frames, markers, analyzedAt, sampledFrameCount, poseFrameCount, sampleRateLimit, notes
-        case analysisVersion, poseFrameRate, analyzedHandedness
+        case analysisVersion, poseFrameRate, analyzedHandedness, audioImpact
     }
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
@@ -138,7 +142,8 @@ public struct PoseAnalysisReport: Codable, Sendable {
                   notes: try values.decode([String].self, forKey: .notes),
                   analysisVersion: try values.decodeIfPresent(Int.self, forKey: .analysisVersion) ?? 1,
                   poseFrameRate: try values.decodeIfPresent(Double.self, forKey: .poseFrameRate),
-                  analyzedHandedness: try values.decodeIfPresent(Handedness.self, forKey: .analyzedHandedness))
+                  analyzedHandedness: try values.decodeIfPresent(Handedness.self, forKey: .analyzedHandedness),
+                  audioImpact: try values.decodeIfPresent(AudioImpactOutcome.self, forKey: .audioImpact))
     }
     public func marker(_ phase: SwingPhaseName) -> SwingPhaseMarker? { markers.first { $0.phase == phase } }
     public var backswingDuration: Double? {

@@ -4,7 +4,7 @@ Effective date: 26 October 2026. This describes the implementation in this repos
 
 SwingLab does not require an account. It stores imported and recorded videos, pose-analysis results, club profiles, manually supplied course references, scorecards, GPS shot records, and preferences in the app's local storage. Videos are analyzed on the iPhone. This version has no cloud upload service, advertising SDK, or analytics SDK.
 
-Camera access is requested when you choose to record. This version records without audio and does not request microphone access. Imported videos may contain their original audio. The system photo picker gives access to the video you select; SwingLab copies it to app storage and does not request unrestricted access to your photo library.
+Camera access is requested when you choose to record. After camera access, SwingLab asks once for microphone access. If you allow it, swing videos include sound, which is analyzed on this iPhone only to time the moment of impact; it is never uploaded. If you decline, recording works without sound. Imported videos may contain their original audio, which is analyzed the same way. The system photo picker gives access to the video you select; SwingLab copies it to app storage and does not request unrestricted access to your photo library.
 
 Location access is requested for foreground course actions. A GPS fix is requested when you tap the location control or need a fresh fix to log a shot. Coordinates, timestamps, and horizontal accuracy are saved when you explicitly record a shot. There is no always-on or background location tracking.
 

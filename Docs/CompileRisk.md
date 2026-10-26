@@ -27,3 +27,15 @@ Full Xcode and simulator tools are absent at the WP1 boundary. `swift build` and
 Also verify project regeneration links the local Core package and compiles the new component. Metadata adapters retain the original stored column types/names; opening a real Round 1 store remains a native integration check.
 
 The SwiftPM `--disable-sandbox` flag only avoids a nested sandbox initialization failure; the outer workspace sandbox remains active. Compiler caches stay in `.build/`. No `@preconcurrency` or `nonisolated(unsafe)` was added to hide a new warning.
+
+## Reviewer additions (WP2–WP3, while Codex is unavailable)
+
+WP3 adds one permission: `NSMicrophoneUsageDescription` (12 languages). Recording still works when it is declined.
+
+| App file | First native build / runtime check |
+|---|---|
+| `SwingLab/Services/CameraService.swift` | Audio `AVCaptureDeviceInput` added inside the existing begin/commit block; new `CameraEvent.audio`; microphone `requestAccess` after camera access. On device: the movie has an AAC track, mic denial still records, and interruptions (calls, Siri) resume with audio. |
+| `SwingLab/Services/AudioImpactReader.swift` | iOS SDK typecheck of the audio `AVAssetReaderTrackOutput` settings. It is typechecked and exercised on macOS by `check_capture.sh`, where AAC and LPCM clicks read back within 0.5 ms. On device: real camera AAC timing against a filmed clap. |
+| `SwingLab/Services/PoseEstimationService.swift` | New actor method `audioImpact(asset:duration:markers:)` passes `AVAsset` to a nonisolated async helper; the `@preconcurrency` import is unchanged. Typechecked on macOS. |
+| `SwingLab/Features/Camera/CameraView.swift` | Ternary localization keys for the sound caption. |
+| `SwingLab/Features/Swing/SwingDetailView.swift` | `Label` with a dynamic SF Symbol name; exhaustive `switch` over `AudioImpactRejection?`. |

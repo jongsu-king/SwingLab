@@ -24,7 +24,8 @@ All capture/review Swift files passed `swiftc -frontend -parse`. Full iOS typech
 ## Known limits and required device checks
 
 - This milestone is portrait-only capture. Hardware format support does not prove sustained FPS; inspect output timestamps on physical iPhones under realistic lighting and thermal conditions.
-- No microphone track is recorded. Imported audio is preserved; comparison playback is muted.
+- With microphone access, the movie output records an AAC track; without it, capture is video-only. Imported audio is preserved; comparison playback is muted.
+- Impact sound: `AudioImpactReader` reads only top − 0.2 s … top + 0.8 s as mono Float32 PCM, and `ImpactOnsetDetector` (SwingLabCore) times the transient. A macOS check writes LPCM and AAC movies with a click at a known time; both read back within 0.5 ms, so AAC encoder priming does not shift the audio timeline.
 - At most one golfer and one swing per clip should be analyzed. Person continuity is a heuristic and can fail with occlusion or other people. Confidence threshold 0.35 and smoothing time constant 45 ms are engineering defaults requiring calibration.
 - Inference is sampled; high-frame-rate files retain their original frames for review but are not all analyzed. Temporal smoothing can shift estimated events. No impact-accuracy claim is supported.
 - Vision observation geometry and transform correctness need positive golfer fixtures, especially mirrored and slow-motion Photos exports. The negative integration fixtures validate decoding/error paths, not landmark accuracy.

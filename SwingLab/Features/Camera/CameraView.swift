@@ -136,7 +136,9 @@ struct CameraView: View {
                 Spacer()
                 Text(prefs.text("60 s max")).font(.caption).frame(width: 60)
             }
-            Text(prefs.text("Silent video · tap preview to focus")).font(.caption).foregroundStyle(.white.opacity(0.75))
+            Text(prefs.text(camera.recordsAudio ? "Sound on for impact timing · tap preview to focus"
+                                                : "No sound · impact from pose only · tap preview to focus"))
+                .font(.caption).foregroundStyle(.white.opacity(0.75))
         }.padding(16).background(.black.opacity(0.7), in: RoundedRectangle(cornerRadius: 14))
     }
 }

@@ -154,6 +154,83 @@
           }
         }
       }
+    },
+    "NSMicrophoneUsageDescription": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SwingLab records sound with your swing videos to time the moment of impact on this iPhone. Sound is not uploaded."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SwingLab은 이 iPhone에서 임팩트 순간을 측정하기 위해 스윙 영상과 함께 소리를 녹음합니다. 소리는 업로드되지 않습니다."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SwingLabは、このiPhone上でインパクトの瞬間を計時するため、スイング動画と一緒に音声を録音します。音声はアップロードされません。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SwingLab 会在录制挥杆视频时同时录音，以便在这台 iPhone 上测定击球时刻。声音不会上传。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SwingLab 會在錄製揮桿影片時同時錄音，以便在這台 iPhone 上測定擊球時刻。聲音不會上傳。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SwingLab graba sonido con tus videos de swing para medir el momento del impacto en este iPhone. El sonido no se sube."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O SwingLab grava som com seus vídeos de swing para cronometrar o momento do impacto neste iPhone. O som não é enviado."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SwingLab nimmt mit deinen Schwungvideos Ton auf, um den Treffmoment auf diesem iPhone zu bestimmen. Der Ton wird nicht hochgeladen."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SwingLab enregistre le son avec vos vidéos de swing pour chronométrer l’instant de l’impact sur cet iPhone. Le son n’est pas envoyé."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SwingLab registra l’audio insieme ai video dello swing per misurare il momento dell’impatto su questo iPhone. L’audio non viene caricato."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SwingLab บันทึกเสียงพร้อมวิดีโอสวิงเพื่อจับเวลาช่วงกระทบลูกบน iPhone เครื่องนี้ เสียงจะไม่ถูกอัปโหลด"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SwingLab ghi âm cùng video swing để xác định thời điểm chạm bóng trên iPhone này. Âm thanh không được tải lên."
+          }
+        }
+      }
     }
   },
   "version": "1.0"

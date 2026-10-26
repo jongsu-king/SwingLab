@@ -34,6 +34,7 @@ enum CheckFailure: Error { case nilValue }
     @MainActor static func main() throws {
         let units = UnitsTests(), geography = GeographyTests(), dispersion = DispersionTests(), timing = TimingAndGeometryTests()
         let provenance = ProvenanceTests(), summary = SummaryMigrationTests(), phases = PhaseDetectionTests()
+        let audio = ImpactOnsetTests()
         let checks: [(String, () throws -> Void)] = [
             ("independent unit conversions", units.testIndependentUnitsRoundTrip),
             ("language fallback", units.testLanguageFallbackAndRegionalMatching),
@@ -63,7 +64,15 @@ enum CheckFailure: Error { case nilValue }
             ("phase detector with landmark noise", phases.testNoisyLandmarksStayWithinNoiseLimitedTolerance),
             ("left-handed mirror timing", phases.testLeftHandedMirrorProducesSameTiming),
             ("no swing returns no guesses", phases.testNoSwingOrMissingBodyReturnsNoGuesses),
-            ("manual markers win on merge", phases.testMergeKeepsUserMarkersAndDropsConflictingEstimates)
+            ("manual markers win on merge", phases.testMergeKeepsUserMarkersAndDropsConflictingEstimates),
+            ("audio click timed within 1 ms", audio.testClickInNoiseIsTimedWithinOneMillisecond),
+            ("clipped audio click", audio.testClippedClickIsStillTimed),
+            ("two comparable clicks rejected", audio.testTwoComparableClicksAreAmbiguous),
+            ("weak secondary transient", audio.testWeakSecondaryTransientDoesNotBlockTheImpact),
+            ("no click or click outside window", audio.testNoClickOrClickOutsideWindowFindsNothing),
+            ("transient far from pose impact", audio.testTransientFarFromPoseImpactIsRejected),
+            ("faint click and invalid audio", audio.testFaintClickStaysEstimatedAndInvalidInputIsRejected),
+            ("audio impact replaces pose proxy", audio.testAudioImpactReplacesPoseProxyOnlyWhenClearAndOrdered)
         ]
         for (name, check) in checks {
             let before = failures

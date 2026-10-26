@@ -55,15 +55,34 @@ actor PoseEstimationService {
             }
         }
         let detectedCount = observedFrames.filter { !$0.joints.isEmpty }.count
+        var markers = SwingPhaseDetector.detect(frames: frames, handedness: handedness)
+        let audioImpact = try await audioImpact(asset: asset, duration: duration, markers: markers)
+        if let audioImpact { markers = ImpactOnsetDetector.apply(audioImpact, to: markers) }
         progress(1)
         return PoseAnalysisReport(frames: frames,
-                                  markers: SwingPhaseDetector.detect(frames: frames, handedness: handedness), analyzedAt: .now,
+                                  markers: markers, analyzedAt: .now,
                                   sampledFrameCount: frames.count, poseFrameCount: detectedCount,
                                   sampleRateLimit: rateLimit, notes: [
                                     "Pose is vision-derived 2D image geometry, not a 3D body measurement.",
                                     "Phase markers are estimates. Review and correct them before using tempo.",
                                     "Use one golfer, a steady camera, and one swing per clip."
-                                  ], analysisVersion: 2, poseFrameRate: actualRate, analyzedHandedness: handedness)
+                                  ], analysisVersion: 2, poseFrameRate: actualRate, analyzedHandedness: handedness,
+                                  audioImpact: audioImpact)
+    }
+
+    /// Searches for the impact sound from the top to 0.6 s after it. The read starts 0.2 s earlier
+    /// so the noise floor includes sound before the transient. Nil when no top was estimated.
+    private func audioImpact(asset: AVAsset, duration: Double, markers: [SwingPhaseMarker]) async throws -> AudioImpactOutcome? {
+        guard let top = markers.first(where: { $0.phase == .top })?.time else { return nil }
+        let poseImpact = markers.first { $0.phase == .impact }?.time
+        guard let audio = try await AudioImpactReader.read(asset: asset, range: max(0, top - 0.2)...min(duration, top + 0.8)) else {
+            return AudioImpactOutcome(estimate: nil, rejection: .noAudio, poseImpactTime: poseImpact)
+        }
+        switch ImpactOnsetDetector.detect(samples: audio.samples, sampleRate: audio.sampleRate, startTime: audio.startTime,
+                                          window: top...min(duration, top + 0.6), poseImpact: poseImpact) {
+        case let .success(estimate): return AudioImpactOutcome(estimate: estimate, rejection: nil, poseImpactTime: poseImpact)
+        case let .failure(rejection): return AudioImpactOutcome(estimate: nil, rejection: rejection, poseImpactTime: poseImpact)
+        }
     }
 
     /// A pass stores only joints and presentation timestamps; no decoded buffers are retained in its result.

@@ -16,6 +16,7 @@ enum CameraEvent: Sendable {
     case saved(URL)
     case failure(String)
     case interrupted(Bool)
+    case audio(Bool)
 }
 
 /// All session, device, and movie-output mutations are serialized on `queue`.
@@ -26,6 +27,8 @@ final class CameraEngine: NSObject, @unchecked Sendable, AVCaptureFileOutputReco
     private let queue = DispatchQueue(label: "com.swinglab.camera", qos: .userInitiated)
     private let movieOutput = AVCaptureMovieFileOutput()
     private var input: AVCaptureDeviceInput?
+    /// Added only when microphone access is granted; the movie output then records an AAC track.
+    private var audioInput: AVCaptureDeviceInput?
     private var formats: [CameraFormatChoice] = []
     private var selectedID = ""
     private var observers: [NSObjectProtocol] = []
@@ -72,8 +75,16 @@ final class CameraEngine: NSObject, @unchecked Sendable, AVCaptureFileOutputReco
                 if !session.outputs.contains(movieOutput), session.canAddOutput(movieOutput) {
                     session.addOutput(movieOutput)
                 }
+                // Impact sound is optional evidence. Without microphone access, capture stays video-only.
+                if audioInput == nil, AVCaptureDevice.authorizationStatus(for: .audio) == .authorized,
+                   let microphone = AVCaptureDevice.default(for: .audio),
+                   let microphoneInput = try? AVCaptureDeviceInput(device: microphone), session.canAddInput(microphoneInput) {
+                    session.addInput(microphoneInput)
+                    audioInput = microphoneInput
+                }
                 session.sessionPreset = .inputPriority
                 session.commitConfiguration()
+                onEvent?(.audio(audioInput != nil))
                 formats = Self.availableFormats(device)
                 let preferred = formats.first { $0.width == 1920 && $0.fps == 60 }
                     ?? formats.first { $0.width == 1920 && $0.fps == 30 } ?? formats.first
@@ -214,6 +225,7 @@ final class CameraController {
     var selectedFormat = ""
     var savedURL: URL?
     var error: String?
+    var recordsAudio = false
     private var wantsCamera = false
     init() {
         engine = CameraEngine()
@@ -229,6 +241,10 @@ final class CameraController {
         default: authorized = false
         }
         denied = !authorized
+        // Asked once, after camera access. Declining keeps recording available without sound.
+        if authorized, AVCaptureDevice.authorizationStatus(for: .audio) == .notDetermined {
+            _ = await AVCaptureDevice.requestAccess(for: .audio)
+        }
         if authorized && wantsCamera && !Task.isCancelled { engine.configure(front: front) }
     }
     func stop() { wantsCamera = false; ready = false; engine.stop() }
@@ -241,6 +257,7 @@ final class CameraController {
         case let .saved(url): savedURL = url
         case let .failure(message): error = message
         case let .interrupted(value): interrupted = value
+        case let .audio(value): recordsAudio = value
         }
     }
 }
