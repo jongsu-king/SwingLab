@@ -85,7 +85,7 @@ struct HomeView: View {
                             title: "My Bag", symbol: "figure.golf",
                             detail: clubs.isEmpty ? "Start with the clubs you trust." : "Review your distances and gaps."
                         )
-                    }
+                    }.accessibilityIdentifier("home.bag")
                     Divider().padding(.vertical, 16)
                     NavigationLink { CourseView() } label: {
                         destinationRow(title: "Plan a round", symbol: "map", detail: "Find a course or choose your own target.")
@@ -111,7 +111,7 @@ struct HomeView: View {
             ToolbarItem(placement: .primaryAction) {
                 NavigationLink { SettingsView() } label: {
                     Image(systemName: "gearshape").accessibilityLabel(preferences.text("Settings"))
-                }
+                }.accessibilityIdentifier("home.settings")
             }
         }
     }

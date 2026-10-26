@@ -54,6 +54,12 @@ final class ImpactOnsetTests: XCTestCase {
         XCTAssertEqual(estimate.time, 2.21, accuracy: 0.001)
     }
 
+    func testSelectsNearestPoseCandidateRatherThanLoudestNeighbor() throws {
+        let estimate = try SyntheticAudio.detect(SyntheticAudio.signal(clicks: [(2.21, 0.16), (2.28, 0.8)])).get()
+        XCTAssertEqual(estimate.time, 2.21, accuracy: 0.001)
+        XCTAssertEqual(estimate.provenance, .audioDerived)
+    }
+
     func testNoClickOrClickOutsideWindowFindsNothing() {
         XCTAssertEqual(SyntheticAudio.detect(SyntheticAudio.signal(clicks: [])).failure, .noTransient)
         XCTAssertEqual(SyntheticAudio.detect(SyntheticAudio.signal(clicks: [(2.55, 0.8)])).failure, .noTransient)

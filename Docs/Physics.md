@@ -4,7 +4,7 @@
 
 ## Model
 
-Point mass, RK4 with a 1 ms step. Axes: x forward along the target line, y up, z right.
+Point mass, RK4 for position/velocity with a 1 ms step; spin decay currently uses a first-order Euler step. Axes: x forward along the target line, y up, z right. API launch angles and spin are explicitly degrees/rpm; typed output metrics use SI (including radians), converted by the renderer.
 
 | Term | Form |
 |---|---|
@@ -33,14 +33,14 @@ With drag, lift, and decay set to zero (`AeroCoefficients.vacuum`), range, apex,
 
 ### Reference shots
 
-Reference: TrackMan PGA Tour averages, as widely reproduced in secondary sources. This is an unverified reference; check it against TrackMan's current publication. Simulation conditions: standard atmosphere here (20 °C, 101 325 Pa, 50 % RH), no wind, flat landing.
+Reference: the **older** [TrackMan PGA Tour averages table hosted by TrackMan support](https://support.trackmangolf.com/hc/en-us/article_attachments/7349802113051). The official indexed table was checked on 26 October 2026; the web tool could not open the full 20 MB PDF. The indexed rows confirm the launch/carry/apex reference values below and correct the driver's landing angle to **38°**. These are not current tour averages: [TrackMan published an updated dataset in May 2024](https://www.trackman.io/blog/introducing-updated-tour-averages). Simulation conditions: standard atmosphere here (20 °C, 101 325 Pa, 50 % RH), no wind, flat landing. An aggregate of separate averages is not a measured flight with matched atmospheric conditions, so these are regression comparisons, not calibration or proof of accuracy.
 
 | Shot | Inputs | Carry | Apex | Landing angle |
 |---|---|---|---|---|
-| Driver | 167 mph, 10.9°, 2686 rpm | 273.0 yd vs 275 (**−0.7 %**) | 42.3 yd vs 32 (**+32 %**) | 43.3° vs 37° |
+| Driver | 167 mph, 10.9°, 2686 rpm | 273.0 yd vs 275 (**−0.7 %**) | 42.3 yd vs 32 (**+32 %**) | 43.3° vs 38° |
 | 7-iron | 120 mph, 16.3°, 7097 rpm | 186.6 yd vs 172 (**+8.5 %**) | 38.1 yd vs 32 (**+19 %**) | 46.2° vs 50° |
 
-**Finding:** the cited model matches driver carry but overestimates lift, especially at the high spin ratio of irons (S ≈ 0.3). That makes trajectories too high, and iron carry too long.
+**Finding:** this coefficient implementation predicts higher apexes and longer iron carry than these averages. The discrepancy alone does not isolate lift as the cause: omitted drag dependence, ball construction, atmosphere, and averaging can also contribute. The lift-only causal attribution in the reviewer report was not demonstrated.
 
 No single adjustment fixes both clubs. A sensitivity run (not committed as a model) found:
 
@@ -72,3 +72,11 @@ Other checks: spin-axis symmetry, start direction (lateral ≈ forward · tan 5�
 - Compare with other published C_L(S) and C_D(S, Re) data, such as Bearman & Harvey (1976) wind-tunnel measurements.
 - Consider a lift model that saturates at high S.
 - Validate against measured launch-monitor flights, not averages.
+
+## Round 3 source assessment
+
+**Partially agree** with leaving coefficients unchanged rather than fitting to the validation averages. The simplified equations remain unverified against the 1994 primary paper; naming this implementation the complete published model overstates the evidence. It is an experimental, secondhand approximation with known omissions, not a validated aerodynamic model.
+
+A better-cited candidate is Lyu, Kensrud, Smith & Tosaya (2018), [*Aerodynamics of Golf Balls in Still Air*, Proceedings 2(6), 238, DOI 10.3390/proceedings2060238](https://pdfs.semanticscholar.org/595d/3d1f91e240cb47e153b8d0ef586b8caa67c4.pdf), §§3.1–3.2: ball-specific piecewise polynomial **C_D(Re)** and quadratic **C_L(S)** fits. The primary paper reports 13 production ball models; lift measurements span 32–91 m/s and 1,500–4,500 rpm. Its text does not tabulate a universal coefficient set. A 7,097 rpm iron launch exceeds the measured spin range; blindly extrapolating a selected quadratic is not justified. A future implementation should obtain the ball-specific fit data and limits, version the selected model, and validate against independent measured flights. No replacement coefficients were invented or fitted this round.
+
+Regression corrections: level/downward launches on a flat landing plane now return immediate contact (zero carry/time), instead of integrating underground for 20 seconds and reporting unreachable landing. Nonfinite/negative custom aerodynamic parameters are rejected. `BallFlightTests.testLevelAndDownwardLaunchTouchFlatGroundImmediately` and `testInvalidOrUnreachableInputsThrow` cover these cases.

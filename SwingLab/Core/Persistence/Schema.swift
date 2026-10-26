@@ -5,7 +5,7 @@ import SwingLabCore
 /// Frozen Round 1 persisted declarations, copied from HEAD before adding V2 fields.
 /// Keep every stored name, optionality, uniqueness, relationship and delete rule intact.
 /// Computed presentation helpers are intentionally omitted: they are not part of the schema.
-/// This snapshot and the disk migration test still require a full-Xcode SwiftData run.
+/// The disk migration tests exercise this snapshot independently of later schema versions.
 enum SwingLabSchemaV1: VersionedSchema {
     static var versionIdentifier: Schema.Version { .init(1, 0, 0) }
     static var models: [any PersistentModel.Type] {
@@ -199,30 +199,43 @@ enum SwingLabSchemaV1: VersionedSchema {
     }
 }
 
-/// Current model definitions live in Core/Models; V1 never refers to these mutable types.
-enum SwingLabSchemaV2: VersionedSchema {
-    static var versionIdentifier: Schema.Version { .init(2, 0, 0) }
+/// Current models. V1 and V2 are immutable snapshots, never aliases to these types.
+enum SwingLabSchemaV3: VersionedSchema {
+    static var versionIdentifier: Schema.Version { .init(3, 0, 0) }
     static var models: [any PersistentModel.Type] {
         [GolfClub.self, SwingRecording.self, GolfCourse.self, CourseHole.self,
-         RoundSession.self, HoleScore.self, ShotRecord.self]
+         RoundSession.self, HoleScore.self, ShotRecord.self, PracticeSession.self]
     }
 }
 
-typealias SwingLabCurrentSchema = SwingLabSchemaV2
+typealias SwingLabCurrentSchema = SwingLabSchemaV3
 
 enum SwingLabMigrationPlan: SchemaMigrationPlan {
-    static var schemas: [any VersionedSchema.Type] { [SwingLabSchemaV1.self, SwingLabSchemaV2.self] }
-    static var stages: [MigrationStage] {
-        [.custom(fromVersion: SwingLabSchemaV1.self, toVersion: SwingLabSchemaV2.self,
-                 willMigrate: nil, didMigrate: { context in
-            // The new context owns V2 objects. Existing external JSON is preserved byte-for-byte;
-            // decoding occurs once here, never from list/chart getters. Corrupt JSON remains stored
-            // for recovery and produces unavailable summaries rather than invented measurements.
-            for recording in try context.fetch(FetchDescriptor<SwingRecording>()) {
+    static var schemas: [any VersionedSchema.Type] {
+        [SwingLabSchemaV1.self, SwingLabSchemaV2.self, SwingLabSchemaV3.self]
+    }
+    static var stages: [MigrationStage] { [migrateV1ToV2, migrateV2ToV3] }
+
+    static var migrateV1ToV2: MigrationStage {
+        .custom(fromVersion: SwingLabSchemaV1.self, toVersion: SwingLabSchemaV2.self,
+                willMigrate: nil, didMigrate: { context in
+            // Fetch the frozen V2 model, not the current V3 type. Preserve external JSON
+            // byte-for-byte while filling summary columns once, including corrupt payloads.
+            for recording in try context.fetch(FetchDescriptor<SwingLabSchemaV2.SwingRecording>()) {
                 recording.normalizeMetadata()
                 recording.rebuildAnalysisSummary()
             }
             try context.save()
-        })]
+        })
+    }
+
+    static var migrateV2ToV3: MigrationStage {
+        .custom(fromVersion: SwingLabSchemaV2.self, toVersion: SwingLabSchemaV3.self,
+                willMigrate: nil, didMigrate: { context in
+            // V3 adds optional associations. Existing payload/cache columns are untouched.
+            // Imported recordings use their saved library-added date, not an invented capture date.
+            try PracticeSessionStore.groupUngroupedRecordings(context: context)
+            try context.save()
+        })
     }
 }

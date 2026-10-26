@@ -72,4 +72,35 @@ final class CoachingTests: XCTestCase {
         let feedback = CoachingEngine.feedback(for: sample(200, tempo: 3.0), history: history)
         XCTAssertTrue(feedback.isEmpty)
     }
+
+    func testUnanalyzedRecordingsDoNotEvictTheAnalyzedBaseline() throws {
+        let analyzed = steadyTempos.enumerated().map { sample($0.offset, tempo: $0.element) }
+        let waitingForAnalysis = (20..<45).map { sample($0, tempo: nil) }
+        let feedback = CoachingEngine.feedback(for: sample(50, tempo: 4), history: analyzed + waitingForAnalysis)
+        XCTAssertEqual(feedback.first?.templateID, "coach.tempo.higher")
+        XCTAssertEqual(feedback.first?.baselineCount, 8)
+    }
+
+    func testUnknownCameraAnglesDoNotEstablishAComparableBaseline() {
+        let history = steadyTempos.enumerated().map { sample($0.offset, tempo: $0.element, angle: .unspecified) }
+        let current = sample(50, tempo: 4, angle: .unspecified)
+        XCTAssertTrue(CoachingEngine.comparisons(for: current, history: history).isEmpty)
+        XCTAssertTrue(CoachingEngine.feedback(for: current, history: history).allSatisfy { $0.metric == nil })
+    }
+
+    func testEmptyFeedbackDoesNotImplyAValidComparison() throws {
+        let history = steadyTempos.enumerated().map { sample($0.offset, tempo: $0.element) }
+        let missing = sample(10, tempo: nil)
+        XCTAssertTrue(CoachingEngine.feedback(for: missing, history: history).isEmpty)
+        XCTAssertTrue(CoachingEngine.comparisons(for: missing, history: history).isEmpty)
+        let constant = (0..<8).map { sample($0, tempo: 3.0) }
+        XCTAssertTrue(CoachingEngine.feedback(for: sample(10, tempo: 5), history: constant).isEmpty)
+        XCTAssertTrue(CoachingEngine.comparisons(for: sample(10, tempo: 5), history: constant).isEmpty)
+        // A within-threshold tempo comparison says nothing about unavailable head or duration measures.
+        let valid = CoachingEngine.comparisons(for: sample(10, tempo: 3.05), history: history)
+        XCTAssertEqual(valid.map(\.metric), [.tempo])
+        XCTAssertEqual(valid.first?.baseline.count, 8)
+        XCTAssertLessThan(abs(try XCTUnwrap(valid.first).zScore), CoachingEngine.zThreshold)
+        XCTAssertTrue(CoachingEngine.comparisons(for: sample(10, tempo: 3.05), history: Array(history.prefix(4))).isEmpty)
+    }
 }

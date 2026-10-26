@@ -6,16 +6,23 @@ import SwingLabCore
 /// Real disk-store coverage for the first full-Xcode run. Portable Core tests verify the
 /// conversion math, but do not establish that SwiftData recognizes a Round 1 store checksum.
 final class SchemaMigrationTests: XCTestCase {
-    @MainActor func testRoundOneStoreMigratesWithoutLosingRecordsOrRelationships() throws {
+    @MainActor func testRoundOneStoreMigratesToFrozenV2WithoutLosingRecordsOrRelationships() throws {
+        typealias SwingRecording = SwingLabSchemaV2.SwingRecording
+        typealias GolfClub = SwingLabSchemaV2.GolfClub
+        typealias GolfCourse = SwingLabSchemaV2.GolfCourse
+        typealias CourseHole = SwingLabSchemaV2.CourseHole
+        typealias RoundSession = SwingLabSchemaV2.RoundSession
+        typealias HoleScore = SwingLabSchemaV2.HoleScore
+        typealias ShotRecord = SwingLabSchemaV2.ShotRecord
         let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
         defer { try? FileManager.default.removeItem(at: directory) }
         let url = directory.appendingPathComponent("Migration.store")
         let ids = try seedV1Store(at: url)
 
-        let schema = Schema(versionedSchema: SwingLabCurrentSchema.self)
+        let schema = Schema(versionedSchema: SwingLabSchemaV2.self)
         let configuration = ModelConfiguration("Migration", schema: schema, url: url)
-        let container = try ModelContainer(for: schema, migrationPlan: SwingLabMigrationPlan.self, configurations: configuration)
+        let container = try ModelContainer(for: schema, migrationPlan: V1ToV2TestMigrationPlan.self, configurations: configuration)
         let context = ModelContext(container)
         let recordings = try context.fetch(FetchDescriptor<SwingRecording>())
         XCTAssertEqual(recordings.count, 3)
@@ -81,6 +88,189 @@ final class SchemaMigrationTests: XCTestCase {
         XCTAssertEqual(reopened.tempoMetric, recording.tempoMetric)
     }
 
+    @MainActor func testRoundOneStoreMigratesWithoutLosingRecordsOrRelationships() throws {
+        let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: directory) }
+        let url = directory.appendingPathComponent("Migration.store")
+        let ids = try seedV1Store(at: url)
+
+        let schema = Schema(versionedSchema: SwingLabCurrentSchema.self)
+        let configuration = ModelConfiguration("Migration", schema: schema, url: url)
+        let container = try ModelContainer(for: schema, migrationPlan: SwingLabMigrationPlan.self, configurations: configuration)
+        let context = ModelContext(container)
+        let recordings = try context.fetch(FetchDescriptor<SwingRecording>())
+        XCTAssertEqual(recordings.count, 3)
+        let recording = try XCTUnwrap(recordings.first { $0.id == ids.recording })
+        let session = try XCTUnwrap(recording.practiceSession)
+        XCTAssertEqual(session.cameraAngleValue, .downTheLine)
+        XCTAssertNil(session.clubID)
+        XCTAssertNil(session.handedness)
+        XCTAssertNil(recording.clubID)
+        XCTAssertEqual(session.recordings.map(\.id), [recording.id])
+        XCTAssertEqual(try context.fetch(FetchDescriptor<PracticeSession>()).count, 2)
+        XCTAssertEqual(recording.title, "Legacy swing")
+        XCTAssertEqual(recording.videoFileName, "legacy.mov")
+        XCTAssertEqual(recording.analysisData, Self.legacyAnalysis)
+        XCTAssertEqual(recording.sourceValue, .imported)
+        XCTAssertEqual(recording.cameraAngleValue, .downTheLine)
+        XCTAssertEqual(recording.analysisVersion, 1)
+        XCTAssertNil(recording.poseFrameRate)
+        XCTAssertNil(recording.handednessOverride)
+        XCTAssertEqual(recording.effectiveHandedness(default: .left), .left)
+        XCTAssertEqual(try XCTUnwrap(recording.tempoRatio), 3, accuracy: 1e-10)
+        XCTAssertEqual(recording.tempoMetric.provenance, .estimated)
+        XCTAssertEqual(recording.backswingMetric.provenance, .userEntered)
+        XCTAssertEqual(try XCTUnwrap(recording.backswingMetric.value), 0.9, accuracy: 1e-10)
+        XCTAssertEqual(try XCTUnwrap(recording.downswingMetric.value), 0.3, accuracy: 1e-10)
+        XCTAssertEqual(try XCTUnwrap(recording.headDisplacementMetric.value), 0.04, accuracy: 1e-10)
+        XCTAssertEqual(recording.headDisplacementMetric.sampleCount, 5)
+        let corrupt = try XCTUnwrap(recordings.first { $0.id == ids.corrupt })
+        XCTAssertEqual(corrupt.analysisData, Data("preserve-corrupt-payload".utf8))
+        XCTAssertNil(corrupt.tempoRatio)
+        XCTAssertEqual(corrupt.tempoMetric.provenance, .unavailable)
+        let empty = try XCTUnwrap(recordings.first { $0.id == ids.empty })
+        XCTAssertNil(empty.analysisData)
+        XCTAssertNil(empty.tempoRatio)
+
+        let club = try XCTUnwrap(context.fetch(FetchDescriptor<GolfClub>()).first)
+        XCTAssertEqual(club.id, ids.club)
+        XCTAssertEqual(club.carryMeters, 137.16)
+        XCTAssertEqual(club.notes, "Preserved note")
+        let course = try XCTUnwrap(context.fetch(FetchDescriptor<GolfCourse>()).first)
+        XCTAssertEqual(course.holes.count, 1)
+        XCTAssertEqual(course.holes.first?.course?.id, course.id)
+        XCTAssertEqual(course.holes.first?.referenceData, Data("reference-bytes".utf8))
+        let round = try XCTUnwrap(context.fetch(FetchDescriptor<RoundSession>()).first)
+        XCTAssertEqual(round.id, ids.round)
+        XCTAssertEqual(round.course?.id, course.id)
+        XCTAssertEqual(round.holeScores.first?.strokes, 4)
+        XCTAssertEqual(round.holeScores.first?.round?.id, round.id)
+        XCTAssertEqual(round.shots.first?.clubID, club.id)
+        XCTAssertEqual(round.shots.first?.round?.id, round.id)
+        XCTAssertEqual(round.shots.first?.endLongitude, 0.001)
+        XCTAssertEqual(try context.fetch(FetchDescriptor<CourseHole>()).count, 1)
+        XCTAssertEqual(try context.fetch(FetchDescriptor<HoleScore>()).count, 1)
+        XCTAssertEqual(try context.fetch(FetchDescriptor<ShotRecord>()).count, 1)
+
+        // An unsuccessful later save must restore both payload and summary columns together.
+        var edited = try XCTUnwrap(recording.analysis)
+        edited.markers = []
+        try recording.applyAnalysis(edited)
+        XCTAssertNil(recording.tempoRatio)
+        context.rollback()
+        XCTAssertEqual(recording.analysisData, Self.legacyAnalysis)
+        XCTAssertEqual(try XCTUnwrap(recording.tempoRatio), 3, accuracy: 1e-10)
+
+        recording.handednessOverride = .left
+        try context.save()
+        let reader = ModelContext(container)
+        let reopened = try XCTUnwrap(reader.fetch(FetchDescriptor<SwingRecording>()).first { $0.id == ids.recording })
+        XCTAssertEqual(reopened.handednessOverride, .left)
+        XCTAssertEqual(reopened.tempoMetric, recording.tempoMetric)
+    }
+
+    @MainActor func testV2StorePreservesCachesAndAddsSessionsWithoutLosingRelationships() throws {
+        let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: directory) }
+        let url = directory.appendingPathComponent("Migration.store")
+        let seeded = try seedV2Store(at: url)
+        let schema = Schema(versionedSchema: SwingLabCurrentSchema.self)
+        let configuration = ModelConfiguration("Migration", schema: schema, url: url)
+        let container = try ModelContainer(for: schema, migrationPlan: SwingLabMigrationPlan.self, configurations: configuration)
+        let context = ModelContext(container)
+        let recordings = try context.fetch(FetchDescriptor<SwingRecording>()).sorted { $0.createdAt < $1.createdAt }
+        XCTAssertEqual(recordings.count, 3)
+        let first = try XCTUnwrap(recordings.first)
+        XCTAssertEqual(first.id, seeded.id)
+        XCTAssertEqual(first.analysisData, seeded.payload)
+        XCTAssertEqual(first.analysisVersion, 2)
+        XCTAssertEqual(first.poseFrameRate, 120)
+        XCTAssertEqual(first.handednessOverride, .left)
+        XCTAssertEqual(first.tempoMetric, seeded.tempo)
+        XCTAssertEqual(first.backswingMetric, seeded.backswing)
+        XCTAssertEqual(first.downswingMetric, seeded.downswing)
+        XCTAssertEqual(first.headDisplacementMetric, seeded.head)
+        XCTAssertNil(first.clubID)
+        let firstSession = try XCTUnwrap(first.practiceSession)
+        XCTAssertEqual(firstSession.date, first.createdAt)
+        XCTAssertEqual(firstSession.handedness, .left)
+        XCTAssertEqual(firstSession.cameraAngleValue, .downTheLine)
+        XCTAssertNil(firstSession.clubID)
+        XCTAssertEqual(firstSession.recordings.count, 2)
+        XCTAssertEqual(recordings[1].practiceSession?.id, firstSession.id)
+        XCTAssertTrue(recordings[2].practiceSession?.id != firstSession.id)
+        XCTAssertEqual(try context.fetch(FetchDescriptor<PracticeSession>()).count, 2)
+        let course = try XCTUnwrap(context.fetch(FetchDescriptor<GolfCourse>()).first)
+        XCTAssertEqual(course.holes.first?.course?.id, course.id)
+        let round = try XCTUnwrap(context.fetch(FetchDescriptor<RoundSession>()).first)
+        XCTAssertEqual(round.course?.id, course.id)
+        XCTAssertEqual(round.holeScores.first?.round?.id, round.id)
+        XCTAssertEqual(round.holeScores.first?.strokes, 4)
+        XCTAssertEqual(round.shots.first?.round?.id, round.id)
+        XCTAssertEqual(round.shots.first?.endLongitude, 0.001)
+
+        // Session removal never removes videos or recording metadata; the inverse is nullified.
+        context.delete(firstSession)
+        try context.save()
+        let reader = ModelContext(container)
+        let retained = try reader.fetch(FetchDescriptor<SwingRecording>())
+        XCTAssertEqual(retained.count, 3)
+        XCTAssertNil(retained.first { $0.id == seeded.id }?.practiceSession)
+        XCTAssertEqual(retained.first { $0.id == seeded.id }?.analysisData, seeded.payload)
+    }
+
+    private struct V2Seed {
+        let id: UUID
+        let payload: Data
+        let tempo: ProvenancedValue
+        let backswing: ProvenancedValue
+        let downswing: ProvenancedValue
+        let head: ProvenancedValue
+    }
+
+    @MainActor private func seedV2Store(at url: URL) throws -> V2Seed {
+        let schema = Schema(versionedSchema: SwingLabSchemaV2.self)
+        let container = try ModelContainer(for: schema,
+            configurations: ModelConfiguration("Migration", schema: schema, url: url))
+        let context = ModelContext(container)
+        var report = try JSONDecoder().decode(PoseAnalysisReport.self, from: Self.legacyAnalysis)
+        report.analysisVersion = 2
+        report.poseFrameRate = 120
+        report.analyzedHandedness = .left
+        let start = Date(timeIntervalSince1970: 1_800_000_000)
+        var recordings: [SwingLabSchemaV2.SwingRecording] = []
+        let offsets: [TimeInterval] = [0, 90 * 60, 180 * 60 + 1]
+        for offset in offsets {
+            let recording = SwingLabSchemaV2.SwingRecording(title: "V2 swing", videoFileName: "v2.mov",
+                durationSeconds: 3, nominalFrameRate: 120, videoWidth: 1920, videoHeight: 1080,
+                cameraAngle: .downTheLine, source: .imported)
+            recording.createdAt = start.addingTimeInterval(offset)
+            recording.handednessOverride = .left
+            try recording.applyAnalysis(report)
+            context.insert(recording)
+            recordings.append(recording)
+        }
+        let course = SwingLabSchemaV2.GolfCourse(name: "V2 course", latitude: 0, longitude: 0)
+        course.holes.append(SwingLabSchemaV2.CourseHole(number: 1, par: 4))
+        let round = SwingLabSchemaV2.RoundSession(courseName: course.name, holeCount: 9, course: course)
+        let score = SwingLabSchemaV2.HoleScore(number: 1, par: 4)
+        score.strokes = 4
+        round.holeScores.append(score)
+        let shot = SwingLabSchemaV2.ShotRecord(holeNumber: 1, shotNumber: 1, clubID: nil, clubName: "",
+            startLatitude: 0, startLongitude: 0, startAccuracyMeters: 5, startedAt: start)
+        shot.endLatitude = 0
+        shot.endLongitude = 0.001
+        round.shots.append(shot)
+        context.insert(course)
+        context.insert(round)
+        try context.save()
+        let first = recordings[0]
+        return V2Seed(id: first.id, payload: try XCTUnwrap(first.analysisData), tempo: first.tempoMetric,
+                      backswing: first.backswingMetric, downswing: first.downswingMetric, head: first.headDisplacementMetric)
+    }
+
     private struct LegacyIDs {
         let recording: UUID
         let corrupt: UUID
@@ -142,4 +332,10 @@ final class SchemaMigrationTests: XCTestCase {
                 {"phase":"Impact","time":2.2,"provenance":"Estimated"}],
      "analyzedAt":814665600,"sampledFrameCount":75,"poseFrameCount":70,"sampleRateLimit":30,"notes":[]}
     """#.utf8)
+}
+
+/// The intermediate V2 stage remains independently executable after the current schema advances.
+private enum V1ToV2TestMigrationPlan: SchemaMigrationPlan {
+    static var schemas: [any VersionedSchema.Type] { [SwingLabSchemaV1.self, SwingLabSchemaV2.self] }
+    static var stages: [MigrationStage] { [SwingLabMigrationPlan.migrateV1ToV2] }
 }

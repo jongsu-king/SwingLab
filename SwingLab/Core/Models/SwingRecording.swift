@@ -18,6 +18,10 @@ final class SwingRecording {
     @Attribute(.externalStorage) private(set) var analysisData: Data?
 
 
+    // V3 associations. A missing club remains unknown, separate from any named club baseline.
+    var clubID: UUID?
+    var practiceSession: PracticeSession?
+
     // V2 queryable summary columns. nil is unavailable; no pose JSON is decoded by these getters.
     private(set) var analysisVersion: Int = 0
     private(set) var poseFrameRate: Double?
@@ -136,10 +140,9 @@ final class SwingRecording {
         set { cameraAngle = newValue.rawValue }
     }
 
-    /// Cached summary columns only; never decodes pose JSON. Recordings do not store a club yet,
-    /// so every recording shares the same (nil) club baseline.
+    /// Cached columns only; stable club identity and camera angle define comparable swings.
     var coachingSample: CoachingSample {
-        CoachingSample(id: id, date: createdAt, club: nil, cameraAngle: cameraAngleValue,
+        CoachingSample(id: id, date: createdAt, club: clubID?.uuidString, cameraAngle: cameraAngleValue,
                        metrics: [.tempo: tempoMetric, .backswing: backswingMetric,
                                  .downswing: downswingMetric, .headDisplacement: headDisplacementMetric])
     }

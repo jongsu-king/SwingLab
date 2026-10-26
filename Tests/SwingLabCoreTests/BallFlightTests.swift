@@ -37,6 +37,8 @@ final class BallFlightTests: XCTestCase {
         XCTAssertEqual(drive.carryMetric.provenance, .simulated)
         XCTAssertEqual(drive.carryMetric.unit, "m")
         XCTAssertEqual(drive.carryMetric.method, AeroCoefficients.smitsSmith1994.id)
+        XCTAssertEqual(drive.landingAngleMetric.unit, "rad")
+        XCTAssertEqual(try XCTUnwrap(drive.landingAngleMetric.value), drive.landingAngle * .pi / 180, accuracy: 1e-12)
     }
 
     func testSpinAxisAndStartDirectionCurveTheRightWay() throws {
@@ -74,5 +76,26 @@ final class BallFlightTests: XCTestCase {
         XCTAssertThrowsError(try BallFlight.simulate(driver, atmosphere: .init(temperature: 20, pressure: 101_325, relativeHumidity: 0.5)))
         // A landing height above the apex is never reached.
         XCTAssertThrowsError(try BallFlight.simulate(driver, landingHeight: 60))
+        var invalid = AeroCoefficients.smitsSmith1994
+        invalid.dragBase = .nan
+        XCTAssertThrowsError(try BallFlight.simulate(driver, coefficients: invalid))
+        invalid = .smitsSmith1994
+        invalid.spinDecay = -1
+        XCTAssertThrowsError(try BallFlight.simulate(driver, coefficients: invalid))
+    }
+
+    func testLevelAndDownwardLaunchTouchFlatGroundImmediately() throws {
+        for angle in [-10.0, 0] {
+            let result = try BallFlight.simulate(.init(ballSpeed: 40, launchAngle: angle, spinRate: 0))
+            XCTAssertEqual(result.carry, 0)
+            XCTAssertEqual(result.flightTime, 0)
+            XCTAssertEqual(result.apex, 0)
+            XCTAssertEqual(result.landingAngle, -angle)
+            XCTAssertEqual(result.trajectory.count, 1)
+        }
+        // A downward shot launched above a lower landing plane still has real flight.
+        let below = try BallFlight.simulate(.init(ballSpeed: 40, launchAngle: -10, spinRate: 0), landingHeight: -10)
+        XCTAssertTrue(below.carry > 0)
+        XCTAssertTrue(below.flightTime > 0)
     }
 }

@@ -11,7 +11,14 @@ struct SwingLabApp: App {
         if ProcessInfo.processInfo.arguments.contains("--ui-testing") {
             let defaults = UserDefaults(suiteName: "SwingLabUITests")!
             defaults.removePersistentDomain(forName: "SwingLabUITests")
-            _preferences = State(initialValue: AppPreferences(defaults: defaults))
+            let testPreferences = AppPreferences(defaults: defaults)
+            if ProcessInfo.processInfo.arguments.contains("--screenshot-testing") {
+                testPreferences.completedOnboarding = true
+                if let language = Self.testArgument("--screenshot-language"), ["en", "ko", "de"].contains(language) {
+                    testPreferences.languageCode = language
+                }
+            }
+            _preferences = State(initialValue: testPreferences)
         } else { _preferences = State(initialValue: AppPreferences()) }
         #else
         _preferences = State(initialValue: AppPreferences())
@@ -35,6 +42,7 @@ struct SwingLabApp: App {
             .environment(preferences)
             .environment(\.locale, preferences.locale)
             .tint(SLTheme.forest)
+            .preferredColorScheme(screenshotColorScheme)
             .task { if container == nil { openLibrary() } }
         }
     }
@@ -43,7 +51,19 @@ struct SwingLabApp: App {
             #if DEBUG
             if ProcessInfo.processInfo.arguments.contains("--ui-testing") {
                 let schema = Schema(SwingLabCurrentSchema.models)
-                container = try ModelContainer(for: schema, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
+                let testContainer = try ModelContainer(for: schema, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
+                // This missing-video fixture exercises the actual empty detail UI. It exists only
+                // in a DEBUG test launch and contains no video, pose, timings, or fabricated metrics.
+                if ProcessInfo.processInfo.arguments.contains("--screenshot-testing"),
+                   ProcessInfo.processInfo.arguments.contains("--screenshot-empty-recording") {
+                    let recording = SwingRecording(title: preferences.text("Swing recording"),
+                        videoFileName: "screenshot-empty-recording.mov", durationSeconds: 0,
+                        nominalFrameRate: 0, videoWidth: 0, videoHeight: 0, cameraAngle: .unspecified, source: .unspecified)
+                    recording.id = UUID(uuidString: "00000000-0000-0000-0000-000000000003")!
+                    testContainer.mainContext.insert(recording)
+                    try testContainer.mainContext.save()
+                }
+                container = testContainer
                 return
             }
             #endif
@@ -55,4 +75,22 @@ struct SwingLabApp: App {
             storageError = nil
         } catch { storageError = error.localizedDescription }
     }
+
+    private var screenshotColorScheme: ColorScheme? {
+        #if DEBUG
+        guard ProcessInfo.processInfo.arguments.contains("--ui-testing"),
+              ProcessInfo.processInfo.arguments.contains("--screenshot-testing") else { return nil }
+        return Self.testArgument("--screenshot-appearance") == "dark" ? .dark : .light
+        #else
+        return nil
+        #endif
+    }
+
+    #if DEBUG
+    private static func testArgument(_ name: String) -> String? {
+        let arguments = ProcessInfo.processInfo.arguments
+        guard let index = arguments.firstIndex(of: name), index + 1 < arguments.count else { return nil }
+        return arguments[index + 1]
+    }
+    #endif
 }

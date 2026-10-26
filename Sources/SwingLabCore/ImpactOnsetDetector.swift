@@ -72,9 +72,21 @@ public enum ImpactOnsetDetector {
         let comparable = peaks.filter { 20 * log10(envelope[$0] / noise) >= strongestDB - comparableWithinDB }
         guard comparable.count == 1 else { return .failure(.ambiguous) }
 
+        // Pose proximity chooses among non-comparable transients. Loudness alone must not
+        // promote a louder neighboring golfer's impact over the candidate nearest our swing.
+        let selected: Int
+        if let poseImpact, poseImpact.isFinite {
+            selected = peaks.min { abs(startTime + Double($0) / sampleRate - poseImpact)
+                < abs(startTime + Double($1) / sampleRate - poseImpact) } ?? strongest
+        } else { selected = strongest }
+        let selectedDB = 20 * log10(envelope[selected] / noise)
+        // Reject peers comparable with the chosen candidate too, even if a third peak is louder.
+        guard peaks.filter({ abs(20 * log10(envelope[$0] / noise) - selectedDB) <= comparableWithinDB }).count == 1
+        else { return .failure(.ambiguous) }
+
         // Attack onset: last crossing of 25 % of the rise before the peak, linearly interpolated.
-        let level = noise + 0.25 * (envelope[strongest] - noise)
-        var onset = strongest
+        let level = noise + 0.25 * (envelope[selected] - noise)
+        var onset = selected
         while onset > 0, envelope[onset - 1] >= level { onset -= 1 }
         var position = Double(onset)
         if onset > 0 {
@@ -85,8 +97,8 @@ public enum ImpactOnsetDetector {
         if let poseImpact, poseImpact.isFinite, abs(time - poseImpact) > maximumPoseDisagreement {
             return .failure(.inconsistentWithPose)
         }
-        let confidence = min(0.95, max(0, (strongestDB - candidateThresholdDB) / 24))
-        return .success(.init(time: time, confidence: confidence, peakToNoiseDB: strongestDB, rule: rule))
+        let confidence = min(0.95, max(0, (selectedDB - candidateThresholdDB) / 24))
+        return .success(.init(time: time, confidence: confidence, peakToNoiseDB: selectedDB, rule: rule))
     }
 
     /// Replaces the pose impact with an audio-derived marker only when the estimate clears the

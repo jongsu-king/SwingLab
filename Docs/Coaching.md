@@ -31,6 +31,10 @@ Both are common practice-range tempo and head-stability routines. They are offer
 
 `CoachingEngine.consistency(_:in:)` returns n, mean, sample SD, and CV for a metric. It returns nil below 5 values.
 
+## Round 3 review correction
+
+An empty feedback array does **not** mean that every metric is within the user's normal range: missing current values, fewer than five comparable values, and zero baseline SD can all prevent a comparison. `CoachingEngine.comparisons(for:history:)` now exposes only metrics actually compared, with their baseline n, mean, and SD. Swing detail shows those baseline means and n; when none can be compared it reports no comparison. It never infers an all-metrics normal result from an empty array. `CoachingTests.testEmptyFeedbackDoesNotImplyAValidComparison` covers missing data, constant baselines, n < 5, and a valid tempo baseline with the other three measures unavailable.
+
 ## Not yet done
 
 - **`PracticeSession` model.** Grouping recordings within 90 minutes needs a SwiftData schema V3 plus a migration test. It should be done with the simulator available.

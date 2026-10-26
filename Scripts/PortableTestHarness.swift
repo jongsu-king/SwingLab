@@ -34,7 +34,7 @@ enum CheckFailure: Error { case nilValue }
     @MainActor static func main() throws {
         let units = UnitsTests(), geography = GeographyTests(), dispersion = DispersionTests(), timing = TimingAndGeometryTests()
         let provenance = ProvenanceTests(), summary = SummaryMigrationTests(), phases = PhaseDetectionTests()
-        let audio = ImpactOnsetTests(), flight = BallFlightTests(), coaching = CoachingTests()
+        let audio = ImpactOnsetTests(), flight = BallFlightTests(), coaching = CoachingTests(), grouping = PracticeGroupingTests()
         let checks: [(String, () throws -> Void)] = [
             ("independent unit conversions", units.testIndependentUnitsRoundTrip),
             ("language fallback", units.testLanguageFallbackAndRegionalMatching),
@@ -62,6 +62,8 @@ enum CheckFailure: Error { case nilValue }
             ("zero-phase smoothing peak timing", phases.testZeroPhaseSmoothingPreservesPeakTiming),
             ("phase detector at 30/60/120/240 fps", phases.testDetectorRecoversKnownEventsAcrossFrameRates),
             ("phase detector with landmark noise", phases.testNoisyLandmarksStayWithinNoiseLimitedTolerance),
+            ("mixed coarse/dense phases", phases.testMixedCoarseAndDensePassRetainsAddressAndFinish),
+            ("impact absent across long wrist gap", phases.testLongWristGapCannotBecomeAnImpact),
             ("left-handed mirror timing", phases.testLeftHandedMirrorProducesSameTiming),
             ("no swing returns no guesses", phases.testNoSwingOrMissingBodyReturnsNoGuesses),
             ("manual markers win on merge", phases.testMergeKeepsUserMarkersAndDropsConflictingEstimates),
@@ -69,6 +71,7 @@ enum CheckFailure: Error { case nilValue }
             ("clipped audio click", audio.testClippedClickIsStillTimed),
             ("two comparable clicks rejected", audio.testTwoComparableClicksAreAmbiguous),
             ("weak secondary transient", audio.testWeakSecondaryTransientDoesNotBlockTheImpact),
+            ("audio candidate nearest pose", audio.testSelectsNearestPoseCandidateRatherThanLoudestNeighbor),
             ("no click or click outside window", audio.testNoClickOrClickOutsideWindowFindsNothing),
             ("transient far from pose impact", audio.testTransientFarFromPoseImpactIsRejected),
             ("faint click and invalid audio", audio.testFaintClickStaysEstimatedAndInvalidInputIsRejected),
@@ -78,11 +81,19 @@ enum CheckFailure: Error { case nilValue }
             ("spin axis and start direction", flight.testSpinAxisAndStartDirectionCurveTheRightWay),
             ("wind, air density, landing height", flight.testWindAirDensityAndLandingHeight),
             ("invalid flight inputs", flight.testInvalidOrUnreachableInputsThrow),
+            ("ground-level nonascending flight", flight.testLevelAndDownwardLaunchTouchFlatGroundImmediately),
             ("summary statistics", coaching.testSummaryStatistics),
             ("coaching needs five comparable swings", coaching.testFewerThanFiveComparableSwingsGivesNoStatement),
             ("coaching baseline shift templates", coaching.testShiftFromOwnBaselineUsesTheRightTemplate),
             ("coaching excludes other angles and clubs", coaching.testOtherAnglesClubsFutureAndUnavailableValuesAreExcluded),
-            ("coaching baseline limited to recent 20", coaching.testBaselineIsLimitedToTheMostRecentTwenty)
+            ("coaching baseline limited to recent 20", coaching.testBaselineIsLimitedToTheMostRecentTwenty),
+            ("unanalyzed swings preserve baseline", coaching.testUnanalyzedRecordingsDoNotEvictTheAnalyzedBaseline),
+            ("unknown angles cannot define baseline", coaching.testUnknownCameraAnglesDoNotEstablishAComparableBaseline),
+            ("empty coaching is not a comparison", coaching.testEmptyFeedbackDoesNotImplyAValidComparison),
+            ("rolling 90-minute practice grouping", grouping.testRollingNinetyMinuteWindowAndBoundary),
+            ("practice context separates unknown values", grouping.testUnknownClubAngleAndHandednessStaySeparate),
+            ("practice grouping deterministic ties", grouping.testEqualTimesAndDuplicateInputsAreDeterministic),
+            ("practice matching recent compatible session", grouping.testAssignChoosesMostRecentCompatiblePastSession)
         ]
         for (name, check) in checks {
             let before = failures

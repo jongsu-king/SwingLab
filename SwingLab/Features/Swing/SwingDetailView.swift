@@ -23,6 +23,7 @@ struct SwingDetailView: View {
             VStack(alignment: .leading, spacing: 24) {
                 videoSection
                 recordingDetails
+                RecordingPracticeSection(recording: recording)
                 analysisSection
                 if let report { phaseSection(report); metricsSection(report); coachingSection }
                 limitations
@@ -214,12 +215,25 @@ struct SwingDetailView: View {
     /// Observations against the golfer's own recent swings from the same camera angle. No judgements.
     private var coachingSection: some View {
         let feedback = CoachingEngine.feedback(for: recording.coachingSample, history: library.map(\.coachingSample))
+        let comparisons = CoachingEngine.comparisons(for: recording.coachingSample, history: library.map(\.coachingSample))
         return VStack(alignment: .leading, spacing: 12) {
             SLSectionHeader(title: prefs.text("Compared with your recent swings"),
-                            subtitle: prefs.text("Same camera angle, up to 20 earlier analyzed swings. Observations, not faults."))
+                            subtitle: prefs.text("Same camera angle and club, up to 20 earlier analyzed swings. Observations, not faults."))
             if feedback.isEmpty {
-                Text(prefs.text("Within your usual range for every timing and head measure."))
+                Text(prefs.text(comparisons.isEmpty
+                               ? "No comparison is available for these measures."
+                               : "No changes exceeded the comparison threshold."))
                     .font(.subheadline).foregroundStyle(.secondary)
+            }
+            if !comparisons.isEmpty {
+                Text(prefs.text("Personal baseline")).font(.caption).foregroundStyle(.secondary)
+                ForEach(comparisons, id: \.metric) { comparison in
+                    SLMetricReadout(metric: ProvenancedValue(value: comparison.baseline.mean,
+                        unit: comparison.metric == .backswing || comparison.metric == .downswing ? "s" : "1",
+                        provenance: .estimated, method: "coach.baselineMean.v1", sampleCount: comparison.baseline.count),
+                        label: coachingMetricLabel(comparison.metric), fractionDigits: 2,
+                        displayAsPercent: comparison.metric == .headDisplacement, valueFont: .subheadline, alignment: .leading)
+                }
             }
             ForEach(Array(feedback.enumerated()), id: \.offset) { _, item in
                 VStack(alignment: .leading, spacing: 6) {
@@ -232,6 +246,15 @@ struct SwingDetailView: View {
                 }
             }
         }.padding(20).background(SLTheme.surface).padding(.horizontal, 20)
+    }
+
+    private func coachingMetricLabel(_ metric: CoachedMetric) -> String {
+        switch metric {
+        case .tempo: prefs.text("Tempo ratio")
+        case .backswing: prefs.text("Backswing")
+        case .downswing: prefs.text("Downswing")
+        case .headDisplacement: prefs.text("Head displacement")
+        }
     }
 
     private func coachingText(_ item: CoachingFeedback) -> String {

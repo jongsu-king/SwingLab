@@ -8,6 +8,7 @@ struct PerformanceView: View {
     @Query(sort: \SwingRecording.createdAt) private var recordings: [SwingRecording]
     @Query(sort: \RoundSession.startedAt, order: .reverse) private var rounds: [RoundSession]
     @Query private var clubs: [GolfClub]
+    @Query(sort: \PracticeSession.date, order: .reverse) private var sessions: [PracticeSession]
     @State private var selection = PerformanceSection.practice
 
     var body: some View {
@@ -74,6 +75,19 @@ struct PerformanceView: View {
                         .foregroundStyle(.secondary)
                 }
                 Divider()
+                if !sessions.isEmpty {
+                    SLSectionHeader(title: preferences.text("Practice sessions"))
+                    ForEach(sessions) { session in
+                        NavigationLink { PracticeSessionDetailView(session: session) } label: {
+                            HStack {
+                                Text(session.date, format: .dateTime.month().day().hour().minute())
+                                Spacer()
+                                ProvenanceBadge(provenance: .measured, sampleCount: session.recordings.count)
+                            }
+                        }
+                    }
+                    Divider()
+                }
                 SLSectionHeader(title: preferences.text("Recent practice"))
                 ForEach(Array(snapshots.reversed().prefix(5))) { recording in
                     HStack(alignment: .firstTextBaseline) {

@@ -35,7 +35,7 @@ struct HypotheticalFlightView: View {
                 Button(prefs.text("Fill tour-average driver example")) {
                     ballSpeed = (prefs.speedUnit.fromSI(167 * 0.44704) * 10).rounded() / 10
                     launchAngle = 10.9; spinRate = 2686; startDirection = 0; spinAxis = 0
-                }
+                }.accessibilityIdentifier("flight.driverExample")
             }
             Section(prefs.text("Conditions")) {
                 field("Tailwind (headwind −)", $tailwind, unit: prefs.windUnit.symbol, signed: true)
@@ -49,6 +49,7 @@ struct HypotheticalFlightView: View {
                 Button(action: simulate) {
                     Text(prefs.text("Simulate")).frame(maxWidth: .infinity)
                 }.buttonStyle(.borderedProminent).tint(SLTheme.forest)
+                    .accessibilityIdentifier("flight.simulate")
                 if let errorKey {
                     Text(prefs.text(errorKey)).font(.caption).foregroundStyle(.secondary)
                 }
@@ -57,6 +58,11 @@ struct HypotheticalFlightView: View {
         }
         .scrollContentBackground(.hidden).background(SLTheme.background)
         .navigationTitle(prefs.text("Hypothetical flight"))
+        .onChange(of: [ballSpeed, launchAngle, startDirection, spinRate, spinAxis, tailwind, crosswind,
+                       temperature, pressure, humidity, landingHeight]) { _, _ in
+            // A result belongs to the submitted inputs, not subsequently edited fields.
+            result = nil; errorKey = nil
+        }
         .onAppear {
             if temperature == nil {
                 temperature = (prefs.temperatureUnit.fromSI(Atmosphere.standard.temperature) * 10).rounded() / 10
@@ -80,6 +86,7 @@ struct HypotheticalFlightView: View {
             Grid(alignment: .leading, horizontalSpacing: 20, verticalSpacing: 14) {
                 GridRow {
                     SLMetricReadout(metric: result.carryMetric, label: prefs.text("Carry"), fractionDigits: 1, alignment: .leading)
+                        .accessibilityIdentifier("flight.result.carry")
                     SLMetricReadout(metric: result.lateralMetric, label: prefs.text("Lateral (right +)"), fractionDigits: 1, alignment: .leading)
                 }
                 GridRow {
@@ -92,7 +99,7 @@ struct HypotheticalFlightView: View {
             }.padding(.vertical, 6)
             trajectoryChart(result, title: "Side view", vertical: \.height, verticalLabel: "Height")
             trajectoryChart(result, title: "Top view", vertical: \.right, verticalLabel: "Lateral (right +)")
-            Text(prefs.text("Simulated with the Smits & Smith (1994) aerodynamic model. Carry only, no roll. It overestimates height, especially for high-spin irons."))
+            Text(prefs.text("Experimental aerodynamic approximation. Carry only, no roll. Height and carry can differ substantially from real shots."))
                 .font(.caption).foregroundStyle(.secondary)
         }
     }

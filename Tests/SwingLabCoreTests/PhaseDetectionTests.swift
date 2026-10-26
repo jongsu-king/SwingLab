@@ -115,6 +115,33 @@ final class PhaseDetectionTests: XCTestCase {
         }
     }
 
+    func testMixedCoarseAndDensePassRetainsAddressAndFinish() throws {
+        for rate in [60.0, 120.0, 240.0] {
+            let window = (SyntheticSwing.top - 0.35)...(SyntheticSwing.impact + 0.35)
+            let coarse = PoseProcessing.process(frames: SyntheticSwing.frames(rate: 30), sampleInterval: 1.0 / 30)
+            let dense = PoseProcessing.process(frames: SyntheticSwing.frames(rate: rate).filter { window.contains($0.time) },
+                                               sampleInterval: 1 / rate)
+            let frames = (coarse.filter { !window.contains($0.time) } + dense).sorted { $0.time < $1.time }
+            let markers = SwingPhaseDetector.detect(frames: frames, handedness: .right)
+            XCTAssertEqual(try XCTUnwrap(markers.first { $0.phase == .address }).time, SyntheticSwing.addressEnd,
+                           accuracy: 1.5 / 30)
+            XCTAssertEqual(try XCTUnwrap(markers.first { $0.phase == .top }).time, SyntheticSwing.top, accuracy: 1.5 / rate)
+            XCTAssertEqual(try XCTUnwrap(markers.first { $0.phase == .impact }).time, SyntheticSwing.impact, accuracy: 1.5 / rate)
+            XCTAssertTrue(markers.contains { $0.phase == .finish })
+            XCTAssertEqual(markers.count, 8)
+        }
+    }
+
+    func testLongWristGapCannotBecomeAnImpact() {
+        let raw = SyntheticSwing.frames(rate: 240).map { frame in
+            PoseFrame(time: frame.time, joints: (2.12...2.30).contains(frame.time)
+                      ? frame.joints.filter { !$0.name.hasSuffix("Wrist") } : frame.joints)
+        }
+        let markers = SwingPhaseDetector.detect(frames: PoseProcessing.process(frames: raw, sampleInterval: 1.0 / 240),
+                                                handedness: .right)
+        XCTAssertTrue(!markers.contains { $0.phase == .impact })
+    }
+
     func testLeftHandedMirrorProducesSameTiming() throws {
         let right = SyntheticSwing.detect(rate: 120)
         let left = SyntheticSwing.detect(rate: 120, handedness: .left)

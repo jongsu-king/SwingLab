@@ -7,6 +7,7 @@ struct SwingView: View {
     @Environment(AppPreferences.self) private var prefs
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \SwingRecording.createdAt, order: .reverse) private var recordings: [SwingRecording]
+    @Query(sort: \PracticeSession.date, order: .reverse) private var sessions: [PracticeSession]
     @State private var showCamera = false
     @State private var importedItem: PhotosPickerItem?
     @State private var importing = false
@@ -65,11 +66,24 @@ struct SwingView: View {
                                             .accessibilityLabel(prefs.text("Pose analyzed"))
                                     }
                                 }.padding(.vertical, 6)
-                            }.listRowBackground(SLTheme.surface)
+                            }.accessibilityIdentifier("swing.recording.\(recording.id.uuidString)")
+                                .listRowBackground(SLTheme.surface)
                                 .swipeActions { Button(prefs.text("Delete"), role: .destructive) { pendingDelete = recording } }
                         }
                     }
                 } header: { Text(prefs.text("Practice library")) }
+                if !sessions.isEmpty {
+                    Section(prefs.text("Practice sessions")) {
+                        ForEach(sessions) { session in
+                            NavigationLink { PracticeSessionDetailView(session: session) } label: {
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text(session.date, format: .dateTime.month().day().hour().minute())
+                                    ProvenanceBadge(provenance: .measured, sampleCount: session.recordings.count)
+                                }
+                            }
+                        }
+                    }.listRowBackground(SLTheme.surface)
+                }
                 Section {
                     NavigationLink {
                         SwingComparisonView()
@@ -82,7 +96,7 @@ struct SwingView: View {
                         HypotheticalFlightView()
                     } label: {
                         Label(prefs.text("Hypothetical flight"), systemImage: "point.topleft.down.to.point.bottomright.curvepath")
-                    }
+                    }.accessibilityIdentifier("swing.hypotheticalFlight")
                 } header: { Text(prefs.text("Ball Lab")) }
                 .listRowBackground(SLTheme.surface)
                 Section {
@@ -138,8 +152,11 @@ struct SwingView: View {
                                            videoWidth: metadata.width, videoHeight: metadata.height,
                                            cameraAngle: angle, source: source)
             modelContext.insert(recording)
-            do { try modelContext.save() }
-            catch { modelContext.delete(recording); throw error }
+            do {
+                try PracticeSessionStore.assign(recording: recording, context: modelContext, defaultHandedness: prefs.handedness)
+                try modelContext.save()
+            }
+            catch { modelContext.rollback(); throw error }
         } catch {
             try? FileManager.default.removeItem(at: url)
             self.error = (error as? VideoLibraryError)?.errorDescription ?? "The recording could not be saved. Check available storage."

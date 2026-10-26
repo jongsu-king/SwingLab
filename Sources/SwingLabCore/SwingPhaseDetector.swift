@@ -86,7 +86,8 @@ private struct HandTrack {
     let levels: [Level: [Double?]]
     let leadWristY: [Double?]
     let scale: Double
-    let interval: Double
+    let intervals: [Double]
+    let segments: [Int]
     let speed: [Double?]
     var count: Int { times.count }
     var stillSpeed: Double { 0.3 * scale }
@@ -95,12 +96,29 @@ private struct HandTrack {
         var times: [Double] = [], y: [Double] = [], x: [Double] = [], interpolated: [Bool] = []
         var hip: [Double?] = [], shoulders: [Double?] = [], leadShoulder: [Double?] = [], leadWrist: [Double?] = []
         var torsoLengths: [Double] = []
-        for frame in frames.sorted(by: { $0.time < $1.time }) where frame.time.isFinite {
+        let ordered = frames.filter { $0.time.isFinite }.sorted { $0.time < $1.time }
+        guard let fallbackInterval = PoseProcessing.sampleInterval(frames: ordered) else { return nil }
+        // Preserve the sampling cadence before removing absent hands. A report combines a
+        // 30 Hz coarse pass with a native-rate window, so one median interval is not valid.
+        let frameIntervals = ordered.indices.map { index in
+            PoseProcessing.sampleInterval(frames: Array(ordered[max(0, index - 3)...min(ordered.count - 1, index + 3)]))
+                ?? fallbackInterval
+        }
+        var intervals: [Double] = [], segments: [Int] = []
+        var segment = 0, previousFrame: Int?
+        for (frameIndex, frame) in ordered.enumerated() {
             let wrists = [frame.joint(handedness.leadWristName), frame.joint(handedness.trailWristName)].compactMap { $0 }
             let midHip = Self.midpoint(frame.joint("leftHip"), frame.joint("rightHip"))
             let midShoulder = Self.midpoint(frame.joint("leftShoulder"), frame.joint("rightShoulder"))
             if let midHip, let midShoulder { torsoLengths.append(hypot(midShoulder.x - midHip.x, midShoulder.y - midHip.y)) }
-            guard !wrists.isEmpty else { continue }
+            guard !wrists.isEmpty else { segment += 1; previousFrame = nil; continue }
+            if let previousFrame,
+               frame.time - ordered[previousFrame].time > 1.5 * max(frameIntervals[previousFrame], frameIntervals[frameIndex]) {
+                segment += 1
+            }
+            previousFrame = frameIndex
+            intervals.append(frameIntervals[frameIndex])
+            segments.append(segment)
             times.append(frame.time)
             x.append(wrists.map(\.x).reduce(0, +) / Double(wrists.count))
             y.append(wrists.map(\.y).reduce(0, +) / Double(wrists.count))
@@ -110,22 +128,22 @@ private struct HandTrack {
             leadShoulder.append(frame.joint(handedness.leadJointName("Shoulder"))?.y)
             leadWrist.append(frame.joint(handedness.leadWristName)?.y)
         }
-        guard torsoLengths.count >= 5, let interval = PoseProcessing.interval(times: times) else { return nil }
+        guard torsoLengths.count >= 5, PoseProcessing.interval(times: times) != nil else { return nil }
         let scale = torsoLengths.sorted()[torsoLengths.count / 2]
         guard scale.isFinite, scale > 0.02 else { return nil }
         self.times = times; self.y = y; self.x = x; self.interpolated = interpolated
         self.levels = [.hip: hip, .shoulders: shoulders, .leadShoulder: leadShoulder]
         self.leadWristY = leadWrist
-        self.scale = scale; self.interval = interval
+        self.scale = scale; self.intervals = intervals; self.segments = segments
         // A fixed ±20 ms baseline (at least one neighbour each side) keeps landmark jitter from
         // dominating speed at 240 fps, where adjacent samples are only 4 ms apart.
         speed = times.indices.map { index in
             var before = index - 1, after = index + 1
             while before > 0, times[before] > times[index] - 0.02 { before -= 1 }
             while after < times.count - 1, times[after] < times[index] + 0.02 { after += 1 }
-            guard before >= 0, after < times.count else { return nil }
+            guard before >= 0, after < times.count, segments[before] == segments[after] else { return nil }
             let dt = times[after] - times[before]
-            guard dt > 0, dt <= 0.04 + 2.5 * interval else { return nil }
+            guard dt > 0 else { return nil }
             return hypot(x[after] - x[before], y[after] - y[before]) / dt
         }
     }
@@ -135,13 +153,13 @@ private struct HandTrack {
         return ((a.x + b.x) / 2, (a.y + b.y) / 2)
     }
 
-    private func contiguous(_ a: Int, _ b: Int) -> Bool { abs(times[b] - times[a]) <= 2.5 * interval * Double(abs(b - a)) }
+    private func contiguous(_ a: Int, _ b: Int) -> Bool { segments[a] == segments[b] }
 
     func lastIndex(before time: Double) -> Int { times.lastIndex { $0 <= time } ?? 0 }
 
     /// Hand drop within 0.6 s after `index`, in normalized image units.
     func descentAfter(_ index: Int) -> Double {
-        let window = times.indices.filter { $0 > index && times[$0] - times[index] <= 0.6 }
+        let window = times.indices.filter { $0 > index && contiguous(index, $0) && times[$0] - times[index] <= 0.6 }
         return window.map { y[index] - y[$0] }.max() ?? 0
     }
 
@@ -149,7 +167,7 @@ private struct HandTrack {
     /// A high finish is not followed by such a descent, so it cannot win.
     func topIndex() -> Int? {
         let candidates = times.indices.dropFirst(2).dropLast(2).filter { index in
-            (index - 2...index + 2).allSatisfy { y[index] >= y[$0] } && descentAfter(index) >= 0.8 * scale
+            contiguous(index - 2, index + 2) && (index - 2...index + 2).allSatisfy { y[index] >= y[$0] } && descentAfter(index) >= 0.8 * scale
         }
         return candidates.max { descentAfter($0) < descentAfter($1) }
     }
@@ -157,7 +175,8 @@ private struct HandTrack {
     /// Lowest hands within 0.6 s after the top. An edge minimum means the clip ended mid-descent.
     func impactIndex(after top: Int) -> Int? {
         let window = times.indices.filter { $0 > top && times[$0] - times[top] <= 0.6 }
-        guard let index = window.min(by: { y[$0] < y[$1] }), index != window.last, index + 1 < count else { return nil }
+        guard let index = window.min(by: { y[$0] < y[$1] }), index != window.last, index + 1 < count,
+              contiguous(top, index + 1), y[index] <= y[index - 1], y[index] <= y[index + 1] else { return nil }
         return index
     }
 
@@ -221,6 +240,8 @@ private struct HandTrack {
     /// Ordinal heuristic confidence: the rule's base weight, reduced for coarse sampling
     /// and for interpolated hand samples within ±0.1 s of the event.
     func confidence(at time: Double, base: Double) -> Double {
+        let nearest = times.indices.min { abs(times[$0] - time) < abs(times[$1] - time) } ?? 0
+        let interval = intervals[nearest]
         let density = interval <= 1.0 / 59 ? 1.0 : interval <= 1.0 / 29 ? 0.85 : 0.6
         let nearby = times.indices.filter { abs(times[$0] - time) <= 0.1 }
         let observed = nearby.isEmpty ? 0 : Double(nearby.filter { !interpolated[$0] }.count) / Double(nearby.count)

@@ -77,7 +77,7 @@ public struct FlightResult: Codable, Sendable {
     public var lateralMetric: ProvenancedValue { metric(landingPoint.right, "m") }
     public var apexMetric: ProvenancedValue { metric(apex, "m") }
     public var flightTimeMetric: ProvenancedValue { metric(flightTime, "s") }
-    public var landingAngleMetric: ProvenancedValue { metric(landingAngle, "deg") }
+    public var landingAngleMetric: ProvenancedValue { metric(landingAngle * .pi / 180, "rad") }
     private func metric(_ value: Double, _ unit: String) -> ProvenancedValue {
         .init(value: value, unit: unit, provenance: .simulated, method: model)
     }
@@ -95,12 +95,17 @@ public enum BallFlight {
                                 landingHeight: Double = 0, coefficients: AeroCoefficients = .smitsSmith1994) throws -> FlightResult {
         let inputs = [launch.ballSpeed, launch.launchAngle, launch.launchDirection, launch.spinRate, launch.spinAxis,
                       atmosphere.temperature, atmosphere.pressure, atmosphere.relativeHumidity,
-                      wind.tailwind, wind.rightward, landingHeight]
+                      wind.tailwind, wind.rightward, landingHeight,
+                      coefficients.dragBase, coefficients.dragSpin, coefficients.liftScale,
+                      coefficients.liftExponent, coefficients.spinDecay]
         guard inputs.allSatisfy(\.isFinite), (1...100).contains(launch.ballSpeed), (-10...80).contains(launch.launchAngle),
               (-45...45).contains(launch.launchDirection), (0...15_000).contains(launch.spinRate), (-60...60).contains(launch.spinAxis),
               (233...333).contains(atmosphere.temperature), (50_000...110_000).contains(atmosphere.pressure),
               (0...1).contains(atmosphere.relativeHumidity), abs(wind.tailwind) <= 30, abs(wind.rightward) <= 30,
-              abs(landingHeight) <= 100 else { throw ModelError.invalidInput }
+              abs(landingHeight) <= 100, coefficients.dragBase >= 0, coefficients.dragSpin >= 0,
+              coefficients.liftScale >= 0, coefficients.liftExponent > 0, coefficients.spinDecay >= 0 else {
+            throw ModelError.invalidInput
+        }
 
         let radius = diameter / 2, area = Double.pi * radius * radius, rho = atmosphere.density
         let elevation = launch.launchAngle * .pi / 180, yaw = launch.launchDirection * .pi / 180, tilt = launch.spinAxis * .pi / 180
@@ -114,6 +119,14 @@ public enum BallFlight {
         var omega = launch.spinRate * 2 * .pi / 60
         var time = 0.0, apex = 0.0
         var samples = [FlightSample(time: 0, forward: 0, height: 0, right: 0)]
+
+        // A level/downward shot starting on the landing plane touches ground immediately.
+        // Waiting for a positive-to-negative crossing would instead run beneath the ground.
+        if landingHeight == 0, velocity.y <= 0 {
+            return FlightResult(carry: 0, landingPoint: .init(forward: 0, right: 0), apex: 0, flightTime: 0,
+                                landingAngle: -launch.launchAngle, landingSpinRate: launch.spinRate,
+                                trajectory: samples, model: coefficients.id)
+        }
 
         func acceleration(_ velocity: Vector, _ omega: Double) -> Vector {
             let relative = velocity - air

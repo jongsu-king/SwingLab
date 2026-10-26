@@ -1,0 +1,2 @@
+PASS frozen V2 snapshot recognizes disk store seeded by untouched HEAD top-level V2 declarations
+PASS original HEAD V2 store migrates to V3 with payload/cache and session relationship intact (macOS SwiftData)

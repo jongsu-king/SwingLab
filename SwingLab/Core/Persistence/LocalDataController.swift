@@ -27,6 +27,7 @@ import SwingLabCore
         try manager.moveItem(at: library, to: staged)
         do {
             for value in try context.fetch(FetchDescriptor<SwingRecording>()) { context.delete(value) }
+            for value in try context.fetch(FetchDescriptor<PracticeSession>()) { context.delete(value) }
             for value in try context.fetch(FetchDescriptor<GolfClub>()) { context.delete(value) }
             for value in try context.fetch(FetchDescriptor<RoundSession>()) { context.delete(value) }
             for value in try context.fetch(FetchDescriptor<ShotRecord>()) { context.delete(value) }

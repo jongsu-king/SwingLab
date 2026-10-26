@@ -54,6 +54,15 @@ public struct CoachingFeedback: Codable, Sendable, Equatable {
     public let drillID: String?
 }
 
+/// Evidence for one actual comparison. No entry exists for a missing current value,
+/// fewer than five baseline values, or a constant baseline with undefined z-score.
+public struct CoachingComparison: Sendable {
+    public let metric: CoachedMetric
+    public let current: Double
+    public let baseline: MetricSummary
+    public var zScore: Double { (current - baseline.mean) / baseline.standardDeviation }
+}
+
 /// Compares one swing with the golfer's own recent swings from the same camera angle and club.
 /// Thresholds are documented in `Docs/Coaching.md` and are not calibrated against coaching outcomes.
 public enum CoachingEngine {
@@ -61,17 +70,36 @@ public enum CoachingEngine {
     public static let zThreshold = 1.5
     public static let ruleVersion = "coach.baselineZ.v1"
 
-    public static func feedback(for current: CoachingSample, history: [CoachingSample]) -> [CoachingFeedback] {
+    private static func comparable(to current: CoachingSample, in history: [CoachingSample]) -> [CoachingSample] {
+        guard current.cameraAngle != .unspecified else { return [] }
         // Same angle and club only; different views or clubs are different measurements.
-        let comparable = history
-            .filter { $0.id != current.id && $0.cameraAngle == current.cameraAngle && $0.club == current.club && $0.date < current.date }
-            .sorted { $0.date > $1.date }
-            .prefix(baselineSize)
+        return Array(history
+            .filter { sample in
+                sample.id != current.id && sample.cameraAngle == current.cameraAngle && sample.club == current.club
+                    && sample.date < current.date && CoachedMetric.allCases.contains { sample.value($0) != nil }
+            }
+            .sorted { $0.date == $1.date ? $0.id.uuidString < $1.id.uuidString : $0.date > $1.date }
+            .prefix(baselineSize))
+    }
+
+    public static func comparisons(for current: CoachingSample, history: [CoachingSample]) -> [CoachingComparison] {
+        let history = comparable(to: current, in: history)
+        return CoachedMetric.allCases.compactMap { metric in
+            guard let value = current.value(metric),
+                  let baseline = MetricSummary(history.compactMap { $0.value(metric) }),
+                  baseline.count >= MetricSummary.minimumForStatement, baseline.standardDeviation > 1e-9 else { return nil }
+            return CoachingComparison(metric: metric, current: value, baseline: baseline)
+        }
+    }
+
+    public static func feedback(for current: CoachingSample, history: [CoachingSample]) -> [CoachingFeedback] {
+        let comparable = comparable(to: current, in: history)
+        let comparisons = comparisons(for: current, history: history)
         var result: [CoachingFeedback] = []
         for metric in CoachedMetric.allCases {
-            guard let value = current.value(metric) else { continue }
+            guard current.value(metric) != nil else { continue }
             let baseline = comparable.compactMap { $0.value(metric) }
-            guard baseline.count >= MetricSummary.minimumForStatement, let summary = MetricSummary(baseline) else {
+            guard baseline.count >= MetricSummary.minimumForStatement else {
                 if metric == .tempo {
                     result.append(.init(templateID: "coach.needMoreSwings", metric: nil, current: nil, baselineMean: nil,
                                         baselineCount: baseline.count, drillID: nil))
@@ -79,11 +107,11 @@ public enum CoachingEngine {
                 continue
             }
             // A perfectly repeated baseline (SD 0) cannot define an unusual swing.
-            guard summary.standardDeviation > 1e-9 else { continue }
-            let z = (value - summary.mean) / summary.standardDeviation
+            guard let comparison = comparisons.first(where: { $0.metric == metric }) else { continue }
+            let summary = comparison.baseline, z = comparison.zScore
             guard abs(z) > zThreshold else { continue }
             result.append(.init(templateID: "coach.\(metric.rawValue).\(z > 0 ? "higher" : "lower")", metric: metric,
-                                current: value, baselineMean: summary.mean, baselineCount: summary.count,
+                                current: comparison.current, baselineMean: summary.mean, baselineCount: summary.count,
                                 drillID: drill(for: metric)))
         }
         return result

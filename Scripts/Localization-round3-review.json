@@ -1,0 +1,58 @@
+{
+  "No comparison is available for these measures.": {
+    "en": "No comparison is available for these measures.",
+    "ko": "이 측정값은 아직 비교할 수 없습니다.",
+    "ja": "これらの測定値はまだ比較できません。",
+    "zh-Hans": "这些测量值暂时无法比较。",
+    "zh-Hant": "這些測量值暫時無法比較。",
+    "es": "No hay una comparación disponible para estas medidas.",
+    "pt-BR": "Não há comparação disponível para estas medidas.",
+    "de": "Für diese Messwerte ist kein Vergleich verfügbar.",
+    "fr": "Aucune comparaison n’est disponible pour ces mesures.",
+    "it": "Non è disponibile un confronto per queste misure.",
+    "th": "ยังไม่สามารถเปรียบเทียบค่าที่วัดเหล่านี้ได้",
+    "vi": "Chưa có dữ liệu so sánh cho các chỉ số này."
+  },
+  "No changes exceeded the comparison threshold.": {
+    "en": "No changes exceeded the comparison threshold.",
+    "ko": "비교 기준을 넘는 변화가 없었습니다.",
+    "ja": "比較基準を超える変化はありませんでした。",
+    "zh-Hans": "没有变化超出比较阈值。",
+    "zh-Hant": "沒有變化超出比較門檻。",
+    "es": "Ningún cambio superó el umbral de comparación.",
+    "pt-BR": "Nenhuma mudança ultrapassou o limite de comparação.",
+    "de": "Keine Veränderung überschritt den Vergleichsschwellenwert.",
+    "fr": "Aucun changement n’a dépassé le seuil de comparaison.",
+    "it": "Nessun cambiamento ha superato la soglia di confronto.",
+    "th": "ไม่มีการเปลี่ยนแปลงที่เกินเกณฑ์การเปรียบเทียบ",
+    "vi": "Không có thay đổi nào vượt ngưỡng so sánh."
+  },
+  "Personal baseline": {
+    "en": "Personal baseline",
+    "ko": "개인 기준값",
+    "ja": "個人の基準値",
+    "zh-Hans": "个人基准",
+    "zh-Hant": "個人基準",
+    "es": "Referencia personal",
+    "pt-BR": "Referência pessoal",
+    "de": "Persönlicher Vergleichswert",
+    "fr": "Référence personnelle",
+    "it": "Riferimento personale",
+    "th": "ค่าอ้างอิงส่วนบุคคล",
+    "vi": "Mức cơ sở cá nhân"
+  },
+  "Experimental aerodynamic approximation. Carry only, no roll. Height and carry can differ substantially from real shots.": {
+    "en": "Experimental aerodynamic approximation. Carry only, no roll. Height and carry can differ substantially from real shots.",
+    "ko": "실험적인 공기역학 근사 모델입니다. 구르는 거리를 제외한 캐리만 계산합니다. 높이와 캐리는 실제 샷과 크게 다를 수 있습니다.",
+    "ja": "実験的な空力近似モデルです。ランを含まないキャリーのみを計算します。高さとキャリーは実際のショットと大きく異なる場合があります。",
+    "zh-Hans": "实验性空气动力学近似模型。仅计算飞行距离，不含滚动距离。高度和飞行距离可能与实际击球有较大差异。",
+    "zh-Hant": "實驗性空氣動力學近似模型。僅計算飛行距離，不含滾動距離。高度和飛行距離可能與實際擊球有較大差異。",
+    "es": "Aproximación aerodinámica experimental. Solo vuelo, sin rodadura. La altura y la distancia de vuelo pueden diferir mucho de los golpes reales.",
+    "pt-BR": "Aproximação aerodinâmica experimental. Apenas voo, sem rolagem. A altura e a distância de voo podem diferir bastante das tacadas reais.",
+    "de": "Experimentelle aerodynamische Näherung. Nur Flugweite, ohne Rollstrecke. Höhe und Flugweite können erheblich von echten Schlägen abweichen.",
+    "fr": "Approximation aérodynamique expérimentale. Distance en vol uniquement, sans roule. La hauteur et la portée peuvent différer nettement des coups réels.",
+    "it": "Approssimazione aerodinamica sperimentale. Solo distanza in volo, senza rotolamento. Altezza e distanza in volo possono differire molto dai colpi reali.",
+    "th": "แบบจำลองอากาศพลศาสตร์โดยประมาณเชิงทดลอง คำนวณเฉพาะระยะลอย ไม่รวมระยะกลิ้ง ความสูงและระยะลอยอาจแตกต่างจากการตีจริงอย่างมาก",
+    "vi": "Mô hình khí động học gần đúng đang thử nghiệm. Chỉ tính khoảng bay, không tính lăn. Độ cao và khoảng bay có thể khác nhiều so với cú đánh thực tế."
+  }
+}

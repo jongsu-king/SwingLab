@@ -9,7 +9,7 @@
 | Hands | Midpoint of both wrists; the single visible wrist when one is missing. |
 | Height | Vision `y` in the oriented image. Up is positive. |
 | Body scale *S* | Median distance from mid-shoulder to mid-hip over the clip. With no torso, no phase is estimated. |
-| Hand speed | Displacement over a fixed ±20 ms baseline (at least one neighbor each side). Not computed across gaps. |
+| Hand speed | Displacement over a ±20 ms target baseline (at least one neighbor each side; ±33 ms at 30 Hz). Not computed across gaps. Local frame cadence is retained across the coarse/dense splice. |
 | Still | Speed < 0.3 *S*/s. A still run continues while speed < 0.45 *S*/s. |
 
 Input frames come from `PoseProcessing.process`: zero-phase Savitzky–Golay smoothing, with gaps of one or two samples interpolated and flagged.
@@ -27,7 +27,7 @@ Input frames come from `PoseProcessing.process`: zero-phase Savitzky–Golay smo
 | Follow-through | `pose.handsReachShoulderHeightAfterImpact.v2` | Hands rise through mid-shoulder height within 1 s after impact. |
 | Finish | `pose.handsStillAfterFollowThrough.v2` | Start of the first still run (≥ 0.2 s) within 1.5 s after follow-through. If the clip ends first, no marker. |
 
-Crossings are linearly interpolated between samples and never across a gap. Markers that violate the physical order are dropped; a later rule cannot move an earlier phase.
+Crossings are linearly interpolated between samples and never across a gap. The detector preserves missing-hand segments before compacting observations. Top requires contiguous neighbors; impact requires a local minimum with a continuous observed path from top through its following sample. This suppresses gap-edge minima. Confidence uses the local pass cadence, so a dense downswing does not invalidate the coarse address/finish. Markers that violate the physical order are dropped; a later rule cannot move an earlier phase.
 
 ## Confidence
 
@@ -57,3 +57,10 @@ Results from `Tests/SwingLabCoreTests/PhaseDetectionTests.swift`. Hands follow C
 - Synthetic validation only. Real-swing accuracy needs labeled clips at several frame rates and camera angles; none exist yet.
 - Camera angle is not used. Face-on and down-the-line both show the hands rising and falling, but the shoulder- and hip-height proxies are noisier down the line.
 - Optional 3D pose (`VNDetectHumanBodyPose3DRequest`) is not implemented.
+
+## Round 3 review evidence
+
+- The mixed-pass regression constructs the actual pipeline shape: 30 Hz outside top − 0.35 s … impact + 0.35 s, 60/120/240 Hz inside. Before the fix, 120/240 Hz variants returned only five phases and lost address/finish; afterwards all eight remain.
+- A 180 ms wrist dropout spanning the known hand low point previously produced an impact at the gap edge. It now omits impact.
+- The 30 ms noisy tolerance is a documented engineering test bound for this single trajectory/noise seed, **not proof that the original AC is physically impossible** or a validated real-video accuracy bound. The original strict noisy AC remains unmet; broader noise seeds, top curvatures, camera geometries, and annotated swings are needed.
+- Hand low point and ball contact are different observable events. The sign or size of a shaft-lean-dependent offset is **not demonstrated** by the synthetic fixture; neither a constant correction nor a systematic “after contact” claim is justified here.

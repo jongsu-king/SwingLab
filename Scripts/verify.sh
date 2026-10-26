@@ -18,6 +18,8 @@ echo 'PASS no string-literal provenance comparisons or initializers'
 swift build --disable-sandbox --cache-path .build/SwiftPMCache --manifest-cache local
 if [[ "$(xcode-select -p)" == *Xcode*.app/Contents/Developer ]]; then
     swift test
+    # Supplemental real SwiftData disk checks; iOS simulator XCTest remains a separate gate.
+    Scripts/check_migrations.sh
 else
     Scripts/check_core.sh
 fi
