@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="440" viewBox="0 0 1280 440" role="img" aria-label="SwingLab — Play with precision.">
+<rect x="0.5" y="0.5" width="1279" height="439" rx="28" fill="#161D19" stroke="#F6F5F1" stroke-opacity="0.08"/>
+<g transform="translate(0,0)" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', Helvetica, Arial, sans-serif">
+<text x="72" y="96" font-size="17" font-weight="600" letter-spacing="3.2" fill="#CFBA96">NATIVE iPHONE GOLF LAB</text>
+<text x="68" y="178" font-size="92" font-weight="700" letter-spacing="-2.5" fill="#F6F5F1">SwingLab</text>
+<text x="72" y="228" font-size="30" font-weight="500" fill="#B5C7A0">Play with precision.</text>
+<text x="72" y="272" font-size="21" fill="#B9C2BB">아이폰 하나로 스윙 분석 · 런치모니터 · 코스 전략</text>
+<rect x="72" y="308" width="173" height="34" rx="17" fill="#26312B" stroke="#B5C7A0" stroke-opacity="0.35"/>
+<circle cx="88" cy="325" r="4" fill="#B5C7A0"/>
+<text x="100" y="330.5" font-size="15" font-weight="500" fill="#F6F5F1">Ball speed · vision</text>
+<rect x="255" y="308" width="146" height="34" rx="17" fill="#26312B" stroke="#B5C7A0" stroke-opacity="0.35"/>
+<circle cx="271" cy="325" r="4" fill="#B5C7A0"/>
+<text x="283" y="330.5" font-size="15" font-weight="500" fill="#F6F5F1">Launch · vision</text>
+<rect x="72" y="352" width="160" height="34" rx="17" fill="#26312B" stroke="#CFBA96" stroke-opacity="0.35"/>
+<circle cx="88" cy="369" r="4" fill="#CFBA96"/>
+<text x="100" y="374.5" font-size="15" font-weight="500" fill="#F6F5F1">Carry · simulated</text>
+<rect x="242" y="352" width="166" height="34" rx="17" fill="#26312B" stroke="#B9C2BB" stroke-opacity="0.35"/>
+<circle cx="258" cy="369" r="4" fill="#B9C2BB"/>
+<text x="270" y="374.5" font-size="15" font-weight="500" fill="#F6F5F1">Spin · unavailable</text>
+<g stroke="#F6F5F1" stroke-opacity="0.07" stroke-width="1">
+<line x1="640" y1="120" x2="1220" y2="120"/>
+<line x1="640" y1="200" x2="1220" y2="200"/>
+<line x1="640" y1="280" x2="1220" y2="280"/>
+<line x1="720" y1="80" x2="720" y2="360"/>
+<line x1="820" y1="80" x2="820" y2="360"/>
+<line x1="920" y1="80" x2="920" y2="360"/>
+<line x1="1020" y1="80" x2="1020" y2="360"/>
+<line x1="1120" y1="80" x2="1120" y2="360"/>
+<line x1="1220" y1="80" x2="1220" y2="360"/>
+</g>
+<line x1="640" y1="360" x2="1220" y2="360" stroke="#F6F5F1" stroke-opacity="0.3" stroke-width="1.5"/>
+<ellipse cx="1190" cy="360" rx="40" ry="8" fill="#B5C7A0" fill-opacity="0.35"/>
+<ellipse cx="1190" cy="360" rx="20" ry="4" fill="#B5C7A0" fill-opacity="0.8"/>
+<path d="M680,351 C790,316 900,120 1010,108 C1100,98 1165,230 1190,360" fill="none" stroke="#B5C7A0" stroke-width="3" stroke-dasharray="10 8" stroke-linecap="round"/>
+<circle cx="693.2" cy="346.0" r="6" fill="#B5C7A0" fill-opacity="0.75"/>
+<circle cx="706.4" cy="339.7" r="6" fill="#B5C7A0" fill-opacity="0.62"/>
+<circle cx="719.6" cy="332.0" r="6" fill="#B5C7A0" fill-opacity="0.49"/>
+<circle cx="732.8" cy="323.2" r="6" fill="#B5C7A0" fill-opacity="0.36"/>
+<circle cx="746.0" cy="313.4" r="6" fill="#B5C7A0" fill-opacity="0.23"/>
+<circle cx="680" cy="351" r="9" fill="#F6F5F1" stroke="#F6F5F1" stroke-width="1.5"/>
+<text x="760" y="338" font-size="13" font-weight="500" fill="#CFBA96">240 fps · tracked</text>
+<text x="1010" y="88" font-size="13" font-weight="500" text-anchor="middle" fill="#CFBA96">simulated flight</text>
+<text x="1190" y="388" font-size="13" font-weight="500" text-anchor="middle" fill="#CFBA96">landing region</text>
+</g></svg>
