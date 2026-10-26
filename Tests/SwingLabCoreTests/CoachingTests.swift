@@ -85,7 +85,7 @@ final class CoachingTests: XCTestCase {
         let history = steadyTempos.enumerated().map { sample($0.offset, tempo: $0.element, angle: .unspecified) }
         let current = sample(50, tempo: 4, angle: .unspecified)
         XCTAssertTrue(CoachingEngine.comparisons(for: current, history: history).isEmpty)
-        XCTAssertTrue(CoachingEngine.feedback(for: current, history: history).allSatisfy { $0.metric == nil })
+        XCTAssertTrue(CoachingEngine.feedback(for: current, history: history).isEmpty)
     }
 
     func testEmptyFeedbackDoesNotImplyAValidComparison() throws {

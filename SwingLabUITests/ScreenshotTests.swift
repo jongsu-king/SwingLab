@@ -87,3 +87,38 @@ final class ScreenshotTests: XCTestCase {
         add(attachment)
     }
 }
+
+/// Targeted refresh after a detail-only localization/layout correction. The normal
+/// screenshot script selects ScreenshotTests; this test can update just these six images.
+final class DetailScreenshotTests: XCTestCase {
+    @MainActor func testEmptyDetailVariants() throws {
+        continueAfterFailure = false
+        for (language, swingLabel, homeLabel) in [("en", "Swing", "Home"), ("ko", "스윙", "홈"), ("de", "Schwung", "Start")] {
+            for appearance in ["light", "dark"] {
+                let app = XCUIApplication()
+                app.launchArguments = ["--ui-testing", "--screenshot-testing", "--screenshot-empty-recording",
+                    "--screenshot-language", language, "--screenshot-appearance", appearance,
+                    "-AppleLanguages", "(\(language))", "-AppleLocale", language]
+                app.launch()
+                XCTAssertTrue(app.buttons[homeLabel].firstMatch.waitForExistence(timeout: 15))
+                app.buttons[swingLabel].firstMatch.tap()
+                let recording = app.buttons["swing.recording.00000000-0000-0000-0000-000000000003"].firstMatch
+                for _ in 0..<8 {
+                    if recording.exists && recording.isHittable { break }
+                    app.swipeUp()
+                }
+                XCTAssertTrue(recording.exists && recording.isHittable)
+                recording.tap()
+                let alert = app.alerts.firstMatch
+                if alert.waitForExistence(timeout: 5) { alert.buttons.firstMatch.tap() }
+                let measuredLabel = language == "ko" ? "측정값" : language == "de" ? "Gemessen" : "Measured"
+                XCTAssertTrue(app.descendants(matching: .any).matching(NSPredicate(format: "label CONTAINS %@", measuredLabel)).firstMatch.exists)
+                let attachment = XCTAttachment(screenshot: app.screenshot())
+                attachment.name = "round3-\(language)-\(appearance)-swing-detail-empty"
+                attachment.lifetime = .keepAlways
+                add(attachment)
+                app.terminate()
+            }
+        }
+    }
+}

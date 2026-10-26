@@ -32,7 +32,7 @@ xcodebuild -project SwingLab.xcodeproj -scheme SwingLab \
   | tee "$TASK_ROOT/Docs/Logs/screenshots-$TASK_RUN.log"
 xcrun xcresulttool export attachments --path "$TASK_RESULT" --output-path "$TASK_ATTACHMENTS"
 python3 - "$TASK_ATTACHMENTS" "$TASK_OUTPUT" "$TASK_RESULT" <<'PY'
-import json,re,shutil,sys
+import hashlib,json,re,shutil,sys
 from pathlib import Path
 source,output,result=map(Path,sys.argv[1:])
 manifest=json.loads((source/'manifest.json').read_text())
@@ -55,8 +55,9 @@ for test in manifest:
         shutil.copyfile(original,destination)
         captured[match.group(1)]={'file':destination.name,'test':test['testIdentifier'],
             'device':attachment.get('deviceName'),'deviceID':attachment.get('deviceId'),
-            'timestamp':attachment.get('timestamp')}
-actual={'resultBundle':str(result),'screenshots':[captured[key] for key in sorted(captured)]}
+            'timestamp':attachment.get('timestamp'),'resultBundle':str(result),
+            'sha256':hashlib.sha256(destination.read_bytes()).hexdigest()}
+actual={'resultBundles':[str(result)],'screenshots':[captured[key] for key in sorted(captured)]}
 (output/'manifest.json').write_text(json.dumps(actual,ensure_ascii=False,indent=2)+'\n')
 expected={f'round3-{language}-{appearance}-{screen}' for language in ['en','ko','de']
     for appearance in ['light','dark'] for screen in ['home','swing','swing-detail-empty','flight','course','performance','settings','bag']}

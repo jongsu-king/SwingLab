@@ -1,0 +1,45 @@
+Skipped export for ClubDraftTests/testCommaDecimalAndSignedOffsetConvertAtBoundary(): no matching attachments
+
+Skipped export for ClubDraftTests/testHostedAppCatalogUsesExplicitLanguageAndFallback(): no matching attachments
+
+Skipped export for ClubDraftTests/testInvalidDraftCannotPartiallyMutateTheClub(): no matching attachments
+
+Skipped export for ClubDraftTests/testTotalBelowCarryAndSingularCorrelationAreRejected(): no matching attachments
+
+Skipped export for CourseTests/testGPSFreshnessAndAccuracyBoundaries(): no matching attachments
+
+Skipped export for CourseTests/testManualReferencesPersistAndRemainHoleSpecific(): no matching attachments
+
+Skipped export for CourseTests/testScoreInputPreservesMissingValuesAndIncludesPenalties(): no matching attachments
+
+Skipped export for PersistenceTests/testClubDraftRejectsInvalidNumbersAndPreservesPrecision(): no matching attachments
+
+Skipped export for PersistenceTests/testClubPersistsInSIAndCanBeEdited(): no matching attachments
+
+Skipped export for PersistenceTests/testPreferencesPersistWithoutCouplingLanguageToUnits(): no matching attachments
+
+Skipped export for PersistenceTests/testRoundCascadeAndGroundDistance(): no matching attachments
+
+Skipped export for PracticeSessionTests/testAssignGroupsByRollingWindowAndCapturesPreference(): no matching attachments
+
+Skipped export for PracticeSessionTests/testDeletingRecordingsUpdatesSessionDateAndPreservesNotes(): no matching attachments
+
+Skipped export for PracticeSessionTests/testRegroupPersistsAndRollbackRestoresMembership(): no matching attachments
+
+Skipped export for SchemaMigrationTests/testRoundOneStoreMigratesToFrozenV2WithoutLosingRecordsOrRelationships(): no matching attachments
+
+Skipped export for SchemaMigrationTests/testRoundOneStoreMigratesWithoutLosingRecordsOrRelationships(): no matching attachments
+
+Skipped export for SchemaMigrationTests/testV2StorePreservesCachesAndAddsSessionsWithoutLosingRelationships(): no matching attachments
+
+Exported 6 attachments for: DetailScreenshotTests/testEmptyDetailVariants():
+File: 2CF8C50A-5B7C-4821-9860-F827662230D1.png, suggested name: "round3-de-dark-swing-detail-empty_0_8385A3A0-FDE7-41B0-BC7A-78BB79CA5C00.png"
+File: 51D84826-7318-40F3-9802-102249B4DA75.png, suggested name: "round3-de-light-swing-detail-empty_0_47CD454A-8211-44E5-91DF-10288BF0E6AD.png"
+File: B2A5A14A-8803-4A9B-B11D-4BAE783DF1AA.png, suggested name: "round3-ko-dark-swing-detail-empty_0_1C670416-9843-4007-8C3B-C17F30C5F9F9.png"
+File: D7FA9836-E082-4622-84D6-BAB2D87B140E.png, suggested name: "round3-ko-light-swing-detail-empty_0_7381B406-E0F7-4524-80D3-8E25CD5EFDC8.png"
+File: 528CD066-3AA1-4BA7-A19E-B7797D50B0A4.png, suggested name: "round3-en-dark-swing-detail-empty_0_3AED0FFB-48DD-4CD2-8268-CA85409CB82B.png"
+File: 6E9CB7C1-4602-4FE5-8F69-DD7B23A20F70.png, suggested name: "round3-en-light-swing-detail-empty_0_1B06124F-7786-4818-BDF3-CA22F87E882D.png"
+
+Skipped export for NavigationTests/testOnboardingAndFourTabs(): no matching attachments
+
+Generated manifest file with attachment details: /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Round3-FinalNative-Attachments/manifest.json

@@ -111,7 +111,7 @@ struct SwingDetailView: View {
             }
             Picker(prefs.text("Camera angle"), selection: $recording.cameraAngleValue) {
                 ForEach(CameraAngle.allCases, id: \.self) { Text(prefs.text($0.localizationKey)).tag($0) }
-            }.pickerStyle(.segmented)
+            }.pickerStyle(.menu)
                 .onChange(of: recording.cameraAngleValue) { _, _ in
                     do { try modelContext.save() } catch { self.error = "Changes could not be saved." }
                 }

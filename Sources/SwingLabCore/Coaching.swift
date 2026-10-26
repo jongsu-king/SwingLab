@@ -93,6 +93,7 @@ public enum CoachingEngine {
     }
 
     public static func feedback(for current: CoachingSample, history: [CoachingSample]) -> [CoachingFeedback] {
+        guard current.cameraAngle != .unspecified else { return [] }
         let comparable = comparable(to: current, in: history)
         let comparisons = comparisons(for: current, history: history)
         var result: [CoachingFeedback] = []

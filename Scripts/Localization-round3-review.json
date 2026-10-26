@@ -54,5 +54,19 @@
     "it": "Approssimazione aerodinamica sperimentale. Solo distanza in volo, senza rotolamento. Altezza e distanza in volo possono differire molto dai colpi reali.",
     "th": "แบบจำลองอากาศพลศาสตร์โดยประมาณเชิงทดลอง คำนวณเฉพาะระยะลอย ไม่รวมระยะกลิ้ง ความสูงและระยะลอยอาจแตกต่างจากการตีจริงอย่างมาก",
     "vi": "Mô hình khí động học gần đúng đang thử nghiệm. Chỉ tính khoảng bay, không tính lăn. Độ cao và khoảng bay có thể khác nhiều so với cú đánh thực tế."
+  },
+  "Measured": {
+    "en": "Measured",
+    "ko": "측정값",
+    "ja": "測定値",
+    "zh-Hans": "测量值",
+    "zh-Hant": "測量值",
+    "es": "Medido",
+    "pt-BR": "Medido",
+    "de": "Gemessen",
+    "fr": "Mesuré",
+    "it": "Misurato",
+    "th": "ค่าที่วัดได้",
+    "vi": "Đã đo"
   }
 }

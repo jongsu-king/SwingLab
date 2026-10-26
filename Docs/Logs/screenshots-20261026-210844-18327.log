@@ -1277,3 +1277,198 @@ Test Case '-[SwingLabUITests.ScreenshotTests testKoreanDark]' started.
     t =    35.69s         Wait for com.apple.springboard to idle
     t =    35.73s     Synthesize event
     t =    36.01s     Wait for com.swinglab.app to idle
+    t =    36.62s Waiting 5.0s for Alert (First Match) to exist
+    t =    37.64s     Checking `Expect predicate `existsNoRetry == 1` for object Alert (First Match)`
+    t =    37.64s         Checking existence of `Alert (First Match)`
+    t =    37.66s Tap Button (First Match)
+    t =    37.66s     Wait for com.swinglab.app to idle
+    t =    37.66s     Find the Button (First Match)
+    t =    37.70s     Check for interrupting elements affecting "확인" Button
+    t =    37.74s         Wait for com.apple.springboard to idle
+    t =    37.76s     Synthesize event
+    t =    38.06s     Wait for com.swinglab.app to idle
+    t =    38.46s Find the Target Application 'com.swinglab.app'
+    t =    38.58s Added attachment named 'round3-ko-dark-swing-detail-empty'
+    t =    38.58s Terminate com.swinglab.app:18753
+    t =    39.61s Tear Down
+Test Case '-[SwingLabUITests.ScreenshotTests testKoreanDark]' passed (39.623 seconds).
+Test Case '-[SwingLabUITests.ScreenshotTests testKoreanLight]' started.
+    t =     0.00s Start Test at 2026-10-26 21:12:08.009
+    t =     0.03s Set Up
+    t =     0.03s Open com.swinglab.app
+    t =     0.03s     Launch com.swinglab.app
+    t =     0.23s         Setting up automation session
+    t =     1.94s         Wait for com.swinglab.app to idle
+    t =     3.69s Waiting 15.0s for "홈" Button to exist
+    t =     4.70s     Checking `Expect predicate `existsNoRetry == 1` for object "홈" Button`
+    t =     4.70s         Checking existence of `"홈" Button`
+    t =     4.79s Checking existence of `"홈" Button`
+    t =     4.82s Checking existence of `"스윙" Button`
+    t =     4.85s Checking existence of `"코스" Button`
+    t =     4.88s Checking existence of `"퍼포먼스" Button`
+    t =     4.91s Find the Target Application 'com.swinglab.app'
+    t =     4.99s Added attachment named 'round3-ko-light-home'
+    t =     4.99s Checking existence of `"home.settings" Any`
+    t =     5.04s Find the "home.settings" Any
+    t =     5.09s Tap "home.settings" Any
+    t =     5.09s     Wait for com.swinglab.app to idle
+    t =     5.09s     Find the "home.settings" Any
+    t =     5.13s     Check for interrupting elements affecting "home.settings" Button
+    t =     5.15s         Wait for com.apple.springboard to idle
+    t =     5.19s     Synthesize event
+    t =     5.47s     Wait for com.swinglab.app to idle
+    t =     6.01s Find the Target Application 'com.swinglab.app'
+    t =     6.12s Added attachment named 'round3-ko-light-settings'
+    t =     6.12s Terminate com.swinglab.app:18823
+    t =     7.16s Open com.swinglab.app
+    t =     7.16s     Launch com.swinglab.app
+    t =     7.36s         Setting up automation session
+    t =     9.10s         Wait for com.swinglab.app to idle
+    t =    10.83s Waiting 15.0s for "홈" Button to exist
+    t =    11.85s     Checking `Expect predicate `existsNoRetry == 1` for object "홈" Button`
+    t =    11.85s         Checking existence of `"홈" Button`
+    t =    11.94s Checking existence of `"home.bag" Any`
+    t =    11.98s Find the "home.bag" Any
+    t =    12.03s Tap "home.bag" Any
+    t =    12.03s     Wait for com.swinglab.app to idle
+    t =    12.03s     Find the "home.bag" Any
+    t =    12.07s     Check for interrupting elements affecting "home.bag" Button
+    t =    12.09s         Wait for com.apple.springboard to idle
+    t =    12.13s     Synthesize event
+    t =    12.42s     Wait for com.swinglab.app to idle
+    t =    12.78s Find the Target Application 'com.swinglab.app'
+    t =    12.88s Added attachment named 'round3-ko-light-bag'
+    t =    12.88s Tap "스윙" Button
+    t =    12.88s     Wait for com.swinglab.app to idle
+    t =    12.88s     Find the "스윙" Button
+    t =    12.91s     Check for interrupting elements affecting "스윙" Button
+    t =    12.93s         Wait for com.apple.springboard to idle
+    t =    12.96s     Synthesize event
+    t =    13.25s     Wait for com.swinglab.app to idle
+    t =    14.51s Find the Target Application 'com.swinglab.app'
+    t =    14.63s Added attachment named 'round3-ko-light-swing'
+    t =    14.63s Checking existence of `"swing.hypotheticalFlight" Any`
+    t =    14.73s Swipe up Target Application 'com.swinglab.app'
+    t =    14.73s     Wait for com.swinglab.app to idle
+    t =    14.73s     Find the Target Application 'com.swinglab.app'
+    t =    14.75s     Check for interrupting elements affecting "SwingLab" Application
+    t =    14.76s         Wait for com.apple.springboard to idle
+    t =    14.79s     Synthesize event
+    t =    15.21s     Wait for com.swinglab.app to idle
+    t =    15.82s Checking existence of `"swing.hypotheticalFlight" Any`
+    t =    15.93s Find the "swing.hypotheticalFlight" Any
+    t =    16.02s Tap "swing.hypotheticalFlight" Any
+    t =    16.02s     Wait for com.swinglab.app to idle
+    t =    16.02s     Find the "swing.hypotheticalFlight" Any
+    t =    16.10s     Check for interrupting elements affecting "swing.hypotheticalFlight" Button
+    t =    16.13s         Wait for com.apple.springboard to idle
+    t =    16.16s     Synthesize event
+    t =    16.45s     Wait for com.swinglab.app to idle
+    t =    16.88s Checking existence of `"flight.driverExample" Any`
+    t =    17.01s Find the "flight.driverExample" Any
+    t =    17.13s Tap "flight.driverExample" Any
+    t =    17.13s     Wait for com.swinglab.app to idle
+    t =    17.13s     Find the "flight.driverExample" Any
+    t =    17.24s     Check for interrupting elements affecting "flight.driverExample" Button
+    t =    17.27s         Wait for com.apple.springboard to idle
+    t =    17.31s     Synthesize event
+    t =    17.60s     Wait for com.swinglab.app to idle
+    t =    17.86s Checking existence of `"flight.simulate" Any`
+    t =    18.00s Swipe up Target Application 'com.swinglab.app'
+    t =    18.00s     Wait for com.swinglab.app to idle
+    t =    18.00s     Find the Target Application 'com.swinglab.app'
+    t =    18.02s     Check for interrupting elements affecting "SwingLab" Application
+    t =    18.05s         Wait for com.apple.springboard to idle
+    t =    18.07s     Synthesize event
+    t =    18.49s     Wait for com.swinglab.app to idle
+    t =    19.16s Checking existence of `"flight.simulate" Any`
+    t =    19.30s Find the "flight.simulate" Any
+    t =    19.42s Tap "flight.simulate" Any
+    t =    19.42s     Wait for com.swinglab.app to idle
+    t =    19.42s     Find the "flight.simulate" Any
+    t =    19.53s     Check for interrupting elements affecting "flight.simulate" Button
+    t =    19.56s         Wait for com.apple.springboard to idle
+    t =    19.60s     Synthesize event
+    t =    19.89s     Wait for com.swinglab.app to idle
+    t =    19.90s Checking existence of `"flight.result.carry" Any`
+    t =    20.05s Swipe up Target Application 'com.swinglab.app'
+    t =    20.05s     Wait for com.swinglab.app to idle
+    t =    20.05s     Find the Target Application 'com.swinglab.app'
+    t =    20.07s     Check for interrupting elements affecting "SwingLab" Application
+    t =    20.10s         Wait for com.apple.springboard to idle
+    t =    20.12s     Synthesize event
+    t =    20.54s     Wait for com.swinglab.app to idle
+    t =    22.68s Checking existence of `"flight.result.carry" Any`
+    t =    22.78s Find the "flight.result.carry" Any
+    t =    22.86s Find the Target Application 'com.swinglab.app'
+    t =    22.95s Added attachment named 'round3-ko-light-flight'
+    t =    22.95s Tap "코스" Button
+    t =    22.95s     Wait for com.swinglab.app to idle
+    t =    22.95s     Find the "코스" Button
+    t =    22.98s     Check for interrupting elements affecting "코스" Button
+    t =    23.01s         Wait for com.apple.springboard to idle
+    t =    23.03s     Synthesize event
+    t =    23.32s     Wait for com.swinglab.app to idle
+    t =    24.71s Find the Target Application 'com.swinglab.app'
+    t =    24.84s Added attachment named 'round3-ko-light-course'
+    t =    24.84s Tap "퍼포먼스" Button
+    t =    24.84s     Wait for com.swinglab.app to idle
+    t =    24.85s     Find the "퍼포먼스" Button
+    t =    24.89s     Check for interrupting elements affecting "퍼포먼스" Button
+    t =    24.91s         Wait for com.apple.springboard to idle
+    t =    24.94s     Synthesize event
+    t =    25.23s     Wait for com.swinglab.app to idle
+    t =    26.49s Find the Target Application 'com.swinglab.app'
+    t =    26.60s Added attachment named 'round3-ko-light-performance'
+    t =    26.60s Terminate com.swinglab.app:18833
+    t =    27.64s Open com.swinglab.app
+    t =    27.64s     Launch com.swinglab.app
+    t =    27.86s         Setting up automation session
+    t =    29.58s         Wait for com.swinglab.app to idle
+    t =    31.38s Waiting 15.0s for "홈" Button to exist
+    t =    32.41s     Checking `Expect predicate `existsNoRetry == 1` for object "홈" Button`
+    t =    32.41s         Checking existence of `"홈" Button`
+    t =    32.51s Tap "스윙" Button
+    t =    32.51s     Wait for com.swinglab.app to idle
+    t =    32.51s     Find the "스윙" Button
+    t =    32.54s     Check for interrupting elements affecting "스윙" Button
+    t =    32.56s         Wait for com.apple.springboard to idle
+    t =    32.59s     Synthesize event
+    t =    32.88s     Wait for com.swinglab.app to idle
+    t =    34.13s Checking existence of `"swing.recording.00000000-0000-0000-0000-000000000003" Any`
+    t =    34.27s Find the "swing.recording.00000000-0000-0000-0000-000000000003" Any
+    t =    34.35s Tap "swing.recording.00000000-0000-0000-0000-000000000003" Any
+    t =    34.35s     Wait for com.swinglab.app to idle
+    t =    34.36s     Find the "swing.recording.00000000-0000-0000-0000-000000000003" Any
+    t =    34.43s     Check for interrupting elements affecting "swing.recording.00000000-0000-0000-0000-000000000003" Button
+    t =    34.46s         Wait for com.apple.springboard to idle
+    t =    34.50s     Synthesize event
+    t =    34.79s     Wait for com.swinglab.app to idle
+    t =    35.32s Waiting 5.0s for Alert (First Match) to exist
+    t =    36.32s     Checking `Expect predicate `existsNoRetry == 1` for object Alert (First Match)`
+    t =    36.33s         Checking existence of `Alert (First Match)`
+    t =    36.34s Tap Button (First Match)
+    t =    36.34s     Wait for com.swinglab.app to idle
+    t =    36.35s     Find the Button (First Match)
+    t =    36.38s     Check for interrupting elements affecting "확인" Button
+    t =    36.42s         Wait for com.apple.springboard to idle
+    t =    36.45s     Synthesize event
+    t =    36.74s     Wait for com.swinglab.app to idle
+    t =    37.00s Find the Target Application 'com.swinglab.app'
+    t =    37.10s Added attachment named 'round3-ko-light-swing-detail-empty'
+    t =    37.10s Terminate com.swinglab.app:18861
+    t =    38.14s Tear Down
+Test Case '-[SwingLabUITests.ScreenshotTests testKoreanLight]' passed (38.154 seconds).
+Test Suite 'ScreenshotTests' passed at 2026-10-26 21:12:46.164.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 233.796 (233.801) seconds
+Test Suite 'SwingLabUITests.xctest' passed at 2026-10-26 21:12:46.164.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 233.796 (233.802) seconds
+Test Suite 'Selected tests' passed at 2026-10-26 21:12:46.165.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 233.796 (233.803) seconds
+
+Test session results, code coverage, and logs:
+	/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-210844-18327.xcresult
+
+** TEST SUCCEEDED **
+
+Testing started

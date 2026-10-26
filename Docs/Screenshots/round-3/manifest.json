@@ -1,0 +1,440 @@
+{
+  "resultBundles": [
+    "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Round3-FinalNative.xcresult",
+    "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult"
+  ],
+  "screenshots": [
+    {
+      "file": "round3-de-dark-bag.png",
+      "test": "ScreenshotTests/testGermanDark()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793016924.895,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "1fd809990492d14fec222ea195f6a3cd9a881956a8588a7650579c7320a0c396"
+    },
+    {
+      "file": "round3-de-dark-course.png",
+      "test": "ScreenshotTests/testGermanDark()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793016937.066,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "663120a0a10a92ddf0f06ea51ceefbca25fb6a94ad2148336b9e9171327fcac9"
+    },
+    {
+      "file": "round3-de-dark-flight.png",
+      "test": "ScreenshotTests/testGermanDark()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793016935.089,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "5323c6c5f2e20f072ebb2ca4adc75aa73b0ff91a275de29affd4199231b534a3"
+    },
+    {
+      "file": "round3-de-dark-home.png",
+      "test": "ScreenshotTests/testGermanDark()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793016917.096,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "1426b1e8651ebccedc7730cd3a21ea80cca3fd08c00eee4ec1e7ae4ceeb4f918"
+    },
+    {
+      "file": "round3-de-dark-performance.png",
+      "test": "ScreenshotTests/testGermanDark()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793016938.829,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "ec1f06ea6031318f0c03f464afdbdaf749975d4295d97262a10c20b0b646ff2f"
+    },
+    {
+      "file": "round3-de-dark-settings.png",
+      "test": "ScreenshotTests/testGermanDark()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793016918.217,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "3c6334fd5b7abc4f20bd07836c1fd7597cd88f1fb434ffb29fcb82f871093631"
+    },
+    {
+      "file": "round3-de-dark-swing-detail-empty.png",
+      "test": "DetailScreenshotTests/testEmptyDetailVariants()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793017151.513,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Round3-FinalNative.xcresult",
+      "sha256": "649379ceba2a71308edfd975a6ea92d57eccd326e8de0ee52f5621adff2841a9"
+    },
+    {
+      "file": "round3-de-dark-swing.png",
+      "test": "ScreenshotTests/testGermanDark()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793016926.633,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "72eaaca79e876657d6c37209147c2011b2882a785ce6333e6531ab017dbf5ae5"
+    },
+    {
+      "file": "round3-de-light-bag.png",
+      "test": "ScreenshotTests/testGermanLight()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793016963.078,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "540dfce7a3c6b1645054ab0d2bd438b02830f203fab19c57fbc8b740ff8aa3fd"
+    },
+    {
+      "file": "round3-de-light-course.png",
+      "test": "ScreenshotTests/testGermanLight()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793016975.108,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "ce2c47d6094322c114dba88079f64d73c0de562f84cc0554326864ca7603188f"
+    },
+    {
+      "file": "round3-de-light-flight.png",
+      "test": "ScreenshotTests/testGermanLight()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793016973.235,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "53a4fc33693fe87a404584606059871a370f2692213a020943396c369d667db6"
+    },
+    {
+      "file": "round3-de-light-home.png",
+      "test": "ScreenshotTests/testGermanLight()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793016955.409,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "166f7990f4ff2770ad7ba35477bdaa924b8a7e9f23b09071a5bc906f8523f701"
+    },
+    {
+      "file": "round3-de-light-performance.png",
+      "test": "ScreenshotTests/testGermanLight()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793016976.856,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "a12b8aa9c66d1949071f052d8586e588490ce6fca50055a01d6e415b3a52aad7"
+    },
+    {
+      "file": "round3-de-light-settings.png",
+      "test": "ScreenshotTests/testGermanLight()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793016956.515,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "682d8f245f47760d1ecdc70eaa5427ff9a45af1134a11f375317ec5fa0c157ce"
+    },
+    {
+      "file": "round3-de-light-swing-detail-empty.png",
+      "test": "DetailScreenshotTests/testEmptyDetailVariants()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793017141.108,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Round3-FinalNative.xcresult",
+      "sha256": "5a084c77ac4c1083c3a2d42846c96d1f436a61876b7d8fb9ae1df02d374a2b09"
+    },
+    {
+      "file": "round3-de-light-swing.png",
+      "test": "ScreenshotTests/testGermanLight()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793016964.813,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "51d2792ff9707baa8b07ccb8711d6269c4046ea14f3e34cb8b1b0888814b7cf0"
+    },
+    {
+      "file": "round3-en-dark-bag.png",
+      "test": "ScreenshotTests/testEnglishDark()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793016848.324,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "5ff551a6f16e16592493b68c8613efbebff2a23d2dd1d9b9370977d6172dabde"
+    },
+    {
+      "file": "round3-en-dark-course.png",
+      "test": "ScreenshotTests/testEnglishDark()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793016860.544,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "d6de8a514f5df17956a19c750fd482b42cf61dca15312c8465570c6ee605651d"
+    },
+    {
+      "file": "round3-en-dark-flight.png",
+      "test": "ScreenshotTests/testEnglishDark()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793016858.589,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "a3267c580cd5239fac350121e932d763b39353baa09286e4d5decd3b53e4b2b3"
+    },
+    {
+      "file": "round3-en-dark-home.png",
+      "test": "ScreenshotTests/testEnglishDark()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793016840.301,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "72d828c4012ee887a4ae0db611d4e316d38349a23e5330c2e070e77ae8496615"
+    },
+    {
+      "file": "round3-en-dark-performance.png",
+      "test": "ScreenshotTests/testEnglishDark()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793016862.296,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "058a4ee9df5bb7c9b1987e798b458ebdcbbb8c68a078fd1e1cb3079f88b4e033"
+    },
+    {
+      "file": "round3-en-dark-settings.png",
+      "test": "ScreenshotTests/testEnglishDark()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793016841.454,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "a8f2aeee164f06ec4e0343db617f2a0452118829cc6eb1569822e073defc5142"
+    },
+    {
+      "file": "round3-en-dark-swing-detail-empty.png",
+      "test": "DetailScreenshotTests/testEmptyDetailVariants()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793017108.927,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Round3-FinalNative.xcresult",
+      "sha256": "0cc112232c2352b4bb8fe92d028b62afbb7205eb38f7f10fabb6a1c2664bab37"
+    },
+    {
+      "file": "round3-en-dark-swing.png",
+      "test": "ScreenshotTests/testEnglishDark()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793016850.048,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "de5728be7f030b4bba519c41376805589877dea15a229bfd9af638fa9c76d4a8"
+    },
+    {
+      "file": "round3-en-light-bag.png",
+      "test": "ScreenshotTests/testEnglishLight()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793016886.775,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "765702d34818a70805877493af9edf96560528449441e2c1b82fd27367919427"
+    },
+    {
+      "file": "round3-en-light-course.png",
+      "test": "ScreenshotTests/testEnglishLight()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793016898.762,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "3dd06836251f2e002565660774dbb8de334a804ceaed6b838181915c3540ec31"
+    },
+    {
+      "file": "round3-en-light-flight.png",
+      "test": "ScreenshotTests/testEnglishLight()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793016896.839,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "c3783e00bca30beb8f7c30b4cbe76fe9adbe87cf00f6e3fce523a4fdc13b59f9"
+    },
+    {
+      "file": "round3-en-light-home.png",
+      "test": "ScreenshotTests/testEnglishLight()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793016879.067,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "c3f7bf8039f8c096ce7c5be9ce2e47fafd8f6ae31a53f99000ebce049d63ab2b"
+    },
+    {
+      "file": "round3-en-light-performance.png",
+      "test": "ScreenshotTests/testEnglishLight()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793016900.505,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "bb3ae900122e0f7d5e8b87be6c912b7101cb3c1ae1e5a68065beaad54e4a8ee4"
+    },
+    {
+      "file": "round3-en-light-settings.png",
+      "test": "ScreenshotTests/testEnglishLight()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793016880.18,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "9e77598c6c5124c024ae262eba2fac12a441ce476939c86bf9301454e5f96b1f"
+    },
+    {
+      "file": "round3-en-light-swing-detail-empty.png",
+      "test": "DetailScreenshotTests/testEmptyDetailVariants()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793017097.85,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Round3-FinalNative.xcresult",
+      "sha256": "015e22fd7df123eca602858f598a87fd69cedc4379d2227f428a46114dcf2438"
+    },
+    {
+      "file": "round3-en-light-swing.png",
+      "test": "ScreenshotTests/testEnglishLight()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793016888.515,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "8ffbd72d7a5e37722f74d02f914ec657ddbc9372db9408a2865dbfdd99744986"
+    },
+    {
+      "file": "round3-ko-dark-bag.png",
+      "test": "ScreenshotTests/testKoreanDark()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793017001.559,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "676bf7e72256c832569cf84eeb4c03d4b01e72f2544e451ddbe462293378f566"
+    },
+    {
+      "file": "round3-ko-dark-course.png",
+      "test": "ScreenshotTests/testKoreanDark()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793017013.682,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "17ad965fcd70941af124227067b4138a6f1dbf57d0618d36f3c7243f2b60a718"
+    },
+    {
+      "file": "round3-ko-dark-flight.png",
+      "test": "ScreenshotTests/testKoreanDark()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793017011.701,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "1a0edf25c77880127cdcdd7a70bbfb2b30b45de8031616997fb0122133511998"
+    },
+    {
+      "file": "round3-ko-dark-home.png",
+      "test": "ScreenshotTests/testKoreanDark()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793016993.586,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "a5d76f8be854b0258fe85cb098a93f669985c47ba9a120547a50da5bfde4e2bf"
+    },
+    {
+      "file": "round3-ko-dark-performance.png",
+      "test": "ScreenshotTests/testKoreanDark()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793017015.403,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "676fc1c1878436300294c78a9d7c5141b39c2cffff28a5e3df61ff691199c797"
+    },
+    {
+      "file": "round3-ko-dark-settings.png",
+      "test": "ScreenshotTests/testKoreanDark()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793016994.738,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "04383bcc151989e6bbb71c670c7afc9cc643ed32cffb28b6ee058158ba527bbd"
+    },
+    {
+      "file": "round3-ko-dark-swing-detail-empty.png",
+      "test": "DetailScreenshotTests/testEmptyDetailVariants()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793017130.091,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Round3-FinalNative.xcresult",
+      "sha256": "dfb8a887b6a5f60ae0161459f4698991c8bb70ab3061d5aa4f0d1d0ccb702211"
+    },
+    {
+      "file": "round3-ko-dark-swing.png",
+      "test": "ScreenshotTests/testKoreanDark()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793017003.328,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "7b6d475b0ab6e28a8623a08c45e1d6f2901231fe1f7d2f66d9f3932373ae6de0"
+    },
+    {
+      "file": "round3-ko-light-bag.png",
+      "test": "ScreenshotTests/testKoreanLight()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793017039.894,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "7da607255d06366b9362e95882f75109e7145a3455e9725c475438d0b3de6aea"
+    },
+    {
+      "file": "round3-ko-light-course.png",
+      "test": "ScreenshotTests/testKoreanLight()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793017051.812,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "f4ad8d9bfe1c2795cbf4098413514a43ccb737af72eb76ff5326a7c6da13badf"
+    },
+    {
+      "file": "round3-ko-light-flight.png",
+      "test": "ScreenshotTests/testKoreanLight()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793017049.893,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "12c15a8393863ebfbd89e1bfed973a8551e323f4ee276da5a223a3cbd7f60548"
+    },
+    {
+      "file": "round3-ko-light-home.png",
+      "test": "ScreenshotTests/testKoreanLight()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793017032.074,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "13e43351625ebaa6a4d57ff41ae70cccc6f8641e9ae53e137063ca0d58a13953"
+    },
+    {
+      "file": "round3-ko-light-performance.png",
+      "test": "ScreenshotTests/testKoreanLight()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793017053.559,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "01df03ce81fb51b3915fd0f630508b8d8cb7e7b7dbc01b87ab9bed250ffd94b2"
+    },
+    {
+      "file": "round3-ko-light-settings.png",
+      "test": "ScreenshotTests/testKoreanLight()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793017033.217,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "5eedecc8f5a6e5dd90b97918bec77484328e3776258d24a7fea9c17363ff606f"
+    },
+    {
+      "file": "round3-ko-light-swing-detail-empty.png",
+      "test": "DetailScreenshotTests/testEmptyDetailVariants()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793017119.509,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Round3-FinalNative.xcresult",
+      "sha256": "3325ca440be6218ec8d7327f318e9d006c4e34124d73e2ddd0a23b2db1596203"
+    },
+    {
+      "file": "round3-ko-light-swing.png",
+      "test": "ScreenshotTests/testKoreanLight()",
+      "device": "iPhone Duo",
+      "deviceID": "DD5809B6-1928-4D6F-BD60-67245CECF07C",
+      "timestamp": 1793017041.638,
+      "resultBundle": "/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult",
+      "sha256": "baddd6b30aa1f42c476ec629bb485c9ad1b8a5a5640f8bb892787b59c2c49d14"
+    }
+  ]
+}
