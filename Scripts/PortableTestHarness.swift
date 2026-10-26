@@ -34,7 +34,7 @@ enum CheckFailure: Error { case nilValue }
     @MainActor static func main() throws {
         let units = UnitsTests(), geography = GeographyTests(), dispersion = DispersionTests(), timing = TimingAndGeometryTests()
         let provenance = ProvenanceTests(), summary = SummaryMigrationTests(), phases = PhaseDetectionTests()
-        let audio = ImpactOnsetTests()
+        let audio = ImpactOnsetTests(), flight = BallFlightTests()
         let checks: [(String, () throws -> Void)] = [
             ("independent unit conversions", units.testIndependentUnitsRoundTrip),
             ("language fallback", units.testLanguageFallbackAndRegionalMatching),
@@ -72,7 +72,12 @@ enum CheckFailure: Error { case nilValue }
             ("no click or click outside window", audio.testNoClickOrClickOutsideWindowFindsNothing),
             ("transient far from pose impact", audio.testTransientFarFromPoseImpactIsRejected),
             ("faint click and invalid audio", audio.testFaintClickStaysEstimatedAndInvalidInputIsRejected),
-            ("audio impact replaces pose proxy", audio.testAudioImpactReplacesPoseProxyOnlyWhenClearAndOrdered)
+            ("audio impact replaces pose proxy", audio.testAudioImpactReplacesPoseProxyOnlyWhenClearAndOrdered),
+            ("flight integrator vs vacuum closed form", flight.testIntegratorMatchesClosedFormProjectileInVacuum),
+            ("flight vs tour reference shots", flight.testReferenceShotsAgainstTourAverages),
+            ("spin axis and start direction", flight.testSpinAxisAndStartDirectionCurveTheRightWay),
+            ("wind, air density, landing height", flight.testWindAirDensityAndLandingHeight),
+            ("invalid flight inputs", flight.testInvalidOrUnreachableInputsThrow)
         ]
         for (name, check) in checks {
             let before = failures
