@@ -48,3 +48,4 @@ WP3 adds one permission: `NSMicrophoneUsageDescription` (12 languages). Recordin
 | `SwingLab/Features/FlightSimulation/HypotheticalFlightView.swift` (new) | `TextField(_:value:format:)` with `Double?` bindings and `.number.locale(_:)`; `Grid`/`GridRow` (iOS 16+); Swift Charts `LineMark` with a `KeyPath` value; `catch ModelError.insufficientData` pattern. Layout of long German/Thai labels next to 96 pt fields. |
 | `SwingLab/Features/Swing/SwingView.swift` | New Ball Lab section; SF Symbol `point.topleft.down.to.point.bottomright.curvepath` (iOS 16+). |
 | `SwingLab/Core/DesignSystem/MetricReadout.swift` | New `"deg"` unit case. |
+| `SwingLab/Services/CameraService.swift` (launch mode, reviewer) | Device only: `setExposureModeCustom(duration:iso:)` at 1/2000 s after switching to the fastest ≥ 200 fps format; ISO scaled from the previous auto exposure; focus taps keep the custom shutter. Verify the recorded movie's nominal fps and real exposure on an iPhone. |

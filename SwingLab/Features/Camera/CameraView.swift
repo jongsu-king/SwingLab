@@ -93,6 +93,19 @@ struct CameraView: View {
         }
     }
 
+    private var launchStatus: String? {
+        switch camera.launchMode {
+        case .off: return nil
+        case .unsupported: return prefs.text("This camera cannot record at 200 fps or more, so launch mode is unavailable.")
+        case let .active(shutter, fps):
+            return String(format: prefs.text("launch.modeActive"), locale: prefs.locale,
+                          fps.formatted(.number.locale(prefs.locale)), (1 / shutter).rounded().formatted(.number.locale(prefs.locale)))
+        case let .tooDark(shutter, fps):
+            return String(format: prefs.text("launch.modeTooDark"), locale: prefs.locale,
+                          fps.formatted(.number.locale(prefs.locale)), (1 / shutter).rounded().formatted(.number.locale(prefs.locale)))
+        }
+    }
+
     private var controls: some View {
         VStack(spacing: 16) {
             HStack {
@@ -135,6 +148,13 @@ struct CameraView: View {
                     .accessibilityLabel(prefs.text(camera.isRecording ? "Stop recording" : "Start recording"))
                 Spacer()
                 Text(prefs.text("60 s max")).font(.caption).frame(width: 60)
+            }
+            Toggle(isOn: Binding(get: { camera.launchMode != .off && camera.launchMode != .unsupported },
+                                 set: { camera.engine.setLaunchMode($0) })) {
+                Label(prefs.text("Launch mode"), systemImage: "gauge.with.dots.needle.67percent").font(.subheadline)
+            }.tint(SLTheme.sage).disabled(camera.isRecording || !camera.ready)
+            if let status = launchStatus {
+                Text(status).font(.caption).foregroundStyle(.white.opacity(0.85)).fixedSize(horizontal: false, vertical: true)
             }
             Text(prefs.text(camera.recordsAudio ? "Sound on for impact timing · tap preview to focus"
                                                 : "No sound · impact from pose only · tap preview to focus"))

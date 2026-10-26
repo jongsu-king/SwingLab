@@ -18,6 +18,16 @@ enum CameraEvent: Sendable {
     case failure(LocalizationKey)
     case interrupted(Bool)
     case audio(Bool)
+    case launchMode(LaunchModeState)
+}
+
+/// Launch mode (`Docs/Specs/LaunchMonitor.md`): ≥ 200 fps and a fixed short shutter.
+enum LaunchModeState: Sendable, Equatable {
+    case off
+    case unsupported
+    /// Active, but even the maximum ISO cannot keep the image bright at 1/2000 s.
+    case tooDark(shutter: Double, fps: Int)
+    case active(shutter: Double, fps: Int)
 }
 
 /// All session, device, and movie-output mutations are serialized on `queue`.
@@ -34,6 +44,7 @@ final class CameraEngine: NSObject, @unchecked Sendable, AVCaptureFileOutputReco
     private var selectedID = ""
     private var observers: [NSObjectProtocol] = []
     private var wantsRunning = false
+    private var launchModeEnabled = false
 
     override init() {
         super.init()
@@ -146,11 +157,48 @@ final class CameraEngine: NSObject, @unchecked Sendable, AVCaptureFileOutputReco
                     device.focusPointOfInterest = point
                     device.focusMode = .autoFocus
                 }
-                if device.isExposurePointOfInterestSupported, device.isExposureModeSupported(.continuousAutoExposure) {
+                // Launch mode keeps its fixed shutter; a focus tap must not return exposure to auto.
+                if !launchModeEnabled, device.isExposurePointOfInterestSupported, device.isExposureModeSupported(.continuousAutoExposure) {
                     device.exposurePointOfInterest = point
                     device.exposureMode = .continuousAutoExposure
                 }
             } catch { onEvent?(.failure("Focus could not be adjusted.")) }
+        }
+    }
+
+    /// Selects the fastest supported format (≥ 200 fps) and a custom 1/2000 s shutter, raising ISO by
+    /// the shutter reduction within the format's range. Turning it off restores automatic exposure.
+    func setLaunchMode(_ enabled: Bool) {
+        queue.async { [self] in
+            guard let device = input?.device, !movieOutput.isRecording else { return }
+            do {
+                guard enabled else {
+                    launchModeEnabled = false
+                    try device.lockForConfiguration()
+                    defer { device.unlockForConfiguration() }
+                    if device.isExposureModeSupported(.continuousAutoExposure) { device.exposureMode = .continuousAutoExposure }
+                    onEvent?(.launchMode(.off))
+                    return
+                }
+                guard device.isExposureModeSupported(.custom),
+                      let fast = formats.filter({ $0.fps >= 200 }).max(by: { ($0.fps, $0.width) < ($1.fps, $1.width) }) else {
+                    onEvent?(.launchMode(.unsupported)); return
+                }
+                let previousDuration = device.exposureDuration.seconds, previousISO = device.iso
+                try applyFormat(fast.id)
+                try device.lockForConfiguration()
+                defer { device.unlockForConfiguration() }
+                let format = device.activeFormat
+                let duration = CMTimeMaximum(format.minExposureDuration,
+                                             CMTimeMinimum(CMTime(value: 1, timescale: 2000), format.maxExposureDuration))
+                let wanted = previousISO * Float(max(1, previousDuration / duration.seconds))
+                device.setExposureModeCustom(duration: duration, iso: min(format.maxISO, max(format.minISO, wanted)),
+                                             completionHandler: nil)
+                launchModeEnabled = true
+                onEvent?(.ready(formats, selectedID, device.position == .front))
+                onEvent?(.launchMode(wanted > format.maxISO ? .tooDark(shutter: duration.seconds, fps: fast.fps)
+                                                           : .active(shutter: duration.seconds, fps: fast.fps)))
+            } catch { onEvent?(.failure("Launch mode could not be set.")) }
         }
     }
 
@@ -227,6 +275,7 @@ final class CameraController {
     var savedURL: URL?
     var error: LocalizationKey?
     var recordsAudio = false
+    var launchMode = LaunchModeState.off
     private var wantsCamera = false
     init() {
         engine = CameraEngine()
@@ -259,6 +308,7 @@ final class CameraController {
         case let .failure(message): error = message
         case let .interrupted(value): interrupted = value
         case let .audio(value): recordsAudio = value
+        case let .launchMode(state): launchMode = state
         }
     }
 }

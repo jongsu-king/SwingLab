@@ -21407,6 +21407,160 @@
         }
       }
     },
+    "Launch mode": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Launch mode"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "발사 측정 모드"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打ち出し測定モード"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "出球测量模式"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "出球測量模式"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modo de salida"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modo de lançamento"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abflugmodus"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mode départ"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modalità lancio"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "โหมดวัดการออกตัว"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chế độ đo phóng"
+          }
+        }
+      }
+    },
+    "Launch mode could not be set.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Launch mode could not be set."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "발사 측정 모드를 설정할 수 없습니다."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打ち出し測定モードを設定できませんでした。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法设置出球测量模式。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法設定出球測量模式。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo activar el modo de salida."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não foi possível ativar o modo de lançamento."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Abflugmodus konnte nicht eingestellt werden."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le mode départ n’a pas pu être activé."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossibile impostare la modalità lancio."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ตั้งค่าโหมดวัดการออกตัวไม่ได้"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Không thể bật chế độ đo phóng."
+          }
+        }
+      }
+    },
     "Layup point": {
       "extractionState": "manual",
       "localizations": {
@@ -42043,6 +42197,83 @@
         }
       }
     },
+    "This camera cannot record at 200 fps or more, so launch mode is unavailable.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This camera cannot record at 200 fps or more, so launch mode is unavailable."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "이 카메라는 200fps 이상으로 촬영할 수 없어 발사 측정 모드를 쓸 수 없습니다."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "このカメラは200fps以上で撮影できないため、打ち出し測定モードは使えません。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此摄像头无法以 200 fps 或更高帧率录制，因此无法使用出球测量模式。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此相機無法以 200 fps 或更高影格率錄製，因此無法使用出球測量模式。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esta cámara no puede grabar a 200 fps o más, así que el modo de salida no está disponible."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esta câmera não grava a 200 fps ou mais, então o modo de lançamento não está disponível."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diese Kamera kann nicht mit 200 fps oder mehr aufnehmen, daher ist der Abflugmodus nicht verfügbar."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cette caméra ne peut pas filmer à 200 i/s ou plus ; le mode départ est indisponible."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Questa fotocamera non registra a 200 fps o più, quindi la modalità lancio non è disponibile."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "กล้องนี้บันทึกที่ 200 fps ขึ้นไปไม่ได้ จึงใช้โหมดวัดการออกตัวไม่ได้"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Camera này không quay được từ 200 fps trở lên nên không dùng được chế độ đo phóng."
+          }
+        }
+      }
+    },
     "This camera configuration is not supported.": {
       "extractionState": "manual",
       "localizations": {
@@ -50498,6 +50729,160 @@
           "stringUnit": {
             "state": "translated",
             "value": "hố đã ghi điểm"
+          }
+        }
+      }
+    },
+    "launch.modeActive": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Launch mode · %1$@ fps · 1/%2$@ s shutter"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "발사 측정 모드 · %1$@fps · 셔터 1/%2$@초"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打ち出し測定モード · %1$@fps · シャッター1/%2$@秒"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "出球测量模式 · %1$@ fps · 快门 1/%2$@ 秒"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "出球測量模式 · %1$@ fps · 快門 1/%2$@ 秒"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modo de salida · %1$@ fps · obturador 1/%2$@ s"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modo de lançamento · %1$@ fps · obturador 1/%2$@ s"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abflugmodus · %1$@ fps · Verschluss 1/%2$@ s"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mode départ · %1$@ i/s · obturateur 1/%2$@ s"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modalità lancio · %1$@ fps · otturatore 1/%2$@ s"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "โหมดวัดการออกตัว · %1$@ fps · ชัตเตอร์ 1/%2$@ วินาที"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chế độ đo phóng · %1$@ fps · màn trập 1/%2$@ giây"
+          }
+        }
+      }
+    },
+    "launch.modeTooDark": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Too dark for a 1/%2$@ s shutter at %1$@ fps: the image will be dim. Move to brighter light."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@fps에서 셔터 1/%2$@초로 찍기에는 너무 어두워 화면이 어둡게 나옵니다. 더 밝은 곳으로 옮기세요."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@fpsでシャッター1/%2$@秒には暗すぎるため、映像が暗くなります。明るい場所へ移動してください。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在 %1$@ fps、快门 1/%2$@ 秒下光线过暗，画面会偏暗。请移到更明亮的地方。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在 %1$@ fps、快門 1/%2$@ 秒下光線過暗，畫面會偏暗。請移到更明亮的地方。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hay muy poca luz para un obturador de 1/%2$@ s a %1$@ fps: la imagen saldrá oscura. Busca más luz."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Está escuro demais para um obturador de 1/%2$@ s a %1$@ fps: a imagem ficará escura. Procure mais luz."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zu dunkel für 1/%2$@ s Verschluss bei %1$@ fps: Das Bild wird dunkel. Such dir helleres Licht."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trop sombre pour un obturateur de 1/%2$@ s à %1$@ i/s : l’image sera sombre. Allez vers plus de lumière."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Troppo buio per un otturatore di 1/%2$@ s a %1$@ fps: l’immagine sarà scura. Spostati dove c’è più luce."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "มืดเกินไปสำหรับชัตเตอร์ 1/%2$@ วินาทีที่ %1$@ fps ภาพจะมืด ให้ย้ายไปที่สว่างกว่านี้"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quá tối cho màn trập 1/%2$@ giây ở %1$@ fps: hình sẽ bị tối. Hãy chuyển tới nơi sáng hơn."
           }
         }
       }
