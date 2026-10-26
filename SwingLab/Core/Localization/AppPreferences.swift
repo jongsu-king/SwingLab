@@ -14,6 +14,7 @@ final class AppPreferences {
     var speedUnit: SpeedUnit { didSet { defaults.set(speedUnit.rawValue, forKey: "speedUnit") } }
     var windUnit: SpeedUnit { didSet { defaults.set(windUnit.rawValue, forKey: "windUnit") } }
     var temperatureUnit: TemperatureUnit { didSet { defaults.set(temperatureUnit.rawValue, forKey: "temperatureUnit") } }
+    var handedness: Handedness { didSet { defaults.set(handedness.rawValue, forKey: "handedness") } }
     var voiceEnabled: Bool { didSet { defaults.set(voiceEnabled, forKey: "voiceEnabled") } }
     var speechRate: Double { didSet { defaults.set(speechRate, forKey: "speechRate") } }
     var completedOnboarding: Bool { didSet { defaults.set(completedOnboarding, forKey: "onboarded") } }
@@ -25,6 +26,7 @@ final class AppPreferences {
         speedUnit = SpeedUnit(rawValue: defaults.string(forKey: "speedUnit") ?? "") ?? .mph
         windUnit = SpeedUnit(rawValue: defaults.string(forKey: "windUnit") ?? "") ?? .metersPerSecond
         temperatureUnit = TemperatureUnit(rawValue: defaults.string(forKey: "temperatureUnit") ?? "") ?? .celsius
+        handedness = Handedness(rawValue: defaults.string(forKey: "handedness") ?? "") ?? .right
         voiceEnabled = defaults.bool(forKey: "voiceEnabled")
         speechRate = defaults.object(forKey: "speechRate") as? Double ?? 0.45
         completedOnboarding = defaults.bool(forKey: "onboarded")

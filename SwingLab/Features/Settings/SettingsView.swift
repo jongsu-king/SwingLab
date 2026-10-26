@@ -41,6 +41,14 @@ struct SettingsView: View {
             footer: { Text(preferences.text("Records use meters, meters per second, and kelvin internally. Display preferences never rewrite measurements.")) }
 
             Section {
+                Picker(preferences.text("Handedness"), selection: $preferences.handedness) {
+                    ForEach(Handedness.allCases, id: \.self) { hand in
+                        Text(preferences.text(hand.localizationKey)).tag(hand)
+                    }
+                }
+            } header: { Text(preferences.text("Swing")) }
+
+            Section {
                 Toggle(preferences.text("Voice coaching"), isOn: $preferences.voiceEnabled)
                 VStack(alignment: .leading, spacing: 10) {
                     Text(preferences.text("Speech rate"))

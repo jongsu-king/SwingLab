@@ -1,6 +1,7 @@
 import SwiftUI
 import SwiftData
 import SwingLabCore
+// AVSpeechSynthesizer and AVPlayer stay on the SwiftUI main actor; no framework objects cross actors.
 @preconcurrency import AVFoundation
 
 struct SwingComparisonView: View {
@@ -41,6 +42,15 @@ struct SwingComparisonView: View {
                     if let first, let second {
                         if !sameAngle {
                             Label(prefs.text("Different or unspecified camera angles. Movement comparisons may be misleading."), systemImage: "exclamationmark.triangle")
+                                .font(.caption).foregroundStyle(.secondary)
+                        }
+                        if (firstReport?.analyzedHandedness ?? first.effectiveHandedness(default: prefs.handedness)) !=
+                            (secondReport?.analyzedHandedness ?? second.effectiveHandedness(default: prefs.handedness)) {
+                            Label(prefs.text("Different handedness. Movement comparisons may be misleading."), systemImage: "exclamationmark.triangle")
+                                .font(.caption).foregroundStyle(.secondary)
+                        }
+                        if abs(first.nominalFrameRate - second.nominalFrameRate) > 0.5 {
+                            Label(prefs.text("Different frame rates. Timing precision may differ."), systemImage: "exclamationmark.triangle")
                                 .font(.caption).foregroundStyle(.secondary)
                         }
                         Group {

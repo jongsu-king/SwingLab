@@ -60,7 +60,7 @@ struct SwingView: View {
                                         }.font(.caption).foregroundStyle(.secondary)
                                     }
                                     Spacer()
-                                    if recording.analysisData != nil {
+                                    if recording.analysisVersion > 0 {
                                         Image(systemName: "figure.stand").foregroundStyle(SLTheme.forest)
                                             .accessibilityLabel(prefs.text("Pose analyzed"))
                                     }

@@ -1,72 +1,128 @@
-# Implementation milestone — 26 October 2026
+# Round 2 — verified WP1 boundary
 
 ## A. Completed functionality
 
-Created a native SwiftUI iPhone project from an empty Git workspace. The initial deliverables are implemented in source: feature architecture, semantic design tokens, four tabs, Home/Swing/Course/Performance, Settings, independent language and unit preferences, all twelve language resources, SwiftData models, real local bag CRUD, MapKit/manual course tools, AVFoundation capture foundation, and camera/location permission handling.
+WP1 introduces typed provenance and recording metadata, legacy analysis decoding, SI metric values with validation, and shared metric readouts/badges across the existing screens. Stored V1 columns retain their original names/types; startup canonicalizes legacy source/angle labels. Missing measurements remain Unavailable. Core models now live in SwingLabCore.
 
-Continued into the roadmap with local video import/playback/export, on-device Vision pose processing, phase review and manual markers, tempo, skeleton/wrist overlays, swing comparison and timing feedback, GPS shot recording, editable scorecards, history charts, user-profile landing regions, and explainable club ranking. All production screens start from actual saved data. Ball/club/spin measurements remain explicitly unavailable.
+| WP | Status | Verified by | Remaining gap |
+|---|---|---|---|
+| WP1 | Done | swift build + portable harness + static provenance grep | Native UI/store validation awaits Xcode; see compile-risk ledger. |
+| WP2 | Not started | none | Pose v2, cache migration, handedness. |
+| WP3 | Not started | none | Audio capture and impact detection. |
+| WP4 | Not started | none | Sessions, baseline coaching and consistency. |
+| WP5 | Not started | none | Flight physics. |
+| WP6 | Not started | none | Geometry/import and hazard-aware aim search. |
+| WP7 | Not started | none | Full design tokens and data-first Home. |
+| WP8 | Not started | none | Complete static localization integrity/plurals. |
+| WP9 | Not started | none | Seeded tracking and tracer. |
 
-These are integrated source implementations, not a claim of a running or production-validated iOS application. Full Xcode is absent, so the milestone's native build-and-test gate is still open.
+[Round 1 response](Review/round-1-response.md) answers R1–R14. The separately supplied reviewer rebuttal was read and preserved.
 
 ## B. Changed files
 
-Every file was created in this milestone because the workspace contained only an empty Git repository. `FileManifest.txt` lists the exact repository-relative paths. Principal entry points:
-
-- `SwingLab.xcodeproj/project.pbxproj` and shared scheme
-- `SwingLab/App/SwingLabApp.swift`, `AppRouter.swift`, `OnboardingView.swift`
-- `SwingLab/Core/Models/`, `Persistence/`, `Localization/`, `DesignSystem/`
-- `SwingLab/Features/`, `SwingLab/Services/`
-- `Sources/SwingLabCore/`, `Tests/SwingLabCoreTests/`
-- `SwingLabTests/`, `SwingLabUITests/`
-- `SwingLab/Resources/Localizable.xcstrings`, `InfoPlist.xcstrings`, permission plist, privacy manifest, app icon
-- `Scripts/verify.sh`, project/catalog generators, numerical/media/course validation harnesses
-
-The localization audit reports **425 UI keys plus 2 permission descriptions across all 12 languages, with zero missing locale entries**. This is resource coverage; native-speaker and visual QA remain pending.
+- `Docs/CompileRisk.md`
+- `Docs/Review/round-1-response.md`
+- `Scripts/CaptureModelChecks.swift`
+- `Scripts/Localization-round2.json`
+- `Scripts/PortableTestHarness.swift`
+- `Scripts/build_localizations.py`
+- `Scripts/check_capture.sh`
+- `Scripts/check_core.sh`
+- `Scripts/verify.sh`
+- `Sources/SwingLabCore/PoseAnalysis.swift`
+- `Sources/SwingLabCore/Provenance.swift`
+- `SwingLab.xcodeproj/project.pbxproj`
+- `SwingLab/App/SwingLabApp.swift`
+- `SwingLab/Core/DesignSystem/MetricReadout.swift`
+- `SwingLab/Core/Localization/AppPreferences.swift`
+- `SwingLab/Core/Models/SwingRecording.swift`
+- `SwingLab/Core/Persistence/LocalDataController.swift`
+- `SwingLab/Features/AICaddie/CaddieView.swift`
+- `SwingLab/Features/Camera/CameraView.swift`
+- `SwingLab/Features/CourseManager/CourseView.swift`
+- `SwingLab/Features/Home/HomeView.swift`
+- `SwingLab/Features/MyBag/BagView.swift`
+- `SwingLab/Features/MyBag/ClubDetailView.swift`
+- `SwingLab/Features/MyBag/ClubEditorView.swift`
+- `SwingLab/Features/Performance/PerformanceView.swift`
+- `SwingLab/Features/RoundTracker/RoundViews.swift`
+- `SwingLab/Features/Swing/SwingComparisonView.swift`
+- `SwingLab/Features/Swing/SwingDetailView.swift`
+- `SwingLab/Features/Swing/SwingVideoStage.swift`
+- `SwingLab/Features/Swing/SwingView.swift`
+- `SwingLab/Resources/Localizable.xcstrings`
+- `SwingLab/Services/PoseEstimationService.swift`
+- `Tests/SwingLabCoreTests/ProvenanceTests.swift`
 
 ## C. Implementation details
 
-SwiftUI and Observation drive feature state. SwiftData stores seven live model types in a versioned schema; Codable pose and reference-point payloads sit alongside their owning records. Videos remain in Application Support, referenced by relative filenames. A separate Swift package holds calculations and language resolution. There are no third-party runtime dependencies or remote AI services.
-
-The camera mutates its session on a dedicated serial queue; offline Vision analysis does not compete synchronously with capture. Analysis reads actual video sample presentation timestamps, handles standard orientation/mirroring transforms, filters low-confidence joints, preserves missing frames, and labels phase candidates as estimates. Timing comes from ordered phase timestamps, never a nominal-frame-count assumption.
-
-Distances use a spherical geodesic model. Dispersion uses a correlated bivariate Gaussian in the aim-relative forward/right plane, with chi-square(2) contours for the requested probability mass. Conditional regions depend on user-entered statistics and are not calibrated guarantees. Caddie ranking compares target error and variance under an explicit risk preference. No hazard probabilities are shown without verified polygons.
-
-Deletion stages files before a database commit. Startup reconciles interrupted staging using saved recording references. Active import/save operations block full deletion. Language switches preserve the library; a deletion-result acknowledgment resets retained navigation references.
+Provenance uses seven stable IDs; audioDerived belongs to the measured category, but a mixed marker tempo remains estimated. Unknown origins, nonfinite values and missing metrics cannot become measured values. Confidence outside 0...1 is omitted, negative sample counts are omitted, and zero remains n=0. Labels use existing translations; new positional format strings and audio/region labels have entries in all twelve languages. Shared readouts convert SI at display time. Dates, identifiers, configuration controls and framework chart axes remain contextual metadata; measurement readouts and chart datasets carry typed provenance. No permission added.
 
 ## D. Build results
 
-Development environment observed: macOS, Apple Swift **6.1.2**, developer directory `/Library/Developer/CommandLineTools`; no Xcode application or iOS simulator runtime available.
+Gate 0 command, repeated at WP1 boundary:
 
-- `swift build`: **passed** for `SwingLabCore`.
-- Swift 6 macOS SDK type-check: **passed** for shared Vision/AVFoundation/Transferable/playback and CoreLocation/MapKit services. This is not an iOS build.
-- Native app/test source syntax parsing, Xcode project plist, Info.plist, privacy manifest, asset JSON, scheme XML, and catalog validation: **passed**.
-- `xcodebuild -project SwingLab.xcodeproj -scheme SwingLab -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build`: **blocked before compilation**, with the actual diagnostic:
-
-```text
-xcode-select: error: tool 'xcodebuild' requires Xcode, but active developer directory '/Library/Developer/CommandLineTools' is a command line tools instance
+```sh
+xcode-select -p; xcodebuild -version; xcrun simctl list runtimes
 ```
 
-An attempted native-model type-check was also blocked by the missing `SwiftDataMacros` plugin. No native app compilation, simulator launch, signed build, archive, or deployment is claimed.
+Real output:
+
+```text
+/Library/Developer/CommandLineTools
+xcode-select: error: tool 'xcodebuild' requires Xcode, but active developer directory '/Library/Developer/CommandLineTools' is a command line tools instance
+xcrun: error: unable to find utility "simctl", not a developer tool or in PATH
+```
+
+Exact successful full check command:
+
+```sh
+Scripts/verify.sh > Validation/round-2/wp1-verified.log 2>&1
+```
+
+This was run with macOS media-service access after sandboxed synthetic-video encoding failed. The script executes `swift build --disable-sandbox --cache-path .build/SwiftPMCache --manifest-cache local` with compiler caches in `.build/ModuleCache`. The outer workspace sandbox is unchanged by SwiftPM's nested-sandbox flag. Initial cache-write/nested-sandbox errors and the harness deployment-target mismatch were fixed; their real logs are retained under `Validation/round-2/`. No Xcode build, simulator test, install, launch, or screenshot is claimed.
 
 ## E. Tests
 
-Final `Scripts/verify.sh` completed successfully. Exact output is in `Validation/command-line-checks.log`.
+20 portable Core test groups, 9 capture-model checks, 4 actual negative/control media cases, and 5 course checks passed. Shared macOS framework service typechecks, all native Swift syntax parsing, resources and project syntax passed. Fixed schema-v1 JSON decodes; new stable IDs re-encode; source grep finds no string-literal provenance comparisons/initializers. Native XCTest and UI tests are not run.
 
-- **13 core test groups passed**, including units, localization fallback, geodesics, projected angles, timestamp timing, 50/80/95% region mass, hazard-kernel integration, invalid inputs, recommendations, and interrupted-media recovery.
-- **9 capture model checks passed** for Codable round trips, timing/provenance, invalid phases, missing measurements, and the head-displacement proxy.
-- **4 real media pipeline cases passed**: generated landscape, portrait, and mirrored clips were decoded and correctly returned no reliable pose; corrupt video was rejected. These are negative/control cases, not validation of golfer tracking or orientation overlay accuracy.
-- **5 course test groups passed** for GPS freshness/accuracy, malformed/impossible score rejection, unknown score preservation, and manual-reference serialization.
-- Direct `swift test` was attempted and failed because XCTest is absent. Core tests subsequently ran through the included portable harness. Native XCTest persistence, preference, club-editor, GPS, localization-bundle, and UI-navigation tests are present but **not executed**.
-- No physical iPhone camera, GPS, thermal, battery, positive-pose accuracy, screen-layout, or calibration tests were run.
+Real tail of the successful verification output (exit 0):
+
+```text
+PASS schema-v1 analysis migration
+PASS typed metric SI units and origin
+PASS missing and invalid pose metrics
+20 test groups; 0 failed assertions. Portable harness, not XCTest.
+PASS tempo uses actual timestamps
+PASS manual marker provenance
+PASS estimated impact propagates to tempo
+PASS analysis JSON round trip
+PASS out-of-order timing rejected
+PASS non-finite timing rejected
+PASS missing measurements remain unavailable
+PASS head proxy uses normalized displacement
+PASS insufficient head observations rejected
+PASS shared macOS AVFoundation/Vision/Transferable service typecheck (not an iOS build)
+PASS landscape video decoding and honest no-pose result
+PASS portrait video decoding and honest no-pose result
+PASS mirrored video decoding and honest no-pose result
+PASS invalid video rejected
+PASS GPS stale/future time gates
+PASS GPS accuracy/invalid-coordinate gates
+PASS unknown scores preserved and strokes not double counted
+PASS impossible and malformed scores rejected
+PASS manual reference JSON round trip
+PASS shared macOS CoreLocation/MapKit services typecheck (not an iOS build)
+SwingLab.xcodeproj/project.pbxproj: OK
+SwingLab/Resources/Info.plist: OK
+SwingLab/Resources/PrivacyInfo.xcprivacy: OK
+Catalogs and project syntax validated. Parsing does not validate iOS compilation.
+```
 
 ## F. Current limitations
 
-The app still needs an actual iOS compile and simulator/device QA. Future phases remain: full practice-session grouping and consistency analytics; validated phase classification and expanded biomechanics; manual club/ball annotation and licensed/trained detection; observed ball tracking/tracer export; defensible launch/flight/spin research; licensed detailed course/hazard geometry; weather; broader strategy; StoreKit; and distribution preparation.
-
-Capture is portrait and silent, limited to 60 seconds. Imports are limited to three minutes; pose sampling is capped at 30 Hz. Only address/top/impact have heuristic candidate suggestions; all eight markers can be entered manually. No detector/model weights, fabricated demo measurements, club-head speed, ball speed, carry-from-video, spin RPM, or full-flight reconstruction are included.
-
-App signing, public policy/support identity and URLs, localized App Store media, TestFlight, review submission, and acceptance are not complete. See `ReleaseChecklist.md` for current official requirements and device validation work.
+[Compile-risk ledger](CompileRisk.md) lists every changed native Swift file. Highest risks are SwiftData private setters/computed enum bindings and opening existing stores, SwiftUI builder/actor checking, chart accessibility, and compact layout after adding badges. No positive golfer-pose, physical camera, device performance, or visual UI claim is made. Full WP8 dynamic-key/plural auditing remains outstanding.
 
 ## G. Next milestone
 
-Install/select full Xcode, open the checked-in project, and resolve native build or runtime issues before adding more features. Run the included simulator tests and validate the camera/import/pose/round workflow on an actual iPhone. Then validate and extend coaching and consistency in roadmap order, while keeping unobservable ball/spin values unavailable.
+Recheck Gate 0, then WP2: Core pose sampling/smoothing/phase rules and tests, thin two-pass Vision adapter, handedness, per-phase merge and V2 summary migration. If full Xcode appears, make the native build green first.

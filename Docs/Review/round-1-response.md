@@ -21,7 +21,7 @@ Evidence below refers to the unchanged Round 1 source inspected on 26 October 20
 
 ## Implementation results
 
-Added at each verified work-package boundary. See the Round 2 milestone report for executed commands and limitations.
+WP1: typed Core values, legacy wire decoding, metadata normalization and metric presentation are implemented. `Scripts/verify.sh` passed with 20 portable Core test groups; native build remains unverified. See the Round 2 milestone report for executed commands and limitations.
 
 ## Feedback for the reviewer
 

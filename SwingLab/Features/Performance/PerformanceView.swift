@@ -32,7 +32,7 @@ struct PerformanceView: View {
     }
 
     private var practice: some View {
-        // Decode each report once for this presentation, rather than per chart mark and label.
+        // Stored V2 summaries avoid loading or decoding external pose JSON during list/chart rendering.
         let snapshots = recordings.map { TempoSnapshot(recording: $0) }
         let tempoPoints = snapshots.filter { $0.tempo != nil }
         return VStack(alignment: .leading, spacing: 24) {
@@ -207,22 +207,15 @@ private struct TempoSnapshot: Identifiable {
     let id: UUID
     let title: String
     let createdAt: Date
-    let tempo: Double?
-    let provenance: Provenance?
-
-    var metric: ProvenancedValue {
-        ProvenancedValue(value: tempo, unit: "1", provenance: provenance ?? .unavailable,
-                         method: "pose.phaseTempo.v1", sampleCount: tempo == nil ? nil : 1)
-    }
+    let metric: ProvenancedValue
+    var tempo: Double? { metric.value }
+    var provenance: Provenance? { metric.value == nil ? nil : metric.provenance }
 
     init(recording: SwingRecording) {
         id = recording.id
         title = recording.title
         createdAt = recording.createdAt
-        let report = recording.analysis
-        let value = report?.tempoRatio
-        tempo = value.flatMap { $0.isFinite && $0 > 0 ? $0 : nil }
-        provenance = report?.timingProvenance
+        metric = recording.tempoMetric
     }
 }
 

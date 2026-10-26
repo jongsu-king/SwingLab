@@ -8,7 +8,7 @@ final class PersistenceTests: XCTestCase {
         let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
         defer { try? FileManager.default.removeItem(at: directory) }
-        let schema = Schema(SwingLabSchemaV1.models)
+        let schema = Schema(SwingLabCurrentSchema.models)
         let config = ModelConfiguration("UnitTests", schema: schema, url: directory.appendingPathComponent("test.store"))
         let container = try ModelContainer(for: schema, configurations: config)
         let context = ModelContext(container)
@@ -25,7 +25,7 @@ final class PersistenceTests: XCTestCase {
     }
 
     @MainActor func testRoundCascadeAndGroundDistance() throws {
-        let schema = Schema(SwingLabSchemaV1.models)
+        let schema = Schema(SwingLabCurrentSchema.models)
         let container = try ModelContainer(for: schema, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
         let context = ModelContext(container)
         let round = RoundSession(courseName: "Manual course", holeCount: 9)

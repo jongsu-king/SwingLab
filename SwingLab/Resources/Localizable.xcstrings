@@ -1464,6 +1464,83 @@
         }
       }
     },
+    "Analysis first scans the clip, then samples the swing window at up to 240 frames per second.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Analysis first scans the clip, then samples the swing window at up to 240 frames per second."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "분석은 먼저 전체 영상을 살핀 다음 스윙 구간을 초당 최대 240프레임으로 샘플링합니다."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "まずクリップ全体を確認し、スイング区間を毎秒最大240フレームで解析します。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "分析先扫描整个片段，再以每秒最高 240 帧对挥杆区间采样。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "分析會先掃描整個片段，再以每秒最高 240 幀對揮桿區間取樣。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El análisis examina primero el vídeo y luego toma muestras del tramo del swing a hasta 240 fotogramas por segundo."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A análise primeiro examina o vídeo e depois amostra o trecho do swing em até 240 quadros por segundo."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Analyse prüft zuerst den Clip und tastet dann den Schwungabschnitt mit bis zu 240 Bildern pro Sekunde ab."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’analyse examine d’abord le clip, puis échantillonne la séquence du swing jusqu’à 240 images par seconde."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’analisi esamina prima il filmato, poi campiona la fase dello swing fino a 240 fotogrammi al secondo."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "การวิเคราะห์จะตรวจคลิปทั้งหมดก่อน แล้วเก็บตัวอย่างช่วงวงสวิงสูงสุด 240 เฟรมต่อวินาที"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quá trình phân tích quét toàn bộ đoạn phim trước, rồi lấy mẫu khoảng vung gậy với tối đa 240 khung hình mỗi giây."
+          }
+        }
+      }
+    },
     "Analysis paused because the device is too warm. Let it cool and try again.": {
       "extractionState": "manual",
       "localizations": {
@@ -8009,6 +8086,160 @@
         }
       }
     },
+    "Different frame rates. Timing precision may differ.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Different frame rates. Timing precision may differ."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "프레임 속도가 다릅니다. 시간 정밀도가 다를 수 있습니다."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "フレームレートが異なります。時間の精度が異なる場合があります。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "帧率不同，时间精度可能有所差异。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "幀率不同，時間精度可能有所差異。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Las frecuencias de fotogramas son distintas. La precisión temporal puede variar."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "As taxas de quadros são diferentes. A precisão temporal pode variar."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unterschiedliche Bildraten. Die zeitliche Genauigkeit kann abweichen."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les fréquences d’images diffèrent. La précision temporelle peut varier."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le frequenze dei fotogrammi sono diverse. La precisione temporale può variare."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "อัตราเฟรมต่างกัน ความแม่นยำด้านเวลาอาจแตกต่างกัน"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tốc độ khung hình khác nhau. Độ chính xác thời gian có thể khác nhau."
+          }
+        }
+      }
+    },
+    "Different handedness. Movement comparisons may be misleading.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Different handedness. Movement comparisons may be misleading."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "주사용 손이 다릅니다. 동작 비교가 오해를 낳을 수 있습니다."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "利き手が異なります。動作の比較が誤解を招く可能性があります。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "惯用手不同，动作对比可能产生误导。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "慣用手不同，動作比較可能產生誤導。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La mano dominante es distinta. La comparación del movimiento puede ser engañosa."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A mão dominante é diferente. A comparação dos movimentos pode ser enganosa."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unterschiedliche Spielhand. Bewegungsvergleiche können irreführend sein."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La latéralité diffère. La comparaison des mouvements peut être trompeuse."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La mano dominante è diversa. Il confronto dei movimenti può essere fuorviante."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "มือถนัดต่างกัน การเปรียบเทียบการเคลื่อนไหวอาจทำให้เข้าใจผิด"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tay thuận khác nhau. So sánh chuyển động có thể gây hiểu lầm."
+          }
+        }
+      }
+    },
     "Different or unspecified camera angles. Movement comparisons may be misleading.": {
       "extractionState": "manual",
       "localizations": {
@@ -12552,6 +12783,160 @@
         }
       }
     },
+    "Handedness": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Handedness"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "주로 사용하는 손"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "利き手"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "惯用手"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "慣用手"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mano dominante"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mão dominante"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spielhand"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Latéralité"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mano dominante"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "มือถนัด"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tay thuận"
+          }
+        }
+      }
+    },
+    "Handedness changed. Analyze again to update lead and trail joints.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Handedness changed. Analyze again to update lead and trail joints."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "주사용 손이 변경되었습니다. 다시 분석하여 리드 및 트레일 관절을 업데이트하세요."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "利き手が変更されました。リード側とトレイル側の関節を更新するには再解析してください。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "惯用手已更改。请重新分析以更新前侧和后侧关节。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "慣用手已變更。請重新分析以更新前側和後側關節。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La mano dominante ha cambiado. Analiza de nuevo para actualizar las articulaciones del lado adelantado y trasero."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A mão dominante mudou. Analise novamente para atualizar as articulações do lado da frente e de trás."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Spielhand wurde geändert. Analysieren Sie erneut, um die führenden und nachfolgenden Gelenke zu aktualisieren."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La latéralité a changé. Relancez l’analyse pour actualiser les articulations des côtés avant et arrière."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La mano dominante è cambiata. Ripeti l’analisi per aggiornare le articolazioni del lato anteriore e posteriore."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เปลี่ยนมือถนัดแล้ว วิเคราะห์อีกครั้งเพื่ออัปเดตข้อต่อด้านนำและด้านตาม"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tay thuận đã thay đổi. Hãy phân tích lại để cập nhật các khớp phía dẫn và phía sau."
+          }
+        }
+      }
+    },
     "Hazard probabilities and safer aim points require verified course geometry and are unavailable.": {
       "extractionState": "manual",
       "localizations": {
@@ -14627,6 +15012,83 @@
           "stringUnit": {
             "state": "translated",
             "value": "Để trống giá trị chưa ghi. Tổng số gậy gồm putt và gậy phạt."
+          }
+        }
+      }
+    },
+    "Left-handed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Left-handed"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "왼손잡이"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "左打ち"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "左手挥杆"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "左手揮桿"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zurdo"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Canhoto"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Linkshändig"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gaucher"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mancino"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ถนัดซ้าย"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thuận tay trái"
           }
         }
       }
@@ -19405,6 +19867,83 @@
         }
       }
     },
+    "Pose frame rate": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pose frame rate"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "포즈 샘플링 속도"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "姿勢サンプリングレート"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "姿态采样率"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "姿態取樣率"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frecuencia de muestreo de pose"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Taxa de amostragem da pose"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pose-Abtastrate"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fréquence d’échantillonnage de la posture"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frequenza di campionamento della posa"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "อัตราการเก็บตัวอย่างท่าทาง"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tần số lấy mẫu tư thế"
+          }
+        }
+      }
+    },
     "Pose is vision-derived 2D image geometry, not a 3D body measurement.": {
       "extractionState": "manual",
       "localizations": {
@@ -22177,6 +22716,83 @@
         }
       }
     },
+    "Right-handed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Right-handed"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "오른손잡이"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "右打ち"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "右手挥杆"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "右手揮桿"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diestro"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Destro"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rechtshändig"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Droitier"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Destro"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ถนัดขวา"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thuận tay phải"
+          }
+        }
+      }
+    },
     "Rough": {
       "extractionState": "manual",
       "localizations": {
@@ -23636,6 +24252,83 @@
           "stringUnit": {
             "state": "translated",
             "value": "Cán gậy"
+          }
+        }
+      }
+    },
+    "Short interpolated gaps are dashed. Longer gaps are not connected.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Short interpolated gaps are dashed. Longer gaps are not connected."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "짧은 보간 구간은 점선으로 표시합니다. 더 긴 공백은 연결하지 않습니다."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "短い補間区間は破線で表示します。長い欠落区間は接続しません。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "短暂缺失的插值区间以虚线显示。较长缺失区间不会连接。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "短暫缺失的內插區間以虛線顯示。較長缺失區間不會連接。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los huecos cortos interpolados se muestran con líneas discontinuas. Los huecos largos no se conectan."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "As lacunas curtas interpoladas são tracejadas. As lacunas mais longas não são conectadas."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kurze interpolierte Lücken werden gestrichelt dargestellt. Längere Lücken werden nicht verbunden."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les courts intervalles interpolés sont en pointillés. Les intervalles plus longs ne sont pas reliés."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le brevi lacune interpolate sono tratteggiate. Le lacune più lunghe non vengono collegate."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ช่วงขาดหายสั้นที่เติมด้วยการประมาณค่าจะแสดงเป็นเส้นประ ส่วนช่วงขาดหายที่ยาวกว่าจะไม่เชื่อมต่อ"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Khoảng trống ngắn được nội suy hiển thị bằng nét đứt. Khoảng trống dài hơn không được nối."
           }
         }
       }
@@ -29565,6 +30258,83 @@
           "stringUnit": {
             "state": "translated",
             "value": "Chưa xác định"
+          }
+        }
+      }
+    },
+    "Use default handedness": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use default handedness"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "기본 주사용 손 사용"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "既定の利き手を使用"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用默认惯用手"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用預設慣用手"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar mano dominante predeterminada"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar mão dominante padrão"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Standard-Spielhand verwenden"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utiliser la latéralité par défaut"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usa la mano dominante predefinita"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ใช้มือถนัดตามค่าเริ่มต้น"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dùng tay thuận mặc định"
           }
         }
       }

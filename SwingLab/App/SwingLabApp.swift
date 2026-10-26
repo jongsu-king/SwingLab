@@ -42,12 +42,12 @@ struct SwingLabApp: App {
         do {
             #if DEBUG
             if ProcessInfo.processInfo.arguments.contains("--ui-testing") {
-                let schema = Schema(SwingLabSchemaV1.models)
+                let schema = Schema(SwingLabCurrentSchema.models)
                 container = try ModelContainer(for: schema, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
                 return
             }
             #endif
-            let schema = Schema(versionedSchema: SwingLabSchemaV1.self)
+            let schema = Schema(versionedSchema: SwingLabCurrentSchema.self)
             let opened = try ModelContainer(for: schema, migrationPlan: SwingLabMigrationPlan.self)
             try LocalDataController.normalizeRecordingMetadata(context: opened.mainContext)
             try LocalDataController.recoverInterruptedDeletion(context: opened.mainContext)

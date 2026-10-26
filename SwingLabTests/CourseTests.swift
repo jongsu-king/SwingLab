@@ -37,7 +37,7 @@ final class CourseTests: XCTestCase {
     }
 
     @MainActor func testManualReferencesPersistAndRemainHoleSpecific() throws {
-        let schema = Schema(SwingLabSchemaV1.models)
+        let schema = Schema(SwingLabCurrentSchema.models)
         let container = try ModelContainer(for: schema, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
         let writer = ModelContext(container)
         let course = GolfCourse(name: "Entered course", latitude: 37.5, longitude: 127)

@@ -113,6 +113,20 @@ struct SwingDetailView: View {
                 .onChange(of: recording.cameraAngleValue) { _, _ in
                     do { try modelContext.save() } catch { self.error = "Changes could not be saved." }
                 }
+            Picker(prefs.text("Handedness"), selection: $recording.handednessOverride) {
+                Text(prefs.text("Use default handedness")).tag(Optional<Handedness>.none)
+                ForEach(Handedness.allCases, id: \.self) { hand in
+                    Text(prefs.text(hand.localizationKey)).tag(Optional(hand))
+                }
+            }.onChange(of: recording.handednessOverride) { _, _ in
+                do { try modelContext.save() }
+                catch { modelContext.rollback(); self.error = "Changes could not be saved." }
+            }
+            if let analyzedHandedness = report?.analyzedHandedness,
+               analyzedHandedness != recording.effectiveHandedness(default: prefs.handedness) {
+                Text(prefs.text("Handedness changed. Analyze again to update lead and trail joints."))
+                    .font(.caption).foregroundStyle(.secondary)
+            }
             HStack {
                 Text(prefs.text(recording.sourceValue.localizationKey))
                 Spacer()
@@ -148,9 +162,14 @@ struct SwingDetailView: View {
                                                              sampleCount: report.sampledFrameCount),
                                     label: prefs.text("Frames with pose"), valueFont: .caption, alignment: .leading)
                     Spacer()
+                    SLMetricReadout(metric: ProvenancedValue(value: report.poseFrameRate, unit: "Hz", provenance: .measured,
+                                                             method: "pose.sampleInterval.v2"),
+                                    label: prefs.text("Pose frame rate"), fractionDigits: 1, valueFont: .caption)
                 }.font(.caption).foregroundStyle(.secondary)
             }
-            Text(prefs.text("Use one golfer and one swing per clip. Keep the full body visible in good light. Analysis samples up to 30 frames per second."))
+            Text(prefs.text("Analysis first scans the clip, then samples the swing window at up to 240 frames per second."))
+                .font(.caption).foregroundStyle(.secondary)
+            Text(prefs.text("Short interpolated gaps are dashed. Longer gaps are not connected."))
                 .font(.caption).foregroundStyle(.secondary)
         }.padding(20).background(SLTheme.surface).padding(.horizontal, 20)
     }
@@ -227,13 +246,12 @@ struct SwingDetailView: View {
         analysisTask = Task { @MainActor in
             defer { analysisTask = nil }
             do {
-                var result = try await PoseEstimationService().analyze(url: videoURL) { value in
+                var result = try await PoseEstimationService().analyze(url: videoURL,
+                    handedness: recording.effectiveHandedness(default: prefs.handedness)) { value in
                     Task { @MainActor in progress = value }
                 }
                 try Task.checkCancellation()
-                let manual = report?.markers.filter { $0.provenance == .userEntered } ?? []
-                // Preserve deliberate human edits; new inferred markers can otherwise conflict with them.
-                if !manual.isEmpty { result.markers = manual }
+                result.markers = SwingPhaseDetector.merge(estimated: result.markers, existing: report?.markers ?? [])
                 try persist(result)
             } catch is CancellationError { }
             catch { self.error = (error as? PoseAnalysisError)?.errorDescription ?? "Analysis could not be completed. Please try another video." }
@@ -251,7 +269,8 @@ struct SwingDetailView: View {
             error = "Phase markers must follow chronological order. Clear a conflicting marker or choose another frame."; return
         }
         updated.markers.removeAll { $0.phase == selectedPhase }
-        updated.markers.append(SwingPhaseMarker(phase: selectedPhase, time: time, provenance: .userEntered))
+        updated.markers.append(SwingPhaseMarker(phase: selectedPhase, time: time, provenance: .userEntered,
+                                               rule: "phase.manual.v1"))
         do { try persist(updated) } catch { self.error = "Changes could not be saved." }
     }
 
@@ -262,9 +281,8 @@ struct SwingDetailView: View {
     }
 
     private func persist(_ result: PoseAnalysisReport) throws {
-        let prior = recording.analysisData
-        recording.analysisData = try JSONEncoder().encode(result)
+        try recording.applyAnalysis(result)
         do { try modelContext.save(); report = result }
-        catch { recording.analysisData = prior; throw error }
+        catch { modelContext.rollback(); throw error }
     }
 }

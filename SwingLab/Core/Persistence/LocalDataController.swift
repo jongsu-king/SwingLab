@@ -3,8 +3,8 @@ import SwiftData
 import SwingLabCore
 
 @MainActor enum LocalDataController {
-    /// V1 retains its original String columns. Canonicalize their content without a
-    /// structural store change; typed accessors also support unopened legacy rows.
+    /// V2 keeps the original metadata columns; typed accessors recognize legacy labels.
+    /// Analysis summaries are filled by the migration stage, not by list/chart reads.
     static func normalizeRecordingMetadata(context: ModelContext) throws {
         var changed = false
         for recording in try context.fetch(FetchDescriptor<SwingRecording>()) {
