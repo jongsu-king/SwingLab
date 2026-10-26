@@ -33,7 +33,7 @@ enum CheckFailure: Error { case nilValue }
 @main struct CoreCheckRunner {
     @MainActor static func main() throws {
         let units = UnitsTests(), geography = GeographyTests(), dispersion = DispersionTests(), timing = TimingAndGeometryTests()
-        let provenance = ProvenanceTests()
+        let provenance = ProvenanceTests(), summary = SummaryMigrationTests(), phases = PhaseDetectionTests()
         let checks: [(String, () throws -> Void)] = [
             ("independent unit conversions", units.testIndependentUnitsRoundTrip),
             ("language fallback", units.testLanguageFallbackAndRegionalMatching),
@@ -54,7 +54,16 @@ enum CheckFailure: Error { case nilValue }
             ("measurement decoding validation", provenance.testDecodingCannotBypassMeasurementValidation),
             ("schema-v1 analysis migration", provenance.testSchemaOneAnalysisJSONStillDecodes),
             ("typed metric SI units and origin", provenance.testTypedMetricSIUnitsAndProvenance),
-            ("missing and invalid pose metrics", provenance.testInvalidOrMissingPoseMetricsRemainUnavailable)
+            ("missing and invalid pose metrics", provenance.testInvalidOrMissingPoseMetricsRemainUnavailable),
+            ("schema-v1 summary migration", summary.testSchemaOneSummaryMigrationPreservesProvenanceAndSI),
+            ("missing analysis summary unavailable", summary.testMissingAnalysisRemainsUnavailable),
+            ("current summary version and frame rate", summary.testCurrentSummaryPreservesVersionAndFrameRate),
+            ("zero-phase smoothing peak timing", phases.testZeroPhaseSmoothingPreservesPeakTiming),
+            ("phase detector at 30/60/120/240 fps", phases.testDetectorRecoversKnownEventsAcrossFrameRates),
+            ("phase detector with landmark noise", phases.testNoisyLandmarksStayWithinNoiseLimitedTolerance),
+            ("left-handed mirror timing", phases.testLeftHandedMirrorProducesSameTiming),
+            ("no swing returns no guesses", phases.testNoSwingOrMissingBodyReturnsNoGuesses),
+            ("manual markers win on merge", phases.testMergeKeepsUserMarkersAndDropsConflictingEstimates)
         ]
         for (name, check) in checks {
             let before = failures
