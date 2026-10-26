@@ -41,35 +41,33 @@
 
 ## What it does
 
-| | Feature | Details |
-|---|---|---|
-| 🎥 | **Swing capture and review** | High-frame-rate recording (120/240 fps where the device supports it) with sound. Vision 2D pose, eight swing phases from address to finish, and tempo. Impact is located from the recorded strike sound. |
-| 🎯 | **Launch monitor** <sub>experimental</sub> | Film face-on at 240 fps with a 1/2000 s shutter. The ball's own diameter (42.67 mm) is the ruler for **ball speed** and **launch angle**. |
-| 🏌️ | **Club catalog** | 2000–2026: **23 brands, 1,515 clubs, 93 shafts, 17 hosel systems**. Custom shafts, length in 0.25" steps, and loft/lie change for each sleeve position. |
-| 🪂 | **Hypothetical flight** | Enter ball speed, launch, and spin; an RK4 physics model simulates carry, apex, and landing angle. |
-| 🗺️ | **Course and rounds** | MapKit course search, GPS distances, 9/18-hole scorecards, shot logging, and 50 %/80 % landing regions from your own club data. |
-| 📈 | **Performance and coaching** | Practice sessions, club gapping, consistency. Coaching appears only with enough evidence (5+ swings at the same angle with the same club). |
-| 🌏 | **12 languages, independent units** | English, Korean, Japanese, Chinese (Simplified and Traditional), Spanish, Portuguese, German, French, Italian, Thai, Vietnamese. Distance, speed, wind, and temperature units switch separately. |
-| 🔒 | **Local-first** | No account, ads, analytics SDK, or server. Videos stay on the device. |
+- 🎥 **Swing capture and review**: high-frame-rate recording (120/240 fps where the device supports it) with sound. Vision 2D pose, eight swing phases from address to finish, and tempo. Impact is located from the recorded strike sound.
+- 🎯 **Launch monitor** <sub>experimental</sub>: film face-on at 240 fps with a 1/2000 s shutter. The ball's own diameter (42.67 mm) is the ruler for **ball speed** and **launch angle**.
+- 🏌️ **Club catalog**: 2000–2026, **23 brands, 1,515 clubs, 93 shafts, 17 hosel systems**. Custom shafts, length in 0.25" steps, and the loft/lie change for each sleeve position.
+- 🪂 **Hypothetical flight**: enter ball speed, launch, and spin; an RK4 physics model simulates carry, apex, and landing angle.
+- 🗺️ **Course and rounds**: MapKit course search, GPS distances, 9/18-hole scorecards, shot logging, and 50 %/80 % landing regions from your own club data.
+- 📈 **Performance and coaching**: practice sessions, club gapping, consistency. Coaching appears only with enough evidence (5+ swings at the same angle with the same club).
+- 🌏 **12 languages, independent units**: English, Korean, Japanese, Chinese (Simplified and Traditional), Spanish, Portuguese, German, French, Italian, Thai, Vietnamese. Distance, speed, wind, and temperature units switch separately.
+- 🔒 **Local-first**: no account, ads, analytics SDK, or server. Videos stay on the device.
 
 ## Every number shows where it came from
 
 Each value on screen carries its origin. Values one iPhone camera cannot observe are never filled in with plausible guesses.
 
-| Label in the app | Meaning | Examples |
-|---|---|---|
-| Measured | Read from a device sensor | GPS distance, video frame time |
-| Vision-derived | Computed from video | Pose, ball speed, launch angle |
-| Audio-derived | Computed from recorded sound | Impact time |
-| Estimated | Rule-based estimate you can edit | Swing phases |
-| Simulated | Computed by a physics model | Carry range, hypothetical flight |
-| User-entered | Typed in by you | Club averages, scores |
-| **Unavailable** | Cannot be known with one iPhone | **Spin, club speed** |
+| Label in the app | Meaning · examples |
+|---|---|
+| Measured | Device sensor · GPS distance, frame time |
+| Vision-derived | From video · pose, ball speed, launch angle |
+| Audio-derived | From recorded sound · impact time |
+| Estimated | Rule-based, editable · swing phases |
+| Simulated | Physics model · carry range, hypothetical flight |
+| User-entered | Typed in by you · club averages, scores |
+| **Unavailable** | Not knowable with one iPhone · **spin, club speed** |
 
 ## How the launch monitor works
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["📱 Face-on video<br/>240 fps · 1/2000 s"] --> B["🔊 Find impact<br/>from the sound"]
     B --> C["⚪ Ball at address<br/>= 42.67 mm ruler"]
     C --> D["🎯 Track 6 frames<br/>after impact"]
@@ -89,24 +87,30 @@ flowchart LR
 
 | Check | Result |
 |---|---|
-| iOS build (Swift 6, 0 warnings) | ✅ |
-| Core tests `swift test` | ✅ 80 / 80 |
-| App + UI tests (iPhone 17 Pro · iOS 26.4, iPhone Duo · iOS 27.1) | ✅ 22 / 22 + 9 / 9 |
-| Missing strings across 12 languages | ✅ 670 keys, 0 missing |
-| Real-iPhone capture, pose accuracy, GPS | ⬜ waiting for device testing |
-| Launch monitor accuracy (vs TrackMan) | ⬜ waiting for real shots |
-| App Store readiness | ❌ needs a paid developer account |
+| iOS build (Swift 6) | ✅ 0 errors · 0 warnings |
+| Core tests | ✅ 80 / 80 |
+| App · UI tests (2 simulators) | ✅ 22 + 9 |
+| Strings in 12 languages | ✅ 0 missing / 670 |
+| Real-iPhone capture · pose · GPS | ⬜ waiting for a device |
+| Launch monitor accuracy | ⬜ waiting for TrackMan shots |
+| App Store readiness | ❌ needs a developer account |
+
+<sub>App · UI tests: iPhone 17 Pro (iOS 26.4), iPhone Duo (iOS 27.1)</sub>
 
 ## How it is built
 
 SwingLab is built in **rounds**: Codex implements, and a reviewer runs the code to verify it. Each round gets a stronger prompt, and each side reviews and rebuts the other's code. A report that says "all tests pass" doesn't count until the reviewer reproduces it.
 
-| Round | Prompt | Main results | Review |
-|---|---|---|---|
-| 1 | [v6.0](Docs/Prompts/v6.0.md) | App foundation, four tabs, capture, pose, course | [Review](Docs/Review/round-1-review.md) · [Response](Docs/Review/round-1-response.md) · [Rebuttal](Docs/Review/round-1-rebuttal.md) |
-| 2 | [v7.0](Docs/Prompts/v7.0.md) | Swing phases, impact from sound, flight physics, coaching | [Review](Docs/Review/round-2-review.md) · [Rebuttal](Docs/Review/round-2-rebuttal.md) |
-| 3 | [v8.0](Docs/Prompts/v8.0.md) | First native build, simulator tests, practice sessions | [Response](Docs/Review/round-3-response.md) |
-| 4 | [v9.0](Docs/Prompts/v9.0.md) | Club catalog, published reference data, both simulators green, launch monitor | [Review](Docs/Review/round-4-review.md) |
+- **Round 1** · [v6.0](Docs/Prompts/v6.0.md): app foundation, four tabs, capture, pose, course  
+  [Review](Docs/Review/round-1-review.md) · [Response](Docs/Review/round-1-response.md) · [Rebuttal](Docs/Review/round-1-rebuttal.md)
+- **Round 2** · [v7.0](Docs/Prompts/v7.0.md): swing phases, impact from sound, flight physics, coaching  
+  [Review](Docs/Review/round-2-review.md) · [Rebuttal](Docs/Review/round-2-rebuttal.md)
+- **Round 3** · [v8.0](Docs/Prompts/v8.0.md): first native build, simulator tests, practice sessions  
+  [Response](Docs/Review/round-3-response.md)
+- **Round 4** · [v9.0](Docs/Prompts/v9.0.md): club catalog, published reference data, both simulators green, launch monitor  
+  [Review](Docs/Review/round-4-review.md)
+
+Per-round notes are on the [Releases](https://github.com/jongsu-king/SwingLab/releases) page.
 
 ## Build it yourself
 
