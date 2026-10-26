@@ -57,7 +57,7 @@ def unit(value): return {'stringUnit':{'state':'translated','value':value}}
 strings={}
 missing={}
 for key in sorted(keys):
-    loc={'en':unit(key)}
+    loc={'en':unit(translations.get(key,{}).get('en',key))}
     for language in LANGS:
         value=translations.get(key,{}).get(language)
         if value: loc[language]=unit(value)

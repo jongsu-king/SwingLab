@@ -1,4 +1,5 @@
 import Foundation
+import SwingLabCore
 import ImageIO
 @preconcurrency import AVFoundation
 @preconcurrency import Vision
@@ -164,9 +165,9 @@ actor PoseEstimationService {
         }), wrists[impactIndex].time - top.time > 0.08,
             top.y - wrists[impactIndex].y > 0.08 else { return [] }
         return [
-            SwingPhaseMarker(phase: .address, time: address.time, provenance: "Estimated"),
-            SwingPhaseMarker(phase: .top, time: top.time, provenance: "Estimated"),
-            SwingPhaseMarker(phase: .impact, time: wrists[impactIndex].time, provenance: "Estimated")
+            SwingPhaseMarker(phase: .address, time: address.time, provenance: .estimated),
+            SwingPhaseMarker(phase: .top, time: top.time, provenance: .estimated),
+            SwingPhaseMarker(phase: .impact, time: wrists[impactIndex].time, provenance: .estimated)
         ]
     }
 }

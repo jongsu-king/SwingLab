@@ -41,4 +41,8 @@ final class AppPreferences {
         guard meters.isFinite else { return text("Unavailable") }
         return distanceUnit.fromSI(meters).formatted(.number.precision(.fractionLength(0)).locale(locale)) + " " + distanceUnit.symbol
     }
+    /// Positional, full-sentence templates preserve each language's argument order.
+    func format(_ key: String, _ arguments: CVarArg...) -> String {
+        String(format: text(key), locale: locale, arguments: arguments)
+    }
 }

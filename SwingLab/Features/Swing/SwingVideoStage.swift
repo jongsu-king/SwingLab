@@ -1,6 +1,7 @@
 import SwiftUI
 import AVFoundation
 import UIKit
+import SwingLabCore
 
 struct SwingVideoStage: View {
     var player: AVPlayer

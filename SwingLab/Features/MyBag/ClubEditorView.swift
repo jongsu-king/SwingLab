@@ -89,7 +89,10 @@ struct ClubEditorView: View {
 
     private func decimalField(_ title: String, value: Binding<String>, suffix: String? = nil, signed: Bool = false) -> some View {
         HStack(alignment: .firstTextBaseline) {
-            Text(preferences.text(title))
+            VStack(alignment: .leading, spacing: 3) {
+                Text(preferences.text(title))
+                ProvenanceBadge(provenance: value.wrappedValue.isEmpty ? .unavailable : .userEntered)
+            }
             Spacer(minLength: 12)
             TextField(preferences.text("Optional"), text: value)
                 .multilineTextAlignment(.trailing)

@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import SwingLabCore
 
 struct RoundHistoryView: View {
     @Environment(AppPreferences.self) private var preferences
@@ -23,8 +24,13 @@ struct RoundHistoryView: View {
                         HStack {
                             Text(preferences.text(round.endedAt == nil ? "In progress" : "Finished"))
                             Spacer()
-                            Text("\(round.totalScore) · \(round.completedHoleCount)/\(round.holeCount)")
-                                .monospacedDigit()
+                            SLMetricReadout(metric: ProvenancedValue(
+                                value: round.completedHoleCount > 0 ? Double(round.totalScore) : nil,
+                                unit: "1", provenance: .userEntered, method: "scorecard.total.v1",
+                                sampleCount: round.completedHoleCount),
+                                label: preferences.format("metric.holesScored",
+                                    round.completedHoleCount.formatted(.number.locale(preferences.locale)),
+                                    round.holeCount.formatted(.number.locale(preferences.locale))))
                         }.font(.subheadline)
                     }
                 }
@@ -51,8 +57,14 @@ struct ScorecardView: View {
         List {
             Section {
                 Text(round.courseName).font(.title2.weight(.semibold))
-                LabeledContent(preferences.text("Recorded score"), value: "\(round.totalScore)")
-                LabeledContent(preferences.text("Holes scored"), value: "\(round.completedHoleCount)/\(round.holeCount)")
+                LabeledContent(preferences.text("Recorded score")) {
+                    SLMetricReadout(metric: ProvenancedValue(
+                        value: round.completedHoleCount > 0 ? Double(round.totalScore) : nil,
+                        unit: "1", provenance: .userEntered, method: "scorecard.total.v1", sampleCount: round.completedHoleCount),
+                        label: preferences.format("metric.holesScored",
+                            round.completedHoleCount.formatted(.number.locale(preferences.locale)),
+                            round.holeCount.formatted(.number.locale(preferences.locale))))
+                }
                 Text(preferences.text("Strokes include putts and penalties. GPS shot logs do not automatically change your score."))
                     .font(.footnote).foregroundStyle(.secondary)
             }
@@ -62,12 +74,13 @@ struct ScorecardView: View {
                         HoleScoreEditor(score: score)
                     } label: {
                         HStack {
-                            Text(preferences.text("Hole") + " \(score.number)")
+                            Text(preferences.format("metric.hole", score.number.formatted(.number.locale(preferences.locale))))
                             Spacer()
-                            Text(preferences.text("Par") + " " + (score.par.map(String.init) ?? "—"))
-                                .foregroundStyle(.secondary)
-                            Text(score.strokes.map(String.init) ?? "—")
-                                .monospacedDigit().font(.headline).frame(minWidth: 32, alignment: .trailing)
+                            SLMetricReadout(metric: ProvenancedValue(value: score.par.map(Double.init), unit: "1",
+                                provenance: .userEntered, method: "scorecard.par.v1"), label: preferences.text("Par"))
+                            SLMetricReadout(metric: ProvenancedValue(value: score.strokes.map(Double.init), unit: "1",
+                                provenance: .userEntered, method: "scorecard.strokes.v1"),
+                                label: preferences.text("Strokes"), valueFont: .headline)
                         }
                     }
                 }
@@ -81,9 +94,14 @@ struct ScorecardView: View {
                         ShotEditor(shot: shot)
                     } label: {
                         VStack(alignment: .leading, spacing: 4) {
-                            Text(preferences.text("Hole") + " \(shot.holeNumber) · " + shot.clubName)
-                            Text(shot.groundDisplacementMeters.map(preferences.distance) ?? preferences.text("Waiting for the next ball position"))
-                                .font(.subheadline).foregroundStyle(.secondary)
+                            Text(preferences.format("metric.holeClub",
+                                shot.holeNumber.formatted(.number.locale(preferences.locale)), shot.clubName))
+                            SLMetricReadout(metric: ProvenancedValue(value: shot.groundDisplacementMeters, unit: "m",
+                                provenance: .measured, method: "gps.groundDisplacement.v1",
+                                sampleCount: shot.groundDisplacementMeters == nil ? nil : 2), alignment: .leading)
+                            if shot.groundDisplacementMeters == nil {
+                                Text(preferences.text("Waiting for the next ball position")).font(.caption).foregroundStyle(.secondary)
+                            }
                         }
                     }
                 }
@@ -128,7 +146,10 @@ private struct HoleScoreEditor: View {
                 numericField("Par", text: $par)
                 numericField("Strokes", text: $strokes)
                 numericField("Putts", text: $putts)
-                Stepper(preferences.text("Penalties") + ": \(penalties)", value: $penalties, in: 0...30)
+                Stepper(value: $penalties, in: 0...30) {
+                    SLMetricReadout(metric: ProvenancedValue(value: Double(penalties), unit: "1", provenance: .userEntered,
+                        method: "scorecard.penalties.v1"), label: preferences.text("Penalties"), alignment: .leading)
+                }
                 outcomePicker("Fairway hit", selection: $fairway)
                 outcomePicker("Green in regulation", selection: $green)
             } footer: {
@@ -137,7 +158,7 @@ private struct HoleScoreEditor: View {
             if let errorKey { Text(preferences.text(errorKey)).foregroundStyle(.red) }
             Button(preferences.text("Save"), action: save).fontWeight(.semibold)
         }
-        .navigationTitle(preferences.text("Hole") + " \(score.number)")
+        .navigationTitle(preferences.format("metric.hole", score.number.formatted(.number.locale(preferences.locale))))
         .onAppear {
             par = score.par.map(String.init) ?? ""
             strokes = score.strokes.map(String.init) ?? ""
@@ -150,7 +171,10 @@ private struct HoleScoreEditor: View {
 
     private func numericField(_ key: String, text: Binding<String>) -> some View {
         HStack {
-            Text(preferences.text(key))
+            VStack(alignment: .leading, spacing: 3) {
+                Text(preferences.text(key))
+                ProvenanceBadge(provenance: text.wrappedValue.isEmpty ? .unavailable : .userEntered)
+            }
             TextField(preferences.text("Not recorded"), text: text)
                 .keyboardType(.numberPad).multilineTextAlignment(.trailing)
                 .accessibilityLabel(preferences.text(key))
@@ -213,17 +237,29 @@ private struct ShotEditor: View {
                 Picker(preferences.text("Shot shape"), selection: $shape) {
                     ForEach(["Unknown", "Straight", "Draw", "Fade", "Hook", "Slice", "Other"], id: \.self) { Text(preferences.text($0)).tag($0) }
                 }
-                Stepper(preferences.text("Penalties") + ": \(penalties)", value: $penalties, in: 0...10)
+                Stepper(value: $penalties, in: 0...10) {
+                    SLMetricReadout(metric: ProvenancedValue(value: Double(penalties), unit: "1", provenance: .userEntered,
+                        method: "shot.penalties.v1"), label: preferences.text("Penalties"), alignment: .leading)
+                }
                 TextField(preferences.text("Notes"), text: $notes, axis: .vertical)
             }
             Section(preferences.text("GPS provenance")) {
                 if let distance = shot.groundDisplacementMeters {
-                    LabeledContent(preferences.text("Ground displacement"), value: preferences.distance(distance))
+                    LabeledContent(preferences.text("Ground displacement")) {
+                        SLMetricReadout(metric: ProvenancedValue(value: distance, unit: "m", provenance: .measured,
+                            method: "gps.groundDisplacement.v1", sampleCount: 2))
+                    }
                 }
-                LabeledContent(preferences.text("Start accuracy"), value: "±" + preferences.distance(shot.startAccuracyMeters))
+                LabeledContent(preferences.text("Start accuracy")) {
+                    SLMetricReadout(metric: ProvenancedValue(value: shot.startAccuracyMeters, unit: "m", provenance: .measured,
+                        method: "gps.horizontalAccuracy.v1", sampleCount: 1))
+                }
                 Text(shot.startedAt, format: .dateTime.year().month().day().hour().minute().second())
                 if let accuracy = shot.endAccuracyMeters {
-                    LabeledContent(preferences.text("End accuracy"), value: "±" + preferences.distance(accuracy))
+                    LabeledContent(preferences.text("End accuracy")) {
+                        SLMetricReadout(metric: ProvenancedValue(value: accuracy, unit: "m", provenance: .measured,
+                            method: "gps.horizontalAccuracy.v1", sampleCount: 1))
+                    }
                 }
                 if let date = shot.endedAt { Text(date, format: .dateTime.year().month().day().hour().minute().second()) }
                 Text(preferences.text("GPS records the distance between two positions. It includes roll and GPS uncertainty, and is not measured airborne carry."))
@@ -249,7 +285,7 @@ private struct ShotEditor: View {
             }
             Button(preferences.text("Delete shot"), role: .destructive) { confirmDelete = true }
         }
-        .navigationTitle(preferences.text("Shot") + " \(shot.shotNumber)")
+        .navigationTitle(preferences.format("metric.shot", shot.shotNumber.formatted(.number.locale(preferences.locale))))
         .onAppear { clubName = shot.clubName; lie = shot.lie; shape = shot.shape; penalties = shot.penalties; notes = shot.notes }
         .confirmationDialog(preferences.text("Delete this shot?"), isPresented: $confirmDelete) {
             Button(preferences.text("Delete shot"), role: .destructive) {

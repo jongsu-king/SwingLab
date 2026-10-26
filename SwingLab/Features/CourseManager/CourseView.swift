@@ -157,7 +157,9 @@ struct CourseView: View {
             }
             Spacer()
             Picker(preferences.text("Hole"), selection: $holeNumber) {
-                ForEach(1...(activeRound?.holeCount ?? 18), id: \.self) { Text(preferences.text("Hole") + " \($0)").tag($0) }
+                ForEach(1...(activeRound?.holeCount ?? 18), id: \.self) {
+                    Text(preferences.format("metric.hole", $0.formatted(.number.locale(preferences.locale)))).tag($0)
+                }
             }.labelsHidden().disabled(activeRound?.pendingShot != nil)
                 .onChange(of: holeNumber) { _, newValue in
                     activeRound?.currentHole = newValue
@@ -170,11 +172,9 @@ struct CourseView: View {
     private var controls: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack(alignment: .firstTextBaseline) {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(targetDistance.map(preferences.distance) ?? "—")
-                        .font(.system(size: 30, weight: .medium, design: .rounded)).monospacedDigit()
-                    Text(preferences.text("To target")).font(.caption).foregroundStyle(.secondary)
-                }
+                SLMetricReadout(metric: ProvenancedValue(value: targetDistance, unit: "m", provenance: .estimated,
+                    method: "map.targetDistance.v1"), label: preferences.text("To target"),
+                    valueFont: .title.weight(.medium), alignment: .leading)
                 Spacer()
                 Menu {
                     Picker(preferences.text("Place on map"), selection: $referenceKind) {
@@ -242,15 +242,29 @@ struct CourseView: View {
                     Text(preferences.text("Ball position: user-entered. Shot recording always uses a fresh GPS fix."))
                 }
                 if let estimate {
-                    Text(preferences.text("Estimated carry") + ": " + preferences.distance(estimate.carryMeters))
-                    Text(preferences.text("Expected distance from target") + ": " + preferences.distance(estimate.remainingMeters))
-                    Text(preferences.text(estimate.region80.isEmpty
-                                          ? "Add carry and lateral variability in My Bag to show probability regions."
-                                          : "Inner region: 50%. Dashed outer region: 80%. Conditional on your entered club profile; not a calibrated guarantee."))
+                    SLMetricReadout(metric: ProvenancedValue(value: estimate.carryMeters, unit: "m", provenance: .estimated,
+                        method: "landing.enteredCarry.v1"), label: preferences.text("Estimated carry"), alignment: .leading)
+                    SLMetricReadout(metric: ProvenancedValue(value: estimate.remainingMeters, unit: "m", provenance: .estimated,
+                        method: "landing.expectedRemaining.v1"), label: preferences.text("Expected distance from target"), alignment: .leading)
+                    if estimate.region80.isEmpty {
+                        Text(preferences.text("Add carry and lateral variability in My Bag to show probability regions."))
+                    } else {
+                        HStack(spacing: 16) {
+                            SLMetricReadout(metric: ProvenancedValue(value: 0.5, unit: "1", provenance: .estimated,
+                                method: "dispersion.gaussianCoverage.v1"), label: preferences.text("metric.innerRegion"),
+                                displayAsPercent: true, alignment: .leading)
+                            SLMetricReadout(metric: ProvenancedValue(value: 0.8, unit: "1", provenance: .estimated,
+                                method: "dispersion.gaussianCoverage.v1"), label: preferences.text("metric.outerRegion"),
+                                displayAsPercent: true, alignment: .leading)
+                        }
+                        Text(preferences.text("metric.regionCondition"))
+                    }
                 }
                 ForEach(references) { reference in
                     if let origin {
-                        Text(preferences.text(reference.kind) + ": " + preferences.distance(Geo.distance(from: origin, to: reference.coordinate)))
+                        SLMetricReadout(metric: ProvenancedValue(value: Geo.distance(from: origin, to: reference.coordinate), unit: "m",
+                            provenance: .estimated, method: "map.referenceDistance.v1"),
+                            label: preferences.text(reference.kind), alignment: .leading)
                     }
                 }
                 Text(preferences.text("Wind, terrain and hazard probabilities: unavailable. MapKit does not supply verified hole geometry."))
@@ -265,7 +279,9 @@ struct CourseView: View {
                 if manualOrigin != nil { Text(preferences.text("Ball position: user-entered")) }
                 if let fix = location.fix {
                     HStack {
-                        Text(preferences.text("GPS accuracy") + " ±" + preferences.distance(fix.horizontalAccuracy))
+                        SLMetricReadout(metric: ProvenancedValue(value: fix.horizontalAccuracy, unit: "m", provenance: .measured,
+                            method: "gps.horizontalAccuracy.v1", sampleCount: 1),
+                            label: preferences.text("GPS accuracy"), valueFont: .caption2, alignment: .leading)
                         Text(fix.timestamp, style: .time)
                     }
                     if !fix.isUsableForShot(at: timeline.date) {

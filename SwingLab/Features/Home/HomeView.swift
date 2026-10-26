@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import SwingLabCore
 
 struct HomeView: View {
     @Environment(AppPreferences.self) private var preferences
@@ -59,9 +60,12 @@ struct HomeView: View {
                                 Spacer()
                                 if recent.completedHoleCount > 0 {
                                     VStack(alignment: .trailing, spacing: 3) {
-                                        Text(recent.totalScore.formatted(.number.locale(preferences.locale)))
-                                            .font(.title2.weight(.medium)).monospacedDigit().foregroundStyle(SLTheme.ink)
-                                        Text("\(recent.completedHoleCount) / \(recent.holeCount) \(preferences.text("holes scored"))")
+                                        SLMetricReadout(metric: ProvenancedValue(value: Double(recent.totalScore), unit: "1",
+                                            provenance: .userEntered, method: "scorecard.total.v1", sampleCount: recent.completedHoleCount),
+                                            valueFont: .title2.weight(.medium))
+                                        Text(String(format: preferences.text("metric.holesScored"), locale: preferences.locale,
+                                            recent.completedHoleCount.formatted(.number.locale(preferences.locale)),
+                                            recent.holeCount.formatted(.number.locale(preferences.locale))))
                                             .font(.caption).foregroundStyle(.secondary)
                                     }
                                 } else {

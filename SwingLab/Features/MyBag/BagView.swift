@@ -97,7 +97,8 @@ struct BagView: View {
             }
             Spacer(minLength: 8)
             if let carry = club.carryMeters {
-                Text(preferences.distance(carry)).font(.body.monospacedDigit())
+                SLMetricReadout(metric: ProvenancedValue(value: carry, unit: "m", provenance: .userEntered,
+                                                        method: "bag.averageCarry.v1"))
             } else {
                 Text(preferences.text("Add carry")).font(.subheadline).foregroundStyle(.secondary)
             }
@@ -122,30 +123,35 @@ struct ClubCarryChart: View {
     let clubs: [GolfClub]
 
     var body: some View {
-        Chart(clubs) { club in
-            if let carry = club.carryMeters {
-                BarMark(
-                    x: .value(preferences.text("Carry"), preferences.distanceUnit.fromSI(carry)),
-                    y: .value(preferences.text("Club"), club.id.uuidString)
-                )
-                .foregroundStyle(SLTheme.forest)
-                .cornerRadius(2)
-                .accessibilityLabel(Text(club.name))
-                .accessibilityValue(Text(preferences.distance(carry)))
+        VStack(alignment: .leading, spacing: 6) {
+            ProvenanceBadge(provenance: .userEntered, sampleCount: clubs.count)
+            Chart(clubs) { club in
+                if let carry = club.carryMeters {
+                    BarMark(
+                        x: .value(preferences.text("Carry"), preferences.distanceUnit.fromSI(carry)),
+                        y: .value(preferences.text("Club"), club.id.uuidString)
+                    )
+                    .foregroundStyle(SLTheme.forest)
+                    .cornerRadius(2)
+                    .accessibilityLabel(Text(club.name))
+                    .accessibilityValue(Text(SLMetricReadout.formattedValue(
+                        ProvenancedValue(value: carry, unit: "m", provenance: .userEntered, method: "bag.averageCarry.v1"),
+                        preferences: preferences)))
+                }
             }
-        }
-        .chartYScale(domain: clubs.map { $0.id.uuidString })
-        .chartYAxis {
-            AxisMarks(position: .leading, values: clubs.map { $0.id.uuidString }) { value in
-                AxisValueLabel {
-                    if let id = value.as(String.self), let club = clubs.first(where: { $0.id.uuidString == id }) {
-                        Text(club.name).font(.caption)
+            .chartYScale(domain: clubs.map { $0.id.uuidString })
+            .chartYAxis {
+                AxisMarks(position: .leading, values: clubs.map { $0.id.uuidString }) { value in
+                    AxisValueLabel {
+                        if let id = value.as(String.self), let club = clubs.first(where: { $0.id.uuidString == id }) {
+                            Text(club.name).font(.caption)
+                        }
                     }
                 }
             }
+            .chartXAxisLabel(preferences.distanceUnit.symbol)
+            .frame(height: max(150, CGFloat(clubs.count) * 32 + 40))
+            .padding(.vertical, 12)
         }
-        .chartXAxisLabel(preferences.distanceUnit.symbol)
-        .frame(height: max(150, CGFloat(clubs.count) * 32 + 40))
-        .padding(.vertical, 12)
     }
 }

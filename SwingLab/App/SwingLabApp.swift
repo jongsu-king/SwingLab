@@ -49,6 +49,7 @@ struct SwingLabApp: App {
             #endif
             let schema = Schema(versionedSchema: SwingLabSchemaV1.self)
             let opened = try ModelContainer(for: schema, migrationPlan: SwingLabMigrationPlan.self)
+            try LocalDataController.normalizeRecordingMetadata(context: opened.mainContext)
             try LocalDataController.recoverInterruptedDeletion(context: opened.mainContext)
             container = opened
             storageError = nil

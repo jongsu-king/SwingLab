@@ -1,0 +1,6 @@
+warning: /Users/jongsulim/Library/org.swift.swiftpm/configuration is not accessible or not writable, disabling user-level cache features.
+warning: /Users/jongsulim/Library/org.swift.swiftpm/security is not accessible or not writable, disabling user-level cache features.
+[0/1] Planning build
+Building for debugging...
+[0/1] Write swift-version--1AB21518FC5DEDBE.txt
+Build complete! (0.24s)

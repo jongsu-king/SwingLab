@@ -1,9 +1,21 @@
 #!/bin/zsh
 set -euo pipefail
 cd "${0:A:h:h}"
+# Keep compiler caches inside the checkout in restricted workspaces.
+export CLANG_MODULE_CACHE_PATH="$PWD/.build/ModuleCache"
+export SWIFTPM_MODULECACHE_OVERRIDE="$CLANG_MODULE_CACHE_PATH"
+mkdir -p "$CLANG_MODULE_CACHE_PATH" .build/SwiftPMCache
 python3 Scripts/build_localizations.py
 python3 Scripts/generate_project.py
-swift build
+# Legacy labels are accepted only by enum decoders, never compared by domain/UI logic.
+if rg -n '(provenance|Provenance)\s*(==|!=)\s*"|provenance:\s*"' Sources SwingLab --glob '*.swift'; then
+    echo 'FAIL string-literal provenance comparison or initializer'
+    exit 1
+fi
+echo 'PASS no string-literal provenance comparisons or initializers'
+# SwiftPM's nested sandbox cannot initialize inside the workspace sandbox.
+# This package has no external dependencies or build plugins; the outer sandbox stays active.
+swift build --disable-sandbox --cache-path .build/SwiftPMCache --manifest-cache local
 if [[ "$(xcode-select -p)" == *Xcode*.app/Contents/Developer ]]; then
     swift test
 else

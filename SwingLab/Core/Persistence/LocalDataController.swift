@@ -3,6 +3,17 @@ import SwiftData
 import SwingLabCore
 
 @MainActor enum LocalDataController {
+    /// V1 retains its original String columns. Canonicalize their content without a
+    /// structural store change; typed accessors also support unopened legacy rows.
+    static func normalizeRecordingMetadata(context: ModelContext) throws {
+        var changed = false
+        for recording in try context.fetch(FetchDescriptor<SwingRecording>()) {
+            if recording.normalizeMetadata() { changed = true }
+        }
+        guard changed else { return }
+        do { try context.save() }
+        catch { context.rollback(); throw error }
+    }
     static func recoverInterruptedDeletion(context: ModelContext) throws {
         let names = Set(try context.fetch(FetchDescriptor<SwingRecording>()).map(\.videoFileName))
         try MediaDeletionRecovery.reconcile(library: VideoLibrary.directory(), referencedNames: names)

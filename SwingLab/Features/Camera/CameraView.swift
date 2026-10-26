@@ -1,5 +1,6 @@
 import SwiftUI
 import UIKit
+import SwingLabCore
 @preconcurrency import AVFoundation
 
 struct CameraView: View {
@@ -7,10 +8,10 @@ struct CameraView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.scenePhase) private var scenePhase
     @State private var camera = CameraController()
-    @State private var angle = "Face-on"
+    @State private var angle = CameraAngle.faceOn
     @State private var showGrid = true
     @State private var exposure = 0.0
-    var onSave: (URL, String) -> Void
+    var onSave: (URL, CameraAngle) -> Void
 
     var body: some View {
         NavigationStack {
@@ -31,7 +32,7 @@ struct CameraView: View {
                         }
                     }
                     VStack {
-                        Text(prefs.text(angle == "Face-on" ? "Keep your full body and club in view." : "Place the camera along your hand line."))
+                        Text(prefs.text(angle == .faceOn ? "Keep your full body and club in view." : "Place the camera along your hand line."))
                             .font(.subheadline).multilineTextAlignment(.center)
                             .padding(12).background(.black.opacity(0.6), in: RoundedRectangle(cornerRadius: 8))
                         if camera.interrupted {
@@ -41,8 +42,12 @@ struct CameraView: View {
                         Spacer()
                         if let date = camera.recordedAt {
                             TimelineView(.periodic(from: date, by: 0.2)) { context in
-                                Text(max(0, context.date.timeIntervalSince(date)), format: .number.precision(.fractionLength(1)))
-                                    .monospacedDigit().font(.title2).padding(10).background(.black.opacity(0.7), in: Capsule())
+                                SLMetricReadout(metric: ProvenancedValue(value: max(0, context.date.timeIntervalSince(date)),
+                                                                         unit: "s", provenance: .measured,
+                                                                         method: "capture.elapsedClock.v1"),
+                                                fractionDigits: 1, valueFont: .title2)
+                                    .environment(\.colorScheme, .dark)
+                                    .padding(10).background(.black.opacity(0.7), in: RoundedRectangle(cornerRadius: 8))
                             }
                         }
                         controls
@@ -108,8 +113,8 @@ struct CameraView: View {
                 }.disabled(camera.isRecording)
                 Spacer()
                 Picker(prefs.text("Camera angle"), selection: $angle) {
-                    Text(prefs.text("Face-on")).tag("Face-on")
-                    Text(prefs.text("Down the line")).tag("Down the line")
+                    Text(prefs.text(CameraAngle.faceOn.localizationKey)).tag(CameraAngle.faceOn)
+                    Text(prefs.text(CameraAngle.downTheLine.localizationKey)).tag(CameraAngle.downTheLine)
                 }.tint(.white).disabled(camera.isRecording)
             }
             HStack {

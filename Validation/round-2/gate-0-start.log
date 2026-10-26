@@ -1,0 +1,3 @@
+/Library/Developer/CommandLineTools
+xcode-select: error: tool 'xcodebuild' requires Xcode, but active developer directory '/Library/Developer/CommandLineTools' is a command line tools instance
+xcrun: error: unable to find utility "simctl", not a developer tool or in PATH

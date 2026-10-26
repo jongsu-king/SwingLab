@@ -44,9 +44,15 @@ struct PerformanceView: View {
                     Label(preferences.text("Open Swing"), systemImage: "video")
                 }.buttonStyle(.borderedProminent)
             } else {
-                metric(value: recordings.count.formatted(.number.locale(preferences.locale)), label: "Saved swings")
+                metric(value: ProvenancedValue(value: Double(recordings.count), unit: "1", provenance: .measured,
+                    method: "library.savedRecordingCount.v1", sampleCount: recordings.count), label: "Saved swings")
                 if tempoPoints.count >= 2 {
                     SLSectionHeader(title: preferences.text("Tempo over time"), subtitle: preferences.text("Backswing ÷ downswing"))
+                    // A mixed-source chart retains each source's count instead of implying one provenance for all points.
+                    ForEach([Provenance.userEntered, .estimated], id: \.rawValue) { source in
+                        let count = tempoPoints.filter { $0.provenance == source }.count
+                        if count > 0 { ProvenanceBadge(provenance: source, sampleCount: count) }
+                    }
                     Chart(tempoPoints) { recording in
                         if let tempo = recording.tempo {
                             PointMark(
@@ -56,7 +62,8 @@ struct PerformanceView: View {
                             .foregroundStyle(SLTheme.forest)
                             .symbolSize(48)
                             .accessibilityLabel(Text(recording.createdAt, format: .dateTime.month().day()))
-                            .accessibilityValue(Text(tempo.formatted(.number.locale(preferences.locale).precision(.fractionLength(2))) + ":1"))
+                            .accessibilityValue(Text(SLMetricReadout.formattedValue(recording.metric,
+                                preferences: preferences, fractionDigits: 2, displayAsRatio: true)))
                         }
                     }
                     .frame(height: 210)
@@ -76,13 +83,8 @@ struct PerformanceView: View {
                                 .font(.caption).foregroundStyle(.secondary)
                         }
                         Spacer(minLength: 12)
-                        if let tempo = recording.tempo {
-                            VStack(alignment: .trailing, spacing: 4) {
-                                Text(tempo.formatted(.number.locale(preferences.locale).precision(.fractionLength(2))) + ":1")
-                                    .font(.body.monospacedDigit())
-                                Text(preferences.text(recording.provenance ?? "Estimated"))
-                                    .font(.caption).foregroundStyle(.secondary)
-                            }
+                        if recording.tempo != nil {
+                            SLMetricReadout(metric: recording.metric, fractionDigits: 2, displayAsRatio: true)
                         }
                     }
                 }
@@ -107,8 +109,9 @@ struct PerformanceView: View {
                         HStack(alignment: .firstTextBaseline) {
                             Text(longer.name + " → " + shorter.name).font(.subheadline)
                             Spacer(minLength: 12)
-                            Text(preferences.distance((longer.carryMeters ?? 0) - (shorter.carryMeters ?? 0)))
-                                .font(.body.monospacedDigit())
+                            SLMetricReadout(metric: ProvenancedValue(
+                                value: (longer.carryMeters ?? 0) - (shorter.carryMeters ?? 0), unit: "m",
+                                provenance: .userEntered, method: "bag.carryGap.v1"))
                         }
                         Divider()
                     }
@@ -133,15 +136,21 @@ struct PerformanceView: View {
                 }.buttonStyle(.borderedProminent)
             } else {
                 if !completed18.isEmpty {
-                    metric(value: scoringAverage.formatted(.number.locale(preferences.locale).precision(.fractionLength(1))), label: "Scoring average · 18 holes")
+                    metric(value: ProvenancedValue(value: scoringAverage, unit: "1", provenance: .userEntered,
+                        method: "scorecard.mean18HoleScore.v1", sampleCount: completed18.count),
+                        label: "Scoring average · 18 holes", fractionDigits: 1)
                 }
                 if completed18.count >= 2 {
+                    ProvenanceBadge(provenance: .userEntered, sampleCount: completed18.count)
                     Chart(completed18.reversed()) { round in
                         PointMark(x: .value(preferences.text("Date"), round.startedAt),
                                   y: .value(preferences.text("Strokes"), round.totalScore))
                             .foregroundStyle(SLTheme.forest).symbolSize(48)
                             .accessibilityLabel(Text(round.courseName))
-                            .accessibilityValue(Text(round.totalScore.formatted(.number.locale(preferences.locale))))
+                            .accessibilityValue(Text(SLMetricReadout.formattedValue(
+                                ProvenancedValue(value: Double(round.totalScore), unit: "1", provenance: .userEntered,
+                                                 method: "scorecard.total.v1", sampleCount: round.completedHoleCount),
+                                preferences: preferences)))
                     }
                     .chartYScale(domain: .automatic(includesZero: false))
                     .frame(height: 190)
@@ -156,13 +165,16 @@ struct PerformanceView: View {
                                 Text(round.courseName).font(.headline).foregroundStyle(SLTheme.ink)
                                 Text(round.startedAt, format: .dateTime.month().day().year())
                                     .font(.caption).foregroundStyle(.secondary)
-                                Text("\(round.completedHoleCount) / \(round.holeCount) \(preferences.text("holes scored"))")
+                                Text(preferences.format("metric.holesScored",
+                                    round.completedHoleCount.formatted(.number.locale(preferences.locale)),
+                                    round.holeCount.formatted(.number.locale(preferences.locale))))
                                     .font(.caption).foregroundStyle(.secondary)
                             }
                             Spacer()
                             if round.completedHoleCount > 0 {
-                                Text(round.totalScore.formatted(.number.locale(preferences.locale)))
-                                    .font(.title2.weight(.medium)).monospacedDigit().foregroundStyle(SLTheme.ink)
+                                SLMetricReadout(metric: ProvenancedValue(value: Double(round.totalScore), unit: "1",
+                                    provenance: .userEntered, method: "scorecard.total.v1", sampleCount: round.completedHoleCount),
+                                    valueFont: .title2.weight(.medium))
                             }
                             Image(systemName: "chevron.right").font(.caption).foregroundStyle(.secondary)
                         }
@@ -174,11 +186,9 @@ struct PerformanceView: View {
         }
     }
 
-    private func metric(value: String, label: String) -> some View {
-        VStack(alignment: .leading, spacing: 6) {
-            Text(value).font(.system(.largeTitle, design: .rounded).weight(.medium)).monospacedDigit()
-            Text(preferences.text(label)).font(.subheadline).foregroundStyle(.secondary)
-        }.padding(.vertical, 8)
+    private func metric(value: ProvenancedValue, label: String, fractionDigits: Int = 0) -> some View {
+        SLMetricReadout(metric: value, label: preferences.text(label), fractionDigits: fractionDigits,
+                        valueFont: .largeTitle.weight(.medium), alignment: .leading).padding(.vertical, 8)
     }
 
     private var carryClubs: [GolfClub] {
@@ -198,7 +208,12 @@ private struct TempoSnapshot: Identifiable {
     let title: String
     let createdAt: Date
     let tempo: Double?
-    let provenance: String?
+    let provenance: Provenance?
+
+    var metric: ProvenancedValue {
+        ProvenancedValue(value: tempo, unit: "1", provenance: provenance ?? .unavailable,
+                         method: "pose.phaseTempo.v1", sampleCount: tempo == nil ? nil : 1)
+    }
 
     init(recording: SwingRecording) {
         id = recording.id

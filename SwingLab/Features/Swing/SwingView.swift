@@ -1,6 +1,7 @@
 import SwiftUI
 import SwiftData
 import PhotosUI
+import SwingLabCore
 
 struct SwingView: View {
     @Environment(AppPreferences.self) private var prefs
@@ -53,10 +54,9 @@ struct SwingView: View {
                                         Text(recording.createdAt, format: .dateTime.month(.abbreviated).day().hour().minute())
                                             .font(.caption).foregroundStyle(.secondary)
                                         HStack(spacing: 6) {
-                                            Text(prefs.text(recording.cameraAngle))
-                                            Text("·")
-                                            Text(recording.durationSeconds, format: .number.precision(.fractionLength(1)))
-                                            Text(prefs.text("s"))
+                                            Text(prefs.text(recording.cameraAngleValue.localizationKey))
+                                            SLMetricReadout(metric: recording.durationMetric, fractionDigits: 1,
+                                                            valueFont: .caption)
                                         }.font(.caption).foregroundStyle(.secondary)
                                     }
                                     Spacer()
@@ -93,7 +93,7 @@ struct SwingView: View {
                     prefs.activeMediaWrites += 1
                     Task {
                         defer { prefs.activeMediaWrites -= 1 }
-                        await save(url: url, angle: angle, source: "Recorded")
+                        await save(url: url, angle: angle, source: .recorded)
                     }
                 }
             }
@@ -108,7 +108,7 @@ struct SwingView: View {
                         guard let movie = try await item.loadTransferable(type: ImportedSwingMovie.self) else {
                             throw VideoLibraryError.invalidVideo
                         }
-                        await save(url: movie.url, angle: "Unspecified", source: "Imported")
+                        await save(url: movie.url, angle: .unspecified, source: .imported)
                     } catch { self.error = "The video could not be imported. Try a local video shorter than three minutes." }
                 }
             }
@@ -122,7 +122,7 @@ struct SwingView: View {
             }
     }
 
-    @MainActor private func save(url: URL, angle: String, source: String) async {
+    @MainActor private func save(url: URL, angle: CameraAngle, source: RecordingSource) async {
         do {
             let metadata = try await VideoLibrary.metadata(for: url)
             let recording = SwingRecording(title: prefs.text("Swing recording"), videoFileName: url.lastPathComponent,

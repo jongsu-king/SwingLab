@@ -58,7 +58,10 @@ struct CaddieView: View {
                     Picker(preferences.text("Strategy"), selection: $strategy) {
                         ForEach(CaddieStrategy.allCases) { strategy in Text(preferences.text(strategy.rawValue)).tag(strategy) }
                     }
-                    LabeledContent(preferences.text("Target distance"), value: preferences.distance(targetDistance))
+                    LabeledContent(preferences.text("Target distance")) {
+                        SLMetricReadout(metric: ProvenancedValue(value: targetDistance, unit: "m", provenance: .estimated,
+                            method: "map.targetDistance.v1"))
+                    }
                 }
                 if candidates.isEmpty {
                     SLEmptyState(title: preferences.text("Build your club profile"),
@@ -76,8 +79,9 @@ struct CaddieView: View {
                                         Spacer()
                                         if index == 0 { Text(preferences.text("Recommended")).font(.caption).foregroundStyle(SLTheme.forest) }
                                     }
-                                    Text(preferences.text("Expected distance from target") + ": " + preferences.distance(candidate.remainingMeters))
-                                        .font(.subheadline).foregroundStyle(.secondary)
+                                    SLMetricReadout(metric: ProvenancedValue(value: candidate.remainingMeters, unit: "m",
+                                        provenance: .estimated, method: "caddie.expectedRemaining.v1"),
+                                        label: preferences.text("Expected distance from target"), alignment: .leading)
                                 }
                                 .padding(.vertical, 5)
                             }.buttonStyle(.plain)

@@ -33,6 +33,7 @@ enum CheckFailure: Error { case nilValue }
 @main struct CoreCheckRunner {
     @MainActor static func main() throws {
         let units = UnitsTests(), geography = GeographyTests(), dispersion = DispersionTests(), timing = TimingAndGeometryTests()
+        let provenance = ProvenanceTests()
         let checks: [(String, () throws -> Void)] = [
             ("independent unit conversions", units.testIndependentUnitsRoundTrip),
             ("language fallback", units.testLanguageFallbackAndRegionalMatching),
@@ -46,7 +47,14 @@ enum CheckFailure: Error { case nilValue }
             ("invalid timing rejection", timing.testInvalidTimingRejected),
             ("joint angles and missing joints", timing.testProjectedAngleMissingJointHandling),
             ("explainable club ranking", timing.testExplainableClubRankingChangesWithRiskPreference),
-            ("interrupted media deletion recovery", timing.testInterruptedMediaDeletionRecovery)
+            ("interrupted media deletion recovery", timing.testInterruptedMediaDeletionRecovery),
+            ("stable provenance and legacy labels", provenance.testStableProvenanceAndLegacyLabels),
+            ("typed recording metadata migration", provenance.testTypedRecordingMetadataMigration),
+            ("measurement value invariants", provenance.testMeasurementInvariants),
+            ("measurement decoding validation", provenance.testDecodingCannotBypassMeasurementValidation),
+            ("schema-v1 analysis migration", provenance.testSchemaOneAnalysisJSONStillDecodes),
+            ("typed metric SI units and origin", provenance.testTypedMetricSIUnitsAndProvenance),
+            ("missing and invalid pose metrics", provenance.testInvalidOrMissingPoseMetricsRemainUnavailable)
         ]
         for (name, check) in checks {
             let before = failures

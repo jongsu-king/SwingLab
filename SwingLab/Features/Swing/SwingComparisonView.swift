@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import SwingLabCore
 @preconcurrency import AVFoundation
 
 struct SwingComparisonView: View {
@@ -27,7 +28,7 @@ struct SwingComparisonView: View {
     }
     private var start: Double { max(0, -shift) }
     private var end: Double { min(first?.durationSeconds ?? 0, (second?.durationSeconds ?? 0) - shift) }
-    private var sameAngle: Bool { first?.cameraAngle == second?.cameraAngle && first?.cameraAngle != "Unspecified" }
+    private var sameAngle: Bool { first?.cameraAngleValue == second?.cameraAngleValue && first?.cameraAngleValue != .unspecified }
 
     var body: some View {
         ScrollView {
@@ -132,8 +133,9 @@ struct SwingComparisonView: View {
             HStack {
                 Text(prefs.text("Manual offset"))
                 Spacer()
-                Text(offset, format: .number.sign(strategy: .always()).precision(.fractionLength(3))).monospacedDigit()
-                Text(prefs.text("s"))
+                SLMetricReadout(metric: ProvenancedValue(value: offset, unit: "s", provenance: .userEntered,
+                                                         method: "comparison.manualOffset.v1"),
+                                fractionDigits: 3, valueFont: .caption)
             }.font(.caption)
             Slider(value: $offset, in: -2...2, step: 0.001).accessibilityLabel(prefs.text("Manual offset"))
             Button(prefs.text("Reset alignment")) { offset = 0; seek(start) }.font(.caption)
@@ -144,12 +146,12 @@ struct SwingComparisonView: View {
         VStack(alignment: .leading, spacing: 12) {
             SLSectionHeader(title: prefs.text("Practice observation"), subtitle: prefs.text("Based on your phase markers"))
             if sameAngle, let a = firstReport, let b = secondReport,
-               let firstTempo = a.tempoRatio, let secondTempo = b.tempoRatio {
+               a.tempoRatio != nil, b.tempoRatio != nil {
                 HStack {
                     Text(prefs.text("Tempo ratio")); Spacer()
-                    Text(firstTempo, format: .number.precision(.fractionLength(2)))
+                    SLMetricReadout(metric: a.tempoMetric, fractionDigits: 2, displayAsRatio: true, valueFont: .subheadline)
                     Image(systemName: "arrow.right")
-                    Text(secondTempo, format: .number.precision(.fractionLength(2)))
+                    SLMetricReadout(metric: b.tempoMetric, fractionDigits: 2, displayAsRatio: true, valueFont: .subheadline)
                 }.font(.subheadline).monospacedDigit()
                 let message = coachingKey(a, b)
                 Text(prefs.text(message)).font(.subheadline)

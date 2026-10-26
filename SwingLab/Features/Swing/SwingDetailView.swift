@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import SwingLabCore
 
 struct SwingDetailView: View {
     @Environment(AppPreferences.self) private var prefs
@@ -61,8 +62,10 @@ struct SwingDetailView: View {
                        in: 0...max(0.01, recording.durationSeconds)).tint(SLTheme.forest)
                     .accessibilityLabel(prefs.text("Video position"))
                 HStack {
-                    Text(playback.time, format: .number.precision(.fractionLength(3)))
-                        .font(.caption.monospacedDigit()).frame(minWidth: 60, alignment: .leading)
+                    SLMetricReadout(metric: ProvenancedValue(value: playback.time, unit: "s", provenance: .measured,
+                                                             method: "video.playbackTimestamp.v1"),
+                                    fractionDigits: 3, valueFont: .caption, alignment: .leading)
+                        .frame(minWidth: 60, alignment: .leading)
                     Spacer()
                     Button { playback.step(-1) } label: { Image(systemName: "backward.end").frame(width: 44, height: 44) }
                         .accessibilityLabel(prefs.text("Previous frame"))
@@ -104,17 +107,17 @@ struct SwingDetailView: View {
                     do { try modelContext.save() } catch { recording.title = old; self.error = "Changes could not be saved." }
                 }.disabled(titleDraft.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || titleDraft == recording.title)
             }
-            Picker(prefs.text("Camera angle"), selection: $recording.cameraAngle) {
-                ForEach(["Unspecified", "Face-on", "Down the line"], id: \.self) { Text(prefs.text($0)).tag($0) }
+            Picker(prefs.text("Camera angle"), selection: $recording.cameraAngleValue) {
+                ForEach(CameraAngle.allCases, id: \.self) { Text(prefs.text($0.localizationKey)).tag($0) }
             }.pickerStyle(.segmented)
-                .onChange(of: recording.cameraAngle) { _, _ in
+                .onChange(of: recording.cameraAngleValue) { _, _ in
                     do { try modelContext.save() } catch { self.error = "Changes could not be saved." }
                 }
             HStack {
-                Text(prefs.text(recording.source))
-                Text("·")
-                Text(recording.nominalFrameRate, format: .number.precision(.fractionLength(0...2)))
-                Text(prefs.text("nominal fps"))
+                Text(prefs.text(recording.sourceValue.localizationKey))
+                Spacer()
+                SLMetricReadout(metric: recording.frameRateMetric, label: prefs.text("nominal fps"),
+                                fractionDigits: 2, valueFont: .caption)
             }.font(.caption).foregroundStyle(.secondary)
         }.padding(.horizontal, 20)
     }
@@ -140,9 +143,11 @@ struct SwingDetailView: View {
             }
             if let report {
                 HStack {
-                    Text(prefs.text("Frames with pose"))
+                    SLMetricReadout(metric: ProvenancedValue(value: Double(report.poseFrameCount), unit: "1",
+                                                             provenance: .visionDerived, method: "pose.observationCount.v1",
+                                                             sampleCount: report.sampledFrameCount),
+                                    label: prefs.text("Frames with pose"), valueFont: .caption, alignment: .leading)
                     Spacer()
-                    Text("\(report.poseFrameCount) / \(report.sampledFrameCount)").monospacedDigit()
                 }.font(.caption).foregroundStyle(.secondary)
             }
             Text(prefs.text("Use one golfer and one swing per clip. Keep the full body visible in good light. Analysis samples up to 30 frames per second."))
@@ -163,13 +168,11 @@ struct SwingDetailView: View {
                     } label: {
                         HStack {
                             Image(systemName: selectedPhase == phase ? "circle.inset.filled" : "circle")
-                            Text(prefs.text(phase.rawValue)).font(.subheadline)
+                            Text(prefs.text(phase.localizationKey)).font(.subheadline)
                             Spacer()
                             if let marker = report.marker(phase) {
-                                VStack(alignment: .trailing, spacing: 2) {
-                                    Text(marker.time, format: .number.precision(.fractionLength(3))).monospacedDigit()
-                                    Text(prefs.text(marker.provenance)).font(.caption2).foregroundStyle(.secondary)
-                                }
+                                SLMetricReadout(metric: marker.metric,
+                                                fractionDigits: 3, valueFont: .subheadline)
                             } else { Text(prefs.text("Unset")).font(.caption).foregroundStyle(.secondary) }
                         }.frame(minHeight: 40).contentShape(Rectangle())
                     }.buttonStyle(.plain)
@@ -186,29 +189,28 @@ struct SwingDetailView: View {
 
     private func metricsSection(_ report: PoseAnalysisReport) -> some View {
         VStack(alignment: .leading, spacing: 16) {
-            SLSectionHeader(title: prefs.text("Timing & movement"), subtitle: prefs.text(report.timingProvenance ?? "Set address, top, and impact markers."))
-            if let ratio = report.tempoRatio {
+            SLSectionHeader(title: prefs.text("Timing & movement"), subtitle: prefs.text("Set address, top, and impact markers."))
+            if report.tempoRatio != nil {
                 HStack(alignment: .firstTextBaseline) {
-                    Text(ratio, format: .number.precision(.fractionLength(2))).font(.system(size: 44, weight: .light)).monospacedDigit()
-                    Text(": 1").font(.title2).foregroundStyle(.secondary)
+                    SLMetricReadout(metric: report.tempoMetric, label: prefs.text("Tempo ratio"), fractionDigits: 2, displayAsRatio: true,
+                                    valueFont: .system(size: 44, weight: .light), alignment: .leading)
                     Spacer()
                     Text(prefs.text("Backswing / downswing")).font(.caption).foregroundStyle(.secondary)
                 }
             }
-            if let back = report.backswingDuration { metricRow("Backswing", value: back.formatted(.number.precision(.fractionLength(3)).locale(prefs.locale)) + " " + prefs.text("s")) }
-            if let down = report.downswingDuration { metricRow("Downswing", value: down.formatted(.number.precision(.fractionLength(3)).locale(prefs.locale)) + " " + prefs.text("s")) }
-            if let head = report.headMovementPercent {
-                metricRow("Head displacement", value: head.formatted(.number.precision(.fractionLength(1)).locale(prefs.locale)) + "%")
+            SLMetricReadout(metric: report.backswingMetric, label: prefs.text("Backswing"), fractionDigits: 3,
+                            valueFont: .subheadline, alignment: .leading)
+            SLMetricReadout(metric: report.downswingMetric, label: prefs.text("Downswing"), fractionDigits: 3,
+                            valueFont: .subheadline, alignment: .leading)
+            SLMetricReadout(metric: report.headDisplacementMetric, label: prefs.text("Head displacement"), fractionDigits: 1,
+                            displayAsPercent: true, valueFont: .subheadline, alignment: .leading)
+            if report.headMovementPercent != nil {
                 Text(prefs.text("Vision-derived maximum nose displacement from address to impact in normalized image coordinates. Camera motion and perspective affect this proxy."))
                     .font(.caption).foregroundStyle(.secondary)
             }
             Text(prefs.text("Compare recordings from the same camera angle and position. These are 2D projections, not anatomical 3D measurements."))
                 .font(.caption).foregroundStyle(.secondary)
         }.padding(20).background(SLTheme.surface).padding(.horizontal, 20)
-    }
-
-    private func metricRow(_ name: String, value: String) -> some View {
-        HStack { Text(prefs.text(name)); Spacer(); Text(value).monospacedDigit() }.font(.subheadline)
     }
 
     private var limitations: some View {
@@ -229,7 +231,7 @@ struct SwingDetailView: View {
                     Task { @MainActor in progress = value }
                 }
                 try Task.checkCancellation()
-                let manual = report?.markers.filter { $0.provenance == "User-entered" } ?? []
+                let manual = report?.markers.filter { $0.provenance == .userEntered } ?? []
                 // Preserve deliberate human edits; new inferred markers can otherwise conflict with them.
                 if !manual.isEmpty { result.markers = manual }
                 try persist(result)
@@ -249,7 +251,7 @@ struct SwingDetailView: View {
             error = "Phase markers must follow chronological order. Clear a conflicting marker or choose another frame."; return
         }
         updated.markers.removeAll { $0.phase == selectedPhase }
-        updated.markers.append(SwingPhaseMarker(phase: selectedPhase, time: time, provenance: "User-entered"))
+        updated.markers.append(SwingPhaseMarker(phase: selectedPhase, time: time, provenance: .userEntered))
         do { try persist(updated) } catch { self.error = "Changes could not be saved." }
     }
 
