@@ -78,6 +78,8 @@ def scan(sources):
     keys=set(); producers=set(); helpers={'text':[(0,None)],'format':[(0,None)]}; names={}; errors=[]
     for path,ts in trees.items():
         typed=set(); names[path]=typed
+        if not path.endswith('LocalizationKey.swift') and 'ExpressibleByStringLiteral' in ts:
+            errors.append(f'{path}: generic literal-key factories require an explicit typed LocalizationKey producer')
         if path.endswith('LocalizationKey.swift') is False and any(ts[i:i+2]==['stringLiteral',':'] for i in range(len(ts)-1)):
             errors.append(f'{path}: direct stringLiteral constructor is forbidden; use source literals or a typed enum')
         # Synthesized memberwise initializers are part of the typed boundary too.
@@ -88,7 +90,10 @@ def scan(sources):
                 if j==len(ts):continue
                 end=close(ts,j);body=ts[j+1:end]
                 for k in range(len(body)-3):
-                    if body[k] in ['let','var'] and body[k+2]==':' and body[k+3]=='LocalizationKey':
+                    if body[k] in ['let','var'] and body[k+2]==':':
+                        field_end=k+3
+                        while field_end<len(body) and body[field_end] not in ['=','{',';','}','let','var']:field_end+=1
+                        if 'LocalizationKey' not in body[k+3:field_end]:continue
                         label=body[k+1]
                         helpers.setdefault(ts[i+1],[]).append((0,label))
                         helpers.setdefault('init',[]).append((0,label))
@@ -196,7 +201,8 @@ def validate(keys, catalog):
             if plural_required and plural is None:errors.append(f'{key}/{locale}: missing plural structure')
             forms=plural or {'value':loc}
             required={'other'} if locale in ['ko','ja','zh-Hans','zh-Hant','th','vi'] else {'one','other'}
-            if plural and not required.issubset(forms):errors.append(f'{key}/{locale}: missing plural forms {required-set(forms)}')
+            if locale in ['fr','es','it','pt-BR']:required.add('many')
+            if plural is not None and not required.issubset(plural):errors.append(f'{key}/{locale}: missing plural forms {required-set(plural)}')
             for form,value in forms.items():
                 unit=value.get('stringUnit',{})
                 if unit.get('state')!='translated' or not unit.get('value'):errors.append(f'{key}/{locale}/{form}: empty or untranslated')

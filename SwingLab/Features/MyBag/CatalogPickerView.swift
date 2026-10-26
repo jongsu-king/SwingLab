@@ -25,7 +25,7 @@ struct CatalogPickerView: View {
             }
         }
         .navigationTitle(preferences.text("Club catalog"))
-        .searchable(text: $query, prompt: preferences.text("Search equipment"))
+        .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: preferences.text("Search equipment"))
     }
 }
 
@@ -127,6 +127,6 @@ struct ShaftCatalogPickerView: View {
         }
         }
         .navigationTitle(preferences.text("Shaft catalog"))
-        .searchable(text: $query, prompt: preferences.text("Search equipment"))
+        .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: preferences.text("Search equipment"))
     }
 }

@@ -1,0 +1,117 @@
+Skipped export for CatalogMigrationTests/testBundledCatalogIsAvailableToTheEditor(): no matching attachments
+
+Skipped export for CatalogMigrationTests/testEquipmentDraftRejectsNonfiniteAndOffStepDimensions(): no matching attachments
+
+Skipped export for CatalogMigrationTests/testV3ToV4PreservesCustomEquipmentAndAddsOptionalCatalogFields(): no matching attachments
+
+Skipped export for ClubDraftTests/testCommaDecimalAndSignedOffsetConvertAtBoundary(): no matching attachments
+
+Skipped export for ClubDraftTests/testHostedAppCatalogUsesExplicitLanguageAndFallback(): no matching attachments
+
+Skipped export for ClubDraftTests/testInvalidDraftCannotPartiallyMutateTheClub(): no matching attachments
+
+Skipped export for ClubDraftTests/testTotalBelowCarryAndSingularCorrelationAreRejected(): no matching attachments
+
+Skipped export for CourseGeometryPersistenceTests/testLegacyReferencesSurvivePolygonSaveAndReopen(): no matching attachments
+
+Skipped export for CourseTests/testGPSFreshnessAndAccuracyBoundaries(): no matching attachments
+
+Skipped export for CourseTests/testManualReferencesPersistAndRemainHoleSpecific(): no matching attachments
+
+Skipped export for CourseTests/testScoreInputPreservesMissingValuesAndIncludesPenalties(): no matching attachments
+
+Skipped export for PersistenceTests/testClubDraftRejectsInvalidNumbersAndPreservesPrecision(): no matching attachments
+
+Skipped export for PersistenceTests/testClubPersistsInSIAndCanBeEdited(): no matching attachments
+
+Skipped export for PersistenceTests/testPreferencesPersistWithoutCouplingLanguageToUnits(): no matching attachments
+
+Skipped export for PersistenceTests/testRoundCascadeAndGroundDistance(): no matching attachments
+
+Skipped export for PracticeSessionTests/testAssignGroupsByRollingWindowAndCapturesPreference(): no matching attachments
+
+Skipped export for PracticeSessionTests/testDeletingRecordingsUpdatesSessionDateAndPreservesNotes(): no matching attachments
+
+Skipped export for PracticeSessionTests/testRegroupPersistsAndRollbackRestoresMembership(): no matching attachments
+
+Skipped export for SchemaMigrationTests/testRoundOneStoreMigratesToFrozenV2WithoutLosingRecordsOrRelationships(): no matching attachments
+
+Skipped export for SchemaMigrationTests/testRoundOneStoreMigratesWithoutLosingRecordsOrRelationships(): no matching attachments
+
+Skipped export for SchemaMigrationTests/testV2StorePreservesCachesAndAddsSessionsWithoutLosingRelationships(): no matching attachments
+
+Exported 1 attachment for: CatalogEditorTests/testCatalogSearchSelectionAndSave():
+File: 1AF81DAF-D29A-485B-B536-A7C346C9F54D.png, suggested name: "round4-en-light-catalog-editor_0_20799713-A4C2-49E6-BC39-2CBEECAE5FFE.png"
+
+Exported 6 attachments for: DetailScreenshotTests/testEmptyDetailVariants():
+File: 48556C4A-D0AD-4CBA-9137-25DBB825B137.png, suggested name: "round4-de-dark-swing-detail-empty_0_DB07F16B-4A8B-454C-BB3B-2B8A95C6649C.png"
+File: 157D46E2-E55E-49F0-91A8-045BB7752002.png, suggested name: "round4-de-light-swing-detail-empty_0_B53B72C5-E968-45D8-BB32-DCEE06188BF0.png"
+File: C5FD3FDC-33AE-4252-B006-67582D6F441D.png, suggested name: "round4-ko-dark-swing-detail-empty_0_1ACD4307-8A04-4C41-A157-0ADE88A6F491.png"
+File: 133C7886-4B8F-45B7-A5ED-9BF67297EBBD.png, suggested name: "round4-ko-light-swing-detail-empty_0_B0D3110A-2110-4733-BCC6-19E2B7B49C59.png"
+File: F5E7C486-1248-4379-A588-A578C8AD14BC.png, suggested name: "round4-en-dark-swing-detail-empty_0_3AC23E0B-C85E-4296-9E9D-EEF09347BE87.png"
+File: 4EDDBBB5-0A4B-4CDF-8E19-15B536B5BB2D.png, suggested name: "round4-en-light-swing-detail-empty_0_187FB022-0B8A-453D-8F33-BAF9DF4CFE14.png"
+
+Skipped export for NavigationTests/testOnboardingAndFourTabs(): no matching attachments
+
+Exported 8 attachments for: ScreenshotTests/testEnglishDark():
+File: 6673CEF1-D2C5-4E27-A1C7-4FB28C9D42FB.png, suggested name: "round4-en-dark-swing-detail-empty_0_B7E51E64-1156-4343-B0AB-C242997439CC.png"
+File: 3D1517D3-2F53-4192-8BFE-1727FF523CC3.png, suggested name: "round4-en-dark-performance_0_556A2694-BF29-41C4-A3CE-70577D69DC1B.png"
+File: 936AE8E2-543F-4109-889F-4ED1D7349F9C.png, suggested name: "round4-en-dark-course_0_115129EA-23D5-4CE9-907A-3AAEAD4E794D.png"
+File: 3093E8EC-308A-43C1-A9BE-75E309C1B6E6.png, suggested name: "round4-en-dark-flight_0_7E4C6924-D63A-4C19-AA6D-E4F0DAC1F85B.png"
+File: D70D5E89-6ECF-4EFF-83A2-2D05F12B061A.png, suggested name: "round4-en-dark-swing_0_DC722293-3F6E-4E8C-A823-6E63C5BB460B.png"
+File: 7EB49375-FA26-4892-9C4B-3E5BD0BC0386.png, suggested name: "round4-en-dark-bag_0_0E757944-010F-4481-A879-D5634BA576D2.png"
+File: F0187620-DD78-4B13-814F-BF36F94DDBBA.png, suggested name: "round4-en-dark-settings_0_75774B1D-42B4-47CE-8C4A-87FFAD80E6BC.png"
+File: 8BB6AB08-C3C8-45F3-A0E3-816D61CE1AC0.png, suggested name: "round4-en-dark-home_0_6189677C-D473-4454-89FF-B40AB29ADA16.png"
+
+Exported 8 attachments for: ScreenshotTests/testEnglishLight():
+File: 7941381D-4CBD-4239-BC07-970BFCBB35F8.png, suggested name: "round4-en-light-swing-detail-empty_0_F5F1B65A-92BA-4C77-887C-29B4F1669F28.png"
+File: 5C4B871B-B5A9-44BB-84F0-3DBF0BE9DB3A.png, suggested name: "round4-en-light-performance_0_03000B5D-667C-4E94-AD85-2FE4B497C469.png"
+File: 7CC4CA43-74A7-411F-93D5-2A6DFDE929F6.png, suggested name: "round4-en-light-course_0_B0F0B8ED-6EEE-4D71-BFD1-2F45BAD9B3F9.png"
+File: 2987A88B-D635-4523-911A-C06C401376EE.png, suggested name: "round4-en-light-flight_0_DDE9B37C-943E-49F9-B2E1-516B038A2287.png"
+File: 7255E3FF-F3A2-4F16-BAAA-44FA53113118.png, suggested name: "round4-en-light-swing_0_EA96FC62-55BD-45F5-AB21-3F9B0598C3C7.png"
+File: FDD5229B-D090-4FF7-8ACC-56F5E6197FE0.png, suggested name: "round4-en-light-bag_0_90EE79B9-8C2E-4598-B89A-AB5F5DE3B3DB.png"
+File: 0928FF6E-C73D-4276-988A-B918B0100ED4.png, suggested name: "round4-en-light-settings_0_3D7F6B81-1342-4B78-8A72-4F8CF71C2938.png"
+File: BDFC5873-4D28-474A-8B5D-9C1B30883BBE.png, suggested name: "round4-en-light-home_0_F537E5CD-3BE0-41A9-A69A-3BD1DD6A1857.png"
+
+Exported 8 attachments for: ScreenshotTests/testGermanDark():
+File: 561109BB-AD76-4D42-AA35-8885F96CA2E3.png, suggested name: "round4-de-dark-swing-detail-empty_0_1DD7C9D9-906F-4BAD-A51F-EC503934D852.png"
+File: 2A78A65B-5E8A-4FE9-B7D2-67A7E43536AB.png, suggested name: "round4-de-dark-performance_0_37F20F0F-060B-4DE0-98A1-B381AB0604A8.png"
+File: E16D33D4-95AA-49CC-AE92-8AEA4B2696CD.png, suggested name: "round4-de-dark-course_0_5E116880-30AE-459C-8EA3-FBB0BF615DE1.png"
+File: 20B3569A-2203-45E1-91F0-DE49B264A29D.png, suggested name: "round4-de-dark-flight_0_C9A0A7BF-2DC9-4929-839A-96D72468C559.png"
+File: 1DCD9277-5725-4695-A870-8D29986BB58C.png, suggested name: "round4-de-dark-swing_0_30A6EFED-0453-4911-A814-75421D90377F.png"
+File: 037FF228-CF4F-4107-BE0D-FFDFC009D4F4.png, suggested name: "round4-de-dark-bag_0_68D9CAAC-3DF5-4378-98BC-A0CC6FAD2670.png"
+File: A572DBF8-B3E0-4A1A-A382-400CA5FF697C.png, suggested name: "round4-de-dark-settings_0_F8B0A44E-1E53-4000-B922-8109A72C14D7.png"
+File: 1C4A27EE-CA08-449F-877B-21B020A52A49.png, suggested name: "round4-de-dark-home_0_D1BFDED1-AC00-41FD-B071-4BB43C7A1E81.png"
+
+Exported 8 attachments for: ScreenshotTests/testGermanLight():
+File: D79D7ECD-0430-402E-8F3A-2A9C1A4E4907.png, suggested name: "round4-de-light-swing-detail-empty_0_071FF1C8-4963-4443-A735-5E48F451912F.png"
+File: F87D65D9-9430-4C1E-8418-AE860B0807B7.png, suggested name: "round4-de-light-performance_0_F9BBE65F-6FA6-4CE0-9742-F4E80EB929C9.png"
+File: 1A8790E1-08C2-45F3-99BC-73BC0A163115.png, suggested name: "round4-de-light-course_0_FFB4FE23-1450-4903-BC19-2C099A08AB0C.png"
+File: 82C80149-5353-446A-9661-4C9FAA238330.png, suggested name: "round4-de-light-flight_0_C3836C6F-25E4-403F-B26F-95692D82389C.png"
+File: 34DD5C6D-54DB-49D8-B068-EE04FCF6427E.png, suggested name: "round4-de-light-swing_0_1B1B9D46-4114-419E-868F-67C5CE8ECD8B.png"
+File: 3B699A3A-6BBE-44B6-BD2B-647432603275.png, suggested name: "round4-de-light-bag_0_D65601DE-58EF-4E3A-830B-A0DB60174AAF.png"
+File: CD12A16D-23C3-4499-AECD-277675EF7928.png, suggested name: "round4-de-light-settings_0_DE91FF09-0E8E-4AFD-818A-21509690DD4F.png"
+File: 80972FD5-D3D2-4AEF-B543-931272EF9EAC.png, suggested name: "round4-de-light-home_0_2EDEFDBB-119C-479C-BD49-41466ABB2FCE.png"
+
+Exported 8 attachments for: ScreenshotTests/testKoreanDark():
+File: 9361FF7E-1915-4385-92DB-8F5B65F03E85.png, suggested name: "round4-ko-dark-swing-detail-empty_0_D1F50C99-CA6F-40B7-BA9F-50C7CFFB8496.png"
+File: 525C5556-404B-4DF0-825B-3351CEB2DFF7.png, suggested name: "round4-ko-dark-performance_0_19EAD8C8-91CD-4B75-B41F-38828F89EE4B.png"
+File: 60748250-34C7-46CB-93F2-273FCEA5EB35.png, suggested name: "round4-ko-dark-course_0_78941EE0-2C8E-4C05-A0C7-A8477E667479.png"
+File: 2B247C19-4908-429C-A38C-385846403F3B.png, suggested name: "round4-ko-dark-flight_0_1C910230-EB6F-466D-99A4-9C37E9115445.png"
+File: 1029298B-ED62-478E-8A93-B8622B5E1933.png, suggested name: "round4-ko-dark-swing_0_9AC7B9F9-7656-4E2D-95D4-EEA38CCAFCC6.png"
+File: D61EB3F7-D3D7-4E91-B595-01BE1A7B2395.png, suggested name: "round4-ko-dark-bag_0_311FAEDF-2E26-41AA-AE69-28D9BF79234F.png"
+File: 15A48AB1-EC5B-4C9C-A7DC-82D0C3B9D9CB.png, suggested name: "round4-ko-dark-settings_0_9AD21BD1-9A5D-4570-9B64-3685BE454251.png"
+File: FCB6F133-C4A6-4420-BA25-897C93A72DB3.png, suggested name: "round4-ko-dark-home_0_5B7DA701-C49C-4AD4-BD86-9A493DC52EC7.png"
+
+Exported 8 attachments for: ScreenshotTests/testKoreanLight():
+File: 3BA5A616-F430-4F56-9FBC-57F70CB8058C.png, suggested name: "round4-ko-light-swing-detail-empty_0_9CA58E87-F35B-4754-AD45-D8EAD863B68C.png"
+File: 632BA82A-10A0-47ED-BF43-88C6DE4AC4D6.png, suggested name: "round4-ko-light-performance_0_D1E3285D-4378-4C94-B9EC-1B01FECE5E90.png"
+File: 7EA2391D-D262-48D5-9E92-B6A70AA8FC4B.png, suggested name: "round4-ko-light-course_0_5CE798BB-5B5A-4480-8D47-8E55C2805036.png"
+File: 458EFEA8-501D-4076-A6FB-9C2CEB04E756.png, suggested name: "round4-ko-light-flight_0_82271990-2A33-4F72-8633-E869D2DA10EE.png"
+File: 0CE03B76-731B-411A-880F-186E8F140A99.png, suggested name: "round4-ko-light-swing_0_05BBC1E2-18C6-4D81-B582-A2B704E6E6CF.png"
+File: 1AB8C3A0-2859-4431-BDF4-F4EDFB2D3BE6.png, suggested name: "round4-ko-light-bag_0_C8DE26A5-82B4-4012-BA88-D79260EC7956.png"
+File: EA8A6585-C19D-4393-8104-F6E3F302FB2B.png, suggested name: "round4-ko-light-settings_0_669AF149-ED8E-4831-A73E-81B692F1E3B4.png"
+File: DB12A4E3-D658-4BCB-A796-81D03D938D6B.png, suggested name: "round4-ko-light-home_0_8D914A1E-730A-4E35-888C-33D15B03EC66.png"
+
+Generated manifest file with attachment details: /var/folders/2b/qptrtw3n5lg_rcjstl2kddgr0000gn/T/swinglab-screenshots-f1qbmn4y/manifest.json
+Exported 49 screenshots: iPhone 17 Pro, iOS 26.4, Docs/Screenshots/round-4/iphone17pro-ios26.4

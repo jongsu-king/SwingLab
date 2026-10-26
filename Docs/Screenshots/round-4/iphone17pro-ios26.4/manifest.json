@@ -1,0 +1,497 @@
+{
+  "device": "iPhone 17 Pro",
+  "runtime": "iOS 26.4",
+  "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+  "screenshots": [
+    {
+      "file": "round4-de-dark-bag.png",
+      "test": "ScreenshotTests/testGermanDark()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019517.769,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "cac357fe6f2874524cabb1419163ea3fd1d6356080eb7d74af499f7ec67fa9ac"
+    },
+    {
+      "file": "round4-de-dark-course.png",
+      "test": "ScreenshotTests/testGermanDark()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019534.387,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "4f23f8f65b8ea96b0a622818cb0067c030c8707d225cbd5bf3537aae00f35fc9"
+    },
+    {
+      "file": "round4-de-dark-flight.png",
+      "test": "ScreenshotTests/testGermanDark()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019531.033,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "868f32c3474fcaaaf64ed9087c605bc84b38f79ff6485fc6e2e6c9adbc7b6355"
+    },
+    {
+      "file": "round4-de-dark-home.png",
+      "test": "ScreenshotTests/testGermanDark()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019508.711,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "c67a72c8ce7279854a96a03beeec9ed91ba4701ab3f2f040b8a914128d04a403"
+    },
+    {
+      "file": "round4-de-dark-performance.png",
+      "test": "ScreenshotTests/testGermanDark()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019536.158,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "658dc1496bded6b2958d119e1c64fa6f26dae9adb117ca6ae498e0fe00f5716a"
+    },
+    {
+      "file": "round4-de-dark-settings.png",
+      "test": "ScreenshotTests/testGermanDark()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019511.215,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "c6bf523f401e7f27707e7c2bedab37be417727a778896c58de84006fadbaaca4"
+    },
+    {
+      "file": "round4-de-dark-swing-detail-empty.png",
+      "test": "ScreenshotTests/testGermanDark()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019547.533,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "9297bbc153f5a647b53a531d20fa206ffd5abb3b04ce3fc0d5664e41e831643f"
+    },
+    {
+      "file": "round4-de-dark-swing.png",
+      "test": "ScreenshotTests/testGermanDark()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019519.742,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "f07282c438e9efdf5a99bb342087cd90524227965579b6cf6102592c8d614320"
+    },
+    {
+      "file": "round4-de-light-bag.png",
+      "test": "ScreenshotTests/testGermanLight()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019561.213,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "96c34c22549ff8214c1d3ac2e7742191173324d33c3dccffc6401adcbd273251"
+    },
+    {
+      "file": "round4-de-light-course.png",
+      "test": "ScreenshotTests/testGermanLight()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019577.053,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "62ac0d2743ddc472d0f369728fc6b0f975cef19a2b2fd23d4b4bdcbedb90ff2a"
+    },
+    {
+      "file": "round4-de-light-flight.png",
+      "test": "ScreenshotTests/testGermanLight()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019574.409,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "35cea6726d08c7bd4702c694576acdfc798959605eafc8c0a4dee743a790ff1d"
+    },
+    {
+      "file": "round4-de-light-home.png",
+      "test": "ScreenshotTests/testGermanLight()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019552.873,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "29bfacf0d0fd7be2f8c9a4b343341272481dad6bda068da3b2718e12b545e0eb"
+    },
+    {
+      "file": "round4-de-light-performance.png",
+      "test": "ScreenshotTests/testGermanLight()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019578.769,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "950d33e96bff39de08884a2329c37a8c9d2e5fbff033211b19b40021c86f0b5d"
+    },
+    {
+      "file": "round4-de-light-settings.png",
+      "test": "ScreenshotTests/testGermanLight()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019554.784,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "39d9f0615886e5f549fc4f9db4f2846efe978b925797f1e5490259ca5a928079"
+    },
+    {
+      "file": "round4-de-light-swing-detail-empty.png",
+      "test": "ScreenshotTests/testGermanLight()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019589.409,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "8046e59001c7004aaa148375546c5fcff36afed5b4fedf8266b9e632084e4c10"
+    },
+    {
+      "file": "round4-de-light-swing.png",
+      "test": "ScreenshotTests/testGermanLight()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019563.301,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "c5fcee04c67740390a6f024646f0501c387d5a06edb2cf932b084bd1a937107c"
+    },
+    {
+      "file": "round4-en-dark-bag.png",
+      "test": "ScreenshotTests/testEnglishDark()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019424.147,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "b24ea20a984301a67f0e43b96e5f2217794e240727425d61deda2edb000f215a"
+    },
+    {
+      "file": "round4-en-dark-course.png",
+      "test": "ScreenshotTests/testEnglishDark()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019438.174,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "3d998c694058da42b573f3ad3297c97ddcf2bc569ee5313e3310bc25e7f5e235"
+    },
+    {
+      "file": "round4-en-dark-flight.png",
+      "test": "ScreenshotTests/testEnglishDark()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019435.974,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "9a3720975d4f249dbba0bab73c19e91433ef6dc269da9fa5d3371a164a2c81f6"
+    },
+    {
+      "file": "round4-en-dark-home.png",
+      "test": "ScreenshotTests/testEnglishDark()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019415.874,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "4f7ab01bf487ec672e1daa42bf7a0c07d609fec0c49d731ff1e2430f5a14d6bd"
+    },
+    {
+      "file": "round4-en-dark-performance.png",
+      "test": "ScreenshotTests/testEnglishDark()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019439.94,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "3143fa6426a9b0cda7c76fd230452b03e56c157bc6f4958edd83c56ef5922ec9"
+    },
+    {
+      "file": "round4-en-dark-settings.png",
+      "test": "ScreenshotTests/testEnglishDark()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019417.734,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "8bc38e3ca4b80dc871d58ed871e7dbf31961be849bfbc654ba1faf799a4c1e7b"
+    },
+    {
+      "file": "round4-en-dark-swing-detail-empty.png",
+      "test": "ScreenshotTests/testEnglishDark()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019450.843,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "6cc993eb9f4f31060f6cc1ccea37835417397a29d5a5372631ee08978338b470"
+    },
+    {
+      "file": "round4-en-dark-swing.png",
+      "test": "ScreenshotTests/testEnglishDark()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019425.92,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "75b492c3ea0b59f4a1596c06dd01650fcccbfcaecaece1d72410b8f03b130138"
+    },
+    {
+      "file": "round4-en-light-bag.png",
+      "test": "ScreenshotTests/testEnglishLight()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019465.769,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "24cacaeddd095d4e23193402069be8fde28d9ec707f28e8803727dd142208559"
+    },
+    {
+      "file": "round4-en-light-catalog-editor.png",
+      "test": "CatalogEditorTests/testCatalogSearchSelectionAndSave()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019314.676,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "121c41a77cf41d8ad9b26d2d42cd32ff6c6db624141e8041af6e34bc8e3f4288"
+    },
+    {
+      "file": "round4-en-light-course.png",
+      "test": "ScreenshotTests/testEnglishLight()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019488.699,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "bec1b3a2517fb0761502240562d4f8ba41ff22f4abbb64f996e1c0f9584fe966"
+    },
+    {
+      "file": "round4-en-light-flight.png",
+      "test": "ScreenshotTests/testEnglishLight()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019485.18,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "9588a78e67562463684620d49916463c4740527a713dc8c8e81c3df44aa6c4d2"
+    },
+    {
+      "file": "round4-en-light-home.png",
+      "test": "ScreenshotTests/testEnglishLight()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019455.941,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "559ec5fc399d3184517c96cbd95c77258925fe2635f175372a9f96450fe969dd"
+    },
+    {
+      "file": "round4-en-light-performance.png",
+      "test": "ScreenshotTests/testEnglishLight()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019490.473,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "2fbc88de0c9ad0e4b212aa82ea0678216e6d3f4ce30108f8544160d11c8714e7"
+    },
+    {
+      "file": "round4-en-light-settings.png",
+      "test": "ScreenshotTests/testEnglishLight()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019457.909,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "610fcc16946bafab90a0cf93118eed2dcace6304fde1e711c2aea4765fb44270"
+    },
+    {
+      "file": "round4-en-light-swing-detail-empty.png",
+      "test": "ScreenshotTests/testEnglishLight()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019502.792,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "c23e7bf4579b816f8588df14593300f0c00b71d89e58bcf5de3b54bf4e35fa3e"
+    },
+    {
+      "file": "round4-en-light-swing.png",
+      "test": "ScreenshotTests/testEnglishLight()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019467.968,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "5e3c7bcfba1ca0396f98071a1348aeec05761120b17a13e57c6705866808cda8"
+    },
+    {
+      "file": "round4-ko-dark-bag.png",
+      "test": "ScreenshotTests/testKoreanDark()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019605.129,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "955ec8a0b2f10136281b3b4641ff8cc5d2a906d770b82bd73a38bf3cd405c9b4"
+    },
+    {
+      "file": "round4-ko-dark-course.png",
+      "test": "ScreenshotTests/testKoreanDark()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019619.059,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "013cbce775e048c779ef1bfd861fe228fb851fea752bec94c65231a9db405cad"
+    },
+    {
+      "file": "round4-ko-dark-flight.png",
+      "test": "ScreenshotTests/testKoreanDark()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019616.74,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "2cff88ba4c3d01989011f73b0b40054c04743896bf1407dc7ac5381f07541268"
+    },
+    {
+      "file": "round4-ko-dark-home.png",
+      "test": "ScreenshotTests/testKoreanDark()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019594.954,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "3947eb3b8ce80a2c861eee1b6cbae1eb266dd96d7476e794ae62e8a86b9b2ee1"
+    },
+    {
+      "file": "round4-ko-dark-performance.png",
+      "test": "ScreenshotTests/testKoreanDark()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019620.821,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "5b283c77458f8de452835fd421c343e2a9bd647aee452daf77394c459bfabb5b"
+    },
+    {
+      "file": "round4-ko-dark-settings.png",
+      "test": "ScreenshotTests/testKoreanDark()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019597.443,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "ecac0fd48a38669568c43deecba0e674843dd6cb098d4c6d89153472fa95b982"
+    },
+    {
+      "file": "round4-ko-dark-swing-detail-empty.png",
+      "test": "ScreenshotTests/testKoreanDark()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019632.304,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "3ed58f001a52d8fa16d4b82f05b4d5ba221a31c0d97ea53c8728a1332b126e7a"
+    },
+    {
+      "file": "round4-ko-dark-swing.png",
+      "test": "ScreenshotTests/testKoreanDark()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019606.958,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "38587e37850b77f934addce03b99f7a4100e399a9d0bd6acbb1929a9f85606d2"
+    },
+    {
+      "file": "round4-ko-light-bag.png",
+      "test": "ScreenshotTests/testKoreanLight()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019646.116,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "66ed2d5423c87c5baa7366f24d2b0ef52e66425c34763c82935f188f33ae1226"
+    },
+    {
+      "file": "round4-ko-light-course.png",
+      "test": "ScreenshotTests/testKoreanLight()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019660.621,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "dff0861180b1d065e6de1f9cac01ab930477b23ae5b509ca7867f2eb7db67da0"
+    },
+    {
+      "file": "round4-ko-light-flight.png",
+      "test": "ScreenshotTests/testKoreanLight()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019658.181,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "b882b598296d44552c38a7070e4719a0187077a94e1230b0ec446eec8739adff"
+    },
+    {
+      "file": "round4-ko-light-home.png",
+      "test": "ScreenshotTests/testKoreanLight()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019637.661,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "06c8eaef0668273dd28b3e11e7af7ccf156f6fb1b986d509656b895d733bff2e"
+    },
+    {
+      "file": "round4-ko-light-performance.png",
+      "test": "ScreenshotTests/testKoreanLight()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019662.247,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "4b9713eea697ed8293c510a1ccc439bd5a29585370e6306e71b553cc85475b97"
+    },
+    {
+      "file": "round4-ko-light-settings.png",
+      "test": "ScreenshotTests/testKoreanLight()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019639.6,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "36bdd0722ad2507c086d8cdeb162d471db8a419fb860664644ec4e44c061336d"
+    },
+    {
+      "file": "round4-ko-light-swing-detail-empty.png",
+      "test": "ScreenshotTests/testKoreanLight()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019672.255,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "2ce57172218e89d0e88dea9a6d440d084d98be71abefdba2dcb9e0173acd40d9"
+    },
+    {
+      "file": "round4-ko-light-swing.png",
+      "test": "ScreenshotTests/testKoreanLight()",
+      "device": "iPhone 17 Pro",
+      "runtime": "iOS 26.4",
+      "deviceID": "BFCB8F01-2C33-4099-964C-7A21E3EA2EF5",
+      "timestamp": 1793019647.588,
+      "resultBundle": "DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult",
+      "sha256": "7415671e7054bddac21bad5aae1f1a8ef8978ff2f06c052e5ef58cf6ab8e1c28"
+    }
+  ]
+}

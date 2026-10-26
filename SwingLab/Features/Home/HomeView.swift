@@ -18,7 +18,8 @@ struct HomeView: View {
                     Label(preferences.text("Record & review"), systemImage: "video")
                         .font(SLTheme.TypeScale.headline).frame(maxWidth: .infinity).padding(.vertical, SLTheme.Space.sm)
                 }
-                .buttonStyle(.borderedProminent).foregroundStyle(SLTheme.background).controlSize(.large)
+                .buttonStyle(.borderedProminent).buttonBorderShape(.roundedRectangle(radius: SLTheme.cornerRadius))
+                .foregroundStyle(SLTheme.background).controlSize(.large)
                 .accessibilityIdentifier("home.record")
 
                 if let session = sessions.first {
@@ -69,7 +70,7 @@ struct HomeView: View {
                     VStack(alignment: .leading, spacing: SLTheme.Space.sm) {
                         Text(preferences.text("Your first recording")).font(SLTheme.TypeScale.headline)
                         Text(preferences.text("Record a swing to begin your practice history."))
-                            .font(SLTheme.TypeScale.body).foregroundStyle(.secondary)
+                            .font(SLTheme.TypeScale.body).foregroundStyle(SLTheme.secondaryInk)
                     }
                 }
                 VStack(alignment: .leading, spacing: SLTheme.Space.md) {

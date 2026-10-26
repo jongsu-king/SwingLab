@@ -4,17 +4,17 @@ The reviewer grants the final **PASS** only when every row is ✅ with evidence 
 
 Legend: ✅ verified · 🟡 implemented, not yet verified to the bar · ❌ missing or failing · ⬜ needs a real iPhone or user data
 
-_Last updated: 26 Oct 2026, after Round 3._
+_Last updated: 26 Oct 2026, after Round 4._
 
 ## Engineering gates
 
 | # | Gate | Bar | Status | Evidence |
 |---|---|---|---|---|
 | G1 | iOS build | `xcodebuild … build` 0 errors, 0 warnings (Swift 6) | ✅ | First native build, 26 Oct (`Docs/CompileRisk.md`) |
-| G2 | Core tests | `swift test` all pass under XCTest | ✅ | 58/58 after Round 3 (reproduced by reviewer) |
-| G3 | App tests on simulator | `xcodebuild test` (`SwingLabTests` + `SwingLabUITests`) all pass on iOS 26.4 and 27.1 | ❌ | Reviewer, iOS 26.4 iPhone 17 Pro: 8/17 app tests and 1/8 UI tests fail (R3-5) |
-| G4 | Project opens and runs from Xcode | Simulator run from Xcode without command-line overrides | ❌ | Generated project lacks Debug `ONLY_ACTIVE_ARCH=YES` |
-| G5 | Repository checks | `Scripts/verify.sh` passes | ✅ | Round 3, 518 keys, 0 missing (reproduced) |
+| G2 | Core tests | `swift test` all pass under XCTest | ✅ | 76/76 after Round 4 (reproduced by reviewer) |
+| G3 | App tests on simulator | `xcodebuild test` (`SwingLabTests` + `SwingLabUITests`) all pass on iOS 26.4 and 27.1 | ✅ | Reviewer, Round 4, no build-setting overrides: iPhone 17 Pro iOS 26.4 22/22 + 9/9; iPhone Duo iOS 27.1 22/22 + 9/9 |
+| G4 | Project opens and runs from Xcode | Simulator run from Xcode without command-line overrides | 🟡 | Debug `ONLY_ACTIVE_ARCH=YES` fixed; concrete-device build+test passes without overrides. A manual Xcode Run is not yet observed. |
+| G5 | Repository checks | `Scripts/verify.sh` passes | ✅ | Round 4: 647 keys, 0 missing; catalog validator passes (reproduced) |
 
 ## Product criteria (v6.0 §34, made measurable)
 
@@ -44,6 +44,7 @@ _Last updated: 26 Oct 2026, after Round 3._
 
 | A22 | Launch monitor: ball speed | Real-time readout ≤ 2 s after impact. On ≥ 10 real shots recorded alongside a reference launch monitor: within ±3 %. | ❌ |
 | A23 | Launch monitor: launch angle | Same shots: vertical launch within ±1.5°. Spin, club speed, and smash factor stay Unavailable. | ❌ |
+| A24 | Club & shaft catalog (user request) | Brand → category → year → model picker with search; custom entry; shafts (catalog and custom); length in inches; hosel position picker with loft/lie Δ. Every entry sourced or labelled unverified. | 🟡 |
 
 Requested by the user on 26 Oct 2026; specified in `Docs/Specs/LaunchMonitor.md`. Spin RPM stays Unavailable.
 

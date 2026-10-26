@@ -1,0 +1,15 @@
+Host: macOS 27.0.1 (26A434), arm64. Simulator device: none. iOS runtime: none.
+Python source/catalog checks; no simulator execution.
+
+$ python3 Scripts/test_localizations.py
+...............
+----------------------------------------------------------------------
+Ran 15 tests in 0.001s
+
+OK
+Exit status: 0
+
+$ python3 Scripts/check_localizations.py
+PASS localization source reachability: 617 literal/typed-enum/helper keys, 12 locales, plural forms; no unresolved text/format calls
+Exit status: 0
+

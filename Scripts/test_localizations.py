@@ -47,6 +47,17 @@ class LocalizationChecks(unittest.TestCase):
             'one':{'stringUnit':{'state':'translated','value':'%1$lld swing'}},
             'other':{'stringUnit':{'state':'translated','value':'%1$lld swings'}}}}}
         self.assertTrue(any('missing plural structure' in e for e in validate({'count.swings'},data)))
+    def test_memberwise_collection(self):
+        keys,errors=scan({'UI.swift':'struct Notice { let keys: [LocalizationKey] }; let notice = Notice(keys: ["Missing"]); prefs.text(notice.keys.first!)'})
+        self.assertIn('Missing',keys);self.assertEqual(errors,[])
+    def test_generic_literal_factory_is_rejected(self):
+        self.assertTrue(scan({'UI.swift':'func labels<T: ExpressibleByStringLiteral>() -> [T] { ["Missing"] }'})[1])
+    def test_many_plural_form_is_required(self):
+        data=catalog({'count.swings'})
+        data['strings']['count.swings']['localizations']['fr']={'variations':{'plural':{
+            'one':{'stringUnit':{'state':'translated','value':'%1$lld swing'}},
+            'other':{'stringUnit':{'state':'translated','value':'%1$lld swings'}}}}}
+        self.assertTrue(any('many' in e for e in validate({'count.swings'},data)))
     def test_no_manual_constructor_bypass(self):
         self.assertTrue(scan({'UI.swift':'prefs.text(LocalizationKey(stringLiteral: value))'})[1])
 

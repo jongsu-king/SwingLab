@@ -22,12 +22,11 @@ fi
 TASK_RUN="$(date +%Y%m%d-%H%M%S)-$$"
 TASK_RESULT="$TASK_ROOT/DerivedData/Screenshots-$TASK_RUN.xcresult"
 TASK_ATTACHMENTS="$TASK_ROOT/DerivedData/ScreenshotAttachments-$TASK_RUN"
-TASK_OUTPUT="$TASK_ROOT/Docs/Screenshots/round-3"
+TASK_OUTPUT="$TASK_ROOT/Docs/Screenshots/round-4"
 mkdir -p "$TASK_ROOT/Docs/Logs" "$TASK_OUTPUT"
 xcodebuild -project SwingLab.xcodeproj -scheme SwingLab \
   -destination "$TASK_DESTINATION" -derivedDataPath ./DerivedData \
-  -resultBundlePath "$TASK_RESULT" CODE_SIGNING_ALLOWED=NO \
-  ONLY_ACTIVE_ARCH=YES ARCHS="$(uname -m)" \
+  -resultBundlePath "$TASK_RESULT" \
   -parallel-testing-enabled NO -only-testing:SwingLabUITests/ScreenshotTests test \
   | tee "$TASK_ROOT/Docs/Logs/screenshots-$TASK_RUN.log"
 xcrun xcresulttool export attachments --path "$TASK_RESULT" --output-path "$TASK_ATTACHMENTS"
@@ -38,7 +37,7 @@ source,output,result=map(Path,sys.argv[1:])
 manifest=json.loads((source/'manifest.json').read_text())
 # Xcode 27.1 `xcresulttool export attachments --schema` describes an array of
 # test entries whose attachment fields include the two names used below.
-pattern=re.compile(r'(round3-(?:en|ko|de)-(?:light|dark)-(?:swing-detail-empty|home|swing|flight|course|performance|settings|bag))(?=$|[._ ])')
+pattern=re.compile(r'(round4-(?:en|ko|de)-(?:light|dark)-(?:swing-detail-empty|home|swing|flight|course|performance|settings|bag))(?=$|[._ ])')
 captured={}
 for test in manifest:
     for attachment in test.get('attachments',[]):
@@ -59,7 +58,7 @@ for test in manifest:
             'sha256':hashlib.sha256(destination.read_bytes()).hexdigest()}
 actual={'resultBundles':[str(result)],'screenshots':[captured[key] for key in sorted(captured)]}
 (output/'manifest.json').write_text(json.dumps(actual,ensure_ascii=False,indent=2)+'\n')
-expected={f'round3-{language}-{appearance}-{screen}' for language in ['en','ko','de']
+expected={f'round4-{language}-{appearance}-{screen}' for language in ['en','ko','de']
     for appearance in ['light','dark'] for screen in ['home','swing','swing-detail-empty','flight','course','performance','settings','bag']}
 missing=expected-captured.keys()
 print(f'Exported {len(captured)} actual screenshots to {output}.')

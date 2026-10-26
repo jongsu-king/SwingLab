@@ -17,6 +17,7 @@ enum SLTheme {
     static let hairline: CGFloat = 0.5
     static let background = adaptive(light: 0xF6F5F1, dark: 0x161D19)
     static let surface = adaptive(light: 0xFFFFFF, dark: 0x202823)
+    static let secondaryInk = adaptive(light: 0x505D55, dark: 0xB9C2BB)
     static let ink = adaptive(light: 0x202823, dark: 0xF6F5F1)
     static let forest = adaptive(light: 0x375746, dark: 0xB5C7A0)
     static let sage = Color(red: 181/255, green: 199/255, blue: 160/255)
@@ -61,7 +62,7 @@ struct SLListRow: View {
             Image(systemName: symbol).font(.title3).foregroundStyle(SLTheme.forest).frame(width: 26)
             VStack(alignment: .leading, spacing: SLTheme.Space.xxs) {
                 Text(title).font(SLTheme.TypeScale.headline).foregroundStyle(SLTheme.ink)
-                Text(detail).font(.subheadline).foregroundStyle(.secondary)
+                Text(detail).font(.subheadline).foregroundStyle(SLTheme.secondaryInk).multilineTextAlignment(.leading)
             }
             Spacer(minLength: 0)
             Image(systemName: "chevron.right").font(.caption.weight(.semibold)).foregroundStyle(.secondary)

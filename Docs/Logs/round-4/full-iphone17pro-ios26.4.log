@@ -1706,3 +1706,796 @@ Resolve Package Graph
     t =    42.74s     Check for interrupting elements affecting "OK" Button
     t =    42.80s     Synthesize event
 Resolve Package Graph
+
+    t =    43.09s     Wait for com.swinglab.app to idle
+    t =    43.35s Find the Target Application 'com.swinglab.app'
+    t =    43.44s Added attachment named 'round4-de-dark-swing-detail-empty'
+    t =    43.45s Terminate com.swinglab.app:32375
+2026-10-26 21:59:07.552 xcodebuild[30273:280289] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-26 21:59:07.552 xcodebuild[30273:280289] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+Resolve Package Graph
+
+    t =    44.46s Tear Down
+Test Case '-[SwingLabUITests.ScreenshotTests testGermanDark]' passed (44.670 seconds).
+Test Case '-[SwingLabUITests.ScreenshotTests testGermanLight]' started.
+    t =     0.00s Start Test at 2026-10-26 21:59:08.759
+    t =     0.02s Set Up
+    t =     0.02s Open com.swinglab.app
+    t =     0.02s     Launch com.swinglab.app
+2026-10-26 21:59:08.785 xcodebuild[30273:280289] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-10-26 21:59:08.785 xcodebuild[30273:280289] [MT] IDELaunchParametersSnapshot: no debugger version
+2026-10-26 21:59:08.795 xcodebuild[30273:280289] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+Resolve Package Graph
+
+Resolve Package Graph
+
+    t =     0.45s         Setting up automation session
+Resolve Package Graph
+
+    t =     1.57s         Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+    t =     2.85s Waiting 15.0s for "Start" Button to exist
+Resolve Package Graph
+
+    t =     3.87s     Checking `Expect predicate `existsNoRetry == 1` for object "Start" Button`
+    t =     3.87s         Checking existence of `"Start" Button`
+    t =     3.95s Checking existence of `"Start" Button`
+    t =     3.98s Checking existence of `"Schwung" Button`
+    t =     3.99s Checking existence of `"Platz" Button`
+    t =     4.01s Checking existence of `"Leistung" Button`
+    t =     4.02s Find the Target Application 'com.swinglab.app'
+    t =     4.11s Added attachment named 'round4-de-light-home'
+    t =     4.11s Checking existence of `"home.settings" Any`
+    t =     4.16s Find the "home.settings" Any
+    t =     4.21s Tap "home.settings" Any
+    t =     4.21s     Wait for com.swinglab.app to idle
+    t =     4.21s     Find the "home.settings" Any
+    t =     4.25s     Check for interrupting elements affecting "home.settings" Other
+    t =     4.28s     Synthesize event
+Resolve Package Graph
+
+    t =     4.57s     Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+    t =     5.87s Find the Target Application 'com.swinglab.app'
+    t =     6.03s Added attachment named 'round4-de-light-settings'
+    t =     6.03s Terminate com.swinglab.app:32473
+2026-10-26 21:59:14.806 xcodebuild[30273:280289] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-26 21:59:14.806 xcodebuild[30273:280289] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+Resolve Package Graph
+
+    t =     7.08s Open com.swinglab.app
+    t =     7.08s     Launch com.swinglab.app
+2026-10-26 21:59:15.845 xcodebuild[30273:280289] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-10-26 21:59:15.845 xcodebuild[30273:280289] [MT] IDELaunchParametersSnapshot: no debugger version
+2026-10-26 21:59:15.853 xcodebuild[30273:280289] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+Resolve Package Graph
+
+    t =     7.50s         Setting up automation session
+Resolve Package Graph
+
+    t =     8.50s         Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+    t =     9.79s Waiting 15.0s for "Start" Button to exist
+Resolve Package Graph
+
+    t =    10.85s     Checking `Expect predicate `existsNoRetry == 1` for object "Start" Button`
+    t =    10.85s         Checking existence of `"Start" Button`
+    t =    10.90s Checking existence of `"home.bag" Any`
+    t =    10.99s Find the "home.bag" Any
+    t =    11.07s Tap "home.bag" Any
+    t =    11.07s     Wait for com.swinglab.app to idle
+    t =    11.07s     Find the "home.bag" Any
+    t =    11.13s     Check for interrupting elements affecting "home.bag" Button
+    t =    11.18s     Synthesize event
+Resolve Package Graph
+
+    t =    11.47s     Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+    t =    12.36s Find the Target Application 'com.swinglab.app'
+    t =    12.45s Added attachment named 'round4-de-light-bag'
+    t =    12.45s Tap "Schwung" Button
+    t =    12.46s     Wait for com.swinglab.app to idle
+    t =    12.46s     Find the "Schwung" Button
+    t =    12.47s     Check for interrupting elements affecting "figure.golf" Button
+    t =    12.51s     Synthesize event
+    t =    12.80s     Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+Resolve Package Graph
+
+    t =    14.42s Find the Target Application 'com.swinglab.app'
+    t =    14.54s Added attachment named 'round4-de-light-swing'
+    t =    14.54s Checking existence of `"swing.hypotheticalFlight" Any`
+    t =    14.65s Find the "swing.hypotheticalFlight" Any
+    t =    14.75s Swipe up Target Application 'com.swinglab.app'
+    t =    14.75s     Wait for com.swinglab.app to idle
+    t =    14.75s     Find the Target Application 'com.swinglab.app'
+    t =    14.77s     Check for interrupting elements affecting "SwingLab" Application
+    t =    14.79s     Synthesize event
+    t =    15.21s     Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+Resolve Package Graph
+
+    t =    16.36s Checking existence of `"swing.hypotheticalFlight" Button`
+    t =    16.48s Find the "swing.hypotheticalFlight" Button
+    t =    16.60s Tap "swing.hypotheticalFlight" Any
+    t =    16.60s     Wait for com.swinglab.app to idle
+    t =    16.60s     Find the "swing.hypotheticalFlight" Any
+    t =    16.70s     Check for interrupting elements affecting "swing.hypotheticalFlight" Button
+    t =    16.75s     Synthesize event
+    t =    17.05s     Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+    t =    18.08s Checking existence of `"flight.driverExample" Any`
+    t =    18.26s Find the "flight.driverExample" Any
+Resolve Package Graph
+
+    t =    18.44s Tap "flight.driverExample" Any
+    t =    18.44s     Wait for com.swinglab.app to idle
+    t =    18.44s     Find the "flight.driverExample" Any
+    t =    18.59s     Check for interrupting elements affecting "flight.driverExample" Button
+    t =    18.65s     Synthesize event
+    t =    18.94s     Wait for com.swinglab.app to idle
+    t =    19.20s Checking existence of `"flight.simulate" Any`
+Resolve Package Graph
+
+    t =    19.36s Swipe up Target Application 'com.swinglab.app'
+    t =    19.36s     Wait for com.swinglab.app to idle
+    t =    19.36s     Find the Target Application 'com.swinglab.app'
+    t =    19.39s     Check for interrupting elements affecting "SwingLab" Application
+    t =    19.42s     Synthesize event
+    t =    19.84s     Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+    t =    20.60s Checking existence of `"flight.simulate" Any`
+    t =    20.75s Find the "flight.simulate" Any
+    t =    20.91s Tap "flight.simulate" Any
+    t =    20.91s     Wait for com.swinglab.app to idle
+    t =    20.92s     Find the "flight.simulate" Any
+    t =    21.06s     Check for interrupting elements affecting "flight.simulate" Button
+    t =    21.12s     Synthesize event
+Resolve Package Graph
+
+    t =    21.41s     Wait for com.swinglab.app to idle
+    t =    21.88s Checking existence of `"flight.result.carry" Any`
+    t =    22.08s Find the "flight.result.carry" Any
+    t =    22.28s Swipe up Target Application 'com.swinglab.app'
+    t =    22.28s     Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+    t =    22.52s     Find the Target Application 'com.swinglab.app'
+    t =    22.58s     Check for interrupting elements affecting "SwingLab" Application
+    t =    22.62s     Synthesize event
+    t =    23.05s     Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+Resolve Package Graph
+
+    t =    25.24s Checking existence of `"flight.result.carry" StaticText`
+Resolve Package Graph
+
+    t =    25.39s Find the "flight.result.carry" StaticText
+    t =    25.54s Find the Target Application 'com.swinglab.app'
+    t =    25.65s Added attachment named 'round4-de-light-flight'
+    t =    25.65s Tap "Platz" Button
+    t =    25.65s     Wait for com.swinglab.app to idle
+    t =    25.75s     Find the "Platz" Button
+    t =    25.76s     Check for interrupting elements affecting "map" Button
+    t =    25.80s     Synthesize event
+    t =    26.10s     Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+Resolve Package Graph
+
+    t =    28.13s Find the Target Application 'com.swinglab.app'
+    t =    28.29s Added attachment named 'round4-de-light-course'
+    t =    28.30s Tap "Leistung" Button
+    t =    28.30s     Wait for com.swinglab.app to idle
+    t =    28.30s     Find the "Leistung" Button
+Resolve Package Graph
+    t =    28.33s     Check for interrupting elements affecting "chart.xyaxis.line" Button
+
+    t =    28.36s     Synthesize event
+    t =    28.66s     Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+    t =    29.92s Find the Target Application 'com.swinglab.app'
+    t =    30.01s Added attachment named 'round4-de-light-performance'
+    t =    30.01s Terminate com.swinglab.app:32509
+2026-10-26 21:59:38.802 xcodebuild[30273:280289] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-26 21:59:38.802 xcodebuild[30273:280289] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+Resolve Package Graph
+
+    t =    31.03s Open com.swinglab.app
+    t =    31.03s     Launch com.swinglab.app
+2026-10-26 21:59:39.790 xcodebuild[30273:280289] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-10-26 21:59:39.790 xcodebuild[30273:280289] [MT] IDELaunchParametersSnapshot: no debugger version
+2026-10-26 21:59:39.798 xcodebuild[30273:280289] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+Resolve Package Graph
+
+    t =    31.45s         Setting up automation session
+Resolve Package Graph
+
+    t =    32.58s         Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+    t =    33.91s Waiting 15.0s for "Start" Button to exist
+Resolve Package Graph
+
+    t =    34.94s     Checking `Expect predicate `existsNoRetry == 1` for object "Start" Button`
+    t =    34.94s         Checking existence of `"Start" Button`
+    t =    35.00s Tap "Schwung" Button
+    t =    35.00s     Wait for com.swinglab.app to idle
+    t =    35.03s     Find the "Schwung" Button
+    t =    35.04s     Check for interrupting elements affecting "Schwung" Button
+    t =    35.09s     Synthesize event
+Resolve Package Graph
+    t =    35.38s     Wait for com.swinglab.app to idle
+
+Resolve Package Graph
+
+Resolve Package Graph
+    t =    37.36s Checking existence of `"swing.recording.00000000-0000-0000-0000-000000000003" Any`
+
+    t =    37.50s Find the "swing.recording.00000000-0000-0000-0000-000000000003" Any
+    t =    37.60s Tap "swing.recording.00000000-0000-0000-0000-000000000003" Any
+    t =    37.60s     Wait for com.swinglab.app to idle
+    t =    37.61s     Find the "swing.recording.00000000-0000-0000-0000-000000000003" Any
+    t =    37.70s     Check for interrupting elements affecting "swing.recording.00000000-0000-0000-0000-000000000003" Button
+    t =    37.75s     Synthesize event
+    t =    38.04s     Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+    t =    38.83s Waiting 5.0s for Alert (First Match) to exist
+Resolve Package Graph
+
+    t =    39.88s     Checking `Expect predicate `existsNoRetry == 1` for object Alert (First Match)`
+    t =    39.88s         Checking existence of `Alert (First Match)`
+    t =    39.91s Tap Button (First Match)
+    t =    39.91s     Wait for com.swinglab.app to idle
+    t =    39.91s     Find the Button (First Match)
+    t =    39.94s     Check for interrupting elements affecting "OK" Button
+    t =    40.00s     Synthesize event
+    t =    40.29s     Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+    t =    40.55s Find the Target Application 'com.swinglab.app'
+    t =    40.65s Added attachment named 'round4-de-light-swing-detail-empty'
+    t =    40.65s Terminate com.swinglab.app:32567
+2026-10-26 21:59:49.430 xcodebuild[30273:280289] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-26 21:59:49.430 xcodebuild[30273:280289] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+Resolve Package Graph
+
+    t =    41.72s Tear Down
+Test Case '-[SwingLabUITests.ScreenshotTests testGermanLight]' passed (41.911 seconds).
+Test Case '-[SwingLabUITests.ScreenshotTests testKoreanDark]' started.
+    t =     0.00s Start Test at 2026-10-26 21:59:50.671
+    t =     0.01s Set Up
+    t =     0.01s Open com.swinglab.app
+    t =     0.02s     Launch com.swinglab.app
+2026-10-26 21:59:50.688 xcodebuild[30273:280289] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-10-26 21:59:50.688 xcodebuild[30273:280289] [MT] IDELaunchParametersSnapshot: no debugger version
+2026-10-26 21:59:50.692 xcodebuild[30273:280289] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+Resolve Package Graph
+    t =     0.44s         Setting up automation session
+
+Resolve Package Graph
+
+    t =     1.52s         Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+    t =     3.00s Waiting 15.0s for "홈" Button to exist
+Resolve Package Graph
+
+    t =     4.04s     Checking `Expect predicate `existsNoRetry == 1` for object "홈" Button`
+    t =     4.04s         Checking existence of `"홈" Button`
+    t =     4.10s Checking existence of `"홈" Button`
+    t =     4.14s Checking existence of `"스윙" Button`
+    t =     4.16s Checking existence of `"코스" Button`
+    t =     4.17s Checking existence of `"퍼포먼스" Button`
+    t =     4.19s Find the Target Application 'com.swinglab.app'
+    t =     4.28s Added attachment named 'round4-ko-dark-home'
+    t =     4.28s Checking existence of `"home.settings" Any`
+    t =     4.33s Find the "home.settings" Any
+    t =     4.38s Tap "home.settings" Any
+    t =     4.38s     Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+    t =     4.84s     Find the "home.settings" Any
+    t =     4.90s     Check for interrupting elements affecting "home.settings" Other
+    t =     4.93s     Synthesize event
+    t =     5.22s     Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+Resolve Package Graph
+
+    t =     6.62s Find the Target Application 'com.swinglab.app'
+    t =     6.77s Added attachment named 'round4-ko-dark-settings'
+    t =     6.77s Terminate com.swinglab.app:32580
+2026-10-26 21:59:57.461 xcodebuild[30273:280289] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-26 21:59:57.461 xcodebuild[30273:280289] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+Resolve Package Graph
+
+    t =     7.83s Open com.swinglab.app
+    t =     7.83s     Launch com.swinglab.app
+2026-10-26 21:59:58.506 xcodebuild[30273:280289] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-10-26 21:59:58.506 xcodebuild[30273:280289] [MT] IDELaunchParametersSnapshot: no debugger version
+2026-10-26 21:59:58.512 xcodebuild[30273:280289] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+    t =     8.24s         Setting up automation session
+Resolve Package Graph
+
+Resolve Package Graph
+
+    t =     9.56s         Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+    t =    11.07s Waiting 15.0s for "홈" Button to exist
+Resolve Package Graph
+
+    t =    12.12s     Checking `Expect predicate `existsNoRetry == 1` for object "홈" Button`
+    t =    12.12s         Checking existence of `"홈" Button`
+    t =    12.18s Checking existence of `"home.bag" Any`
+    t =    12.29s Find the "home.bag" Any
+    t =    12.38s Tap "home.bag" Any
+    t =    12.38s     Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+    t =    12.99s     Find the "home.bag" Any
+    t =    13.08s     Check for interrupting elements affecting "home.bag" Button
+    t =    13.12s     Synthesize event
+    t =    13.41s     Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+    t =    14.34s Find the Target Application 'com.swinglab.app'
+    t =    14.46s Added attachment named 'round4-ko-dark-bag'
+    t =    14.46s Tap "스윙" Button
+    t =    14.46s     Wait for com.swinglab.app to idle
+Resolve Package Graph
+    t =    14.46s     Find the "스윙" Button
+    t =    14.48s     Check for interrupting elements affecting "figure.golf" Button
+
+    t =    14.50s     Synthesize event
+    t =    14.79s     Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+    t =    16.15s Find the Target Application 'com.swinglab.app'
+    t =    16.29s Added attachment named 'round4-ko-dark-swing'
+    t =    16.29s Checking existence of `"swing.hypotheticalFlight" Any`
+    t =    16.40s Find the "swing.hypotheticalFlight" Any
+Resolve Package Graph
+
+    t =    16.51s Swipe up Target Application 'com.swinglab.app'
+    t =    16.51s     Wait for com.swinglab.app to idle
+    t =    16.51s     Find the Target Application 'com.swinglab.app'
+    t =    16.53s     Check for interrupting elements affecting "SwingLab" Application
+    t =    16.55s     Synthesize event
+    t =    16.97s     Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+    t =    17.95s Checking existence of `"swing.hypotheticalFlight" Button`
+    t =    18.06s Find the "swing.hypotheticalFlight" Button
+    t =    18.17s Tap "swing.hypotheticalFlight" Any
+    t =    18.17s     Wait for com.swinglab.app to idle
+    t =    18.17s     Find the "swing.hypotheticalFlight" Any
+    t =    18.27s     Check for interrupting elements affecting "swing.hypotheticalFlight" Button
+    t =    18.32s     Synthesize event
+Resolve Package Graph
+
+    t =    18.61s     Wait for com.swinglab.app to idle
+    t =    18.65s Checking existence of `"flight.driverExample" Any`
+    t =    18.90s Find the "flight.driverExample" Any
+    t =    19.13s Tap "flight.driverExample" Any
+    t =    19.13s     Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+    t =    19.84s     Find the "flight.driverExample" Any
+    t =    20.00s     Check for interrupting elements affecting "flight.driverExample" Button
+    t =    20.06s     Synthesize event
+    t =    20.35s     Wait for com.swinglab.app to idle
+    t =    20.35s Checking existence of `"flight.simulate" Any`
+Resolve Package Graph
+
+    t =    20.52s Swipe up Target Application 'com.swinglab.app'
+    t =    20.53s     Wait for com.swinglab.app to idle
+    t =    20.53s     Find the Target Application 'com.swinglab.app'
+    t =    20.55s     Check for interrupting elements affecting "SwingLab" Application
+    t =    20.59s     Synthesize event
+    t =    21.01s     Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+    t =    21.83s Checking existence of `"flight.simulate" Any`
+    t =    21.99s Find the "flight.simulate" Any
+    t =    22.16s Tap "flight.simulate" Any
+    t =    22.16s     Wait for com.swinglab.app to idle
+    t =    22.16s     Find the "flight.simulate" Any
+    t =    22.32s     Check for interrupting elements affecting "flight.simulate" Button
+    t =    22.38s     Synthesize event
+Resolve Package Graph
+
+    t =    22.67s     Wait for com.swinglab.app to idle
+    t =    22.67s Checking existence of `"flight.result.carry" Any`
+    t =    22.86s Find the "flight.result.carry" Any
+    t =    23.03s Swipe up Target Application 'com.swinglab.app'
+    t =    23.03s     Wait for com.swinglab.app to idle
+    t =    23.04s     Find the Target Application 'com.swinglab.app'
+    t =    23.07s     Check for interrupting elements affecting "SwingLab" Application
+    t =    23.11s     Synthesize event
+Resolve Package Graph
+
+    t =    23.53s     Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+Resolve Package Graph
+
+    t =    25.70s Checking existence of `"flight.result.carry" StaticText`
+    t =    25.85s Find the "flight.result.carry" StaticText
+    t =    25.97s Find the Target Application 'com.swinglab.app'
+    t =    26.07s Added attachment named 'round4-ko-dark-flight'
+    t =    26.07s Tap "코스" Button
+    t =    26.07s     Wait for com.swinglab.app to idle
+    t =    26.07s     Find the "코스" Button
+    t =    26.09s     Check for interrupting elements affecting "map" Button
+    t =    26.11s     Synthesize event
+    t =    26.40s     Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+Resolve Package Graph
+
+    t =    28.24s Find the Target Application 'com.swinglab.app'
+    t =    28.39s Added attachment named 'round4-ko-dark-course'
+    t =    28.39s Tap "퍼포먼스" Button
+    t =    28.39s     Wait for com.swinglab.app to idle
+    t =    28.39s     Find the "퍼포먼스" Button
+    t =    28.41s     Check for interrupting elements affecting "chart.xyaxis.line" Button
+    t =    28.43s     Synthesize event
+Resolve Package Graph
+
+    t =    28.73s     Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+    t =    30.05s Find the Target Application 'com.swinglab.app'
+    t =    30.15s Added attachment named 'round4-ko-dark-performance'
+    t =    30.15s Terminate com.swinglab.app:32603
+2026-10-26 22:00:20.843 xcodebuild[30273:280289] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-26 22:00:20.843 xcodebuild[30273:280289] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+Resolve Package Graph
+
+    t =    31.25s Open com.swinglab.app
+    t =    31.26s     Launch com.swinglab.app
+2026-10-26 22:00:21.930 xcodebuild[30273:280289] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-10-26 22:00:21.930 xcodebuild[30273:280289] [MT] IDELaunchParametersSnapshot: no debugger version
+2026-10-26 22:00:21.940 xcodebuild[30273:280289] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+Resolve Package Graph
+
+    t =    31.68s         Setting up automation session
+Resolve Package Graph
+
+    t =    32.82s         Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+    t =    34.17s Waiting 15.0s for "홈" Button to exist
+Resolve Package Graph
+
+    t =    35.21s     Checking `Expect predicate `existsNoRetry == 1` for object "홈" Button`
+    t =    35.21s         Checking existence of `"홈" Button`
+    t =    35.26s Tap "스윙" Button
+    t =    35.26s     Wait for com.swinglab.app to idle
+    t =    35.27s     Find the "스윙" Button
+    t =    35.29s     Check for interrupting elements affecting "스윙" Button
+    t =    35.33s     Synthesize event
+Resolve Package Graph
+
+    t =    35.62s     Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+Resolve Package Graph
+
+    t =    37.69s Checking existence of `"swing.recording.00000000-0000-0000-0000-000000000003" Any`
+    t =    37.84s Find the "swing.recording.00000000-0000-0000-0000-000000000003" Any
+    t =    37.95s Tap "swing.recording.00000000-0000-0000-0000-000000000003" Any
+    t =    37.95s     Wait for com.swinglab.app to idle
+    t =    37.95s     Find the "swing.recording.00000000-0000-0000-0000-000000000003" Any
+    t =    38.04s     Check for interrupting elements affecting "swing.recording.00000000-0000-0000-0000-000000000003" Button
+    t =    38.10s     Synthesize event
+    t =    38.40s     Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+Resolve Package Graph
+
+    t =    39.84s Waiting 5.0s for Alert (First Match) to exist
+Resolve Package Graph
+
+    t =    40.89s     Checking `Expect predicate `existsNoRetry == 1` for object Alert (First Match)`
+    t =    40.89s         Checking existence of `Alert (First Match)`
+    t =    40.91s Tap Button (First Match)
+    t =    40.91s     Wait for com.swinglab.app to idle
+    t =    40.91s     Find the Button (First Match)
+    t =    40.93s     Check for interrupting elements affecting "확인" Button
+    t =    40.99s     Synthesize event
+    t =    41.28s     Wait for com.swinglab.app to idle
+Resolve Package Graph
+    t =    41.53s Find the Target Application 'com.swinglab.app'
+
+    t =    41.63s Added attachment named 'round4-ko-dark-swing-detail-empty'
+    t =    41.63s Terminate com.swinglab.app:32679
+2026-10-26 22:00:32.325 xcodebuild[30273:280289] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-26 22:00:32.326 xcodebuild[30273:280289] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+Resolve Package Graph
+
+    t =    42.72s Tear Down
+Test Case '-[SwingLabUITests.ScreenshotTests testKoreanDark]' passed (42.860 seconds).
+Test Case '-[SwingLabUITests.ScreenshotTests testKoreanLight]' started.
+    t =     0.00s Start Test at 2026-10-26 22:00:33.532
+    t =     0.01s Set Up
+    t =     0.01s Open com.swinglab.app
+    t =     0.01s     Launch com.swinglab.app
+2026-10-26 22:00:33.547 xcodebuild[30273:280289] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-10-26 22:00:33.548 xcodebuild[30273:280289] [MT] IDELaunchParametersSnapshot: no debugger version
+2026-10-26 22:00:33.554 xcodebuild[30273:280289] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+    t =     0.44s         Setting up automation session
+Resolve Package Graph
+
+    t =     1.45s         Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+Resolve Package Graph
+
+    t =     2.83s Waiting 15.0s for "홈" Button to exist
+Resolve Package Graph
+
+    t =     3.87s     Checking `Expect predicate `existsNoRetry == 1` for object "홈" Button`
+    t =     3.87s         Checking existence of `"홈" Button`
+    t =     3.95s Checking existence of `"홈" Button`
+    t =     3.98s Checking existence of `"스윙" Button`
+    t =     3.99s Checking existence of `"코스" Button`
+    t =     4.01s Checking existence of `"퍼포먼스" Button`
+    t =     4.02s Find the Target Application 'com.swinglab.app'
+    t =     4.13s Added attachment named 'round4-ko-light-home'
+    t =     4.13s Checking existence of `"home.settings" Any`
+    t =     4.18s Find the "home.settings" Any
+    t =     4.24s Tap "home.settings" Any
+    t =     4.24s     Wait for com.swinglab.app to idle
+    t =     4.24s     Find the "home.settings" Any
+    t =     4.28s     Check for interrupting elements affecting "home.settings" Other
+    t =     4.32s     Synthesize event
+    t =     4.62s     Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+Resolve Package Graph
+
+    t =     5.91s Find the Target Application 'com.swinglab.app'
+    t =     6.07s Added attachment named 'round4-ko-light-settings'
+    t =     6.07s Terminate com.swinglab.app:32726
+2026-10-26 22:00:39.619 xcodebuild[30273:280289] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-26 22:00:39.619 xcodebuild[30273:280289] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+Resolve Package Graph
+
+    t =     7.14s Open com.swinglab.app
+    t =     7.14s     Launch com.swinglab.app
+2026-10-26 22:00:40.675 xcodebuild[30273:280289] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-10-26 22:00:40.675 xcodebuild[30273:280289] [MT] IDELaunchParametersSnapshot: no debugger version
+2026-10-26 22:00:40.679 xcodebuild[30273:280289] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+    t =     7.56s         Setting up automation session
+Resolve Package Graph
+
+    t =     8.61s         Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+Resolve Package Graph
+
+    t =     9.94s Waiting 15.0s for "홈" Button to exist
+Resolve Package Graph
+
+    t =    10.97s     Checking `Expect predicate `existsNoRetry == 1` for object "홈" Button`
+    t =    10.97s         Checking existence of `"홈" Button`
+    t =    11.02s Checking existence of `"home.bag" Any`
+    t =    11.11s Find the "home.bag" Any
+    t =    11.18s Tap "home.bag" Any
+    t =    11.18s     Wait for com.swinglab.app to idle
+    t =    11.19s     Find the "home.bag" Any
+    t =    11.25s     Check for interrupting elements affecting "home.bag" Button
+    t =    11.29s     Synthesize event
+    t =    11.58s     Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+    t =    12.48s Find the Target Application 'com.swinglab.app'
+    t =    12.58s Added attachment named 'round4-ko-light-bag'
+    t =    12.58s Tap "스윙" Button
+    t =    12.58s     Wait for com.swinglab.app to idle
+    t =    12.59s     Find the "스윙" Button
+    t =    12.60s     Check for interrupting elements affecting "figure.golf" Button
+    t =    12.62s     Synthesize event
+Resolve Package Graph
+
+    t =    12.92s     Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+    t =    13.93s Find the Target Application 'com.swinglab.app'
+    t =    14.06s Added attachment named 'round4-ko-light-swing'
+    t =    14.06s Checking existence of `"swing.hypotheticalFlight" Any`
+    t =    14.17s Find the "swing.hypotheticalFlight" Any
+    t =    14.29s Swipe up Target Application 'com.swinglab.app'
+    t =    14.29s     Wait for com.swinglab.app to idle
+    t =    14.29s     Find the Target Application 'com.swinglab.app'
+    t =    14.30s     Check for interrupting elements affecting "SwingLab" Application
+    t =    14.32s     Synthesize event
+Resolve Package Graph
+
+    t =    14.74s     Wait for com.swinglab.app to idle
+    t =    15.59s Checking existence of `"swing.hypotheticalFlight" Button`
+Resolve Package Graph
+
+    t =    15.74s Find the "swing.hypotheticalFlight" Button
+    t =    15.86s Tap "swing.hypotheticalFlight" Any
+    t =    15.86s     Wait for com.swinglab.app to idle
+    t =    15.86s     Find the "swing.hypotheticalFlight" Any
+    t =    15.96s     Check for interrupting elements affecting "swing.hypotheticalFlight" Button
+    t =    16.00s     Synthesize event
+    t =    16.29s     Wait for com.swinglab.app to idle
+    t =    16.32s Checking existence of `"flight.driverExample" Any`
+    t =    16.57s Find the "flight.driverExample" Any
+Resolve Package Graph
+
+    t =    16.82s Tap "flight.driverExample" Any
+    t =    16.82s     Wait for com.swinglab.app to idle
+Resolve Package Graph
+    t =    17.68s     Find the "flight.driverExample" Any
+
+    t =    17.83s     Check for interrupting elements affecting "flight.driverExample" Button
+    t =    17.88s     Synthesize event
+    t =    18.18s     Wait for com.swinglab.app to idle
+    t =    18.18s Checking existence of `"flight.simulate" Any`
+    t =    18.34s Swipe up Target Application 'com.swinglab.app'
+    t =    18.34s     Wait for com.swinglab.app to idle
+    t =    18.34s     Find the Target Application 'com.swinglab.app'
+    t =    18.37s     Check for interrupting elements affecting "SwingLab" Application
+    t =    18.40s     Synthesize event
+Resolve Package Graph
+
+    t =    18.82s     Wait for com.swinglab.app to idle
+    t =    19.61s Checking existence of `"flight.simulate" Any`
+Resolve Package Graph
+
+    t =    19.80s Find the "flight.simulate" Any
+    t =    19.96s Tap "flight.simulate" Any
+    t =    19.96s     Wait for com.swinglab.app to idle
+    t =    19.96s     Find the "flight.simulate" Any
+    t =    20.13s     Check for interrupting elements affecting "flight.simulate" Button
+    t =    20.18s     Synthesize event
+    t =    20.48s     Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+    t =    20.96s Checking existence of `"flight.result.carry" Any`
+    t =    21.16s Find the "flight.result.carry" Any
+    t =    21.38s Swipe up Target Application 'com.swinglab.app'
+    t =    21.38s     Wait for com.swinglab.app to idle
+    t =    21.60s     Find the Target Application 'com.swinglab.app'
+    t =    21.66s     Check for interrupting elements affecting "SwingLab" Application
+Resolve Package Graph
+
+    t =    21.70s     Synthesize event
+    t =    22.12s     Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+Resolve Package Graph
+
+    t =    24.29s Checking existence of `"flight.result.carry" StaticText`
+    t =    24.43s Find the "flight.result.carry" StaticText
+    t =    24.55s Find the Target Application 'com.swinglab.app'
+    t =    24.65s Added attachment named 'round4-ko-light-flight'
+    t =    24.65s Tap "코스" Button
+    t =    24.65s     Wait for com.swinglab.app to idle
+    t =    24.65s     Find the "코스" Button
+    t =    24.67s     Check for interrupting elements affecting "map" Button
+Resolve Package Graph
+
+    t =    24.70s     Synthesize event
+    t =    24.99s     Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+Resolve Package Graph
+
+    t =    26.93s Find the Target Application 'com.swinglab.app'
+    t =    27.09s Added attachment named 'round4-ko-light-course'
+    t =    27.09s Tap "퍼포먼스" Button
+    t =    27.09s     Wait for com.swinglab.app to idle
+    t =    27.09s     Find the "퍼포먼스" Button
+    t =    27.11s     Check for interrupting elements affecting "chart.xyaxis.line" Button
+    t =    27.13s     Synthesize event
+    t =    27.43s     Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+    t =    28.61s Find the Target Application 'com.swinglab.app'
+Resolve Package Graph
+    t =    28.72s Added attachment named 'round4-ko-light-performance'
+    t =    28.72s Terminate com.swinglab.app:32753
+
+2026-10-26 22:01:02.283 xcodebuild[30273:280289] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-26 22:01:02.283 xcodebuild[30273:280289] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+Resolve Package Graph
+
+    t =    29.72s Open com.swinglab.app
+    t =    29.72s     Launch com.swinglab.app
+2026-10-26 22:01:03.258 xcodebuild[30273:280289] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-10-26 22:01:03.258 xcodebuild[30273:280289] [MT] IDELaunchParametersSnapshot: no debugger version
+2026-10-26 22:01:03.266 xcodebuild[30273:280289] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+    t =    30.14s         Setting up automation session
+Resolve Package Graph
+
+    t =    31.25s         Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+    t =    32.64s Waiting 15.0s for "홈" Button to exist
+Resolve Package Graph
+
+Resolve Package Graph
+
+    t =    33.71s     Checking `Expect predicate `existsNoRetry == 1` for object "홈" Button`
+    t =    33.71s         Checking existence of `"홈" Button`
+    t =    33.79s Tap "스윙" Button
+    t =    33.79s     Wait for com.swinglab.app to idle
+    t =    33.81s     Find the "스윙" Button
+    t =    33.83s     Check for interrupting elements affecting "스윙" Button
+    t =    33.93s     Synthesize event
+    t =    34.22s     Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+Resolve Package Graph
+
+    t =    35.88s Checking existence of `"swing.recording.00000000-0000-0000-0000-000000000003" Any`
+    t =    36.03s Find the "swing.recording.00000000-0000-0000-0000-000000000003" Any
+    t =    36.14s Tap "swing.recording.00000000-0000-0000-0000-000000000003" Any
+    t =    36.14s     Wait for com.swinglab.app to idle
+    t =    36.15s     Find the "swing.recording.00000000-0000-0000-0000-000000000003" Any
+    t =    36.25s     Check for interrupting elements affecting "swing.recording.00000000-0000-0000-0000-000000000003" Button
+    t =    36.31s     Synthesize event
+    t =    36.60s     Wait for com.swinglab.app to idle
+Resolve Package Graph
+
+    t =    36.94s Waiting 5.0s for Alert (First Match) to exist
+Resolve Package Graph
+
+    t =    37.99s     Checking `Expect predicate `existsNoRetry == 1` for object Alert (First Match)`
+    t =    37.99s         Checking existence of `Alert (First Match)`
+    t =    38.01s Tap Button (First Match)
+    t =    38.01s     Wait for com.swinglab.app to idle
+    t =    38.01s     Find the Button (First Match)
+    t =    38.03s     Check for interrupting elements affecting "확인" Button
+    t =    38.10s     Synthesize event
+    t =    38.39s     Wait for com.swinglab.app to idle
+    t =    38.63s Find the Target Application 'com.swinglab.app'
+Resolve Package Graph
+    t =    38.72s Added attachment named 'round4-ko-light-swing-detail-empty'
+    t =    38.72s Terminate com.swinglab.app:32801
+
+2026-10-26 22:01:12.307 xcodebuild[30273:280289] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-26 22:01:12.307 xcodebuild[30273:280289] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+Resolve Package Graph
+
+    t =    39.83s Tear Down
+Test Case '-[SwingLabUITests.ScreenshotTests testKoreanLight]' passed (39.952 seconds).
+Test Suite 'ScreenshotTests' passed at 2026-10-26 22:01:13.484.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 262.537 (262.542) seconds
+Test Suite 'SwingLabUITests.xctest' passed at 2026-10-26 22:01:13.485.
+	 Executed 9 tests, with 0 failures (0 unexpected) in 378.598 (378.618) seconds
+Test Suite 'All tests' passed at 2026-10-26 22:01:13.486.
+	 Executed 9 tests, with 0 failures (0 unexpected) in 378.598 (378.621) seconds
+2026-10-26 22:01:13.624 xcodebuild[30273:280289] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-26 22:01:13.624 xcodebuild[30273:280289] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-26 22:01:14.014 xcodebuild[30273:280289] [MT] IDETestOperationsObserverDebug: 385.920 elapsed -- Testing started completed.
+2026-10-26 22:01:14.014 xcodebuild[30273:280289] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-26 22:01:14.014 xcodebuild[30273:280289] [MT] IDETestOperationsObserverDebug: 385.920 sec, +385.920 sec -- end
+Resolve Package Graph
+
+Test session results, code coverage, and logs:
+	/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-54-43-+0900.xcresult
+
+** TEST SUCCEEDED **
+
+
+Testing started
