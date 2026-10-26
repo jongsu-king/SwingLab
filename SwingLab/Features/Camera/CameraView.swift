@@ -58,7 +58,7 @@ struct CameraView: View {
                         Text(prefs.text("Allow camera access to record a swing.")).multilineTextAlignment(.center)
                         Button(prefs.text("Open Settings")) {
                             if let url = URL(string: UIApplication.openSettingsURLString) { UIApplication.shared.open(url) }
-                        }.buttonStyle(.borderedProminent)
+                        }.buttonStyle(.borderedProminent).foregroundStyle(SLTheme.background)
                     }.padding(32)
                 } else { ProgressView().tint(.white) }
             }

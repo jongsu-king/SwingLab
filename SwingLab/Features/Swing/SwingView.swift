@@ -26,7 +26,7 @@ struct SwingView: View {
                             Button { showCamera = true } label: {
                                 Label(prefs.text("Record swing"), systemImage: "camera")
                                     .frame(maxWidth: .infinity).padding(.vertical, 8)
-                            }.buttonStyle(.borderedProminent).tint(SLTheme.forest)
+                            }.buttonStyle(.borderedProminent).foregroundStyle(SLTheme.background).tint(SLTheme.forest)
                             PhotosPicker(selection: $importedItem, matching: .videos) {
                                 Image(systemName: "square.and.arrow.down").frame(width: 36, height: 36)
                             }.buttonStyle(.bordered).tint(SLTheme.forest)
@@ -177,7 +177,7 @@ struct SwingView: View {
                 try FileManager.default.moveItem(at: file, to: temporary)
                 original = file; staged = temporary
             } catch VideoLibraryError.missingFile { /* A missing original must not make its stale database row undeletable. */ }
-            modelContext.delete(recording)
+            PracticeSessionStore.remove(recording: recording, context: modelContext)
             do { try modelContext.save() }
             catch {
                 modelContext.rollback()

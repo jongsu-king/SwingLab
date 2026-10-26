@@ -43,7 +43,7 @@ struct PerformanceView: View {
                     symbol: "chart.xyaxis.line")
                 NavigationLink { SwingView() } label: {
                     Label(preferences.text("Open Swing"), systemImage: "video")
-                }.buttonStyle(.borderedProminent)
+                }.buttonStyle(.borderedProminent).foregroundStyle(SLTheme.background)
             } else {
                 metric(value: ProvenancedValue(value: Double(recordings.count), unit: "1", provenance: .measured,
                     method: "library.savedRecordingCount.v1", sampleCount: recordings.count), label: "Saved swings")
@@ -147,7 +147,7 @@ struct PerformanceView: View {
                     symbol: "flag.checkered")
                 NavigationLink { CourseView() } label: {
                     Label(preferences.text("Open Course"), systemImage: "map")
-                }.buttonStyle(.borderedProminent)
+                }.buttonStyle(.borderedProminent).foregroundStyle(SLTheme.background)
             } else {
                 if !completed18.isEmpty {
                     metric(value: ProvenancedValue(value: scoringAverage, unit: "1", provenance: .userEntered,

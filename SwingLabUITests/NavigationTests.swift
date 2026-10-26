@@ -9,10 +9,11 @@ final class NavigationTests: XCTestCase {
         XCTAssertTrue(start.waitForExistence(timeout: 10))
         start.tap()
         for label in ["Home", "Swing", "Course", "Performance"] {
-            let tab = app.tabBars.buttons[label]
+            // Newer iPhone layouts can expose the tab rail outside an XCUI TabBar.
+            let tab = app.buttons[label].firstMatch
             XCTAssertTrue(tab.waitForExistence(timeout: 5))
             tab.tap()
         }
-        XCTAssertEqual(app.tabBars.buttons.count, 4)
+        XCTAssertEqual(["Home", "Swing", "Course", "Performance"].filter { app.buttons[$0].firstMatch.exists }.count, 4)
     }
 }

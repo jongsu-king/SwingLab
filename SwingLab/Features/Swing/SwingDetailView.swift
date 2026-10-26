@@ -148,7 +148,7 @@ struct SwingDetailView: View {
                 Button(action: analyze) {
                     Label(prefs.text((report?.sampledFrameCount ?? 0) == 0 ? "Analyze body pose" : "Analyze again"), systemImage: "figure.stand")
                         .frame(maxWidth: .infinity).padding(.vertical, 6)
-                }.buttonStyle(.borderedProminent).tint(SLTheme.forest).disabled(videoURL == nil)
+                }.buttonStyle(.borderedProminent).foregroundStyle(SLTheme.background).tint(SLTheme.forest).disabled(videoURL == nil)
                 if report == nil {
                     Button(prefs.text("Add manual phase markers")) {
                         let manual = PoseAnalysisReport(frames: [], markers: [], analyzedAt: .now,
@@ -205,7 +205,7 @@ struct SwingDetailView: View {
                 Divider()
             }
             HStack {
-                Button(prefs.text("Set at current frame")) { setMarker() }.buttonStyle(.borderedProminent).tint(SLTheme.forest)
+                Button(prefs.text("Set at current frame")) { setMarker() }.buttonStyle(.borderedProminent).foregroundStyle(SLTheme.background).tint(SLTheme.forest)
                 Button(prefs.text("Clear")) { clearMarker() }.buttonStyle(.bordered)
                     .disabled(report.marker(selectedPhase) == nil)
             }.disabled(analysisTask != nil || videoURL == nil)

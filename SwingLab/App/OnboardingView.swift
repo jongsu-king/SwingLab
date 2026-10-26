@@ -28,7 +28,7 @@ struct OnboardingView: View {
                     Text(preferences.text("Camera and location access are requested only when you use them. No account required.")).font(.footnote).foregroundStyle(.secondary)
                     Button { preferences.completedOnboarding = true } label: {
                         Text(preferences.text("Get started")).frame(maxWidth: .infinity).padding(.vertical, 10)
-                    }.buttonStyle(.borderedProminent)
+                    }.buttonStyle(.borderedProminent).foregroundStyle(SLTheme.background)
                 }.padding(28)
             }.background(SLTheme.background)
         }

@@ -1,6 +1,6 @@
 # Round 3 screenshots
 
-No screenshots have been captured yet. `xcrun simctl list runtimes` returned only `== Runtimes ==` when queried outside the sandbox on 26 October 2026.
+No screenshots have been exported yet. The iOS 27.1 runtime (24A94425) became available during Round 3, with the iPhone Duo simulator. Native tests and captures are in progress; this file will be updated only after actual export.
 
 Once an iOS runtime and iPhone simulator are available, run:
 

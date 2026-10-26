@@ -213,10 +213,10 @@ struct CourseView: View {
             }
             HStack {
                 if activeRound == nil {
-                    Button(preferences.text("Start round")) { showStart = true }.buttonStyle(.borderedProminent)
+                    Button(preferences.text("Start round")) { showStart = true }.buttonStyle(.borderedProminent).foregroundStyle(SLTheme.background)
                 } else {
                     Button(preferences.text(activeRound?.pendingShot == nil ? "Record ball position" : "Finish shot here"), action: recordPosition)
-                        .buttonStyle(.borderedProminent)
+                        .buttonStyle(.borderedProminent).foregroundStyle(SLTheme.background)
                         .disabled(location.isRequesting || (activeRound?.pendingShot == nil && selectedClub == nil))
                 }
                 Spacer()

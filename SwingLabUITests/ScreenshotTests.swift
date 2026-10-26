@@ -17,17 +17,21 @@ final class ScreenshotTests: XCTestCase {
         app.launchArguments = ["--ui-testing", "--screenshot-testing", "--screenshot-language", language,
             "--screenshot-appearance", appearance, "-AppleLanguages", "(\(language))", "-AppleLocale", language]
         app.launch()
-        XCTAssertTrue(app.tabBars.firstMatch.waitForExistence(timeout: 15))
-        XCTAssertEqual(app.tabBars.buttons.count, 4)
+        let labels = tabLabels(language)
+        XCTAssertTrue(app.buttons[labels[0]].firstMatch.waitForExistence(timeout: 15))
+        XCTAssertEqual(labels.filter { app.buttons[$0].firstMatch.exists }.count, 4)
         save(app, screen: "home", language: language, appearance: appearance)
 
         try tap("home.settings", in: app)
         save(app, screen: "settings", language: language, appearance: appearance)
-        app.navigationBars.buttons.element(boundBy: 0).tap()
+        // Relaunch the empty test library to return Home; both compact navigation bars
+        // and the iPhone Duo side rail follow the same actual startup route.
+        app.terminate(); app.launch()
+        XCTAssertTrue(app.buttons[labels[0]].firstMatch.waitForExistence(timeout: 15))
         try tap("home.bag", in: app)
         save(app, screen: "bag", language: language, appearance: appearance)
 
-        app.tabBars.buttons.element(boundBy: 1).tap()
+        app.buttons[labels[1]].firstMatch.tap()
         save(app, screen: "swing", language: language, appearance: appearance)
         try tap("swing.hypotheticalFlight", in: app)
         try tap("flight.driverExample", in: app)
@@ -35,22 +39,30 @@ final class ScreenshotTests: XCTestCase {
         try reveal("flight.result.carry", in: app)
         save(app, screen: "flight", language: language, appearance: appearance)
 
-        app.tabBars.buttons.element(boundBy: 2).tap()
+        app.buttons[labels[2]].firstMatch.tap()
         save(app, screen: "course", language: language, appearance: appearance)
-        app.tabBars.buttons.element(boundBy: 3).tap()
+        app.buttons[labels[3]].firstMatch.tap()
         save(app, screen: "performance", language: language, appearance: appearance)
 
         app.terminate()
         app.launchArguments.append("--screenshot-empty-recording")
         app.launch()
-        XCTAssertTrue(app.tabBars.firstMatch.waitForExistence(timeout: 15))
-        app.tabBars.buttons.element(boundBy: 1).tap()
+        XCTAssertTrue(app.buttons[labels[0]].firstMatch.waitForExistence(timeout: 15))
+        app.buttons[labels[1]].firstMatch.tap()
         try tap("swing.recording.00000000-0000-0000-0000-000000000003", in: app)
         // The real missing-file error is expected for this intentionally empty detail fixture.
         let alert = app.alerts.firstMatch
         if alert.waitForExistence(timeout: 5) { alert.buttons.firstMatch.tap() }
         save(app, screen: "swing-detail-empty", language: language, appearance: appearance)
         app.terminate()
+    }
+
+    private func tabLabels(_ language: String) -> [String] {
+        switch language {
+        case "ko": ["홈", "스윙", "코스", "퍼포먼스"]
+        case "de": ["Start", "Schwung", "Platz", "Leistung"]
+        default: ["Home", "Swing", "Course", "Performance"]
+        }
     }
 
     @MainActor private func tap(_ identifier: String, in app: XCUIApplication) throws {

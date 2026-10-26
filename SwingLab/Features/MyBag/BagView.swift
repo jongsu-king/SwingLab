@@ -26,7 +26,7 @@ struct BagView: View {
                         Label(preferences.text("Add your first club"), systemImage: "plus")
                             .frame(maxWidth: .infinity)
                     }
-                    .buttonStyle(.borderedProminent)
+                    .buttonStyle(.borderedProminent).foregroundStyle(SLTheme.background)
                     .controlSize(.large)
                     .padding(.horizontal, 28)
                 }

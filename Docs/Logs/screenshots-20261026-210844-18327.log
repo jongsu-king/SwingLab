@@ -1,0 +1,1279 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project SwingLab.xcodeproj -scheme SwingLab -destination "platform=iOS Simulator,id=DD5809B6-1928-4D6F-BD60-67245CECF07C" -derivedDataPath ./DerivedData -resultBundlePath /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-210844-18327.xcresult CODE_SIGNING_ALLOWED=NO ONLY_ACTIVE_ARCH=YES ARCHS=arm64 -parallel-testing-enabled NO "-only-testing:SwingLabUITests/ScreenshotTests" test
+
+Build settings from command line:
+    ARCHS = arm64
+    CODE_SIGNING_ALLOWED = NO
+    ONLY_ACTIVE_ARCH = YES
+
+Resolve Package Graph
+
+
+Resolved source packages:
+  SwingLabCore: /Users/jongsulim/Documents/ChatGPT/swing @ local
+
+Writing result bundle at path:
+	/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-210844-18327.xcresult
+
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (5 targets)
+    Target 'SwingLabUITests' in project 'SwingLab'
+        ➜ Explicit dependency on target 'SwingLab' in project 'SwingLab'
+    Target 'SwingLabTests' in project 'SwingLab'
+        ➜ Explicit dependency on target 'SwingLab' in project 'SwingLab'
+        ➜ Explicit dependency on target 'SwingLabCore-product' in project 'SwingLabCore'
+    Target 'SwingLab' in project 'SwingLab'
+        ➜ Explicit dependency on target 'SwingLabCore-product' in project 'SwingLabCore'
+    Target 'SwingLabCore-product' in project 'SwingLabCore'
+        ➜ Explicit dependency on target 'SwingLabCore' in project 'SwingLabCore'
+    Target 'SwingLabCore' in project 'SwingLabCore' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc --version
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/xcstringstool compile --dry-run --output-directory /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Resources/Localizable.xcstrings
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/actool --print-asset-tag-combinations --output-format xml1 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Resources/Assets.xcassets
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/actool --version --output-format xml1
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/xcstringstool compile --dry-run --output-directory /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Resources/InfoPlist.xcstrings
+
+Build description signature: 120a665b65c55b4cde5a32c3c96c96f9
+Build description path: /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/XCBuildData/120a665b65c55b4cde5a32c3c96c96f9.xcbuilddata
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/SDKStatCaches.noindex/iphonesimulator27.1-24A94232-35d3147121984ba087c28d913653d626.sdkstatcache
+    cd /Users/jongsulim/Documents/ChatGPT/swing/SwingLab.xcodeproj
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk -o /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/SDKStatCaches.noindex/iphonesimulator27.1-24A94232-35d3147121984ba087c28d913653d626.sdkstatcache
+
+MkDir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/PlugIns/SwingLabTests.xctest/Frameworks (in target 'SwingLabTests' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    /bin/mkdir -p /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/PlugIns/SwingLabTests.xctest/Frameworks
+
+Copy /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/SwingLabCore.modulemap /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/SwingLabCore.modulemap (in target 'SwingLabCore' from project 'SwingLabCore')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/SwingLabCore.modulemap /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator
+
+WriteAuxiliaryFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab.LinkFileList (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    write-file /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab.LinkFileList
+
+MkDir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/Frameworks (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    /bin/mkdir -p /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/Frameworks
+
+WriteAuxiliaryFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/SwingLab.DependencyMetadataFileList (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    write-file /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/SwingLab.DependencyMetadataFileList
+
+MkDir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/PlugIns (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    /bin/mkdir -p /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/PlugIns
+
+SwiftDriver SwingLabCore normal arm64 com.apple.xcode.tools.swift.compiler (in target 'SwingLabCore' from project 'SwingLabCore')
+    cd /Users/jongsulim/Documents/ChatGPT/swing/SwingLab.xcodeproj
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -parse-as-library -module-name SwingLabCore -Onone @/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/Objects-normal/arm64/SwingLabCore.SwiftFileList -DSWIFT_PACKAGE -DDEBUG -DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE -DXcode -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk -target arm64-apple-ios17.0-simulator -g -module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 6 -I /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk/Developer/Library/Frameworks -c -j10 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/SDKStatCaches.noindex/iphonesimulator27.1-24A94232-35d3147121984ba087c28d913653d626.sdkstatcache -output-file-map /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/Objects-normal/arm64/SwingLabCore-OutputFileMap.json -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/ModuleCache.noindex -sdk-module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/SDKExplicitPrecompiledModules -emit-dependencies -emit-module -emit-module-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/Objects-normal/arm64/SwingLabCore.swiftmodule -serialize-diagnostics -dependency-scan-serialize-diagnostics-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/Objects-normal/arm64/SwingLabCore-dependency-scan.dia -validate-clang-modules-once -clang-build-session-file /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -fmodules-prune-interval\=86400 -Xcc -fmodules-prune-after\=345600 -package-name swing -emit-const-values -const-gather-protocols-list /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/Objects-normal/arm64/SwingLabCore_const_extract_protocols.json -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/DerivedSources-normal/arm64 -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/DerivedSources/arm64 -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/DerivedSources -Xcc -DSWIFT_PACKAGE -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/Objects-normal/arm64/SwingLabCore-Swift.h -working-directory /Users/jongsulim/Documents/ChatGPT/swing/SwingLab.xcodeproj -experimental-emit-module-separately -disable-cmo
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ SwingLabCore (in target 'SwingLabCore' from project 'SwingLabCore')
+
+SwiftCompile normal arm64 (in target 'SwingLabCore' from project 'SwingLabCore')
+    cd /Users/jongsulim/Documents/ChatGPT/swing/SwingLab.xcodeproj
+    
+
+SwiftDriver\ Compilation SwingLabCore normal arm64 com.apple.xcode.tools.swift.compiler (in target 'SwingLabCore' from project 'SwingLabCore')
+    cd /Users/jongsulim/Documents/ChatGPT/swing/SwingLab.xcodeproj
+    builtin-Swift-Compilation -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -parse-as-library -module-name SwingLabCore -Onone @/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/Objects-normal/arm64/SwingLabCore.SwiftFileList -DSWIFT_PACKAGE -DDEBUG -DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE -DXcode -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk -target arm64-apple-ios17.0-simulator -g -module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 6 -I /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk/Developer/Library/Frameworks -c -j10 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/SDKStatCaches.noindex/iphonesimulator27.1-24A94232-35d3147121984ba087c28d913653d626.sdkstatcache -output-file-map /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/Objects-normal/arm64/SwingLabCore-OutputFileMap.json -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/ModuleCache.noindex -sdk-module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/SDKExplicitPrecompiledModules -emit-dependencies -emit-module -emit-module-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/Objects-normal/arm64/SwingLabCore.swiftmodule -serialize-diagnostics -dependency-scan-serialize-diagnostics-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/Objects-normal/arm64/SwingLabCore-dependency-scan.dia -validate-clang-modules-once -clang-build-session-file /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -fmodules-prune-interval\=86400 -Xcc -fmodules-prune-after\=345600 -package-name swing -emit-const-values -const-gather-protocols-list /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/Objects-normal/arm64/SwingLabCore_const_extract_protocols.json -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/DerivedSources-normal/arm64 -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/DerivedSources/arm64 -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/DerivedSources -Xcc -DSWIFT_PACKAGE -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/Objects-normal/arm64/SwingLabCore-Swift.h -working-directory /Users/jongsulim/Documents/ChatGPT/swing/SwingLab.xcodeproj -experimental-emit-module-separately -disable-cmo
+
+SwiftDriverJobDiscovery normal arm64 Emitting module for SwingLabCore (in target 'SwingLabCore' from project 'SwingLabCore')
+
+SwiftDriver\ Compilation\ Requirements SwingLabCore normal arm64 com.apple.xcode.tools.swift.compiler (in target 'SwingLabCore' from project 'SwingLabCore')
+    cd /Users/jongsulim/Documents/ChatGPT/swing/SwingLab.xcodeproj
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -parse-as-library -module-name SwingLabCore -Onone @/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/Objects-normal/arm64/SwingLabCore.SwiftFileList -DSWIFT_PACKAGE -DDEBUG -DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE -DXcode -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk -target arm64-apple-ios17.0-simulator -g -module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 6 -I /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk/Developer/Library/Frameworks -c -j10 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/SDKStatCaches.noindex/iphonesimulator27.1-24A94232-35d3147121984ba087c28d913653d626.sdkstatcache -output-file-map /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/Objects-normal/arm64/SwingLabCore-OutputFileMap.json -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/ModuleCache.noindex -sdk-module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/SDKExplicitPrecompiledModules -emit-dependencies -emit-module -emit-module-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/Objects-normal/arm64/SwingLabCore.swiftmodule -serialize-diagnostics -dependency-scan-serialize-diagnostics-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/Objects-normal/arm64/SwingLabCore-dependency-scan.dia -validate-clang-modules-once -clang-build-session-file /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -fmodules-prune-interval\=86400 -Xcc -fmodules-prune-after\=345600 -package-name swing -emit-const-values -const-gather-protocols-list /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/Objects-normal/arm64/SwingLabCore_const_extract_protocols.json -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/DerivedSources-normal/arm64 -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/DerivedSources/arm64 -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/DerivedSources -Xcc -DSWIFT_PACKAGE -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/Objects-normal/arm64/SwingLabCore-Swift.h -working-directory /Users/jongsulim/Documents/ChatGPT/swing/SwingLab.xcodeproj -experimental-emit-module-separately -disable-cmo
+
+Copy /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLabCore.swiftmodule/arm64-apple-ios-simulator.swiftdoc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/Objects-normal/arm64/SwingLabCore.swiftdoc (in target 'SwingLabCore' from project 'SwingLabCore')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/Objects-normal/arm64/SwingLabCore.swiftdoc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLabCore.swiftmodule/arm64-apple-ios-simulator.swiftdoc
+
+SwiftMergeGeneratedHeaders /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/SwingLabCore-Swift.h /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/Objects-normal/arm64/SwingLabCore-Swift.h (in target 'SwingLabCore' from project 'SwingLabCore')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-swiftHeaderTool -arch arm64 /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/Objects-normal/arm64/SwingLabCore-Swift.h -o /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/SwingLabCore-Swift.h
+
+Copy /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLabCore.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/Objects-normal/arm64/SwingLabCore.swiftsourceinfo (in target 'SwingLabCore' from project 'SwingLabCore')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/Objects-normal/arm64/SwingLabCore.swiftsourceinfo /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLabCore.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo
+
+Copy /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLabCore.swiftmodule/arm64-apple-ios-simulator.swiftmodule /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/Objects-normal/arm64/SwingLabCore.swiftmodule (in target 'SwingLabCore' from project 'SwingLabCore')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/Objects-normal/arm64/SwingLabCore.swiftmodule /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLabCore.swiftmodule/arm64-apple-ios-simulator.swiftmodule
+
+Copy /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLabCore.swiftmodule/arm64-apple-ios-simulator.abi.json /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/Objects-normal/arm64/SwingLabCore.abi.json (in target 'SwingLabCore' from project 'SwingLabCore')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/Objects-normal/arm64/SwingLabCore.abi.json /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLabCore.swiftmodule/arm64-apple-ios-simulator.abi.json
+
+Ld /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLabCore.o normal (in target 'SwingLabCore' from project 'SwingLabCore')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios17.0-simulator -r -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk -O0 -Xlinker -no_warn_duplicate_libraries -F/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -F/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk/Developer/Library/Frameworks -filelist /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/Objects-normal/arm64/SwingLabCore.LinkFileList -nostdlib -Xlinker -object_path_lto -Xlinker /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/Objects-normal/arm64/SwingLabCore_lto.o -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -dependency_info -Xlinker /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/Objects-normal/arm64/SwingLabCore_dependency_info.dat -fobjc-link-runtime -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/Objects-normal/arm64/SwingLabCore.swiftmodule -o /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLabCore.o
+
+SwiftDriver SwingLab normal arm64 com.apple.xcode.tools.swift.compiler (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name SwingLab -Onone @/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab.SwiftFileList -DDEBUG -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk -target arm64-apple-ios17.0-simulator -g -module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Index.noindex/DataStore -swift-version 6 -I /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator -F /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator -emit-localized-strings -emit-localized-strings-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64 -c -j10 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/SDKStatCaches.noindex/iphonesimulator27.1-24A94232-35d3147121984ba087c28d913653d626.sdkstatcache -output-file-map /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab-OutputFileMap.json -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/ModuleCache.noindex -sdk-module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/SDKExplicitPrecompiledModules -emit-dependencies -emit-module -emit-module-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab.swiftmodule -serialize-diagnostics -dependency-scan-serialize-diagnostics-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab-dependency-scan.dia -validate-clang-modules-once -clang-build-session-file /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -fmodules-prune-interval\=86400 -Xcc -fmodules-prune-after\=345600 -emit-const-values -const-gather-protocols-list /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab_const_extract_protocols.json -Xcc -iquote -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/SwingLab-generated-files.hmap -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/SwingLab-own-target-headers.hmap -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/SwingLab-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab-9f3b5f304412910a7131a2e40b8441ad-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/SwingLab-project-headers.hmap -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/DerivedSources-normal/arm64 -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/DerivedSources/arm64 -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab-Swift.h -working-directory /Users/jongsulim/Documents/ChatGPT/swing -experimental-emit-module-separately -disable-cmo
+
+CompileAssetCatalogVariant thinned /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Resources/Assets.xcassets (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    /Applications/Xcode.app/Contents/Developer/usr/bin/actool /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Resources/Assets.xcassets --compile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/assetcatalog_output/thinned --output-format human-readable-text --notices --warnings --export-dependency-info /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/assetcatalog_dependencies_thinned --output-partial-info-plist /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/assetcatalog_generated_info.plist_thinned --app-icon AppIcon --compress-pngs --enable-on-demand-resources YES --filter-for-thinning-device-configuration iPhone19,4 --filter-for-device-os-version 27.1 --development-region en --target-device iphone --minimum-deployment-target 17.0 --platform iphonesimulator
+/* com.apple.actool.compilation-results */
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/assetcatalog_generated_info.plist_thinned
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/assetcatalog_output/thinned/AppIcon60x60@2x.png
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/assetcatalog_output/thinned/AppIcon76x76@2x~ipad.png
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/assetcatalog_output/thinned/Assets.car
+
+
+ExtractAppIntentsMetadata (in target 'SwingLabCore' from project 'SwingLabCore')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name SwingLabCore --sdk-root /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk --xcode-version 27A9275 --platform-family iOS --deployment-target 17.0 --bundle-identifier swing.SwingLabCore --output /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLabCore.appintents --target-triple arm64-apple-ios17.0-simulator --binary-file /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLabCore.o --dependency-file /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/Objects-normal/arm64/SwingLabCore_dependency_info.dat --stringsdata-file /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/Objects-normal/arm64/SwingLabCore.SwiftFileList --metadata-file-list /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/SwingLabCore.DependencyMetadataFileList --static-metadata-file-list /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/SwingLabCore.DependencyStaticMetadataFileList --swift-const-vals-list /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-t.build/Objects-normal/arm64/SwingLabCore.SwiftConstValuesFileList --force --compile-time-extraction --deployment-aware-processing --no-app-shortcuts-localization
+2026-10-26 21:08:46.724 appintentsmetadataprocessor[18377:148168] Starting appintentsmetadataprocessor export
+2026-10-26 21:08:46.759 appintentsmetadataprocessor[18377:148168] Extracted no relevant App Intents symbols, skipping writing output
+
+ProcessInfoPlistFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks/SwingLabCore_-211426CEC1523454_PackageProduct.framework/Info.plist /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-product-t.build/empty-SwingLabCore_-211426CEC1523454_PackageProduct.plist (in target 'SwingLabCoredynamic-product' from project 'SwingLabCore')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-infoPlistUtility /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-product-t.build/empty-SwingLabCore_-211426CEC1523454_PackageProduct.plist -producttype com.apple.product-type.framework -expandbuildsettings -format binary -platform iphonesimulator -o /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks/SwingLabCore_-211426CEC1523454_PackageProduct.framework/Info.plist
+
+Ld /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks/SwingLabCore_-211426CEC1523454_PackageProduct.framework/SwingLabCore_-211426CEC1523454_PackageProduct normal (in target 'SwingLabCoredynamic-product' from project 'SwingLabCore')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -Xlinker -reproducible -target arm64-apple-ios17.0-simulator -emit-library -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk -Xlinker -no_warn_duplicate_libraries -L/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -L/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator -L/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -F/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator -Fsystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -Fsystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk/Developer/Library/Frameworks @/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-product-t.build/Objects-normal/arm64/SwingLabCore_-211426CEC1523454_PackageProduct.LinkFileList -Xclang-linker -install_name -Xclang-linker @rpath/SwingLabCore_-211426CEC1523454_PackageProduct.framework/SwingLabCore_-211426CEC1523454_PackageProduct -Xlinker -rpath -Xlinker /usr/lib/swift -Xlinker -rpath -Xlinker @loader_path -Xlinker -rpath -Xlinker /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks -Xlinker -dead_strip -Xlinker -object_path_lto -Xlinker /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-product-t.build/Objects-normal/arm64/SwingLabCore_-211426CEC1523454_PackageProduct_lto.o -Xclang-linker -rdynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -dependency_info -Xlinker /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-product-t.build/Objects-normal/arm64/SwingLabCore_-211426CEC1523454_PackageProduct_dependency_info.dat -link-objc-runtime -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator -L/usr/lib/swift -o /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks/SwingLabCore_-211426CEC1523454_PackageProduct.framework/SwingLabCore_-211426CEC1523454_PackageProduct -no-stdlib-rpath
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ SwingLab (in target 'SwingLab' from project 'SwingLab')
+
+SwiftCompile normal arm64 (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    
+
+SwiftDriver\ Compilation SwingLab normal arm64 com.apple.xcode.tools.swift.compiler (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-Swift-Compilation -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name SwingLab -Onone @/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab.SwiftFileList -DDEBUG -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk -target arm64-apple-ios17.0-simulator -g -module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Index.noindex/DataStore -swift-version 6 -I /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator -F /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator -emit-localized-strings -emit-localized-strings-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64 -c -j10 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/SDKStatCaches.noindex/iphonesimulator27.1-24A94232-35d3147121984ba087c28d913653d626.sdkstatcache -output-file-map /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab-OutputFileMap.json -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/ModuleCache.noindex -sdk-module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/SDKExplicitPrecompiledModules -emit-dependencies -emit-module -emit-module-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab.swiftmodule -serialize-diagnostics -dependency-scan-serialize-diagnostics-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab-dependency-scan.dia -validate-clang-modules-once -clang-build-session-file /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -fmodules-prune-interval\=86400 -Xcc -fmodules-prune-after\=345600 -emit-const-values -const-gather-protocols-list /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab_const_extract_protocols.json -Xcc -iquote -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/SwingLab-generated-files.hmap -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/SwingLab-own-target-headers.hmap -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/SwingLab-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab-9f3b5f304412910a7131a2e40b8441ad-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/SwingLab-project-headers.hmap -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/DerivedSources-normal/arm64 -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/DerivedSources/arm64 -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab-Swift.h -working-directory /Users/jongsulim/Documents/ChatGPT/swing -experimental-emit-module-separately -disable-cmo
+
+GenerateTAPI /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator/SwingLabCore_-211426CEC1523454_PackageProduct.framework/SwingLabCore_-211426CEC1523454_PackageProduct.tbd (in target 'SwingLabCoredynamic-product' from project 'SwingLabCore')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/tapi stubify -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk -F/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk/Developer/Library/Frameworks -L/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator -L/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks/SwingLabCore_-211426CEC1523454_PackageProduct.framework/SwingLabCore_-211426CEC1523454_PackageProduct -o /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator/SwingLabCore_-211426CEC1523454_PackageProduct.framework/SwingLabCore_-211426CEC1523454_PackageProduct.tbd
+
+CpResource /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/PrivacyInfo.xcprivacy /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Resources/PrivacyInfo.xcprivacy (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Resources/PrivacyInfo.xcprivacy /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app
+
+Ld /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/__preview.dylib normal (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios17.0-simulator -dynamiclib -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk -Os -Xlinker -no_warn_duplicate_libraries -L/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator -F/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator -install_name @rpath/SwingLab.debug.dylib -Xlinker -dead_strip -rdynamic -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -dependency_info -Xlinker /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab_dependency_info.dat -o /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/__preview.dylib
+
+CompileXCStrings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/ /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Resources/InfoPlist.xcstrings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcstringstool compile --output-directory /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Resources/InfoPlist.xcstrings
+
+CompileXCStrings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/ /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Resources/Localizable.xcstrings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcstringstool compile --output-directory /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Resources/Localizable.xcstrings
+
+Copy /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/Frameworks/SwingLabCore_-211426CEC1523454_PackageProduct.framework /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks/SwingLabCore_-211426CEC1523454_PackageProduct.framework (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks -remove-static-executable /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks/SwingLabCore_-211426CEC1523454_PackageProduct.framework /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/Frameworks
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -D -S -no_atom_info /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks/SwingLabCore_-211426CEC1523454_PackageProduct.framework/SwingLabCore_-211426CEC1523454_PackageProduct -o /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/Frameworks/SwingLabCore_-211426CEC1523454_PackageProduct.framework/SwingLabCore_-211426CEC1523454_PackageProduct
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/zh-Hant.lproj/InfoPlist.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/zh-Hant.lproj/InfoPlist.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename InfoPlist.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/zh-Hant.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/zh-Hant.lproj/InfoPlist.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/zh-Hant.lproj/InfoPlist.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/zh-Hans.lproj/InfoPlist.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/zh-Hans.lproj/InfoPlist.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename InfoPlist.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/zh-Hans.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/zh-Hans.lproj/InfoPlist.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/zh-Hans.lproj/InfoPlist.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/vi.lproj/InfoPlist.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/vi.lproj/InfoPlist.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename InfoPlist.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/vi.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/vi.lproj/InfoPlist.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/vi.lproj/InfoPlist.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/th.lproj/InfoPlist.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/th.lproj/InfoPlist.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename InfoPlist.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/th.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/th.lproj/InfoPlist.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/th.lproj/InfoPlist.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/pt-BR.lproj/InfoPlist.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/pt-BR.lproj/InfoPlist.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename InfoPlist.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/pt-BR.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/pt-BR.lproj/InfoPlist.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/pt-BR.lproj/InfoPlist.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/ko.lproj/InfoPlist.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/ko.lproj/InfoPlist.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename InfoPlist.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/ko.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/ko.lproj/InfoPlist.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/ko.lproj/InfoPlist.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/ja.lproj/InfoPlist.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/ja.lproj/InfoPlist.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename InfoPlist.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/ja.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/ja.lproj/InfoPlist.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/ja.lproj/InfoPlist.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/it.lproj/InfoPlist.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/it.lproj/InfoPlist.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename InfoPlist.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/it.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/it.lproj/InfoPlist.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/it.lproj/InfoPlist.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/fr.lproj/InfoPlist.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/fr.lproj/InfoPlist.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename InfoPlist.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/fr.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/fr.lproj/InfoPlist.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/fr.lproj/InfoPlist.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/es.lproj/InfoPlist.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/es.lproj/InfoPlist.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename InfoPlist.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/es.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/es.lproj/InfoPlist.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/es.lproj/InfoPlist.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/en.lproj/InfoPlist.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/en.lproj/InfoPlist.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename InfoPlist.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/en.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/en.lproj/InfoPlist.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/en.lproj/InfoPlist.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/de.lproj/InfoPlist.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/de.lproj/InfoPlist.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename InfoPlist.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/de.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/de.lproj/InfoPlist.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/de.lproj/InfoPlist.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+LinkAssetCatalog /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Resources/Assets.xcassets (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-linkAssetCatalog --thinned /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/assetcatalog_output/thinned --thinned-dependencies /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/assetcatalog_dependencies_thinned --thinned-info-plist-content /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/assetcatalog_generated_info.plist_thinned --unthinned /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/assetcatalog_output/unthinned --unthinned-dependencies /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/assetcatalog_dependencies_unthinned --unthinned-info-plist-content /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/assetcatalog_generated_info.plist_unthinned --output /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app --plist-output /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/assetcatalog_generated_info.plist
+note: Emplaced /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/Assets.car (in target 'SwingLab' from project 'SwingLab')
+note: Emplaced /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/AppIcon76x76@2x~ipad.png (in target 'SwingLab' from project 'SwingLab')
+note: Emplaced /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/AppIcon60x60@2x.png (in target 'SwingLab' from project 'SwingLab')
+
+ProcessInfoPlistFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/Info.plist /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Resources/Info.plist (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-infoPlistUtility /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Resources/Info.plist -producttype com.apple.product-type.application -genpkginfo /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -additionalcontentfile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/assetcatalog_generated_info.plist -scanforprivacyfile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/Frameworks/SwingLabCore_-211426CEC1523454_PackageProduct.framework -o /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/Info.plist
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/vi.lproj/Localizable.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/vi.lproj/Localizable.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/vi.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/vi.lproj/Localizable.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/vi.lproj/Localizable.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/th.lproj/Localizable.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/th.lproj/Localizable.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/th.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/th.lproj/Localizable.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/th.lproj/Localizable.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/zh-Hans.lproj/Localizable.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/zh-Hans.lproj/Localizable.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/zh-Hans.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/zh-Hans.lproj/Localizable.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/zh-Hans.lproj/Localizable.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/zh-Hant.lproj/Localizable.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/zh-Hant.lproj/Localizable.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/zh-Hant.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/zh-Hant.lproj/Localizable.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/zh-Hant.lproj/Localizable.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/ko.lproj/Localizable.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/ko.lproj/Localizable.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/ko.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/ko.lproj/Localizable.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/ko.lproj/Localizable.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/ja.lproj/Localizable.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/ja.lproj/Localizable.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/ja.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/ja.lproj/Localizable.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/ja.lproj/Localizable.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/pt-BR.lproj/Localizable.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/pt-BR.lproj/Localizable.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/pt-BR.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/pt-BR.lproj/Localizable.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/pt-BR.lproj/Localizable.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/it.lproj/Localizable.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/it.lproj/Localizable.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/it.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/it.lproj/Localizable.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/it.lproj/Localizable.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/fr.lproj/Localizable.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/fr.lproj/Localizable.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/fr.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/fr.lproj/Localizable.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/fr.lproj/Localizable.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/es.lproj/Localizable.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/es.lproj/Localizable.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/es.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/es.lproj/Localizable.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/es.lproj/Localizable.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/en.lproj/Localizable.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/en.lproj/Localizable.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/en.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/en.lproj/Localizable.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/en.lproj/Localizable.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/de.lproj/Localizable.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/de.lproj/Localizable.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/de.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/de.lproj/Localizable.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/de.lproj/Localizable.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+SwiftDriverJobDiscovery normal arm64 Emitting module for SwingLab (in target 'SwingLab' from project 'SwingLab')
+
+SwiftDriver\ Compilation\ Requirements SwingLab normal arm64 com.apple.xcode.tools.swift.compiler (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name SwingLab -Onone @/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab.SwiftFileList -DDEBUG -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk -target arm64-apple-ios17.0-simulator -g -module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Index.noindex/DataStore -swift-version 6 -I /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator -F /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator -emit-localized-strings -emit-localized-strings-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64 -c -j10 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/SDKStatCaches.noindex/iphonesimulator27.1-24A94232-35d3147121984ba087c28d913653d626.sdkstatcache -output-file-map /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab-OutputFileMap.json -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/ModuleCache.noindex -sdk-module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/SDKExplicitPrecompiledModules -emit-dependencies -emit-module -emit-module-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab.swiftmodule -serialize-diagnostics -dependency-scan-serialize-diagnostics-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab-dependency-scan.dia -validate-clang-modules-once -clang-build-session-file /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -fmodules-prune-interval\=86400 -Xcc -fmodules-prune-after\=345600 -emit-const-values -const-gather-protocols-list /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab_const_extract_protocols.json -Xcc -iquote -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/SwingLab-generated-files.hmap -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/SwingLab-own-target-headers.hmap -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/SwingLab-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab-9f3b5f304412910a7131a2e40b8441ad-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/SwingLab-project-headers.hmap -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/DerivedSources-normal/arm64 -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/DerivedSources/arm64 -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab-Swift.h -working-directory /Users/jongsulim/Documents/ChatGPT/swing -experimental-emit-module-separately -disable-cmo
+
+Copy /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.swiftmodule/arm64-apple-ios-simulator.swiftdoc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab.swiftdoc (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks -rename /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab.swiftdoc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.swiftmodule/arm64-apple-ios-simulator.swiftdoc
+
+Copy /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.swiftmodule/arm64-apple-ios-simulator.swiftmodule /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab.swiftmodule (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks -rename /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab.swiftmodule /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.swiftmodule/arm64-apple-ios-simulator.swiftmodule
+
+SwiftMergeGeneratedHeaders /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/DerivedSources/SwingLab-Swift.h /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab-Swift.h (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-swiftHeaderTool -arch arm64 /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab-Swift.h -o /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/DerivedSources/SwingLab-Swift.h
+
+Copy /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.swiftmodule/arm64-apple-ios-simulator.abi.json /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab.abi.json (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks -rename /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab.abi.json /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.swiftmodule/arm64-apple-ios-simulator.abi.json
+
+Copy /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab.swiftsourceinfo (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks -rename /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab.swiftsourceinfo /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo
+
+Ld /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/SwingLab.debug.dylib normal (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios17.0-simulator -dynamiclib -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk -Os -Xlinker -no_warn_duplicate_libraries -L/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -L/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator -F/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -F/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator -filelist /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab.LinkFileList -install_name @rpath/SwingLab.debug.dylib -Xlinker -rpath -Xlinker /usr/lib/swift -Xlinker -rpath -Xlinker @loader_path -Xlinker -rpath -Xlinker /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks -Xlinker -rpath -Xlinker @executable_path/Frameworks -Xlinker -dead_strip -Xlinker -object_path_lto -Xlinker /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab_lto.o -rdynamic -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -dependency_info -Xlinker /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab_dependency_info.dat -fobjc-link-runtime -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab.swiftmodule -Xlinker -alias -Xlinker _main -Xlinker ___debug_main_executable_dylib_entry_point /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks/SwingLabCore_-211426CEC1523454_PackageProduct.framework/SwingLabCore_-211426CEC1523454_PackageProduct -o /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/SwingLab.debug.dylib
+
+SwiftDriver SwingLabTests normal arm64 com.apple.xcode.tools.swift.compiler (in target 'SwingLabTests' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name SwingLabTests -Onone @/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/Objects-normal/arm64/SwingLabTests.SwiftFileList -DDEBUG -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk -target arm64-apple-ios17.0-simulator -g -module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Index.noindex/DataStore -swift-version 6 -I /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk/Developer/Library/Frameworks -c -j10 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/SDKStatCaches.noindex/iphonesimulator27.1-24A94232-35d3147121984ba087c28d913653d626.sdkstatcache -output-file-map /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/Objects-normal/arm64/SwingLabTests-OutputFileMap.json -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/ModuleCache.noindex -sdk-module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/SDKExplicitPrecompiledModules -emit-dependencies -emit-module -emit-module-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/Objects-normal/arm64/SwingLabTests.swiftmodule -serialize-diagnostics -dependency-scan-serialize-diagnostics-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/Objects-normal/arm64/SwingLabTests-dependency-scan.dia -validate-clang-modules-once -clang-build-session-file /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -fmodules-prune-interval\=86400 -Xcc -fmodules-prune-after\=345600 -emit-const-values -const-gather-protocols-list /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/Objects-normal/arm64/SwingLabTests_const_extract_protocols.json -Xcc -iquote -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/SwingLabTests-generated-files.hmap -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/SwingLabTests-own-target-headers.hmap -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/SwingLabTests-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab-9f3b5f304412910a7131a2e40b8441ad-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/SwingLabTests-project-headers.hmap -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/DerivedSources-normal/arm64 -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/DerivedSources/arm64 -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/Objects-normal/arm64/SwingLabTests-Swift.h -working-directory /Users/jongsulim/Documents/ChatGPT/swing -experimental-emit-module-separately -disable-cmo
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ SwingLabTests (in target 'SwingLabTests' from project 'SwingLab')
+
+SwiftCompile normal arm64 (in target 'SwingLabTests' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    
+
+SwiftDriver\ Compilation SwingLabTests normal arm64 com.apple.xcode.tools.swift.compiler (in target 'SwingLabTests' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-Swift-Compilation -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name SwingLabTests -Onone @/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/Objects-normal/arm64/SwingLabTests.SwiftFileList -DDEBUG -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk -target arm64-apple-ios17.0-simulator -g -module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Index.noindex/DataStore -swift-version 6 -I /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk/Developer/Library/Frameworks -c -j10 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/SDKStatCaches.noindex/iphonesimulator27.1-24A94232-35d3147121984ba087c28d913653d626.sdkstatcache -output-file-map /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/Objects-normal/arm64/SwingLabTests-OutputFileMap.json -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/ModuleCache.noindex -sdk-module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/SDKExplicitPrecompiledModules -emit-dependencies -emit-module -emit-module-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/Objects-normal/arm64/SwingLabTests.swiftmodule -serialize-diagnostics -dependency-scan-serialize-diagnostics-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/Objects-normal/arm64/SwingLabTests-dependency-scan.dia -validate-clang-modules-once -clang-build-session-file /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -fmodules-prune-interval\=86400 -Xcc -fmodules-prune-after\=345600 -emit-const-values -const-gather-protocols-list /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/Objects-normal/arm64/SwingLabTests_const_extract_protocols.json -Xcc -iquote -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/SwingLabTests-generated-files.hmap -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/SwingLabTests-own-target-headers.hmap -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/SwingLabTests-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab-9f3b5f304412910a7131a2e40b8441ad-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/SwingLabTests-project-headers.hmap -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/DerivedSources-normal/arm64 -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/DerivedSources/arm64 -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/Objects-normal/arm64/SwingLabTests-Swift.h -working-directory /Users/jongsulim/Documents/ChatGPT/swing -experimental-emit-module-separately -disable-cmo
+
+ConstructStubExecutorLinkFileList /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/SwingLab-ExecutorLinkFileList-normal-arm64.txt (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    construct-stub-executor-link-file-list /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/SwingLab.debug.dylib /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libPreviewsJITStubExecutor_no_swift_entry_point.a /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libPreviewsJITStubExecutor.a --output /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/SwingLab-ExecutorLinkFileList-normal-arm64.txt
+note: Using stub executor library with Swift entry point. (in target 'SwingLab' from project 'SwingLab')
+
+Ld /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/SwingLab normal (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios17.0-simulator -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk -Os -Xlinker -no_warn_duplicate_libraries -L/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator -F/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator -Xlinker -rpath -Xlinker @executable_path -Xlinker -rpath -Xlinker @loader_path -Xlinker -rpath -Xlinker /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks -Xlinker -rpath -Xlinker @executable_path/Frameworks -rdynamic -Xlinker -objc_abi_version -Xlinker 2 -e ___debug_blank_executor_main -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __debug_dylib -Xlinker /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/SwingLab-DebugDylibPath-normal-arm64.txt -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __debug_instlnm -Xlinker /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/SwingLab-DebugDylibInstallName-normal-arm64.txt -Xlinker -filelist -Xlinker /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/SwingLab-ExecutorLinkFileList-normal-arm64.txt /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/SwingLab.debug.dylib -o /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/SwingLab
+
+ExtractAppIntentsMetadata (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name SwingLab --sdk-root /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk --xcode-version 27A9275 --platform-family iOS --deployment-target 17.0 --bundle-identifier com.swinglab.app --output /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app --target-triple arm64-apple-ios17.0-simulator --binary-file /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/SwingLab --dependency-file /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab_dependency_info.dat --stringsdata-file /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab.SwiftFileList --metadata-file-list /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/SwingLab.DependencyMetadataFileList --static-metadata-file-list /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/SwingLab.DependencyStaticMetadataFileList --swift-const-vals-list /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --no-app-shortcuts-localization
+2026-10-26 21:08:48.847 appintentsmetadataprocessor[18413:148342] Starting appintentsmetadataprocessor export
+2026-10-26 21:08:48.848 appintentsmetadataprocessor[18413:148342] warning: Metadata extraction skipped, no AppIntents.framework dependency found
+
+CopySwiftLibs /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-swiftStdLibTool --copy --verbose --scan-executable /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/SwingLab.debug.dylib --scan-folder /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/Frameworks --scan-folder /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/PlugIns --scan-folder /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/SystemExtensions --scan-folder /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/Extensions --scan-folder /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks/SwingLabCore_-211426CEC1523454_PackageProduct.framework --platform iphonesimulator --toolchain /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/Frameworks --strip-bitcode --strip-bitcode-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os
+Ignoring --strip-bitcode because --sign was not passed
+
+AppIntentsSSUTraining (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsnltrainingprocessor --infoplist-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/Info.plist --temp-dir-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/ssu --bundle-id com.swinglab.app --product-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app --extracted-metadata-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/Metadata.appintents --metadata-file-list /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/SwingLab.DependencyMetadataFileList --source-file /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/Info.plist --archive-ssu-assets
+2026-10-26 21:08:48.867 appintentsnltrainingprocessor[18414:148343] Parsing options for appintentsnltrainingprocessor
+2026-10-26 21:08:48.868 appintentsnltrainingprocessor[18414:148343] Starting AppIntents SSU YAML Generation
+2026-10-26 21:08:48.868 appintentsnltrainingprocessor[18414:148343] No AppShortcuts found - Skipping.
+
+ProcessInfoPlistFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/PlugIns/SwingLabTests.xctest/Info.plist /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/empty-SwingLabTests.plist (in target 'SwingLabTests' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-infoPlistUtility /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/empty-SwingLabTests.plist -producttype com.apple.product-type.bundle.unit-test -expandbuildsettings -format binary -platform iphonesimulator -o /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/PlugIns/SwingLabTests.xctest/Info.plist
+
+Copy /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/PlugIns/SwingLabTests.xctest/Frameworks/SwingLabCore_-211426CEC1523454_PackageProduct.framework /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks/SwingLabCore_-211426CEC1523454_PackageProduct.framework (in target 'SwingLabTests' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks -remove-static-executable /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks/SwingLabCore_-211426CEC1523454_PackageProduct.framework /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/PlugIns/SwingLabTests.xctest/Frameworks
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -D -S -no_atom_info /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks/SwingLabCore_-211426CEC1523454_PackageProduct.framework/SwingLabCore_-211426CEC1523454_PackageProduct -o /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/PlugIns/SwingLabTests.xctest/Frameworks/SwingLabCore_-211426CEC1523454_PackageProduct.framework/SwingLabCore_-211426CEC1523454_PackageProduct
+
+SwiftDriverJobDiscovery normal arm64 Emitting module for SwingLabTests (in target 'SwingLabTests' from project 'SwingLab')
+
+SwiftDriver\ Compilation\ Requirements SwingLabTests normal arm64 com.apple.xcode.tools.swift.compiler (in target 'SwingLabTests' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name SwingLabTests -Onone @/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/Objects-normal/arm64/SwingLabTests.SwiftFileList -DDEBUG -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk -target arm64-apple-ios17.0-simulator -g -module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Index.noindex/DataStore -swift-version 6 -I /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk/Developer/Library/Frameworks -c -j10 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/SDKStatCaches.noindex/iphonesimulator27.1-24A94232-35d3147121984ba087c28d913653d626.sdkstatcache -output-file-map /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/Objects-normal/arm64/SwingLabTests-OutputFileMap.json -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/ModuleCache.noindex -sdk-module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/SDKExplicitPrecompiledModules -emit-dependencies -emit-module -emit-module-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/Objects-normal/arm64/SwingLabTests.swiftmodule -serialize-diagnostics -dependency-scan-serialize-diagnostics-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/Objects-normal/arm64/SwingLabTests-dependency-scan.dia -validate-clang-modules-once -clang-build-session-file /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -fmodules-prune-interval\=86400 -Xcc -fmodules-prune-after\=345600 -emit-const-values -const-gather-protocols-list /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/Objects-normal/arm64/SwingLabTests_const_extract_protocols.json -Xcc -iquote -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/SwingLabTests-generated-files.hmap -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/SwingLabTests-own-target-headers.hmap -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/SwingLabTests-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab-9f3b5f304412910a7131a2e40b8441ad-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/SwingLabTests-project-headers.hmap -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/DerivedSources-normal/arm64 -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/DerivedSources/arm64 -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/Objects-normal/arm64/SwingLabTests-Swift.h -working-directory /Users/jongsulim/Documents/ChatGPT/swing -experimental-emit-module-separately -disable-cmo
+
+Copy /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLabTests.swiftmodule/arm64-apple-ios-simulator.abi.json /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/Objects-normal/arm64/SwingLabTests.abi.json (in target 'SwingLabTests' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks -rename /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/Objects-normal/arm64/SwingLabTests.abi.json /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLabTests.swiftmodule/arm64-apple-ios-simulator.abi.json
+
+Ld /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/PlugIns/SwingLabTests.xctest/SwingLabTests normal (in target 'SwingLabTests' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios17.0-simulator -bundle -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk -Os -Xlinker -no_warn_duplicate_libraries -L/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -L/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator -L/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -F/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk/Developer/Library/Frameworks -filelist /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/Objects-normal/arm64/SwingLabTests.LinkFileList -Xlinker -rpath -Xlinker /usr/lib/swift -Xlinker -rpath -Xlinker @loader_path -Xlinker -rpath -Xlinker /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks -Xlinker -rpath -Xlinker @loader_path/Frameworks -Xlinker -rpath -Xlinker @executable_path/Frameworks -Xlinker -dead_strip -bundle_loader /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/SwingLab -Xlinker -object_path_lto -Xlinker /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/Objects-normal/arm64/SwingLabTests_lto.o -rdynamic -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -dependency_info -Xlinker /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/Objects-normal/arm64/SwingLabTests_dependency_info.dat -fobjc-link-runtime -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/Objects-normal/arm64/SwingLabTests.swiftmodule -Xlinker -needed_framework -Xlinker XCTest -framework XCTest -Xlinker -needed-lXCTestSwiftSupport -lXCTestSwiftSupport /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks/SwingLabCore_-211426CEC1523454_PackageProduct.framework/SwingLabCore_-211426CEC1523454_PackageProduct /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/SwingLab.debug.dylib -o /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/PlugIns/SwingLabTests.xctest/SwingLabTests
+
+CopySwiftLibs /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/PlugIns/SwingLabTests.xctest (in target 'SwingLabTests' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-swiftStdLibTool --copy --verbose --scan-executable /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/PlugIns/SwingLabTests.xctest/SwingLabTests --scan-folder /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/PlugIns/SwingLabTests.xctest/Frameworks --scan-folder /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/PlugIns/SwingLabTests.xctest/PlugIns --scan-folder /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/PlugIns/SwingLabTests.xctest/SystemExtensions --scan-folder /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/PlugIns/SwingLabTests.xctest/Extensions --scan-folder /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks/SwingLabCore_-211426CEC1523454_PackageProduct.framework --platform iphonesimulator --toolchain /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/PlugIns/SwingLabTests.xctest/Frameworks --strip-bitcode --scan-executable /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libXCTestSwiftSupport.dylib --strip-bitcode-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os
+Ignoring --strip-bitcode because --sign was not passed
+
+ExtractAppIntentsMetadata (in target 'SwingLabTests' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name SwingLabTests --sdk-root /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk --xcode-version 27A9275 --platform-family iOS --deployment-target 17.0 --bundle-identifier com.swinglab.app.SwingLabTests --output /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/PlugIns/SwingLabTests.xctest --target-triple arm64-apple-ios17.0-simulator --binary-file /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/PlugIns/SwingLabTests.xctest/SwingLabTests --dependency-file /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/Objects-normal/arm64/SwingLabTests_dependency_info.dat --stringsdata-file /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/Objects-normal/arm64/SwingLabTests.SwiftFileList --metadata-file-list /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/SwingLabTests.DependencyMetadataFileList --static-metadata-file-list /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/SwingLabTests.DependencyStaticMetadataFileList --swift-const-vals-list /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/Objects-normal/arm64/SwingLabTests.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --no-app-shortcuts-localization
+2026-10-26 21:08:49.110 appintentsmetadataprocessor[18418:148372] Starting appintentsmetadataprocessor export
+2026-10-26 21:08:49.111 appintentsmetadataprocessor[18418:148372] warning: Metadata extraction skipped, no AppIntents.framework dependency found
+
+AppIntentsSSUTraining (in target 'SwingLabTests' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsnltrainingprocessor --infoplist-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/PlugIns/SwingLabTests.xctest/Info.plist --temp-dir-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/ssu --bundle-id com.swinglab.app.SwingLabTests --product-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/PlugIns/SwingLabTests.xctest --extracted-metadata-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/PlugIns/SwingLabTests.xctest/Metadata.appintents --metadata-file-list /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/SwingLabTests.DependencyMetadataFileList --source-file /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/PlugIns/SwingLabTests.xctest/Info.plist --archive-ssu-assets
+2026-10-26 21:08:49.128 appintentsnltrainingprocessor[18419:148373] Parsing options for appintentsnltrainingprocessor
+2026-10-26 21:08:49.129 appintentsnltrainingprocessor[18419:148373] Starting AppIntents SSU YAML Generation
+2026-10-26 21:08:49.129 appintentsnltrainingprocessor[18419:148373] No AppShortcuts found - Skipping.
+
+Validate /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-validationUtility /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app -shallow-bundle -infoplist-subpath Info.plist
+
+ProcessInfoPlistFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLabUITests-Runner.app/PlugIns/SwingLabUITests.xctest/Info.plist /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabUITests.build/empty-SwingLabUITests.plist (in target 'SwingLabUITests' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-infoPlistUtility /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabUITests.build/empty-SwingLabUITests.plist -producttype com.apple.product-type.bundle.ui-testing -expandbuildsettings -format binary -platform iphonesimulator -additionalcontentfile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabUITests.build/ProductTypeInfoPlistAdditions.plist -o /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLabUITests-Runner.app/PlugIns/SwingLabUITests.xctest/Info.plist
+
+PruneExplicitPrecompiledModules /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/ExplicitPrecompiledModules
+
+PruneExplicitPrecompiledModules /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules
+
+PruneExplicitPrecompiledModules /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/SDKExplicitPrecompiledModules
+
+2026-10-26 21:08:50.151433+0900 SwingLabUITests-Runner[18422:148582] [Default] Running tests...
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-10-26 21:08:52.362.
+Test Suite 'SwingLabUITests.xctest' started at 2026-10-26 21:08:52.362.
+Test Suite 'ScreenshotTests' started at 2026-10-26 21:08:52.362.
+Test Case '-[SwingLabUITests.ScreenshotTests testEnglishDark]' started.
+    t =     0.00s Start Test at 2026-10-26 21:08:52.364
+    t =     0.03s Set Up
+    t =     0.03s Open com.swinglab.app
+    t =     0.03s     Launch com.swinglab.app
+    t =     0.49s         Setting up automation session
+objc[18422]: Class UIAccessibilityLoaderWebShared is implemented in both /private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.1.94425.0.2ywmqy/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.1.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x107fa8310) and /private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.1.94425.0.2ywmqy/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.1.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x1103a0398). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+    t =     2.31s         Wait for com.swinglab.app to idle
+    t =     4.11s Waiting 15.0s for "Home" Button to exist
+    t =     5.13s     Checking `Expect predicate `existsNoRetry == 1` for object "Home" Button`
+    t =     5.13s         Checking existence of `"Home" Button`
+    t =     5.22s Checking existence of `"Home" Button`
+    t =     5.26s Checking existence of `"Swing" Button`
+    t =     5.33s Checking existence of `"Course" Button`
+    t =     5.39s Checking existence of `"Performance" Button`
+    t =     5.46s Find the Target Application 'com.swinglab.app'
+    t =     5.56s Added attachment named 'round3-en-dark-home'
+    t =     5.56s Checking existence of `"home.settings" Any`
+    t =     5.60s Find the "home.settings" Any
+    t =     5.66s Tap "home.settings" Any
+    t =     5.66s     Wait for com.swinglab.app to idle
+    t =     5.66s     Find the "home.settings" Any
+    t =     5.72s     Check for interrupting elements affecting "home.settings" Button
+    t =     5.74s         Wait for com.apple.springboard to idle
+    t =     5.79s     Synthesize event
+    t =     6.09s     Wait for com.swinglab.app to idle
+    t =     6.64s Find the Target Application 'com.swinglab.app'
+    t =     6.75s Added attachment named 'round3-en-dark-settings'
+    t =     6.75s Terminate com.swinglab.app:18431
+    t =     7.80s Open com.swinglab.app
+    t =     7.80s     Launch com.swinglab.app
+    t =     8.01s         Setting up automation session
+    t =    10.06s         Wait for com.swinglab.app to idle
+    t =    11.78s Waiting 15.0s for "Home" Button to exist
+    t =    12.80s     Checking `Expect predicate `existsNoRetry == 1` for object "Home" Button`
+    t =    12.80s         Checking existence of `"Home" Button`
+    t =    12.90s Checking existence of `"home.bag" Any`
+    t =    12.94s Find the "home.bag" Any
+    t =    12.99s Tap "home.bag" Any
+    t =    12.99s     Wait for com.swinglab.app to idle
+    t =    12.99s     Find the "home.bag" Any
+    t =    13.03s     Check for interrupting elements affecting "home.bag" Button
+    t =    13.05s         Wait for com.apple.springboard to idle
+    t =    13.09s     Synthesize event
+    t =    13.37s     Wait for com.swinglab.app to idle
+    t =    13.79s Find the Target Application 'com.swinglab.app'
+    t =    13.90s Added attachment named 'round3-en-dark-bag'
+    t =    13.90s Tap "Swing" Button
+    t =    13.90s     Wait for com.swinglab.app to idle
+    t =    13.90s     Find the "Swing" Button
+    t =    13.93s     Check for interrupting elements affecting "figure.golf" Button
+    t =    13.95s         Wait for com.apple.springboard to idle
+    t =    13.97s     Synthesize event
+    t =    14.27s     Wait for com.swinglab.app to idle
+    t =    15.51s Find the Target Application 'com.swinglab.app'
+    t =    15.62s Added attachment named 'round3-en-dark-swing'
+    t =    15.62s Checking existence of `"swing.hypotheticalFlight" Any`
+    t =    15.75s Swipe up Target Application 'com.swinglab.app'
+    t =    15.75s     Wait for com.swinglab.app to idle
+    t =    15.75s     Find the Target Application 'com.swinglab.app'
+    t =    15.77s     Check for interrupting elements affecting "SwingLab" Application
+    t =    15.80s         Wait for com.apple.springboard to idle
+    t =    15.82s     Synthesize event
+    t =    16.25s     Wait for com.swinglab.app to idle
+    t =    16.87s Checking existence of `"swing.hypotheticalFlight" Any`
+    t =    16.95s Find the "swing.hypotheticalFlight" Any
+    t =    17.04s Tap "swing.hypotheticalFlight" Any
+    t =    17.04s     Wait for com.swinglab.app to idle
+    t =    17.05s     Find the "swing.hypotheticalFlight" Any
+    t =    17.12s     Check for interrupting elements affecting "swing.hypotheticalFlight" Button
+    t =    17.15s         Wait for com.apple.springboard to idle
+    t =    17.19s     Synthesize event
+    t =    17.48s     Wait for com.swinglab.app to idle
+    t =    18.01s Checking existence of `"flight.driverExample" Any`
+    t =    18.16s Find the "flight.driverExample" Any
+    t =    18.28s Tap "flight.driverExample" Any
+    t =    18.28s     Wait for com.swinglab.app to idle
+    t =    18.28s     Find the "flight.driverExample" Any
+    t =    18.38s     Check for interrupting elements affecting "flight.driverExample" Button
+    t =    18.41s         Wait for com.apple.springboard to idle
+    t =    18.45s     Synthesize event
+    t =    18.74s     Wait for com.swinglab.app to idle
+    t =    19.04s Checking existence of `"flight.simulate" Any`
+    t =    19.17s Swipe up Target Application 'com.swinglab.app'
+    t =    19.17s     Wait for com.swinglab.app to idle
+    t =    19.17s     Find the Target Application 'com.swinglab.app'
+    t =    19.19s     Check for interrupting elements affecting "SwingLab" Application
+    t =    19.22s         Wait for com.apple.springboard to idle
+    t =    19.24s     Synthesize event
+    t =    19.68s     Wait for com.swinglab.app to idle
+    t =    20.45s Checking existence of `"flight.simulate" Any`
+    t =    20.57s Find the "flight.simulate" Any
+    t =    20.69s Tap "flight.simulate" Any
+    t =    20.69s     Wait for com.swinglab.app to idle
+    t =    20.69s     Find the "flight.simulate" Any
+    t =    20.81s     Check for interrupting elements affecting "flight.simulate" Button
+    t =    20.84s         Wait for com.apple.springboard to idle
+    t =    20.87s     Synthesize event
+    t =    21.16s     Wait for com.swinglab.app to idle
+    t =    21.17s Checking existence of `"flight.result.carry" Any`
+    t =    21.29s Swipe up Target Application 'com.swinglab.app'
+    t =    21.29s     Wait for com.swinglab.app to idle
+    t =    21.30s     Find the Target Application 'com.swinglab.app'
+    t =    21.32s     Check for interrupting elements affecting "SwingLab" Application
+    t =    21.34s         Wait for com.apple.springboard to idle
+    t =    21.37s     Synthesize event
+    t =    21.79s     Wait for com.swinglab.app to idle
+    t =    24.32s Checking existence of `"flight.result.carry" Any`
+    t =    24.40s Find the "flight.result.carry" Any
+    t =    24.48s Find the Target Application 'com.swinglab.app'
+    t =    24.57s Added attachment named 'round3-en-dark-flight'
+    t =    24.58s Tap "Course" Button
+    t =    24.58s     Wait for com.swinglab.app to idle
+    t =    24.58s     Find the "Course" Button
+    t =    24.61s     Check for interrupting elements affecting "map" Button
+    t =    24.64s         Wait for com.apple.springboard to idle
+    t =    24.67s     Synthesize event
+    t =    24.96s     Wait for com.swinglab.app to idle
+    t =    26.43s Find the Target Application 'com.swinglab.app'
+    t =    26.57s Added attachment named 'round3-en-dark-course'
+    t =    26.57s Tap "Performance" Button
+    t =    26.57s     Wait for com.swinglab.app to idle
+    t =    26.58s     Find the "Performance" Button
+    t =    26.63s     Check for interrupting elements affecting "chart.xyaxis.line" Button
+    t =    26.66s         Wait for com.apple.springboard to idle
+    t =    26.69s     Synthesize event
+    t =    26.97s     Wait for com.swinglab.app to idle
+    t =    28.23s Find the Target Application 'com.swinglab.app'
+    t =    28.32s Added attachment named 'round3-en-dark-performance'
+    t =    28.32s Terminate com.swinglab.app:18462
+    t =    29.37s Open com.swinglab.app
+    t =    29.37s     Launch com.swinglab.app
+    t =    29.57s         Setting up automation session
+    t =    31.65s         Wait for com.swinglab.app to idle
+    t =    33.40s Waiting 15.0s for "Home" Button to exist
+    t =    34.43s     Checking `Expect predicate `existsNoRetry == 1` for object "Home" Button`
+    t =    34.43s         Checking existence of `"Home" Button`
+    t =    34.52s Tap "Swing" Button
+    t =    34.52s     Wait for com.swinglab.app to idle
+    t =    34.52s     Find the "Swing" Button
+    t =    34.55s     Check for interrupting elements affecting "Swing" Button
+    t =    34.58s         Wait for com.apple.springboard to idle
+    t =    34.60s     Synthesize event
+    t =    34.89s     Wait for com.swinglab.app to idle
+    t =    36.17s Checking existence of `"swing.recording.00000000-0000-0000-0000-000000000003" Any`
+    t =    36.31s Find the "swing.recording.00000000-0000-0000-0000-000000000003" Any
+    t =    36.39s Tap "swing.recording.00000000-0000-0000-0000-000000000003" Any
+    t =    36.39s     Wait for com.swinglab.app to idle
+    t =    36.40s     Find the "swing.recording.00000000-0000-0000-0000-000000000003" Any
+    t =    36.47s     Check for interrupting elements affecting "swing.recording.00000000-0000-0000-0000-000000000003" Button
+    t =    36.50s         Wait for com.apple.springboard to idle
+    t =    36.54s     Synthesize event
+    t =    36.83s     Wait for com.swinglab.app to idle
+    t =    37.49s Waiting 5.0s for Alert (First Match) to exist
+    t =    38.51s     Checking `Expect predicate `existsNoRetry == 1` for object Alert (First Match)`
+    t =    38.52s         Checking existence of `Alert (First Match)`
+    t =    38.53s Tap Button (First Match)
+    t =    38.53s     Wait for com.swinglab.app to idle
+    t =    38.53s     Find the Button (First Match)
+    t =    38.55s     Check for interrupting elements affecting "OK" Button
+    t =    38.60s         Wait for com.apple.springboard to idle
+    t =    38.62s     Synthesize event
+    t =    38.91s     Wait for com.swinglab.app to idle
+    t =    39.17s Find the Target Application 'com.swinglab.app'
+    t =    39.26s Added attachment named 'round3-en-dark-swing-detail-empty'
+    t =    39.26s Terminate com.swinglab.app:18513
+    t =    40.30s Tear Down
+Test Case '-[SwingLabUITests.ScreenshotTests testEnglishDark]' passed (40.307 seconds).
+Test Case '-[SwingLabUITests.ScreenshotTests testEnglishLight]' started.
+    t =     0.00s Start Test at 2026-10-26 21:09:32.672
+    t =     0.02s Set Up
+    t =     0.02s Open com.swinglab.app
+    t =     0.02s     Launch com.swinglab.app
+    t =     0.23s         Setting up automation session
+    t =     2.21s         Wait for com.swinglab.app to idle
+    t =     3.92s Waiting 15.0s for "Home" Button to exist
+    t =     4.94s     Checking `Expect predicate `existsNoRetry == 1` for object "Home" Button`
+    t =     4.94s         Checking existence of `"Home" Button`
+    t =     5.02s Checking existence of `"Home" Button`
+    t =     5.06s Checking existence of `"Swing" Button`
+    t =     5.09s Checking existence of `"Course" Button`
+    t =     5.12s Checking existence of `"Performance" Button`
+    t =     5.15s Find the Target Application 'com.swinglab.app'
+    t =     5.23s Added attachment named 'round3-en-light-home'
+    t =     5.23s Checking existence of `"home.settings" Any`
+    t =     5.27s Find the "home.settings" Any
+    t =     5.32s Tap "home.settings" Any
+    t =     5.32s     Wait for com.swinglab.app to idle
+    t =     5.32s     Find the "home.settings" Any
+    t =     5.36s     Check for interrupting elements affecting "home.settings" Button
+    t =     5.38s         Wait for com.apple.springboard to idle
+    t =     5.42s     Synthesize event
+    t =     5.71s     Wait for com.swinglab.app to idle
+    t =     6.28s Find the Target Application 'com.swinglab.app'
+    t =     6.39s Added attachment named 'round3-en-light-settings'
+    t =     6.39s Terminate com.swinglab.app:18529
+    t =     7.42s Open com.swinglab.app
+    t =     7.42s     Launch com.swinglab.app
+    t =     7.63s         Setting up automation session
+    t =     9.54s         Wait for com.swinglab.app to idle
+    t =    11.20s Waiting 15.0s for "Home" Button to exist
+    t =    12.21s     Checking `Expect predicate `existsNoRetry == 1` for object "Home" Button`
+    t =    12.21s         Checking existence of `"Home" Button`
+    t =    12.29s Checking existence of `"home.bag" Any`
+    t =    12.34s Find the "home.bag" Any
+    t =    12.38s Tap "home.bag" Any
+    t =    12.38s     Wait for com.swinglab.app to idle
+    t =    12.39s     Find the "home.bag" Any
+    t =    12.42s     Check for interrupting elements affecting "home.bag" Button
+    t =    12.44s         Wait for com.apple.springboard to idle
+    t =    12.48s     Synthesize event
+    t =    12.77s     Wait for com.swinglab.app to idle
+    t =    13.15s Find the Target Application 'com.swinglab.app'
+    t =    13.23s Added attachment named 'round3-en-light-bag'
+    t =    13.24s Tap "Swing" Button
+    t =    13.24s     Wait for com.swinglab.app to idle
+    t =    13.24s     Find the "Swing" Button
+    t =    13.26s     Check for interrupting elements affecting "figure.golf" Button
+    t =    13.28s         Wait for com.apple.springboard to idle
+    t =    13.31s     Synthesize event
+    t =    13.60s     Wait for com.swinglab.app to idle
+    t =    14.84s Find the Target Application 'com.swinglab.app'
+    t =    14.94s Added attachment named 'round3-en-light-swing'
+    t =    14.94s Checking existence of `"swing.hypotheticalFlight" Any`
+    t =    15.05s Swipe up Target Application 'com.swinglab.app'
+    t =    15.05s     Wait for com.swinglab.app to idle
+    t =    15.05s     Find the Target Application 'com.swinglab.app'
+    t =    15.07s     Check for interrupting elements affecting "SwingLab" Application
+    t =    15.08s         Wait for com.apple.springboard to idle
+    t =    15.11s     Synthesize event
+    t =    15.53s     Wait for com.swinglab.app to idle
+    t =    16.16s Checking existence of `"swing.hypotheticalFlight" Any`
+    t =    16.23s Find the "swing.hypotheticalFlight" Any
+    t =    16.31s Tap "swing.hypotheticalFlight" Any
+    t =    16.31s     Wait for com.swinglab.app to idle
+    t =    16.31s     Find the "swing.hypotheticalFlight" Any
+    t =    16.38s     Check for interrupting elements affecting "swing.hypotheticalFlight" Button
+    t =    16.41s         Wait for com.apple.springboard to idle
+    t =    16.45s     Synthesize event
+    t =    16.74s     Wait for com.swinglab.app to idle
+    t =    17.17s Checking existence of `"flight.driverExample" Any`
+    t =    17.28s Find the "flight.driverExample" Any
+    t =    17.39s Tap "flight.driverExample" Any
+    t =    17.39s     Wait for com.swinglab.app to idle
+    t =    17.40s     Find the "flight.driverExample" Any
+    t =    17.49s     Check for interrupting elements affecting "flight.driverExample" Button
+    t =    17.52s         Wait for com.apple.springboard to idle
+    t =    17.57s     Synthesize event
+    t =    17.86s     Wait for com.swinglab.app to idle
+    t =    18.11s Checking existence of `"flight.simulate" Any`
+    t =    18.23s Swipe up Target Application 'com.swinglab.app'
+    t =    18.23s     Wait for com.swinglab.app to idle
+    t =    18.23s     Find the Target Application 'com.swinglab.app'
+    t =    18.26s     Check for interrupting elements affecting "SwingLab" Application
+    t =    18.28s         Wait for com.apple.springboard to idle
+    t =    18.30s     Synthesize event
+    t =    18.72s     Wait for com.swinglab.app to idle
+    t =    19.51s Checking existence of `"flight.simulate" Any`
+    t =    19.64s Find the "flight.simulate" Any
+    t =    19.75s Tap "flight.simulate" Any
+    t =    19.75s     Wait for com.swinglab.app to idle
+    t =    19.76s     Find the "flight.simulate" Any
+    t =    19.86s     Check for interrupting elements affecting "flight.simulate" Button
+    t =    19.89s         Wait for com.apple.springboard to idle
+    t =    19.93s     Synthesize event
+    t =    20.22s     Wait for com.swinglab.app to idle
+    t =    20.22s Checking existence of `"flight.result.carry" Any`
+    t =    20.35s Swipe up Target Application 'com.swinglab.app'
+    t =    20.35s     Wait for com.swinglab.app to idle
+    t =    20.35s     Find the Target Application 'com.swinglab.app'
+    t =    20.37s     Check for interrupting elements affecting "SwingLab" Application
+    t =    20.40s         Wait for com.apple.springboard to idle
+    t =    20.42s     Synthesize event
+    t =    20.84s     Wait for com.swinglab.app to idle
+    t =    22.97s Checking existence of `"flight.result.carry" Any`
+    t =    23.05s Find the "flight.result.carry" Any
+    t =    23.13s Find the Target Application 'com.swinglab.app'
+    t =    23.22s Added attachment named 'round3-en-light-flight'
+    t =    23.22s Tap "Course" Button
+    t =    23.22s     Wait for com.swinglab.app to idle
+    t =    23.22s     Find the "Course" Button
+    t =    23.25s     Check for interrupting elements affecting "map" Button
+    t =    23.28s         Wait for com.apple.springboard to idle
+    t =    23.30s     Synthesize event
+    t =    23.59s     Wait for com.swinglab.app to idle
+    t =    25.04s Find the Target Application 'com.swinglab.app'
+    t =    25.17s Added attachment named 'round3-en-light-course'
+    t =    25.17s Tap "Performance" Button
+    t =    25.17s     Wait for com.swinglab.app to idle
+    t =    25.17s     Find the "Performance" Button
+    t =    25.22s     Check for interrupting elements affecting "chart.xyaxis.line" Button
+    t =    25.24s         Wait for com.apple.springboard to idle
+    t =    25.26s     Synthesize event
+    t =    25.55s     Wait for com.swinglab.app to idle
+    t =    26.81s Find the Target Application 'com.swinglab.app'
+    t =    26.91s Added attachment named 'round3-en-light-performance'
+    t =    26.91s Terminate com.swinglab.app:18536
+    t =    27.95s Open com.swinglab.app
+    t =    27.95s     Launch com.swinglab.app
+    t =    28.16s         Setting up automation session
+    t =    30.13s         Wait for com.swinglab.app to idle
+    t =    31.78s Waiting 15.0s for "Home" Button to exist
+    t =    32.80s     Checking `Expect predicate `existsNoRetry == 1` for object "Home" Button`
+    t =    32.81s         Checking existence of `"Home" Button`
+    t =    32.92s Tap "Swing" Button
+    t =    32.92s     Wait for com.swinglab.app to idle
+    t =    32.93s     Find the "Swing" Button
+    t =    32.96s     Check for interrupting elements affecting "Swing" Button
+    t =    32.99s         Wait for com.apple.springboard to idle
+    t =    33.02s     Synthesize event
+    t =    33.31s     Wait for com.swinglab.app to idle
+    t =    34.56s Checking existence of `"swing.recording.00000000-0000-0000-0000-000000000003" Any`
+    t =    34.72s Find the "swing.recording.00000000-0000-0000-0000-000000000003" Any
+    t =    34.81s Tap "swing.recording.00000000-0000-0000-0000-000000000003" Any
+    t =    34.81s     Wait for com.swinglab.app to idle
+    t =    34.81s     Find the "swing.recording.00000000-0000-0000-0000-000000000003" Any
+    t =    34.89s     Check for interrupting elements affecting "swing.recording.00000000-0000-0000-0000-000000000003" Button
+    t =    34.92s         Wait for com.apple.springboard to idle
+    t =    34.96s     Synthesize event
+    t =    35.25s     Wait for com.swinglab.app to idle
+    t =    35.80s Waiting 5.0s for Alert (First Match) to exist
+    t =    36.82s     Checking `Expect predicate `existsNoRetry == 1` for object Alert (First Match)`
+    t =    36.82s         Checking existence of `Alert (First Match)`
+    t =    36.84s Tap Button (First Match)
+    t =    36.84s     Wait for com.swinglab.app to idle
+    t =    36.85s     Find the Button (First Match)
+    t =    36.88s     Check for interrupting elements affecting "OK" Button
+    t =    36.92s         Wait for com.apple.springboard to idle
+    t =    36.94s     Synthesize event
+    t =    37.23s     Wait for com.swinglab.app to idle
+    t =    37.54s Find the Target Application 'com.swinglab.app'
+    t =    37.64s Added attachment named 'round3-en-light-swing-detail-empty'
+    t =    37.64s Terminate com.swinglab.app:18569
+    t =    38.66s Tear Down
+Test Case '-[SwingLabUITests.ScreenshotTests testEnglishLight]' passed (38.676 seconds).
+Test Case '-[SwingLabUITests.ScreenshotTests testGermanDark]' started.
+    t =     0.00s Start Test at 2026-10-26 21:10:11.349
+    t =     0.03s Set Up
+    t =     0.03s Open com.swinglab.app
+    t =     0.04s     Launch com.swinglab.app
+    t =     0.24s         Setting up automation session
+    t =     1.99s         Wait for com.swinglab.app to idle
+    t =     3.79s Waiting 15.0s for "Start" Button to exist
+    t =     4.80s     Checking `Expect predicate `existsNoRetry == 1` for object "Start" Button`
+    t =     4.80s         Checking existence of `"Start" Button`
+    t =     4.88s Checking existence of `"Start" Button`
+    t =     4.91s Checking existence of `"Schwung" Button`
+    t =     4.94s Checking existence of `"Platz" Button`
+    t =     4.97s Checking existence of `"Leistung" Button`
+    t =     5.00s Find the Target Application 'com.swinglab.app'
+    t =     5.08s Added attachment named 'round3-de-dark-home'
+    t =     5.08s Checking existence of `"home.settings" Any`
+    t =     5.13s Find the "home.settings" Any
+    t =     5.18s Tap "home.settings" Any
+    t =     5.18s     Wait for com.swinglab.app to idle
+    t =     5.18s     Find the "home.settings" Any
+    t =     5.22s     Check for interrupting elements affecting "home.settings" Button
+    t =     5.24s         Wait for com.apple.springboard to idle
+    t =     5.28s     Synthesize event
+    t =     5.57s     Wait for com.swinglab.app to idle
+    t =     6.13s Find the Target Application 'com.swinglab.app'
+    t =     6.25s Added attachment named 'round3-de-dark-settings'
+    t =     6.25s Terminate com.swinglab.app:18595
+    t =     7.28s Open com.swinglab.app
+    t =     7.28s     Launch com.swinglab.app
+    t =     7.49s         Setting up automation session
+    t =     9.27s         Wait for com.swinglab.app to idle
+    t =    10.89s Waiting 15.0s for "Start" Button to exist
+    t =    11.91s     Checking `Expect predicate `existsNoRetry == 1` for object "Start" Button`
+    t =    11.91s         Checking existence of `"Start" Button`
+    t =    12.01s Checking existence of `"home.bag" Any`
+    t =    12.06s Find the "home.bag" Any
+    t =    12.11s Tap "home.bag" Any
+    t =    12.11s     Wait for com.swinglab.app to idle
+    t =    12.11s     Find the "home.bag" Any
+    t =    12.15s     Check for interrupting elements affecting "home.bag" Button
+    t =    12.17s         Wait for com.apple.springboard to idle
+    t =    12.21s     Synthesize event
+    t =    12.50s     Wait for com.swinglab.app to idle
+    t =    12.87s Find the Target Application 'com.swinglab.app'
+    t =    12.98s Added attachment named 'round3-de-dark-bag'
+    t =    12.98s Tap "Schwung" Button
+    t =    12.98s     Wait for com.swinglab.app to idle
+    t =    12.98s     Find the "Schwung" Button
+    t =    13.01s     Check for interrupting elements affecting "figure.golf" Button
+    t =    13.03s         Wait for com.apple.springboard to idle
+    t =    13.06s     Synthesize event
+    t =    13.35s     Wait for com.swinglab.app to idle
+    t =    14.60s Find the Target Application 'com.swinglab.app'
+    t =    14.72s Added attachment named 'round3-de-dark-swing'
+    t =    14.72s Checking existence of `"swing.hypotheticalFlight" Any`
+    t =    14.82s Swipe up Target Application 'com.swinglab.app'
+    t =    14.82s     Wait for com.swinglab.app to idle
+    t =    14.83s     Find the Target Application 'com.swinglab.app'
+    t =    14.84s     Check for interrupting elements affecting "SwingLab" Application
+    t =    14.86s         Wait for com.apple.springboard to idle
+    t =    14.88s     Synthesize event
+    t =    15.30s     Wait for com.swinglab.app to idle
+    t =    15.97s Checking existence of `"swing.hypotheticalFlight" Any`
+    t =    16.07s Find the "swing.hypotheticalFlight" Any
+    t =    16.15s Tap "swing.hypotheticalFlight" Any
+    t =    16.15s     Wait for com.swinglab.app to idle
+    t =    16.15s     Find the "swing.hypotheticalFlight" Any
+    t =    16.22s     Check for interrupting elements affecting "swing.hypotheticalFlight" Button
+    t =    16.24s         Wait for com.apple.springboard to idle
+    t =    16.28s     Synthesize event
+    t =    16.57s     Wait for com.swinglab.app to idle
+    t =    17.02s Checking existence of `"flight.driverExample" Any`
+    t =    17.16s Find the "flight.driverExample" Any
+    t =    17.27s Tap "flight.driverExample" Any
+    t =    17.27s     Wait for com.swinglab.app to idle
+    t =    17.28s     Find the "flight.driverExample" Any
+    t =    17.38s     Check for interrupting elements affecting "flight.driverExample" Button
+    t =    17.41s         Wait for com.apple.springboard to idle
+    t =    17.45s     Synthesize event
+    t =    17.74s     Wait for com.swinglab.app to idle
+    t =    17.98s Checking existence of `"flight.simulate" Any`
+    t =    18.12s Swipe up Target Application 'com.swinglab.app'
+    t =    18.12s     Wait for com.swinglab.app to idle
+    t =    18.13s     Find the Target Application 'com.swinglab.app'
+    t =    18.15s     Check for interrupting elements affecting "SwingLab" Application
+    t =    18.17s         Wait for com.apple.springboard to idle
+    t =    18.20s     Synthesize event
+    t =    18.62s     Wait for com.swinglab.app to idle
+    t =    19.48s Checking existence of `"flight.simulate" Any`
+    t =    19.62s Find the "flight.simulate" Any
+    t =    19.73s Tap "flight.simulate" Any
+    t =    19.73s     Wait for com.swinglab.app to idle
+    t =    19.73s     Find the "flight.simulate" Any
+    t =    19.84s     Check for interrupting elements affecting "flight.simulate" Button
+    t =    19.86s         Wait for com.apple.springboard to idle
+    t =    19.90s     Synthesize event
+    t =    20.19s     Wait for com.swinglab.app to idle
+    t =    20.20s Checking existence of `"flight.result.carry" Any`
+    t =    20.33s Swipe up Target Application 'com.swinglab.app'
+    t =    20.33s     Wait for com.swinglab.app to idle
+    t =    20.33s     Find the Target Application 'com.swinglab.app'
+    t =    20.35s     Check for interrupting elements affecting "SwingLab" Application
+    t =    20.38s         Wait for com.apple.springboard to idle
+    t =    20.40s     Synthesize event
+    t =    20.82s     Wait for com.swinglab.app to idle
+    t =    22.95s Checking existence of `"flight.result.carry" Any`
+    t =    23.05s Find the "flight.result.carry" Any
+    t =    23.13s Find the Target Application 'com.swinglab.app'
+    t =    23.22s Added attachment named 'round3-de-dark-flight'
+    t =    23.22s Tap "Platz" Button
+    t =    23.22s     Wait for com.swinglab.app to idle
+    t =    23.22s     Find the "Platz" Button
+    t =    23.25s     Check for interrupting elements affecting "map" Button
+    t =    23.28s         Wait for com.apple.springboard to idle
+    t =    23.30s     Synthesize event
+    t =    23.59s     Wait for com.swinglab.app to idle
+    t =    24.98s Find the Target Application 'com.swinglab.app'
+    t =    25.10s Added attachment named 'round3-de-dark-course'
+    t =    25.10s Tap "Leistung" Button
+    t =    25.10s     Wait for com.swinglab.app to idle
+    t =    25.10s     Find the "Leistung" Button
+    t =    25.15s     Check for interrupting elements affecting "chart.xyaxis.line" Button
+    t =    25.17s         Wait for com.apple.springboard to idle
+    t =    25.19s     Synthesize event
+    t =    25.48s     Wait for com.swinglab.app to idle
+    t =    26.73s Find the Target Application 'com.swinglab.app'
+    t =    26.85s Added attachment named 'round3-de-dark-performance'
+    t =    26.85s Terminate com.swinglab.app:18610
+    t =    27.89s Open com.swinglab.app
+    t =    27.89s     Launch com.swinglab.app
+    t =    28.10s         Setting up automation session
+    t =    29.89s         Wait for com.swinglab.app to idle
+    t =    31.68s Waiting 15.0s for "Start" Button to exist
+    t =    32.70s     Checking `Expect predicate `existsNoRetry == 1` for object "Start" Button`
+    t =    32.70s         Checking existence of `"Start" Button`
+    t =    32.80s Tap "Schwung" Button
+    t =    32.80s     Wait for com.swinglab.app to idle
+    t =    32.80s     Find the "Schwung" Button
+    t =    32.83s     Check for interrupting elements affecting "Schwung" Button
+    t =    32.85s         Wait for com.apple.springboard to idle
+    t =    32.88s     Synthesize event
+    t =    33.17s     Wait for com.swinglab.app to idle
+    t =    34.41s Checking existence of `"swing.recording.00000000-0000-0000-0000-000000000003" Any`
+    t =    34.55s Find the "swing.recording.00000000-0000-0000-0000-000000000003" Any
+    t =    34.64s Tap "swing.recording.00000000-0000-0000-0000-000000000003" Any
+    t =    34.64s     Wait for com.swinglab.app to idle
+    t =    34.64s     Find the "swing.recording.00000000-0000-0000-0000-000000000003" Any
+    t =    34.72s     Check for interrupting elements affecting "swing.recording.00000000-0000-0000-0000-000000000003" Button
+    t =    34.75s         Wait for com.apple.springboard to idle
+    t =    34.79s     Synthesize event
+    t =    35.08s     Wait for com.swinglab.app to idle
+    t =    35.59s Waiting 5.0s for Alert (First Match) to exist
+    t =    36.61s     Checking `Expect predicate `existsNoRetry == 1` for object Alert (First Match)`
+    t =    36.61s         Checking existence of `Alert (First Match)`
+    t =    36.63s Tap Button (First Match)
+    t =    36.63s     Wait for com.swinglab.app to idle
+    t =    36.63s     Find the Button (First Match)
+    t =    36.66s     Check for interrupting elements affecting "OK" Button
+    t =    36.71s         Wait for com.apple.springboard to idle
+    t =    36.73s     Synthesize event
+    t =    37.02s     Wait for com.swinglab.app to idle
+    t =    37.33s Find the Target Application 'com.swinglab.app'
+    t =    37.42s Added attachment named 'round3-de-dark-swing-detail-empty'
+    t =    37.42s Terminate com.swinglab.app:18650
+    t =    38.46s Tear Down
+Test Case '-[SwingLabUITests.ScreenshotTests testGermanDark]' passed (38.469 seconds).
+Test Case '-[SwingLabUITests.ScreenshotTests testGermanLight]' started.
+    t =     0.00s Start Test at 2026-10-26 21:10:49.818
+    t =     0.02s Set Up
+    t =     0.02s Open com.swinglab.app
+    t =     0.02s     Launch com.swinglab.app
+    t =     0.23s         Setting up automation session
+    t =     1.96s         Wait for com.swinglab.app to idle
+    t =     3.66s Waiting 15.0s for "Start" Button to exist
+    t =     4.66s     Checking `Expect predicate `existsNoRetry == 1` for object "Start" Button`
+    t =     4.66s         Checking existence of `"Start" Button`
+    t =     4.76s Checking existence of `"Start" Button`
+    t =     4.80s Checking existence of `"Schwung" Button`
+    t =     4.84s Checking existence of `"Platz" Button`
+    t =     4.90s Checking existence of `"Leistung" Button`
+    t =     4.94s Find the Target Application 'com.swinglab.app'
+    t =     5.04s Added attachment named 'round3-de-light-home'
+    t =     5.04s Checking existence of `"home.settings" Any`
+    t =     5.09s Find the "home.settings" Any
+    t =     5.14s Tap "home.settings" Any
+    t =     5.14s     Wait for com.swinglab.app to idle
+    t =     5.14s     Find the "home.settings" Any
+    t =     5.19s     Check for interrupting elements affecting "home.settings" Button
+    t =     5.21s         Wait for com.apple.springboard to idle
+    t =     5.25s     Synthesize event
+    t =     5.53s     Wait for com.swinglab.app to idle
+    t =     6.10s Find the Target Application 'com.swinglab.app'
+    t =     6.21s Added attachment named 'round3-de-light-settings'
+    t =     6.21s Terminate com.swinglab.app:18665
+    t =     7.24s Open com.swinglab.app
+    t =     7.24s     Launch com.swinglab.app
+    t =     7.45s         Setting up automation session
+    t =     9.28s         Wait for com.swinglab.app to idle
+    t =    10.91s Waiting 15.0s for "Start" Button to exist
+    t =    11.92s     Checking `Expect predicate `existsNoRetry == 1` for object "Start" Button`
+    t =    11.92s         Checking existence of `"Start" Button`
+    t =    12.03s Checking existence of `"home.bag" Any`
+    t =    12.08s Find the "home.bag" Any
+    t =    12.14s Tap "home.bag" Any
+    t =    12.14s     Wait for com.swinglab.app to idle
+    t =    12.14s     Find the "home.bag" Any
+    t =    12.18s     Check for interrupting elements affecting "home.bag" Button
+    t =    12.22s         Wait for com.apple.springboard to idle
+    t =    12.27s     Synthesize event
+    t =    12.56s     Wait for com.swinglab.app to idle
+    t =    12.92s Find the Target Application 'com.swinglab.app'
+    t =    13.01s Added attachment named 'round3-de-light-bag'
+    t =    13.01s Tap "Schwung" Button
+    t =    13.01s     Wait for com.swinglab.app to idle
+    t =    13.01s     Find the "Schwung" Button
+    t =    13.04s     Check for interrupting elements affecting "figure.golf" Button
+    t =    13.06s         Wait for com.apple.springboard to idle
+    t =    13.08s     Synthesize event
+    t =    13.37s     Wait for com.swinglab.app to idle
+    t =    14.63s Find the Target Application 'com.swinglab.app'
+    t =    14.74s Added attachment named 'round3-de-light-swing'
+    t =    14.74s Checking existence of `"swing.hypotheticalFlight" Any`
+    t =    14.84s Swipe up Target Application 'com.swinglab.app'
+    t =    14.84s     Wait for com.swinglab.app to idle
+    t =    14.85s     Find the Target Application 'com.swinglab.app'
+    t =    14.86s     Check for interrupting elements affecting "SwingLab" Application
+    t =    14.88s         Wait for com.apple.springboard to idle
+    t =    14.91s     Synthesize event
+    t =    15.33s     Wait for com.swinglab.app to idle
+    t =    15.95s Checking existence of `"swing.hypotheticalFlight" Any`
+    t =    16.05s Find the "swing.hypotheticalFlight" Any
+    t =    16.14s Tap "swing.hypotheticalFlight" Any
+    t =    16.14s     Wait for com.swinglab.app to idle
+    t =    16.14s     Find the "swing.hypotheticalFlight" Any
+    t =    16.21s     Check for interrupting elements affecting "swing.hypotheticalFlight" Button
+    t =    16.24s         Wait for com.apple.springboard to idle
+    t =    16.29s     Synthesize event
+    t =    16.58s     Wait for com.swinglab.app to idle
+    t =    17.03s Checking existence of `"flight.driverExample" Any`
+    t =    17.15s Find the "flight.driverExample" Any
+    t =    17.27s Tap "flight.driverExample" Any
+    t =    17.27s     Wait for com.swinglab.app to idle
+    t =    17.28s     Find the "flight.driverExample" Any
+    t =    17.39s     Check for interrupting elements affecting "flight.driverExample" Button
+    t =    17.42s         Wait for com.apple.springboard to idle
+    t =    17.46s     Synthesize event
+    t =    17.75s     Wait for com.swinglab.app to idle
+    t =    18.00s Checking existence of `"flight.simulate" Any`
+    t =    18.15s Swipe up Target Application 'com.swinglab.app'
+    t =    18.15s     Wait for com.swinglab.app to idle
+    t =    18.15s     Find the Target Application 'com.swinglab.app'
+    t =    18.17s     Check for interrupting elements affecting "SwingLab" Application
+    t =    18.20s         Wait for com.apple.springboard to idle
+    t =    18.22s     Synthesize event
+    t =    18.65s     Wait for com.swinglab.app to idle
+    t =    19.52s Checking existence of `"flight.simulate" Any`
+    t =    19.65s Find the "flight.simulate" Any
+    t =    19.77s Tap "flight.simulate" Any
+    t =    19.77s     Wait for com.swinglab.app to idle
+    t =    19.77s     Find the "flight.simulate" Any
+    t =    19.88s     Check for interrupting elements affecting "flight.simulate" Button
+    t =    19.91s         Wait for com.apple.springboard to idle
+    t =    19.94s     Synthesize event
+    t =    20.23s     Wait for com.swinglab.app to idle
+    t =    20.24s Checking existence of `"flight.result.carry" Any`
+    t =    20.39s Swipe up Target Application 'com.swinglab.app'
+    t =    20.39s     Wait for com.swinglab.app to idle
+    t =    20.39s     Find the Target Application 'com.swinglab.app'
+    t =    20.41s     Check for interrupting elements affecting "SwingLab" Application
+    t =    20.44s         Wait for com.apple.springboard to idle
+    t =    20.46s     Synthesize event
+    t =    20.88s     Wait for com.swinglab.app to idle
+    t =    23.00s Checking existence of `"flight.result.carry" Any`
+    t =    23.10s Find the "flight.result.carry" Any
+    t =    23.19s Find the Target Application 'com.swinglab.app'
+    t =    23.28s Added attachment named 'round3-de-light-flight'
+    t =    23.28s Tap "Platz" Button
+    t =    23.28s     Wait for com.swinglab.app to idle
+    t =    23.28s     Find the "Platz" Button
+    t =    23.31s     Check for interrupting elements affecting "map" Button
+    t =    23.34s         Wait for com.apple.springboard to idle
+    t =    23.36s     Synthesize event
+    t =    23.65s     Wait for com.swinglab.app to idle
+    t =    25.13s Find the Target Application 'com.swinglab.app'
+    t =    25.28s Added attachment named 'round3-de-light-course'
+    t =    25.29s Tap "Leistung" Button
+    t =    25.29s     Wait for com.swinglab.app to idle
+    t =    25.29s     Find the "Leistung" Button
+    t =    25.34s     Check for interrupting elements affecting "chart.xyaxis.line" Button
+    t =    25.36s         Wait for com.apple.springboard to idle
+    t =    25.39s     Synthesize event
+    t =    25.68s     Wait for com.swinglab.app to idle
+    t =    26.93s Find the Target Application 'com.swinglab.app'
+    t =    27.04s Added attachment named 'round3-de-light-performance'
+    t =    27.04s Terminate com.swinglab.app:18675
+    t =    28.09s Open com.swinglab.app
+    t =    28.09s     Launch com.swinglab.app
+    t =    28.30s         Setting up automation session
+    t =    30.05s         Wait for com.swinglab.app to idle
+    t =    31.74s Waiting 15.0s for "Start" Button to exist
+    t =    32.76s     Checking `Expect predicate `existsNoRetry == 1` for object "Start" Button`
+    t =    32.76s         Checking existence of `"Start" Button`
+    t =    32.87s Tap "Schwung" Button
+    t =    32.87s     Wait for com.swinglab.app to idle
+    t =    32.87s     Find the "Schwung" Button
+    t =    32.90s     Check for interrupting elements affecting "Schwung" Button
+    t =    32.92s         Wait for com.apple.springboard to idle
+    t =    32.95s     Synthesize event
+    t =    33.24s     Wait for com.swinglab.app to idle
+    t =    34.50s Checking existence of `"swing.recording.00000000-0000-0000-0000-000000000003" Any`
+    t =    34.65s Find the "swing.recording.00000000-0000-0000-0000-000000000003" Any
+    t =    34.74s Tap "swing.recording.00000000-0000-0000-0000-000000000003" Any
+    t =    34.74s     Wait for com.swinglab.app to idle
+    t =    34.74s     Find the "swing.recording.00000000-0000-0000-0000-000000000003" Any
+    t =    34.82s     Check for interrupting elements affecting "swing.recording.00000000-0000-0000-0000-000000000003" Button
+    t =    34.85s         Wait for com.apple.springboard to idle
+    t =    34.89s     Synthesize event
+    t =    35.18s     Wait for com.swinglab.app to idle
+    t =    35.72s Waiting 5.0s for Alert (First Match) to exist
+    t =    36.74s     Checking `Expect predicate `existsNoRetry == 1` for object Alert (First Match)`
+    t =    36.74s         Checking existence of `Alert (First Match)`
+    t =    36.75s Tap Button (First Match)
+    t =    36.75s     Wait for com.swinglab.app to idle
+    t =    36.75s     Find the Button (First Match)
+    t =    36.78s     Check for interrupting elements affecting "OK" Button
+    t =    36.82s         Wait for com.apple.springboard to idle
+    t =    36.85s     Synthesize event
+    t =    37.14s     Wait for com.swinglab.app to idle
+    t =    37.43s Find the Target Application 'com.swinglab.app'
+    t =    37.51s Added attachment named 'round3-de-light-swing-detail-empty'
+    t =    37.51s Terminate com.swinglab.app:18702
+    t =    38.55s Tear Down
+Test Case '-[SwingLabUITests.ScreenshotTests testGermanLight]' passed (38.567 seconds).
+Test Case '-[SwingLabUITests.ScreenshotTests testKoreanDark]' started.
+    t =     0.00s Start Test at 2026-10-26 21:11:28.387
+    t =     0.03s Set Up
+    t =     0.03s Open com.swinglab.app
+    t =     0.03s     Launch com.swinglab.app
+    t =     0.24s         Setting up automation session
+    t =     2.08s         Wait for com.swinglab.app to idle
+    t =     4.04s Waiting 15.0s for "홈" Button to exist
+    t =     5.06s     Checking `Expect predicate `existsNoRetry == 1` for object "홈" Button`
+    t =     5.06s         Checking existence of `"홈" Button`
+    t =     5.15s Checking existence of `"홈" Button`
+    t =     5.19s Checking existence of `"스윙" Button`
+    t =     5.23s Checking existence of `"코스" Button`
+    t =     5.27s Checking existence of `"퍼포먼스" Button`
+    t =     5.30s Find the Target Application 'com.swinglab.app'
+    t =     5.38s Added attachment named 'round3-ko-dark-home'
+    t =     5.38s Checking existence of `"home.settings" Any`
+    t =     5.43s Find the "home.settings" Any
+    t =     5.48s Tap "home.settings" Any
+    t =     5.48s     Wait for com.swinglab.app to idle
+    t =     5.49s     Find the "home.settings" Any
+    t =     5.53s     Check for interrupting elements affecting "home.settings" Button
+    t =     5.55s         Wait for com.apple.springboard to idle
+    t =     5.59s     Synthesize event
+    t =     5.88s     Wait for com.swinglab.app to idle
+    t =     6.52s Find the Target Application 'com.swinglab.app'
+    t =     6.64s Added attachment named 'round3-ko-dark-settings'
+    t =     6.64s Terminate com.swinglab.app:18719
+    t =     7.68s Open com.swinglab.app
+    t =     7.69s     Launch com.swinglab.app
+    t =     7.90s         Setting up automation session
+    t =     9.69s         Wait for com.swinglab.app to idle
+    t =    11.48s Waiting 15.0s for "홈" Button to exist
+    t =    12.50s     Checking `Expect predicate `existsNoRetry == 1` for object "홈" Button`
+    t =    12.50s         Checking existence of `"홈" Button`
+    t =    12.59s Checking existence of `"home.bag" Any`
+    t =    12.63s Find the "home.bag" Any
+    t =    12.68s Tap "home.bag" Any
+    t =    12.68s     Wait for com.swinglab.app to idle
+    t =    12.68s     Find the "home.bag" Any
+    t =    12.72s     Check for interrupting elements affecting "home.bag" Button
+    t =    12.74s         Wait for com.apple.springboard to idle
+    t =    12.78s     Synthesize event
+    t =    13.07s     Wait for com.swinglab.app to idle
+    t =    13.48s Find the Target Application 'com.swinglab.app'
+    t =    13.59s Added attachment named 'round3-ko-dark-bag'
+    t =    13.59s Tap "스윙" Button
+    t =    13.59s     Wait for com.swinglab.app to idle
+    t =    13.59s     Find the "스윙" Button
+    t =    13.62s     Check for interrupting elements affecting "figure.golf" Button
+    t =    13.64s         Wait for com.apple.springboard to idle
+    t =    13.67s     Synthesize event
+    t =    13.96s     Wait for com.swinglab.app to idle
+    t =    15.23s Find the Target Application 'com.swinglab.app'
+    t =    15.36s Added attachment named 'round3-ko-dark-swing'
+    t =    15.36s Checking existence of `"swing.hypotheticalFlight" Any`
+    t =    15.49s Swipe up Target Application 'com.swinglab.app'
+    t =    15.49s     Wait for com.swinglab.app to idle
+    t =    15.49s     Find the Target Application 'com.swinglab.app'
+    t =    15.51s     Check for interrupting elements affecting "SwingLab" Application
+    t =    15.53s         Wait for com.apple.springboard to idle
+    t =    15.56s     Synthesize event
+    t =    15.98s     Wait for com.swinglab.app to idle
+    t =    16.58s Checking existence of `"swing.hypotheticalFlight" Any`
+    t =    16.69s Find the "swing.hypotheticalFlight" Any
+    t =    16.78s Tap "swing.hypotheticalFlight" Any
+    t =    16.78s     Wait for com.swinglab.app to idle
+    t =    16.78s     Find the "swing.hypotheticalFlight" Any
+    t =    16.87s     Check for interrupting elements affecting "swing.hypotheticalFlight" Button
+    t =    16.89s         Wait for com.apple.springboard to idle
+    t =    16.93s     Synthesize event
+    t =    17.22s     Wait for com.swinglab.app to idle
+    t =    17.70s Checking existence of `"flight.driverExample" Any`
+    t =    17.84s Find the "flight.driverExample" Any
+    t =    17.96s Tap "flight.driverExample" Any
+    t =    17.96s     Wait for com.swinglab.app to idle
+    t =    17.96s     Find the "flight.driverExample" Any
+    t =    18.07s     Check for interrupting elements affecting "flight.driverExample" Button
+    t =    18.10s         Wait for com.apple.springboard to idle
+    t =    18.14s     Synthesize event
+    t =    18.42s     Wait for com.swinglab.app to idle
+    t =    18.68s Checking existence of `"flight.simulate" Any`
+    t =    18.84s Swipe up Target Application 'com.swinglab.app'
+    t =    18.84s     Wait for com.swinglab.app to idle
+    t =    18.84s     Find the Target Application 'com.swinglab.app'
+    t =    18.86s     Check for interrupting elements affecting "SwingLab" Application
+    t =    18.89s         Wait for com.apple.springboard to idle
+    t =    18.91s     Synthesize event
+    t =    19.33s     Wait for com.swinglab.app to idle
+    t =    20.05s Checking existence of `"flight.simulate" Any`
+    t =    20.18s Find the "flight.simulate" Any
+    t =    20.30s Tap "flight.simulate" Any
+    t =    20.30s     Wait for com.swinglab.app to idle
+    t =    20.30s     Find the "flight.simulate" Any
+    t =    20.41s     Check for interrupting elements affecting "flight.simulate" Button
+    t =    20.44s         Wait for com.apple.springboard to idle
+    t =    20.48s     Synthesize event
+    t =    20.77s     Wait for com.swinglab.app to idle
+    t =    20.78s Checking existence of `"flight.result.carry" Any`
+    t =    20.93s Swipe up Target Application 'com.swinglab.app'
+    t =    20.93s     Wait for com.swinglab.app to idle
+    t =    20.94s     Find the Target Application 'com.swinglab.app'
+    t =    20.96s     Check for interrupting elements affecting "SwingLab" Application
+    t =    20.99s         Wait for com.apple.springboard to idle
+    t =    21.01s     Synthesize event
+    t =    21.43s     Wait for com.swinglab.app to idle
+    t =    23.59s Checking existence of `"flight.result.carry" Any`
+    t =    23.66s Find the "flight.result.carry" Any
+    t =    23.74s Find the Target Application 'com.swinglab.app'
+    t =    23.83s Added attachment named 'round3-ko-dark-flight'
+    t =    23.83s Tap "코스" Button
+    t =    23.83s     Wait for com.swinglab.app to idle
+    t =    23.83s     Find the "코스" Button
+    t =    23.86s     Check for interrupting elements affecting "map" Button
+    t =    23.89s         Wait for com.apple.springboard to idle
+    t =    23.91s     Synthesize event
+    t =    24.20s     Wait for com.swinglab.app to idle
+    t =    25.82s Find the Target Application 'com.swinglab.app'
+    t =    25.95s Added attachment named 'round3-ko-dark-course'
+    t =    25.95s Tap "퍼포먼스" Button
+    t =    25.95s     Wait for com.swinglab.app to idle
+    t =    25.95s     Find the "퍼포먼스" Button
+    t =    25.99s     Check for interrupting elements affecting "chart.xyaxis.line" Button
+    t =    26.01s         Wait for com.apple.springboard to idle
+    t =    26.04s     Synthesize event
+    t =    26.33s     Wait for com.swinglab.app to idle
+    t =    27.58s Find the Target Application 'com.swinglab.app'
+    t =    27.69s Added attachment named 'round3-ko-dark-performance'
+    t =    27.69s Terminate com.swinglab.app:18723
+    t =    28.73s Open com.swinglab.app
+    t =    28.74s     Launch com.swinglab.app
+    t =    28.94s         Setting up automation session
+    t =    30.83s         Wait for com.swinglab.app to idle
+    t =    32.59s Waiting 15.0s for "홈" Button to exist
+    t =    33.61s     Checking `Expect predicate `existsNoRetry == 1` for object "홈" Button`
+    t =    33.61s         Checking existence of `"홈" Button`
+    t =    33.72s Tap "스윙" Button
+    t =    33.72s     Wait for com.swinglab.app to idle
+    t =    33.72s     Find the "스윙" Button
+    t =    33.76s     Check for interrupting elements affecting "스윙" Button
+    t =    33.78s         Wait for com.apple.springboard to idle
+    t =    33.80s     Synthesize event
+    t =    34.09s     Wait for com.swinglab.app to idle
+    t =    35.35s Checking existence of `"swing.recording.00000000-0000-0000-0000-000000000003" Any`
+    t =    35.50s Find the "swing.recording.00000000-0000-0000-0000-000000000003" Any
+    t =    35.58s Tap "swing.recording.00000000-0000-0000-0000-000000000003" Any
+    t =    35.58s     Wait for com.swinglab.app to idle
+    t =    35.58s     Find the "swing.recording.00000000-0000-0000-0000-000000000003" Any
+    t =    35.66s     Check for interrupting elements affecting "swing.recording.00000000-0000-0000-0000-000000000003" Button
+    t =    35.69s         Wait for com.apple.springboard to idle
+    t =    35.73s     Synthesize event
+    t =    36.01s     Wait for com.swinglab.app to idle

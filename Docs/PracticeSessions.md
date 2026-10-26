@@ -13,3 +13,13 @@ Grouping uses the persisted recording date. For imported clips this is the libra
 ## Migration tests
 
 `SwingLabTests/SchemaMigrationTests.swift` independently exercises V1→frozen V2, V1→V3, and V2→V3 disk stores. Coverage includes external analysis bytes (including corrupt JSON), cached metrics and provenance, override handedness, club/course/round relationships, a gap exactly 90 minutes versus 90 minutes plus one second, and deletion nullification. These are iOS-hosted tests; a macOS SwiftData harness is useful supplementary evidence, not a substitute for running them on an iOS simulator.
+
+`Scripts/check_migrations.sh` passed all three migration methods and both `PracticeSessionTests` methods against macOS SwiftData. It compiles the actual model sources and test bodies with assertion adapters; it does not claim to run XCTest. The output is recorded in `Docs/Logs/round-3/wp4-migrations-macos.log`. A separate one-time compatibility check seeded a disk store from untouched HEAD V2 model declarations, opened it with the frozen V2 snapshot, and migrated it to V3 with identical analysis bytes and cache values (`wp4-original-v2-compatibility.log`).
+
+## Grouping, editing, and deletion
+
+Automatic sessions are partitioned by club UUID, camera angle, and known/unknown handedness. The 90-minute threshold is an inclusive inactivity interval, not a maximum session duration. Equal timestamps use UUID order for deterministic migration. A new capture snapshots the user's handedness preference; regrouping an old unknown recording does not apply today's preference. Manual regrouping changes membership without rewriting recording labels.
+
+Session date is derived from the earliest member, and is read-only in the editor. Removing or moving the first member recomputes it. An empty session without notes is pruned; an annotated empty session is retained, and adopts the date of its first new member. All mutations share the caller's save/rollback transaction. The recording's existing staged-video deletion path remains intact.
+
+Final native verification includes three migration tests and three practice-session persistence tests, including deletion, rollback, and retained notes. See the Round 3 milestone report for exact commands and logs.

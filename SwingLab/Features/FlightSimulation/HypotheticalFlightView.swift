@@ -48,7 +48,7 @@ struct HypotheticalFlightView: View {
             Section {
                 Button(action: simulate) {
                     Text(prefs.text("Simulate")).frame(maxWidth: .infinity)
-                }.buttonStyle(.borderedProminent).tint(SLTheme.forest)
+                }.buttonStyle(.borderedProminent).foregroundStyle(SLTheme.background).tint(SLTheme.forest)
                     .accessibilityIdentifier("flight.simulate")
                 if let errorKey {
                     Text(prefs.text(errorKey)).font(.caption).foregroundStyle(.secondary)

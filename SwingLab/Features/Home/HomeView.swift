@@ -23,7 +23,7 @@ struct HomeView: View {
                         Label(preferences.text("Record & review"), systemImage: "video")
                             .font(.headline).frame(maxWidth: .infinity).padding(.vertical, 7)
                     }
-                    .buttonStyle(.borderedProminent).controlSize(.large)
+                    .buttonStyle(.borderedProminent).foregroundStyle(SLTheme.background).controlSize(.large)
                     .padding(.top, 8)
                 }
                 .padding(.top, 8)

@@ -34,7 +34,7 @@ struct SwingLabApp: App {
                         Text("SwingLab").font(.largeTitle.weight(.semibold))
                         if storageError != nil {
                             Text(preferences.text("Your local library could not be opened. Your files have not been removed."))
-                            Button(preferences.text("Try again"), action: openLibrary).buttonStyle(.borderedProminent)
+                            Button(preferences.text("Try again"), action: openLibrary).buttonStyle(.borderedProminent).foregroundStyle(SLTheme.background)
                         } else { ProgressView() }
                     }.padding(32)
                 }

@@ -8,11 +8,12 @@ if [[ -z "$TASK_DESTINATION" ]]; then
   TASK_DEVICE_ID="$(xcrun simctl list devices available --json | python3 -c '
 import json,sys
 data=json.load(sys.stdin)
-for devices in data.get("devices",{}).values():
-    for device in devices:
-        if device.get("isAvailable") and device.get("name", "").startswith("iPhone"):
-            print(device["udid"])
-            sys.exit(0)
+candidates=[device for devices in data.get("devices",{}).values() for device in devices
+    if device.get("isAvailable") and "iPhone" in device.get("name", "")]
+candidates.sort(key=lambda device: ("Duo" in device["name"],device.get("state") != "Booted",device["name"]))
+if candidates:
+    print(candidates[0]["udid"])
+    sys.exit(0)
 print("No available iPhone simulator. Install an iOS runtime, then rerun.",file=sys.stderr)
 sys.exit(2)
 ')"
@@ -26,6 +27,7 @@ mkdir -p "$TASK_ROOT/Docs/Logs" "$TASK_OUTPUT"
 xcodebuild -project SwingLab.xcodeproj -scheme SwingLab \
   -destination "$TASK_DESTINATION" -derivedDataPath ./DerivedData \
   -resultBundlePath "$TASK_RESULT" CODE_SIGNING_ALLOWED=NO \
+  ONLY_ACTIVE_ARCH=YES ARCHS="$(uname -m)" \
   -parallel-testing-enabled NO -only-testing:SwingLabUITests/ScreenshotTests test \
   | tee "$TASK_ROOT/Docs/Logs/screenshots-$TASK_RUN.log"
 xcrun xcresulttool export attachments --path "$TASK_RESULT" --output-path "$TASK_ATTACHMENTS"
@@ -36,11 +38,11 @@ source,output,result=map(Path,sys.argv[1:])
 manifest=json.loads((source/'manifest.json').read_text())
 # Xcode 27.1 `xcresulttool export attachments --schema` describes an array of
 # test entries whose attachment fields include the two names used below.
-pattern=re.compile(r'(round3-(?:en|ko|de)-(?:light|dark)-(?:home|swing|swing-detail-empty|flight|course|performance|settings|bag))(?:\.[A-Za-z0-9]+)?$')
+pattern=re.compile(r'(round3-(?:en|ko|de)-(?:light|dark)-(?:swing-detail-empty|home|swing|flight|course|performance|settings|bag))(?=$|[._ ])')
 captured={}
 for test in manifest:
     for attachment in test.get('attachments',[]):
-        match=pattern.fullmatch(attachment.get('suggestedHumanReadableName',''))
+        match=pattern.search(attachment.get('suggestedHumanReadableName',''))
         if not match:
             continue
         original=source/attachment['exportedFileName']

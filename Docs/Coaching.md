@@ -6,9 +6,9 @@
 
 | Rule | Value |
 |---|---|
-| Comparable swings | Same camera angle, same club, analyzed **before** this swing, most recent first. Recordings have no club yet, so today the club is always "none". |
+| Comparable swings | Same known camera angle and same stable club UUID, analyzed **before** this swing, most recent first. Unknown club is its own group; an unspecified angle cannot establish comparability. Fully unavailable samples do not evict analyzed samples from the last-20 cap. |
 | Baseline size | Up to 20 swings. |
-| Minimum | 5 comparable values for a metric. Below that, only "analyze N more swings" is shown (`coach.needMoreSwings`). |
+| Minimum | 5 comparable values for a metric. Below that, no observation is made; tempo may show `coach.needMoreSwings`, and other unavailable comparisons remain neutral. |
 | Values used | Only metrics whose provenance is not `unavailable`. Estimated, user-entered, and vision-derived values are all compared. The source labels stay on the metrics themselves. |
 | Observation | `coach.<metric>.higher` / `.lower` when \|z\| > 1.5, where z = (value − baseline mean) / baseline SD. |
 | Constant baseline | SD = 0 gives no observation, because one identical value cannot define "unusual". |
@@ -35,8 +35,10 @@ Both are common practice-range tempo and head-stability routines. They are offer
 
 An empty feedback array does **not** mean that every metric is within the user's normal range: missing current values, fewer than five comparable values, and zero baseline SD can all prevent a comparison. `CoachingEngine.comparisons(for:history:)` now exposes only metrics actually compared, with their baseline n, mean, and SD. Swing detail shows those baseline means and n; when none can be compared it reports no comparison. It never infers an all-metrics normal result from an empty array. `CoachingTests.testEmptyFeedbackDoesNotImplyAValidComparison` covers missing data, constant baselines, n < 5, and a valid tempo baseline with the other three measures unavailable.
 
-## Not yet done
+## Practice sessions delivered in Round 3
 
-- **`PracticeSession` model.** Grouping recordings within 90 minutes needs a SwiftData schema V3 plus a migration test. It should be done with the simulator available.
-- **Club on recordings.** Adding a club changes the baseline from "same angle" to "same angle and club".
-- **Session-level consistency charts.** These belong in Performance.
+`SwingLabSchemaV3` stores sessions and an optional club UUID on each recording. New recordings capture the current handedness preference and auto-group within an inclusive 90-minute rolling inactivity window when club, camera angle, and handedness match. Existing recordings migrate without inventing handedness or club context. Users can regroup recordings and edit session notes/context; session dates derive from the earliest member. See [PracticeSessions.md](PracticeSessions.md).
+
+Swing and Performance link to session details. The comparison selector separates club and camera angle, and the summary shows **n, mean, sample SD, and CV** for each available metric only when n ≥ 5. Unknown angles produce no consistency summary. The screen reads cached recording columns; it never decodes pose JSON for lists or aggregate statistics. These are numeric summaries, not a new chart or a claim of validated coaching efficacy.
+
+Native iOS migration and persistence tests now run on iPhone Duo with iOS 27.1. Real-swing coaching thresholds and drill effectiveness remain uncalibrated.

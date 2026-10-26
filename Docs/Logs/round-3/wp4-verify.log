@@ -186,3 +186,21 @@ PASS non-finite timing rejected
 PASS missing measurements remain unavailable
 PASS head proxy uses normalized displacement
 PASS insufficient head observations rejected
+PASS shared macOS AVFoundation/Vision/Transferable service typecheck (not an iOS build)
+PASS landscape video decoding and honest no-pose result
+PASS portrait video decoding and honest no-pose result
+PASS mirrored video decoding and honest no-pose result
+PASS invalid video rejected
+PASS LPCM click read on the movie timeline (error -0.46 ms)
+PASS AAC click read on the movie timeline (error -0.46 ms)
+PASS movie without audio reports no audio
+PASS GPS stale/future time gates
+PASS GPS accuracy/invalid-coordinate gates
+PASS unknown scores preserved and strokes not double counted
+PASS impossible and malformed scores rejected
+PASS manual reference JSON round trip
+PASS shared macOS CoreLocation/MapKit services typecheck (not an iOS build)
+SwingLab.xcodeproj/project.pbxproj: OK
+SwingLab/Resources/Info.plist: OK
+SwingLab/Resources/PrivacyInfo.xcprivacy: OK
+Catalogs and project syntax validated. Parsing does not validate iOS compilation.

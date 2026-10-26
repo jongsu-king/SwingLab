@@ -82,7 +82,11 @@ Baseline: iOS app build succeeded; all 47 Core XCTest cases passed; native unit/
 
 There were no Swift compiler warnings. The actual baseline build log contains an AppIntents metadata-extraction warning (“no AppIntents.framework dependency found”), so “0 warnings” is not an accurate literal description of this run.
 
-Final fix and work-package verification is appended at the completed boundary.
+Implemented S1, S2, S3, S5, S6, S7, S8, S9, and S10. S4 remains the explicit WP8 integrity-check gap. S9's UI invalidation is compiled; runtime screenshot testing is underway. The separate imported-audio-gap investigation remains not demonstrated and has no production change.
+
+Regression evidence: `testMixedCoarseAndDensePassRetainsAddressAndFinish`, the long-dropout phase regression, the nearest-pose audio regression, `testEmptyFeedbackDoesNotImplyAValidComparison`, `testLevelAndDownwardLaunchTouchFlatGroundImmediately`, malformed-coefficient and SI-angle assertions, and `testUnanalyzedRecordingsDoNotEvictTheAnalyzedBaseline`. The complete suite passed 58 Core XCTest cases after WP4 additions; the portable harness passed 58 groups. Native media fixtures still read contiguous AAC and LPCM clicks about 0.46 ms early.
+
+The runtime subsequently became available: iOS 27.1 (24A94425), iPhone Duo. The first native run has passed all 16 app XCTest cases, including V1→V2, V1→V3, V2→V3 and session persistence tests. Full final UI/build evidence and actual screenshots are recorded in `Docs/MilestoneReport.md`. No camera performance or contact accuracy is established by these simulator results.
 
 ## Feedback for the reviewer
 

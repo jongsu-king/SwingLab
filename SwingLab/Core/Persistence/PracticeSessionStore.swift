@@ -38,8 +38,11 @@ enum PracticeSessionStore {
 
     static func regroup(recording: SwingRecording, to session: PracticeSession, context: ModelContext) throws {
         let old = recording.practiceSession
+        // An empty annotated session keeps its historical date until it receives a recording.
+        // Derive the new date from actual members, not that retained metadata value.
+        let dates = session.recordings.filter { $0.id != recording.id }.map(\.createdAt) + [recording.createdAt]
         recording.practiceSession = session
-        session.date = min(session.date, recording.createdAt)
+        session.date = dates.min() ?? recording.createdAt
         removeEmpty(old, excluding: recording.id, replacement: session, context: context)
     }
 
@@ -55,12 +58,26 @@ enum PracticeSessionStore {
         return session
     }
 
+    /// Stage the recording deletion and the same session cleanup used by regrouping.
+    /// The caller owns the media-file transaction and saves or rolls back these mutations.
+    static func remove(recording: SwingRecording, context: ModelContext) {
+        if let session = recording.practiceSession {
+            refreshSession(session, excluding: recording.id, context: context)
+        }
+        context.delete(recording)
+    }
+
     private static func removeEmpty(_ old: PracticeSession?, excluding recordingID: UUID,
                                     replacement: PracticeSession, context: ModelContext) {
         guard let old, old.id != replacement.id else { return }
-        let remaining = old.recordings.filter { $0.id != recordingID }
-        if remaining.isEmpty, old.notes.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty { context.delete(old) }
-        else if let first = remaining.map(\.createdAt).min() { old.date = first }
+        refreshSession(old, excluding: recordingID, context: context)
+    }
+
+    private static func refreshSession(_ session: PracticeSession, excluding recordingID: UUID,
+                                       context: ModelContext) {
+        let remaining = session.recordings.filter { $0.id != recordingID }
+        if remaining.isEmpty, session.notes.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty { context.delete(session) }
+        else if let first = remaining.map(\.createdAt).min() { session.date = first }
     }
 
     private static func sample(for recording: SwingRecording, handedness: Handedness?) -> PracticeGroupingSample {

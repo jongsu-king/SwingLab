@@ -37,7 +37,7 @@ struct RecordingPracticeSection: View {
             }
             Button(prefs.text("Move to a new session")) {
                 do {
-                    _ = try PracticeSessionStore.newSession(for: recording, context: context, defaultHandedness: prefs.handedness)
+                    _ = try PracticeSessionStore.newSession(for: recording, context: context, defaultHandedness: nil)
                     try context.save()
                 } catch { context.rollback(); saveFailed = true }
             }
@@ -171,7 +171,6 @@ private struct PracticeSessionEditorView: View {
     @Environment(\.dismiss) private var dismiss
     @Query(sort: \GolfClub.createdAt) private var clubs: [GolfClub]
     let session: PracticeSession
-    @State private var date: Date
     @State private var notes: String
     @State private var clubID: UUID?
     @State private var cameraAngle: CameraAngle
@@ -180,7 +179,6 @@ private struct PracticeSessionEditorView: View {
 
     init(session: PracticeSession) {
         self.session = session
-        _date = State(initialValue: session.date)
         _notes = State(initialValue: session.notes)
         _clubID = State(initialValue: session.clubID)
         _cameraAngle = State(initialValue: session.cameraAngleValue)
@@ -190,7 +188,9 @@ private struct PracticeSessionEditorView: View {
     var body: some View {
         NavigationStack {
             Form {
-                DatePicker(prefs.text("Date"), selection: $date)
+                LabeledContent(prefs.text("Date")) {
+                    Text(session.date, format: .dateTime.year().month().day().hour().minute())
+                }
                 TextField(prefs.text("Notes"), text: $notes, axis: .vertical).lineLimit(3...6)
                 Picker(prefs.text("Club"), selection: $clubID) {
                     Text(prefs.text("Unspecified")).tag(nil as UUID?)
@@ -221,7 +221,7 @@ private struct PracticeSessionEditorView: View {
     }
 
     private func save() {
-        session.date = date; session.notes = notes; session.clubID = clubID
+        session.notes = notes; session.clubID = clubID
         session.cameraAngleValue = cameraAngle; session.handedness = handedness
         do { try context.save(); dismiss() }
         catch { context.rollback(); saveFailed = true }

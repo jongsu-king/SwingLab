@@ -1,0 +1,59 @@
+PASS independent unit conversions
+PASS language fallback
+PASS known geodesic distances
+PASS coordinate projection
+PASS date-line and invalid coordinates
+PASS 50/80/95 percent probability ellipses
+PASS hazard integration and absent geometry
+PASS invalid statistical inputs
+PASS timestamp-based tempo
+PASS invalid timing rejection
+PASS joint angles and missing joints
+PASS explainable club ranking
+PASS interrupted media deletion recovery
+PASS stable provenance and legacy labels
+PASS typed recording metadata migration
+PASS measurement value invariants
+PASS measurement decoding validation
+PASS schema-v1 analysis migration
+PASS typed metric SI units and origin
+PASS missing and invalid pose metrics
+PASS schema-v1 summary migration
+PASS missing analysis summary unavailable
+PASS current summary version and frame rate
+PASS zero-phase smoothing peak timing
+PASS phase detector at 30/60/120/240 fps
+PASS phase detector with landmark noise
+PASS mixed coarse/dense phases
+PASS impact absent across long wrist gap
+PASS left-handed mirror timing
+PASS no swing returns no guesses
+PASS manual markers win on merge
+PASS audio click timed within 1 ms
+PASS clipped audio click
+PASS two comparable clicks rejected
+PASS weak secondary transient
+PASS audio candidate nearest pose
+PASS no click or click outside window
+PASS transient far from pose impact
+PASS faint click and invalid audio
+PASS audio impact replaces pose proxy
+PASS flight integrator vs vacuum closed form
+PASS flight vs tour reference shots
+PASS spin axis and start direction
+PASS wind, air density, landing height
+PASS invalid flight inputs
+PASS ground-level nonascending flight
+PASS summary statistics
+PASS coaching needs five comparable swings
+PASS coaching baseline shift templates
+PASS coaching excludes other angles and clubs
+PASS coaching baseline limited to recent 20
+PASS unanalyzed swings preserve baseline
+PASS unknown angles cannot define baseline
+PASS empty coaching is not a comparison
+PASS rolling 90-minute practice grouping
+PASS practice context separates unknown values
+PASS practice grouping deterministic ties
+PASS practice matching recent compatible session
+58 test groups; 0 failed assertions. Portable harness, not XCTest.
