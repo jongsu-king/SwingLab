@@ -64,3 +64,35 @@
   - ball speed within ±3 %;
   - vertical launch within ±1.5°.
 - **Until validated,** the mode is labelled **"Experimental"** in the UI, and no marketing copy may call it a launch monitor.
+
+## Status (reviewer, 26 Oct 2026)
+
+Core implemented in `Sources/SwingLabCore/LaunchMonitor.swift` and `LaunchMonitorImaging.swift`. They sit flat in the core folder, not in a `LaunchMonitor/` subfolder, because the portable check scripts glob only `Sources/SwingLabCore/*.swift`.
+
+- **`BallScaleFitter`.** Partial-pixel area of the ball over ≥ 3 address frames gives a diameter, its SD, and mm/px.
+- **`LaunchTracker.observe`.**
+  - Takes the positive difference against the address frame, ahead of the ball and not below it, outside the vacated spot.
+  - Picks the component nearest the predicted position.
+  - Times each position at mid-exposure.
+  - Refuses exposure > 1/1000 s.
+- **`LaunchTracker.fit`.** A least-squares line gives speed (`visionDerived`, m/s) and angle (`visionDerived`, rad), with relative uncertainty and confidence.
+- **`CarryRangeEstimator`.** `BallFlight` across the cited `ReferenceLaunchData.spinAssumption` gives a `simulated` shortest/longest carry. It returns nil for estimated speeds.
+
+Synthetic results: 480×360 scene at 0.49 px/mm, 240 fps, 1/2000 s exposure, ball only.
+
+| Shot | Speed result | Launch angle | Positions tracked |
+|---|---|---|---|
+| 54 m/s @ 16° | 53.95 m/s | 16.00° | 3 |
+| 74 m/s @ 10.5° | 73.97 m/s | 10.50° | 2 |
+| 40 m/s @ 24° | 39.98 m/s | 24.00° | 4 |
+
+Reported uncertainty is about 1 %. **These numbers say nothing about real accuracy.** The synthetic scene has no club, no body, no rolling shutter, and no compression.
+
+**Known gap:** the 7-iron carry range at 54 m/s / 16° is 188–190 yd. The cited spin interval is narrow (6,630–7,124 rpm, tour data), and the flight model overestimates iron carry (`Docs/Physics.md`). The range must not be presented as the user's expected carry until A22/A23 and the physics model are validated.
+
+**Not yet done:**
+- Masking the club head and body near impact.
+- Live camera ring buffer and short-exposure configuration.
+- Streaming audio trigger.
+- The readout UI.
+- Validation against TrackMan.
