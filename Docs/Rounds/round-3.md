@@ -23,6 +23,7 @@ This is a **partial v7 delivery at the WP4 boundary**. The reviewer review and a
 - `Docs/PracticeSessions.md`
 - `Docs/Review/round-2-review.md`
 - `Docs/Rounds/round-3.md`
+- `Docs/Specs/LaunchMonitor.md`
 - `Scripts/Localization-practice.json`
 - `Scripts/Localization-round3-review.json`
 - `Scripts/MigrationTestHarness.swift`
@@ -78,7 +79,141 @@ No new permission was added in Round 3. Microphone permission was already introd
 
 ## D. Build results and exact commands
 
-Final verification details are appended after the last screenshot correction and gate. Earlier real evidence is preserved in `Docs/Logs/round-3/wp4-app-build.log`, `Docs/Logs/round3-wp4-native-gate.log`, and `Docs/Logs/round-3/wp4-verify-final.log`.
+All final required gates are green: **58 Core XCTest cases, 17 iOS app XCTest cases, 8 UI XCTest cases across the final runs, and 6 supplemental macOS migration/session checks**. The two UI commands cover the six full-matrix tests plus Navigation and the six-detail-image regression test. All final validation runs have zero test failures.
+
+```sh
+xcodebuild -project SwingLab.xcodeproj -scheme SwingLab -destination 'generic/platform=iOS Simulator' -derivedDataPath ./DerivedData CODE_SIGNING_ALLOWED=NO build
+```
+
+Real log tail ([full log](Logs/round-3/final-app-build.log)):
+
+```text
+    builtin-validationUtility /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app -shallow-bundle -infoplist-subpath Info.plist
+
+PruneExplicitPrecompiledModules /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules
+
+PruneExplicitPrecompiledModules /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/SDKExplicitPrecompiledModules
+
+PruneExplicitPrecompiledModules /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/ExplicitPrecompiledModules
+
+** BUILD SUCCEEDED **
+
+```
+
+```sh
+swift test
+```
+
+Real log tail ([full log](Logs/round-3/final-swift-test.log)):
+
+```text
+Test Case '-[SwingLabCoreTests.UnitsTests testLanguageFallbackAndRegionalMatching]' started.
+Test Case '-[SwingLabCoreTests.UnitsTests testLanguageFallbackAndRegionalMatching]' passed (0.000 seconds).
+Test Suite 'UnitsTests' passed at 2026-10-26 21:17:49.714.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.000 (0.000) seconds
+Test Suite 'SwingLabCoreTests.xctest' passed at 2026-10-26 21:17:49.714.
+	 Executed 58 tests, with 0 failures (0 unexpected) in 3.614 (3.618) seconds
+Test Suite 'All tests' passed at 2026-10-26 21:17:49.714.
+	 Executed 58 tests, with 0 failures (0 unexpected) in 3.614 (3.619) seconds
+◇ Test run started.
+↳ Testing Library Version: 2084
+↳ Target Platform: arm64e-apple-macos14.0
+✔ Test run with 0 tests in 0 suites passed after 0.001 seconds.
+```
+
+```sh
+/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project SwingLab.xcodeproj -scheme SwingLab -destination "platform=iOS Simulator,id=DD5809B6-1928-4D6F-BD60-67245CECF07C,arch=arm64" -derivedDataPath ./DerivedData -resultBundlePath ./DerivedData/Round3-FinalNative.xcresult CODE_SIGNING_ALLOWED=NO ONLY_ACTIVE_ARCH=YES ARCHS=arm64 -parallel-testing-enabled NO "-only-testing:SwingLabTests" "-only-testing:SwingLabUITests/NavigationTests" "-only-testing:SwingLabUITests/DetailScreenshotTests" test
+```
+
+Real log tail ([full log](Logs/round3-final-native.log)):
+
+```text
+2026-10-26 21:19:32.175 xcodebuild[19716:167987] [MT] IDETestOperationsObserverDebug: 92.491 elapsed -- Testing started completed.
+2026-10-26 21:19:32.176 xcodebuild[19716:167987] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-26 21:19:32.176 xcodebuild[19716:167987] [MT] IDETestOperationsObserverDebug: 92.491 sec, +92.491 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Round3-FinalNative.xcresult
+
+** TEST SUCCEEDED **
+
+Testing started
+```
+
+```sh
+/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project SwingLab.xcodeproj -scheme SwingLab -destination "platform=iOS Simulator,id=DD5809B6-1928-4D6F-BD60-67245CECF07C" -derivedDataPath ./DerivedData -resultBundlePath /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult CODE_SIGNING_ALLOWED=NO ONLY_ACTIVE_ARCH=YES ARCHS=arm64 -parallel-testing-enabled NO "-only-testing:SwingLabUITests/ScreenshotTests" test
+```
+
+Real log tail ([full log](Logs/screenshots-20261026-211342-18947.log)):
+
+```text
+	 Executed 6 tests, with 0 failures (0 unexpected) in 230.204 (230.209) seconds
+Test Suite 'SwingLabUITests.xctest' passed at 2026-10-26 21:17:44.976.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 230.204 (230.210) seconds
+Test Suite 'Selected tests' passed at 2026-10-26 21:17:44.976.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 230.204 (230.211) seconds
+
+Test session results, code coverage, and logs:
+	/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Screenshots-20261026-211342-18947.xcresult
+
+** TEST SUCCEEDED **
+
+Testing started
+```
+
+```sh
+Scripts/verify.sh
+```
+
+Real log tail ([full log](Logs/round-3/final-verify.log)):
+
+```text
+PASS shared macOS AVFoundation/Vision/Transferable service typecheck (not an iOS build)
+PASS landscape video decoding and honest no-pose result
+PASS portrait video decoding and honest no-pose result
+PASS mirrored video decoding and honest no-pose result
+PASS invalid video rejected
+PASS LPCM click read on the movie timeline (error -0.46 ms)
+PASS AAC click read on the movie timeline (error -0.46 ms)
+PASS movie without audio reports no audio
+PASS GPS stale/future time gates
+PASS GPS accuracy/invalid-coordinate gates
+PASS unknown scores preserved and strokes not double counted
+PASS impossible and malformed scores rejected
+PASS manual reference JSON round trip
+PASS shared macOS CoreLocation/MapKit services typecheck (not an iOS build)
+SwingLab.xcodeproj/project.pbxproj: OK
+SwingLab/Resources/Info.plist: OK
+SwingLab/Resources/PrivacyInfo.xcprivacy: OK
+Catalogs and project syntax validated. Parsing does not validate iOS compilation.
+```
+
+Normal installation and launch were also performed without test arguments or a data reset:
+
+```sh
+xcrun simctl install DD5809B6-1928-4D6F-BD60-67245CECF07C DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app
+xcrun simctl launch DD5809B6-1928-4D6F-BD60-67245CECF07C com.swinglab.app
+```
+
+Real launch output:
+
+```text
+com.swinglab.app: 20400
+```
+
+```sh
+xcrun simctl io booted screenshot --display=1 Docs/Screenshots/round-3/normal-launch.png
+```
+
+Real log tail ([full log](Logs/round-3/normal-launch-screenshot.log)):
+
+```text
+Detected file type from extension: PNG
+Wrote screenshot to: /Users/jongsulim/Documents/ChatGPT/swing/Docs/Screenshots/round-3/normal-launch.png
+```
+
+Display 1 is the active Duo screen. An initial capture using the default display produced black on inactive LCD-1; it was replaced after inspecting `simctl io booted enumerate`. The [normal-launch Home capture](Screenshots/round-3/normal-launch.png) is additional to the 48-image test matrix. All 48 matrix PNGs and SHA-256 values were independently checked against the manifest.
+
 
 Environment: Xcode 27.1 (`27A9275`), iOS 27.1 SDK; runtime iOS 27.1 (`24A94425`) appeared during this run. Its supported-device inventory permits only iPhone Duo, arm64. Creating iPhone 18 Pro returned `Incompatible device`; no standard-phone screenshot is claimed.
 

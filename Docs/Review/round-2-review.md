@@ -54,7 +54,7 @@ Fix: choose the candidate nearest the finite pose estimate while retaining compa
 
 `SwingLab/Features/FlightSimulation/HypotheticalFlightView.swift:56`: after Simulate, changing launch or condition fields leaves the prior result visible underneath the new values. A displayed carry can therefore appear associated with inputs that never produced it.
 
-Fix: invalidate the result whenever any input changes; recompute only on Simulate. Native UI execution remains pending a simulator runtime.
+Fix: invalidate the result whenever any input changes; recompute only on Simulate. The example/simulate flow now runs in the screenshot suite; input-change invalidation itself is source-reviewed rather than claimed as a separate UI regression test.
 
 ### S10 — Medium — unanalyzed recordings evict the coaching baseline
 
@@ -78,16 +78,18 @@ Fix: exclude fully unavailable samples before the cap, with deterministic orderi
 
 ## Verification and implementation status
 
-Baseline: iOS app build succeeded; all 47 Core XCTest cases passed; native unit/UI test targets compiled with `build-for-testing`. Full Xcode 27.1 is present, but `xcrun simctl list runtimes` returned an empty inventory. Simulator execution, migration on iOS, installation, launch, and screenshots are not claimed.
+Baseline: iOS app build succeeded; all 47 Core XCTest cases passed; native unit/UI test targets compiled with `build-for-testing`. Full Xcode 27.1 is present, but `xcrun simctl list runtimes` returned an empty inventory. At that initial baseline stage, simulator execution, migration on iOS, installation, launch, and screenshots had not yet run.
 
 There were no Swift compiler warnings. The actual baseline build log contains an AppIntents metadata-extraction warning (“no AppIntents.framework dependency found”), so “0 warnings” is not an accurate literal description of this run.
 
-Implemented S1, S2, S3, S5, S6, S7, S8, S9, and S10. S4's demonstrated missing badge is translated; the general integrity-check gap remains explicit WP8 work. S9's UI invalidation is compiled; runtime screenshot testing is underway. The separate imported-audio-gap investigation remains not demonstrated and has no production change.
+Implemented S1, S2, S3, S5, S6, S7, S8, S9, and S10. S4's demonstrated missing badge is translated; the general integrity-check gap remains explicit WP8 work. S9's UI invalidation is compiled; the explicit example/simulate flow has now run in all six screenshot variants. The separate imported-audio-gap investigation remains not demonstrated and has no production change.
 
 Regression evidence: `testMixedCoarseAndDensePassRetainsAddressAndFinish`, `testLongWristGapCannotBecomeAnImpact`, `testSelectsNearestPoseCandidateRatherThanLoudestNeighbor`, `testEmptyFeedbackDoesNotImplyAValidComparison`, `testLevelAndDownwardLaunchTouchFlatGroundImmediately`, malformed-coefficient and SI-angle assertions, and `testUnanalyzedRecordingsDoNotEvictTheAnalyzedBaseline`. The complete suite passed 58 Core XCTest cases after WP4 additions; the portable harness passed 58 groups. Native media fixtures still read contiguous AAC and LPCM clicks about 0.46 ms early.
 
-The runtime subsequently became available: iOS 27.1 (24A94425), iPhone Duo. The first native run has passed all 16 app XCTest cases, including V1→V2, V1→V3, V2→V3 and session persistence tests. Full final UI/build evidence and actual screenshots are recorded in `Docs/MilestoneReport.md`. No camera performance or contact accuracy is established by these simulator results.
+The runtime subsequently became available: iOS 27.1 (24A94425), iPhone Duo. The final native runs passed all 17 app XCTest cases, including V1→V2, V1→V3, V2→V3 and session persistence tests, plus 8 UI XCTest cases. The 48-image matrix, direct normal-launch screenshot, and green final build/verification evidence are recorded in `Docs/MilestoneReport.md`. No camera performance or contact accuracy is established by these simulator results.
 
 ## Feedback for the reviewer
 
 Keep the two-way, evidence-based review and the prohibition on fitting validation data. Future prompts should distinguish an engineering tolerance from a changed acceptance criterion, and require a mixed-cadence service fixture rather than only constant-frame-rate synthetic tests. Empty algorithm output must not become an affirmative UI conclusion. The reviewer understated the unverified scientific-model status and overstated the “rate-independent” baseline; the forward-shaft-lean bias direction is still not demonstrated. Report compiler warnings separately from Xcode tool warnings. Provide labeled real swing/audio fixtures and a primary coefficient table if quantitative accuracy is the next acceptance gate.
+
+The simulator also showed why catalog counts alone are insufficient: “Measured” was missing despite a zero-gap builder report. Require source-enum reachability in the next localization acceptance gate.

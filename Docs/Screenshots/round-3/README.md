@@ -34,3 +34,7 @@ Evidence:
 - [Detail attachment export](../../Logs/round3-detail-export.log).
 
 After testing, the app was also explicitly installed with `xcrun simctl install` and launched with `xcrun simctl launch` without test arguments. No simulator data reset or app uninstall was performed.
+
+## Additional normal-launch evidence
+
+[Normal-launch Home](normal-launch.png) was captured directly with `xcrun simctl io booted screenshot --display=1 Docs/Screenshots/round-3/normal-launch.png` after an ordinary install/launch, without UI-test arguments. Duo's default screenshot display selected an inactive black LCD-1; display 1 is the active screen. This additional image is outside the 48-image test manifest.

@@ -4,17 +4,17 @@ The reviewer grants the final **PASS** only when every row is ✅ with evidence 
 
 Legend: ✅ verified · 🟡 implemented, not yet verified to the bar · ❌ missing or failing · ⬜ needs a real iPhone or user data
 
-_Last updated: 26 Oct 2026, during Round 3._
+_Last updated: 26 Oct 2026, after Round 3._
 
 ## Engineering gates
 
 | # | Gate | Bar | Status | Evidence |
 |---|---|---|---|---|
 | G1 | iOS build | `xcodebuild … build` 0 errors, 0 warnings (Swift 6) | ✅ | First native build, 26 Oct (`Docs/CompileRisk.md`) |
-| G2 | Core tests | `swift test` all pass under XCTest | ✅ | 47/47, 26 Oct |
-| G3 | App tests on simulator | `xcodebuild test` (`SwingLabTests` + `SwingLabUITests`) all pass | ⬜ | First run in progress (Round 3) |
+| G2 | Core tests | `swift test` all pass under XCTest | ✅ | 58/58 after Round 3 (reproduced by reviewer) |
+| G3 | App tests on simulator | `xcodebuild test` (`SwingLabTests` + `SwingLabUITests`) all pass on iOS 26.4 and 27.1 | ❌ | Reviewer, iOS 26.4 iPhone 17 Pro: 8/17 app tests and 1/8 UI tests fail (R3-5) |
 | G4 | Project opens and runs from Xcode | Simulator run from Xcode without command-line overrides | ❌ | Generated project lacks Debug `ONLY_ACTIVE_ARCH=YES` |
-| G5 | Repository checks | `Scripts/verify.sh` passes | ✅ | 26 Oct |
+| G5 | Repository checks | `Scripts/verify.sh` passes | ✅ | Round 3, 518 keys, 0 missing (reproduced) |
 
 ## Product criteria (v6.0 §34, made measurable)
 
@@ -28,7 +28,7 @@ _Last updated: 26 Oct 2026, during Round 3._
 | A6 | Tempo analysis | Derived only from markers meeting A5; provenance shown | 🟡 |
 | A7 | Coaching feedback | Statements only when the evidence supports them (n ≥ 5, same angle and club); never claims normality from missing data | 🟡 |
 | A8 | Swing comparison | Phase-synchronised playback; warnings for angle, handedness, and fps mismatch; verified on device | 🟡 |
-| A9 | Practice tracking | Sessions, grouping, consistency (n ≥ 5) | ❌ |
+| A9 | Practice tracking | Sessions, grouping, consistency (n ≥ 5) | 🟡 |
 | A10 | GPS course | On a real course or field: distances to known points agree within the reported GPS accuracy | ⬜ |
 | A11 | Shot recording | A full 9-hole round recorded end to end on device, with edits | ⬜ |
 | A12 | Club management | Create, edit, delete, and gapping, verified in the UI | 🟡 |
@@ -42,10 +42,16 @@ _Last updated: 26 Oct 2026, during Round 3._
 | A20 | Error handling | Denied permissions, interruptions, low storage, and corrupt video each tested | 🟡 |
 | A21 | App Store readiness | Public privacy policy URL, metadata in 12 languages, TestFlight build uploaded (needs a paid developer account) | ❌ |
 
-Ball tracking and spin are not acceptance criteria for 1.0. They ship only if they pass their own validation (v6.0 §34), and spin RPM stays **Unavailable**.
+| A22 | Launch monitor: ball speed | Real-time readout ≤ 2 s after impact. On ≥ 10 real shots recorded alongside a reference launch monitor: within ±3 %. | ❌ |
+| A23 | Launch monitor: launch angle | Same shots: vertical launch within ±1.5°. Spin, club speed, and smash factor stay Unavailable. | ❌ |
+
+Requested by the user on 26 Oct 2026; specified in `Docs/Specs/LaunchMonitor.md`. Spin RPM stays Unavailable.
+
+Ball tracking beyond the launch window, and spin, are not acceptance criteria for 1.0. They ship only if they pass their own validation (v6.0 §34), and spin RPM stays **Unavailable**.
 
 ## What the reviewer needs from the user
 
 - **A3, A4, A5, A19:** an iPhone connected to this Mac, and about 10 recorded swings, some at 240 fps with sound.
+- **A22, A23:** about 10 shots filmed face-on at 240 fps beside a reference launch monitor (e.g. TrackMan), with a photo of each shot's readout.
 - **A10, A11:** one short session on a course or open field.
 - **A21:** an Apple Developer Program account.
