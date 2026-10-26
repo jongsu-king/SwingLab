@@ -52,6 +52,27 @@ public struct CoachingFeedback: Codable, Sendable, Equatable {
     public let baselineMean: Double?
     public let baselineCount: Int
     public let drillID: String?
+    public var templateKey: LocalizationKey {
+        switch templateID {
+        case "coach.needMoreSwings": "coach.needMoreSwings"
+        case "coach.tempo.higher": "coach.tempo.higher"
+        case "coach.tempo.lower": "coach.tempo.lower"
+        case "coach.backswing.higher": "coach.backswing.higher"
+        case "coach.backswing.lower": "coach.backswing.lower"
+        case "coach.downswing.higher": "coach.downswing.higher"
+        case "coach.downswing.lower": "coach.downswing.lower"
+        case "coach.headDisplacement.higher": "coach.headDisplacement.higher"
+        case "coach.headDisplacement.lower": "coach.headDisplacement.lower"
+        default: "Unavailable"
+        }
+    }
+    public var drillKey: LocalizationKey? {
+        switch drillID {
+        case "drill.countedTempo": "drill.countedTempo"
+        case "drill.steadyHeadMirror": "drill.steadyHeadMirror"
+        default: nil
+        }
+    }
 }
 
 /// Evidence for one actual comparison. No entry exists for a missing current value,

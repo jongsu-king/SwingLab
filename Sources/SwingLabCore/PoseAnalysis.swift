@@ -3,7 +3,7 @@ import Foundation
 public enum Handedness: String, Codable, CaseIterable, Sendable, Identifiable {
     case right, left
     public var id: String { rawValue }
-    public var localizationKey: String { self == .right ? "Right-handed" : "Left-handed" }
+    public var localizationKey: LocalizationKey { self == .right ? "Right-handed" : "Left-handed" }
     public var leadWristName: String { leadJointName("Wrist") }
     public var trailWristName: String { trailJointName("Wrist") }
     public func leadJointName(_ suffix: String) -> String { (self == .right ? "left" : "right") + suffix }
@@ -41,7 +41,7 @@ public struct PoseFrame: Codable, Sendable {
 public enum SwingPhaseName: String, CaseIterable, Codable, Sendable, Identifiable {
     case address, takeaway, midBackswing, top, downswing, impact, followThrough, finish
     public var id: String { rawValue }
-    public var localizationKey: String {
+    public var localizationKey: LocalizationKey {
         switch self {
         case .address: "Address"
         case .takeaway: "Takeaway"
@@ -56,7 +56,7 @@ public enum SwingPhaseName: String, CaseIterable, Codable, Sendable, Identifiabl
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         let value = try container.decode(String.self)
-        if let phase = Self(rawValue: value) ?? Self.allCases.first(where: { $0.localizationKey == value }) {
+        if let phase = Self(rawValue: value) ?? Self.allCases.first(where: { $0.localizationKey.rawValue == value }) {
             self = phase
         } else {
             // A phase cannot safely fall back to another physical event.

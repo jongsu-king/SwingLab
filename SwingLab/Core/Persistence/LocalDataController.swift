@@ -12,7 +12,7 @@ import SwingLabCore
         }
         guard changed else { return }
         do { try context.save() }
-        catch { context.rollback(); throw error }
+        catch { context.rollbackPendingChanges(); throw error }
     }
     static func recoverInterruptedDeletion(context: ModelContext) throws {
         let names = Set(try context.fetch(FetchDescriptor<SwingRecording>()).map(\.videoFileName))
@@ -36,7 +36,7 @@ import SwingLabCore
             for value in try context.fetch(FetchDescriptor<CourseHole>()) { context.delete(value) }
             try context.save()
         } catch {
-            context.rollback()
+            context.rollbackPendingChanges()
             try manager.moveItem(at: staged, to: library)
             throw error
         }

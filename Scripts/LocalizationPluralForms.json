@@ -1,0 +1,194 @@
+{
+  "count.swings": {
+    "en": {
+      "one": "%1$lld swing",
+      "other": "%1$lld swings"
+    },
+    "ko": {
+      "other": "스윙 %1$lld회"
+    },
+    "ja": {
+      "other": "%1$lld回のスイング"
+    },
+    "zh-Hans": {
+      "other": "%1$lld 次挥杆"
+    },
+    "zh-Hant": {
+      "other": "%1$lld 次揮桿"
+    },
+    "es": {
+      "one": "%1$lld swing",
+      "other": "%1$lld swings",
+      "many": "%1$lld swings"
+    },
+    "pt-BR": {
+      "one": "%1$lld swing",
+      "other": "%1$lld swings",
+      "many": "%1$lld swings"
+    },
+    "de": {
+      "one": "%1$lld Schwung",
+      "other": "%1$lld Schwünge"
+    },
+    "fr": {
+      "one": "%1$lld swing",
+      "other": "%1$lld swings",
+      "many": "%1$lld swings"
+    },
+    "it": {
+      "one": "%1$lld swing",
+      "other": "%1$lld swing",
+      "many": "%1$lld swing"
+    },
+    "th": {
+      "other": "วงสวิง %1$lld ครั้ง"
+    },
+    "vi": {
+      "other": "%1$lld cú swing"
+    }
+  },
+  "count.holes": {
+    "en": {
+      "one": "%1$lld hole",
+      "other": "%1$lld holes"
+    },
+    "ko": {
+      "other": "%1$lld홀"
+    },
+    "ja": {
+      "other": "%1$lldホール"
+    },
+    "zh-Hans": {
+      "other": "%1$lld 洞"
+    },
+    "zh-Hant": {
+      "other": "%1$lld 洞"
+    },
+    "es": {
+      "one": "%1$lld hoyo",
+      "other": "%1$lld hoyos",
+      "many": "%1$lld hoyos"
+    },
+    "pt-BR": {
+      "one": "%1$lld buraco",
+      "other": "%1$lld buracos",
+      "many": "%1$lld buracos"
+    },
+    "de": {
+      "one": "%1$lld Loch",
+      "other": "%1$lld Löcher"
+    },
+    "fr": {
+      "one": "%1$lld trou",
+      "other": "%1$lld trous",
+      "many": "%1$lld trous"
+    },
+    "it": {
+      "one": "%1$lld buca",
+      "other": "%1$lld buche",
+      "many": "%1$lld buche"
+    },
+    "th": {
+      "other": "%1$lld หลุม"
+    },
+    "vi": {
+      "other": "%1$lld hố"
+    }
+  },
+  "count.shots": {
+    "en": {
+      "one": "%1$lld shot",
+      "other": "%1$lld shots"
+    },
+    "ko": {
+      "other": "%1$lld타"
+    },
+    "ja": {
+      "other": "%1$lldショット"
+    },
+    "zh-Hans": {
+      "other": "%1$lld 杆"
+    },
+    "zh-Hant": {
+      "other": "%1$lld 桿"
+    },
+    "es": {
+      "one": "%1$lld golpe",
+      "other": "%1$lld golpes",
+      "many": "%1$lld golpes"
+    },
+    "pt-BR": {
+      "one": "%1$lld tacada",
+      "other": "%1$lld tacadas",
+      "many": "%1$lld tacadas"
+    },
+    "de": {
+      "one": "%1$lld Schlag",
+      "other": "%1$lld Schläge"
+    },
+    "fr": {
+      "one": "%1$lld coup",
+      "other": "%1$lld coups",
+      "many": "%1$lld coups"
+    },
+    "it": {
+      "one": "%1$lld colpo",
+      "other": "%1$lld colpi",
+      "many": "%1$lld colpi"
+    },
+    "th": {
+      "other": "%1$lld ช็อต"
+    },
+    "vi": {
+      "other": "%1$lld cú đánh"
+    }
+  },
+  "count.sessions": {
+    "en": {
+      "one": "%1$lld session",
+      "other": "%1$lld sessions"
+    },
+    "ko": {
+      "other": "세션 %1$lld개"
+    },
+    "ja": {
+      "other": "%1$lldセッション"
+    },
+    "zh-Hans": {
+      "other": "%1$lld 次练习"
+    },
+    "zh-Hant": {
+      "other": "%1$lld 次練習"
+    },
+    "es": {
+      "one": "%1$lld sesión",
+      "other": "%1$lld sesiones",
+      "many": "%1$lld sesiones"
+    },
+    "pt-BR": {
+      "one": "%1$lld sessão",
+      "other": "%1$lld sessões",
+      "many": "%1$lld sessões"
+    },
+    "de": {
+      "one": "%1$lld Einheit",
+      "other": "%1$lld Einheiten"
+    },
+    "fr": {
+      "one": "%1$lld séance",
+      "other": "%1$lld séances",
+      "many": "%1$lld séances"
+    },
+    "it": {
+      "one": "%1$lld sessione",
+      "other": "%1$lld sessioni",
+      "many": "%1$lld sessioni"
+    },
+    "th": {
+      "other": "การฝึก %1$lld ครั้ง"
+    },
+    "vi": {
+      "other": "%1$lld buổi"
+    }
+  }
+}

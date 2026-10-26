@@ -15,6 +15,7 @@ final class AppPreferences {
     var windUnit: SpeedUnit { didSet { defaults.set(windUnit.rawValue, forKey: "windUnit") } }
     var temperatureUnit: TemperatureUnit { didSet { defaults.set(temperatureUnit.rawValue, forKey: "temperatureUnit") } }
     var handedness: Handedness { didSet { defaults.set(handedness.rawValue, forKey: "handedness") } }
+    var outdoorContrast: Bool { didSet { defaults.set(outdoorContrast, forKey: "outdoorContrast") } }
     var voiceEnabled: Bool { didSet { defaults.set(voiceEnabled, forKey: "voiceEnabled") } }
     var speechRate: Double { didSet { defaults.set(speechRate, forKey: "speechRate") } }
     var completedOnboarding: Bool { didSet { defaults.set(completedOnboarding, forKey: "onboarded") } }
@@ -27,24 +28,25 @@ final class AppPreferences {
         windUnit = SpeedUnit(rawValue: defaults.string(forKey: "windUnit") ?? "") ?? .metersPerSecond
         temperatureUnit = TemperatureUnit(rawValue: defaults.string(forKey: "temperatureUnit") ?? "") ?? .celsius
         handedness = Handedness(rawValue: defaults.string(forKey: "handedness") ?? "") ?? .right
+        outdoorContrast = defaults.bool(forKey: "outdoorContrast")
         voiceEnabled = defaults.bool(forKey: "voiceEnabled")
         speechRate = defaults.object(forKey: "speechRate") as? Double ?? 0.45
         completedOnboarding = defaults.bool(forKey: "onboarded")
     }
     var resolvedLanguage: String { LanguageResolver.resolve(selection: languageCode, preferred: Locale.preferredLanguages) }
     var locale: Locale { Locale(identifier: resolvedLanguage) }
-    func text(_ key: String) -> String {
+    func text(_ key: LocalizationKey) -> String {
         let path = Bundle.main.path(forResource: resolvedLanguage, ofType: "lproj")
             ?? Bundle.main.path(forResource: "en", ofType: "lproj")
         let bundle = path.flatMap(Bundle.init(path:)) ?? .main
-        return bundle.localizedString(forKey: key, value: key, table: "Localizable")
+        return bundle.localizedString(forKey: key.rawValue, value: key.rawValue, table: "Localizable")
     }
     func distance(_ meters: Double) -> String {
         guard meters.isFinite else { return text("Unavailable") }
         return distanceUnit.fromSI(meters).formatted(.number.precision(.fractionLength(0)).locale(locale)) + " " + distanceUnit.symbol
     }
     /// Positional, full-sentence templates preserve each language's argument order.
-    func format(_ key: String, _ arguments: CVarArg...) -> String {
+    func format(_ key: LocalizationKey, _ arguments: CVarArg...) -> String {
         String(format: text(key), locale: locale, arguments: arguments)
     }
 }

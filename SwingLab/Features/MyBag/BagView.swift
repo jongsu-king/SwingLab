@@ -43,7 +43,7 @@ struct BagView: View {
                     ForEach(ClubCategory.allCases) { category in
                         let members = clubs.filter { $0.category == category.rawValue }
                         if !members.isEmpty {
-                            Section(preferences.text(category.rawValue)) {
+                            Section(preferences.text(category.localizationKey)) {
                                 ForEach(members) { club in
                                     NavigationLink { ClubDetailView(club: club) } label: {
                                         clubRow(club)
@@ -111,7 +111,7 @@ struct BagView: View {
         modelContext.delete(club)
         do { try modelContext.save() }
         catch {
-            modelContext.rollback()
+            modelContext.rollbackPendingChanges()
             showingStorageError = true
         }
         pendingDeletion = nil

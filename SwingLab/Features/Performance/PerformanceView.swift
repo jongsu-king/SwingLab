@@ -16,7 +16,7 @@ struct PerformanceView: View {
             VStack(alignment: .leading, spacing: 24) {
                 Picker(preferences.text("Performance category"), selection: $selection) {
                     ForEach(PerformanceSection.allCases) { item in
-                        Text(preferences.text(item.rawValue)).tag(item)
+                        Text(preferences.text(item.localizationKey)).tag(item)
                     }
                 }
                 .pickerStyle(.segmented)
@@ -200,7 +200,7 @@ struct PerformanceView: View {
         }
     }
 
-    private func metric(value: ProvenancedValue, label: String, fractionDigits: Int = 0) -> some View {
+    private func metric(value: ProvenancedValue, label: LocalizationKey, fractionDigits: Int = 0) -> some View {
         SLMetricReadout(metric: value, label: preferences.text(label), fractionDigits: fractionDigits,
                         valueFont: .largeTitle.weight(.medium), alignment: .leading).padding(.vertical, 8)
     }
@@ -238,4 +238,7 @@ private enum PerformanceSection: String, CaseIterable, Identifiable {
     case bag = "My Bag"
     case rounds = "Rounds"
     var id: String { rawValue }
+    var localizationKey: LocalizationKey {
+        switch self { case .practice: "Practice"; case .bag: "My Bag"; case .rounds: "Rounds" }
+    }
 }

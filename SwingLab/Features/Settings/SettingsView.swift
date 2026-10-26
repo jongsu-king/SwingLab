@@ -49,6 +49,10 @@ struct SettingsView: View {
             } header: { Text(preferences.text("Swing")) }
 
             Section {
+                Toggle(preferences.text("Outdoor high contrast"), isOn: $preferences.outdoorContrast)
+            } header: { Text(preferences.text("Appearance")) }
+
+            Section {
                 Toggle(preferences.text("Voice coaching"), isOn: $preferences.voiceEnabled)
                 VStack(alignment: .leading, spacing: 10) {
                     Text(preferences.text("Speech rate"))
@@ -96,7 +100,7 @@ struct SettingsView: View {
         }
     }
 
-    private func distanceName(_ unit: DistanceUnit) -> String {
+    private func distanceName(_ unit: DistanceUnit) -> LocalizationKey {
         switch unit {
         case .yards: "Yards"
         case .meters: "Meters"

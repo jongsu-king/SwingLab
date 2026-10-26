@@ -1,4 +1,5 @@
 import Foundation
+import SwingLabCore
 import Observation
 @preconcurrency import AVFoundation
 
@@ -14,7 +15,7 @@ enum CameraEvent: Sendable {
     case ready([CameraFormatChoice], String, Bool)
     case recording(Bool)
     case saved(URL)
-    case failure(String)
+    case failure(LocalizationKey)
     case interrupted(Bool)
     case audio(Bool)
 }
@@ -224,7 +225,7 @@ final class CameraController {
     var formats: [CameraFormatChoice] = []
     var selectedFormat = ""
     var savedURL: URL?
-    var error: String?
+    var error: LocalizationKey?
     var recordsAudio = false
     private var wantsCamera = false
     init() {

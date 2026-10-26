@@ -1,11 +1,13 @@
 import Foundation
+import SwingLabCore
 import CoreTransferable
 import UniformTypeIdentifiers
 @preconcurrency import AVFoundation
 
 enum VideoLibraryError: LocalizedError {
     case invalidVideo, tooLong, missingFile, insufficientStorage
-    var errorDescription: String? {
+    var errorDescription: String? { localizationKey.rawValue }
+    var localizationKey: LocalizationKey {
         switch self {
         case .invalidVideo: "This file does not contain a readable video."
         case .tooLong: "Choose a video shorter than three minutes."

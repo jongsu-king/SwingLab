@@ -27,7 +27,7 @@ final class CourseHole {
     var number: Int
     var par: Int?
     var course: GolfCourse?
-    /// JSON-encoded, explicitly user-entered point references, not hazard polygons.
+    /// Versioned JSON with point references and supplied polygons; legacy point arrays still decode.
     var referenceData: Data?
 
     init(number: Int, par: Int? = nil) {
@@ -37,8 +37,17 @@ final class CourseHole {
     }
 
     var references: [CourseReferencePoint] {
-        get { (try? JSONDecoder().decode([CourseReferencePoint].self, from: referenceData ?? Data())) ?? [] }
-        set { referenceData = try? JSONEncoder().encode(newValue) }
+        get { geometryDocument.references }
+        set { var document = geometryDocument; document.references = newValue; referenceData = try? JSONEncoder().encode(document) }
+    }
+    var areas: [CourseArea] {
+        get { geometryDocument.areas }
+        set { var document = geometryDocument; document.areas = newValue; referenceData = try? JSONEncoder().encode(document) }
+    }
+    private var geometryDocument: CourseGeometryDocument {
+        guard let data = referenceData else { return .init() }
+        if let document = try? JSONDecoder().decode(CourseGeometryDocument.self, from: data) { return document }
+        return .init(references: (try? JSONDecoder().decode([CourseReferencePoint].self, from: data)) ?? [])
     }
 }
 
@@ -48,6 +57,12 @@ struct CourseReferencePoint: Codable, Identifiable {
     var latitude: Double
     var longitude: Double
     var coordinate: GeoCoordinate { GeoCoordinate(latitude: latitude, longitude: longitude) }
+}
+
+struct CourseGeometryDocument: Codable {
+    var version = 1
+    var references: [CourseReferencePoint] = []
+    var areas: [CourseArea] = []
 }
 
 @Model

@@ -18,7 +18,7 @@ struct HypotheticalFlightView: View {
     @State private var humidity: Double? = Atmosphere.standard.relativeHumidity * 100
     @State private var landingHeight: Double? = 0
     @State private var result: FlightResult?
-    @State private var errorKey: String?
+    @State private var errorKey: LocalizationKey?
 
     var body: some View {
         Form {
@@ -70,7 +70,7 @@ struct HypotheticalFlightView: View {
         }
     }
 
-    private func field(_ key: String, _ value: Binding<Double?>, unit: String, signed: Bool = false) -> some View {
+    private func field(_ key: LocalizationKey, _ value: Binding<Double?>, unit: String, signed: Bool = false) -> some View {
         HStack {
             Text(prefs.text(key))
             Spacer(minLength: 12)
@@ -104,8 +104,8 @@ struct HypotheticalFlightView: View {
         }
     }
 
-    private func trajectoryChart(_ result: FlightResult, title: String, vertical: KeyPath<FlightSample, Double>,
-                                 verticalLabel: String) -> some View {
+    private func trajectoryChart(_ result: FlightResult, title: LocalizationKey, vertical: KeyPath<FlightSample, Double>,
+                                 verticalLabel: LocalizationKey) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             Text(prefs.text(title)).font(.subheadline.weight(.medium))
             Chart(result.trajectory, id: \.time) { sample in

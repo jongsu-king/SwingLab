@@ -19,7 +19,11 @@ struct ClubDetailView: View {
                 .listRowBackground(Color.clear)
             }
             Section(preferences.text("Equipment")) {
-                row("Category", preferences.text(club.category))
+                if let category = ClubCategory(rawValue: club.category) {
+                    row("Category", preferences.text(category.localizationKey))
+                } else {
+                    row("Category", club.category)
+                }
                 if !club.brand.isEmpty { row("Brand", club.brand) }
                 if !club.modelName.isEmpty { row("Model", club.modelName) }
                 if let loft = club.loftDegrees {
@@ -27,6 +31,11 @@ struct ClubDetailView: View {
                 }
                 if !club.shaft.isEmpty { row("Shaft", club.shaft) }
                 if !club.flex.isEmpty { row("Flex", club.flex) }
+            }
+            Section {
+                NavigationLink { ClubProfileView(club: club) } label: {
+                    Label(preferences.text("Club profile"), systemImage: "chart.xyaxis.line")
+                }
             }
             Section {
                 if let total = club.totalMeters { metricRow("Average total distance", value: total, method: "bag.averageTotal.v1") }
@@ -54,13 +63,13 @@ struct ClubDetailView: View {
         .sheet(isPresented: $editing) { ClubEditorView(club: club) }
     }
 
-    private func row(_ label: String, _ value: String) -> some View {
+    private func row(_ label: LocalizationKey, _ value: String) -> some View {
         LabeledContent(preferences.text(label)) {
             Text(value).monospacedDigit().multilineTextAlignment(.trailing)
         }
     }
 
-    private func metricRow(_ label: String, value: Double, unit: String = "m", method: String,
+    private func metricRow(_ label: LocalizationKey, value: Double, unit: String = "m", method: String,
                            fractionDigits: Int = 0) -> some View {
         LabeledContent(preferences.text(label)) {
             SLMetricReadout(metric: ProvenancedValue(value: value, unit: unit, provenance: .userEntered, method: method),

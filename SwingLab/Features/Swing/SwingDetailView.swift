@@ -15,7 +15,7 @@ struct SwingDetailView: View {
     @State private var selectedPhase = SwingPhaseName.address
     @State private var progress = 0.0
     @State private var analysisTask: Task<Void, Never>?
-    @State private var error: String?
+    @State private var error: LocalizationKey?
     @State private var titleDraft = ""
 
     var body: some View {
@@ -25,6 +25,13 @@ struct SwingDetailView: View {
                 recordingDetails
                 RecordingPracticeSection(recording: recording)
                 analysisSection
+                if let videoURL {
+                    NavigationLink {
+                        SeededClubTrackingView(url: videoURL, address: report?.marker(.address)?.time, top: report?.marker(.top)?.time,
+                            aspectRatio: max(0.1, recording.videoWidth / max(recording.videoHeight, 1)))
+                    } label: { Label(prefs.text("Club trace"), systemImage: "point.topleft.down.curvedto.point.bottomright.up") }
+                        .padding(.horizontal, 20)
+                }
                 if let report { phaseSection(report); metricsSection(report); coachingSection }
                 limitations
             }.padding(.bottom, 32)
@@ -57,6 +64,7 @@ struct SwingDetailView: View {
                     .frame(height: 370).background(.black)
             } else {
                 ContentUnavailableView(prefs.text("Video unavailable"), systemImage: "video.slash")
+                    .accessibilityIdentifier("swing.detail.videoUnavailable")
                     .frame(height: 220)
             }
             VStack(spacing: 12) {
@@ -122,7 +130,7 @@ struct SwingDetailView: View {
                 }
             }.onChange(of: recording.handednessOverride) { _, _ in
                 do { try modelContext.save() }
-                catch { modelContext.rollback(); self.error = "Changes could not be saved." }
+                catch { modelContext.rollbackPendingChanges(); self.error = "Changes could not be saved." }
             }
             if let analyzedHandedness = report?.analyzedHandedness,
                analyzedHandedness != recording.effectiveHandedness(default: prefs.handedness) {
@@ -239,7 +247,7 @@ struct SwingDetailView: View {
                 VStack(alignment: .leading, spacing: 6) {
                     Text(coachingText(item)).font(.subheadline).foregroundStyle(SLTheme.ink)
                         .fixedSize(horizontal: false, vertical: true)
-                    if let drill = item.drillID {
+                    if let drill = item.drillKey {
                         Text(prefs.text(drill)).font(.caption).foregroundStyle(.secondary)
                             .fixedSize(horizontal: false, vertical: true)
                     }
@@ -261,7 +269,7 @@ struct SwingDetailView: View {
         let locale = prefs.locale
         if item.templateID == "coach.needMoreSwings" {
             let remaining = max(1, MetricSummary.minimumForStatement - item.baselineCount)
-            return String(format: prefs.text(item.templateID), locale: locale, remaining.formatted(.number.locale(locale)))
+            return String(format: prefs.text(item.templateKey), locale: locale, remaining.formatted(.number.locale(locale)))
         }
         func format(_ value: Double?) -> String {
             guard let value else { return prefs.text("Unavailable") }
@@ -271,13 +279,13 @@ struct SwingDetailView: View {
             default: return value.formatted(.number.precision(.fractionLength(3)).locale(locale))
             }
         }
-        return String(format: prefs.text(item.templateID), locale: locale, format(item.current), format(item.baselineMean),
+        return String(format: prefs.text(item.templateKey), locale: locale, format(item.current), format(item.baselineMean),
                       item.baselineCount.formatted(.number.locale(locale)))
     }
 
     /// Explains where the impact time came from. Nothing is shown for a user-entered impact
     /// or for reports analyzed before audio detection existed.
-    private func audioStatusKey(_ report: PoseAnalysisReport) -> String? {
+    private func audioStatusKey(_ report: PoseAnalysisReport) -> LocalizationKey? {
         guard let outcome = report.audioImpact, report.marker(.impact)?.provenance != .userEntered else { return nil }
         if report.marker(.impact)?.provenance == .audioDerived {
             return "Impact timed from the impact sound. Sound travel adds about 3 ms per metre between you and the iPhone."
@@ -341,7 +349,7 @@ struct SwingDetailView: View {
                 result.markers = SwingPhaseDetector.merge(estimated: result.markers, existing: report?.markers ?? [])
                 try persist(result)
             } catch is CancellationError { }
-            catch { self.error = (error as? PoseAnalysisError)?.errorDescription ?? "Analysis could not be completed. Please try another video." }
+            catch { self.error = (error as? PoseAnalysisError)?.localizationKey ?? "Analysis could not be completed. Please try another video." }
         }
     }
 
@@ -370,6 +378,6 @@ struct SwingDetailView: View {
     private func persist(_ result: PoseAnalysisReport) throws {
         try recording.applyAnalysis(result)
         do { try modelContext.save(); report = result }
-        catch { modelContext.rollback(); throw error }
+        catch { modelContext.rollbackPendingChanges(); throw error }
     }
 }

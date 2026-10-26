@@ -1,0 +1,555 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project SwingLab.xcodeproj -scheme SwingLab -destination "platform=iOS Simulator,name=iPhone 17 Pro,OS=26.4" -derivedDataPath ./DerivedData "-only-testing:SwingLabTests" test
+
+Resolve Package Graph
+
+
+Resolved source packages:
+  SwingLabCore: /Users/jongsulim/Documents/ChatGPT/swing @ local
+
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (5 targets)
+    Target 'SwingLabUITests' in project 'SwingLab'
+        ➜ Explicit dependency on target 'SwingLab' in project 'SwingLab'
+    Target 'SwingLabTests' in project 'SwingLab'
+        ➜ Explicit dependency on target 'SwingLab' in project 'SwingLab'
+        ➜ Explicit dependency on target 'SwingLabCore-product' in project 'SwingLabCore'
+    Target 'SwingLab' in project 'SwingLab'
+        ➜ Explicit dependency on target 'SwingLabCore-product' in project 'SwingLabCore'
+    Target 'SwingLabCore-product' in project 'SwingLabCore'
+        ➜ Explicit dependency on target 'SwingLabCore' in project 'SwingLabCore'
+    Target 'SwingLabCore' in project 'SwingLabCore' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc --version
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/xcstringstool compile --dry-run --output-directory /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Resources/Localizable.xcstrings
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/actool --print-asset-tag-combinations --output-format xml1 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Resources/Assets.xcassets
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/actool --version --output-format xml1
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/xcstringstool compile --dry-run --output-directory /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Resources/InfoPlist.xcstrings
+
+Build description signature: db2e6549aa8c1f804ac88f12f29c2564
+Build description path: /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/XCBuildData/db2e6549aa8c1f804ac88f12f29c2564.xcbuilddata
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/SDKStatCaches.noindex/iphonesimulator27.1-24A94232-35d3147121984ba087c28d913653d626.sdkstatcache
+    cd /Users/jongsulim/Documents/ChatGPT/swing/SwingLab.xcodeproj
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk -o /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/SDKStatCaches.noindex/iphonesimulator27.1-24A94232-35d3147121984ba087c28d913653d626.sdkstatcache
+
+ProcessInfoPlistFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks/SwingLabCore_-211426CEC1523454_PackageProduct.framework/Info.plist /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-product-t.build/empty-SwingLabCore_-211426CEC1523454_PackageProduct.plist (in target 'SwingLabCoredynamic-product' from project 'SwingLabCore')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-infoPlistUtility /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLabCore.build/Debug-iphonesimulator/SwingLabCore-product-t.build/empty-SwingLabCore_-211426CEC1523454_PackageProduct.plist -producttype com.apple.product-type.framework -expandbuildsettings -format binary -platform iphonesimulator -o /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks/SwingLabCore_-211426CEC1523454_PackageProduct.framework/Info.plist
+
+WriteAuxiliaryFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab.SwiftFileList (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    write-file /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab.SwiftFileList
+
+WriteAuxiliaryFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab-OutputFileMap.json (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    write-file /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab-OutputFileMap.json
+
+WriteAuxiliaryFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab.LinkFileList (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    write-file /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab.LinkFileList
+
+WriteAuxiliaryFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab.SwiftConstValuesFileList (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    write-file /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab.SwiftConstValuesFileList
+
+CompileXCStrings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/ /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Resources/InfoPlist.xcstrings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcstringstool compile --output-directory /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Resources/InfoPlist.xcstrings
+
+CompileXCStrings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/ /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Resources/Localizable.xcstrings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcstringstool compile --output-directory /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Resources/Localizable.xcstrings
+
+WriteAuxiliaryFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/Objects-normal/arm64/SwingLabTests.SwiftFileList (in target 'SwingLabTests' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    write-file /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/Objects-normal/arm64/SwingLabTests.SwiftFileList
+
+WriteAuxiliaryFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/Objects-normal/arm64/SwingLabTests.LinkFileList (in target 'SwingLabTests' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    write-file /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/Objects-normal/arm64/SwingLabTests.LinkFileList
+
+WriteAuxiliaryFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/Objects-normal/arm64/SwingLabTests-OutputFileMap.json (in target 'SwingLabTests' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    write-file /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/Objects-normal/arm64/SwingLabTests-OutputFileMap.json
+
+WriteAuxiliaryFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/Objects-normal/arm64/SwingLabTests.SwiftConstValuesFileList (in target 'SwingLabTests' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    write-file /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLabTests.build/Objects-normal/arm64/SwingLabTests.SwiftConstValuesFileList
+
+SwiftDriver SwingLab normal arm64 com.apple.xcode.tools.swift.compiler (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name SwingLab -Onone @/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab.SwiftFileList -DDEBUG -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk -target arm64-apple-ios17.0-simulator -g -module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Index.noindex/DataStore -swift-version 6 -I /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator -F /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator -emit-localized-strings -emit-localized-strings-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64 -c -j10 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/SDKStatCaches.noindex/iphonesimulator27.1-24A94232-35d3147121984ba087c28d913653d626.sdkstatcache -output-file-map /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab-OutputFileMap.json -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/ModuleCache.noindex -sdk-module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/SDKExplicitPrecompiledModules -emit-dependencies -emit-module -emit-module-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab.swiftmodule -serialize-diagnostics -dependency-scan-serialize-diagnostics-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab-dependency-scan.dia -validate-clang-modules-once -clang-build-session-file /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -fmodules-prune-interval\=86400 -Xcc -fmodules-prune-after\=345600 -emit-const-values -const-gather-protocols-list /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab_const_extract_protocols.json -Xcc -iquote -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/SwingLab-generated-files.hmap -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/SwingLab-own-target-headers.hmap -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/SwingLab-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab-9f3b5f304412910a7131a2e40b8441ad-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/SwingLab-project-headers.hmap -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/DerivedSources-normal/arm64 -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/DerivedSources/arm64 -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab-Swift.h -working-directory /Users/jongsulim/Documents/ChatGPT/swing -experimental-emit-module-separately -disable-cmo
+
+ProcessInfoPlistFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/Info.plist /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Resources/Info.plist (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-infoPlistUtility /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Resources/Info.plist -producttype com.apple.product-type.application -genpkginfo /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -additionalcontentfile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/assetcatalog_generated_info.plist -scanforprivacyfile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/Frameworks/SwingLabCore_-211426CEC1523454_PackageProduct.framework -o /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/Info.plist
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/zh-Hans.lproj/InfoPlist.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/zh-Hans.lproj/InfoPlist.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename InfoPlist.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/zh-Hans.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/zh-Hans.lproj/InfoPlist.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/zh-Hans.lproj/InfoPlist.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/zh-Hant.lproj/InfoPlist.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/zh-Hant.lproj/InfoPlist.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename InfoPlist.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/zh-Hant.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/zh-Hant.lproj/InfoPlist.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/zh-Hant.lproj/InfoPlist.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/vi.lproj/InfoPlist.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/vi.lproj/InfoPlist.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename InfoPlist.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/vi.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/vi.lproj/InfoPlist.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/vi.lproj/InfoPlist.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/th.lproj/InfoPlist.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/th.lproj/InfoPlist.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename InfoPlist.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/th.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/th.lproj/InfoPlist.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/th.lproj/InfoPlist.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/pt-BR.lproj/InfoPlist.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/pt-BR.lproj/InfoPlist.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename InfoPlist.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/pt-BR.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/pt-BR.lproj/InfoPlist.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/pt-BR.lproj/InfoPlist.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/it.lproj/InfoPlist.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/it.lproj/InfoPlist.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename InfoPlist.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/it.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/it.lproj/InfoPlist.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/it.lproj/InfoPlist.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/ja.lproj/InfoPlist.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/ja.lproj/InfoPlist.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename InfoPlist.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/ja.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/ja.lproj/InfoPlist.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/ja.lproj/InfoPlist.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/ko.lproj/InfoPlist.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/ko.lproj/InfoPlist.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename InfoPlist.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/ko.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/ko.lproj/InfoPlist.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/ko.lproj/InfoPlist.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/fr.lproj/InfoPlist.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/fr.lproj/InfoPlist.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename InfoPlist.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/fr.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/fr.lproj/InfoPlist.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/fr.lproj/InfoPlist.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/es.lproj/InfoPlist.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/es.lproj/InfoPlist.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename InfoPlist.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/es.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/es.lproj/InfoPlist.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/es.lproj/InfoPlist.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/en.lproj/InfoPlist.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/en.lproj/InfoPlist.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename InfoPlist.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/en.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/en.lproj/InfoPlist.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/en.lproj/InfoPlist.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/de.lproj/InfoPlist.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/de.lproj/InfoPlist.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename InfoPlist.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/de.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/de.lproj/InfoPlist.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/de.lproj/InfoPlist.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/zh-Hant.lproj/Localizable.stringsdict /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/zh-Hant.lproj/Localizable.stringsdict (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.stringsdict --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/zh-Hant.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/zh-Hant.lproj/Localizable.stringsdict
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/zh-Hant.lproj/Localizable.stringsdict:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/zh-Hans.lproj/Localizable.stringsdict /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/zh-Hans.lproj/Localizable.stringsdict (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.stringsdict --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/zh-Hans.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/zh-Hans.lproj/Localizable.stringsdict
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/zh-Hans.lproj/Localizable.stringsdict:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/zh-Hant.lproj/Localizable.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/zh-Hant.lproj/Localizable.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/zh-Hant.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/zh-Hant.lproj/Localizable.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/zh-Hant.lproj/Localizable.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/zh-Hans.lproj/Localizable.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/zh-Hans.lproj/Localizable.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/zh-Hans.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/zh-Hans.lproj/Localizable.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/zh-Hans.lproj/Localizable.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/vi.lproj/Localizable.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/vi.lproj/Localizable.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/vi.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/vi.lproj/Localizable.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/vi.lproj/Localizable.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/vi.lproj/Localizable.stringsdict /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/vi.lproj/Localizable.stringsdict (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.stringsdict --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/vi.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/vi.lproj/Localizable.stringsdict
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/vi.lproj/Localizable.stringsdict:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/th.lproj/Localizable.stringsdict /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/th.lproj/Localizable.stringsdict (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.stringsdict --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/th.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/th.lproj/Localizable.stringsdict
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/th.lproj/Localizable.stringsdict:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/th.lproj/Localizable.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/th.lproj/Localizable.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/th.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/th.lproj/Localizable.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/th.lproj/Localizable.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/pt-BR.lproj/Localizable.stringsdict /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/pt-BR.lproj/Localizable.stringsdict (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.stringsdict --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/pt-BR.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/pt-BR.lproj/Localizable.stringsdict
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/pt-BR.lproj/Localizable.stringsdict:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/pt-BR.lproj/Localizable.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/pt-BR.lproj/Localizable.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/pt-BR.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/pt-BR.lproj/Localizable.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/pt-BR.lproj/Localizable.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/ko.lproj/Localizable.stringsdict /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/ko.lproj/Localizable.stringsdict (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.stringsdict --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/ko.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/ko.lproj/Localizable.stringsdict
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/ko.lproj/Localizable.stringsdict:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/ko.lproj/Localizable.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/ko.lproj/Localizable.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/ko.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/ko.lproj/Localizable.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/ko.lproj/Localizable.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/ja.lproj/Localizable.stringsdict /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/ja.lproj/Localizable.stringsdict (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.stringsdict --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/ja.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/ja.lproj/Localizable.stringsdict
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/ja.lproj/Localizable.stringsdict:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/ja.lproj/Localizable.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/ja.lproj/Localizable.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/ja.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/ja.lproj/Localizable.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/ja.lproj/Localizable.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/it.lproj/Localizable.stringsdict /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/it.lproj/Localizable.stringsdict (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.stringsdict --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/it.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/it.lproj/Localizable.stringsdict
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/it.lproj/Localizable.stringsdict:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/it.lproj/Localizable.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/it.lproj/Localizable.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/it.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/it.lproj/Localizable.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/it.lproj/Localizable.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/fr.lproj/Localizable.stringsdict /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/fr.lproj/Localizable.stringsdict (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.stringsdict --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/fr.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/fr.lproj/Localizable.stringsdict
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/fr.lproj/Localizable.stringsdict:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/fr.lproj/Localizable.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/fr.lproj/Localizable.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/fr.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/fr.lproj/Localizable.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/fr.lproj/Localizable.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/es.lproj/Localizable.stringsdict /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/es.lproj/Localizable.stringsdict (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.stringsdict --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/es.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/es.lproj/Localizable.stringsdict
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/es.lproj/Localizable.stringsdict:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/es.lproj/Localizable.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/es.lproj/Localizable.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/es.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/es.lproj/Localizable.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/es.lproj/Localizable.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/en.lproj/Localizable.stringsdict /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/en.lproj/Localizable.stringsdict (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.stringsdict --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/en.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/en.lproj/Localizable.stringsdict
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/en.lproj/Localizable.stringsdict:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/en.lproj/Localizable.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/en.lproj/Localizable.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/en.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/en.lproj/Localizable.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/en.lproj/Localizable.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/de.lproj/Localizable.stringsdict /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/de.lproj/Localizable.stringsdict (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.stringsdict --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/de.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/de.lproj/Localizable.stringsdict
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/de.lproj/Localizable.stringsdict:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/de.lproj/Localizable.strings /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/de.lproj/Localizable.strings (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.strings --outdir /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/SwingLab.app/de.lproj -- /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/de.lproj/Localizable.strings
+/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/de.lproj/Localizable.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
+
+SwiftCompile normal arm64 Compiling\ SchemaV3.swift,\ CaddieView.swift,\ CameraView.swift,\ CourseGeometryEditor.swift,\ CourseSearchView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Persistence/SchemaV3.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/AICaddie/CaddieView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Camera/CameraView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/CourseManager/CourseGeometryEditor.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/CourseManager/CourseSearchView.swift (in target 'SwingLab' from project 'SwingLab')
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Persistence/SchemaV3.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile SchemaV3.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/AICaddie/CaddieView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile CaddieView.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Camera/CameraView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile CameraView.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/CourseManager/CourseGeometryEditor.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile CourseGeometryEditor.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/CourseManager/CourseSearchView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile CourseSearchView.swift
+
+SwiftCompile normal arm64 Compiling\ AppPreferences.swift,\ CourseModels.swift,\ GolfClub.swift,\ PracticeSession.swift,\ SwingRecording.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Localization/AppPreferences.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Models/CourseModels.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Models/GolfClub.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Models/PracticeSession.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Models/SwingRecording.swift (in target 'SwingLab' from project 'SwingLab')
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Localization/AppPreferences.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile AppPreferences.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Models/CourseModels.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile CourseModels.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Models/GolfClub.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile GolfClub.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Models/PracticeSession.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile PracticeSession.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Models/SwingRecording.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile SwingRecording.swift
+
+SwiftCompile normal arm64 Compiling\ LocalDataController.swift,\ PersistenceRollback.swift,\ PracticeSessionStore.swift,\ Schema.swift,\ SchemaV2.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Persistence/LocalDataController.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Persistence/PersistenceRollback.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Persistence/PracticeSessionStore.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Persistence/Schema.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Persistence/SchemaV2.swift (in target 'SwingLab' from project 'SwingLab')
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Persistence/LocalDataController.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile LocalDataController.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Persistence/PersistenceRollback.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile PersistenceRollback.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Persistence/PracticeSessionStore.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile PracticeSessionStore.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Persistence/Schema.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile Schema.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Persistence/SchemaV2.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile SchemaV2.swift
+
+SwiftCompile normal arm64 Compiling\ CatalogPickerView.swift,\ CatalogStore.swift,\ ClubDetailView.swift,\ ClubDraft.swift,\ ClubEditorView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/CatalogPickerView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/CatalogStore.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/ClubDetailView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/ClubDraft.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/ClubEditorView.swift (in target 'SwingLab' from project 'SwingLab')
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/CatalogPickerView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile CatalogPickerView.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/CatalogStore.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile CatalogStore.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/ClubDetailView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile ClubDetailView.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/ClubDraft.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile ClubDraft.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/ClubEditorView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile ClubEditorView.swift
+
+SwiftCompile normal arm64 Compiling\ AppRouter.swift,\ OnboardingView.swift,\ SwingLabApp.swift,\ MetricReadout.swift,\ Theme.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/App/AppRouter.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/App/OnboardingView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/App/SwingLabApp.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/DesignSystem/MetricReadout.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/DesignSystem/Theme.swift (in target 'SwingLab' from project 'SwingLab')
+/Users/jongsulim/Documents/ChatGPT/swing/SwingLab/App/AppRouter.swift:17:22: error: cannot convert value of type 'any KeyPath<EnvironmentValues, ColorSchemeContrast> & Sendable' to expected argument type 'WritableKeyPath<EnvironmentValues, V>'
+15 |         }
+16 |         .id(preferences.libraryRevision)
+17 |         .environment(\.colorSchemeContrast, preferences.outdoorContrast ? .increased : .standard)
+   |                      `- error: cannot convert value of type 'any KeyPath<EnvironmentValues, ColorSchemeContrast> & Sendable' to expected argument type 'WritableKeyPath<EnvironmentValues, V>'
+18 |         .sheet(isPresented: Binding(get: { !preferences.completedOnboarding }, set: { if !$0 { preferences.completedOnboarding = true } })) {
+19 |             OnboardingView().interactiveDismissDisabled()
+
+/Users/jongsulim/Documents/ChatGPT/swing/SwingLab/App/AppRouter.swift:17:76: error: cannot infer contextual base in reference to member 'increased'
+15 |         }
+16 |         .id(preferences.libraryRevision)
+17 |         .environment(\.colorSchemeContrast, preferences.outdoorContrast ? .increased : .standard)
+   |                                                                            `- error: cannot infer contextual base in reference to member 'increased'
+18 |         .sheet(isPresented: Binding(get: { !preferences.completedOnboarding }, set: { if !$0 { preferences.completedOnboarding = true } })) {
+19 |             OnboardingView().interactiveDismissDisabled()
+Failed frontend command:
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift-frontend -frontend -c -primary-file /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/App/AppRouter.swift -primary-file /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/App/OnboardingView.swift -primary-file /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/App/SwingLabApp.swift -primary-file /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/DesignSystem/MetricReadout.swift -primary-file /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/DesignSystem/Theme.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Localization/AppPreferences.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Models/CourseModels.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Models/GolfClub.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Models/PracticeSession.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Models/SwingRecording.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Persistence/LocalDataController.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Persistence/PersistenceRollback.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Persistence/PracticeSessionStore.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Persistence/Schema.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Persistence/SchemaV2.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Persistence/SchemaV3.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/AICaddie/CaddieView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Camera/CameraView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/CourseManager/CourseGeometryEditor.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/CourseManager/CourseSearchView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/CourseManager/CourseView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/FlightSimulation/HypotheticalFlightView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Home/HomeView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/LandingPrediction/CourseLandingEstimate.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/BagView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/CatalogPickerView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/CatalogStore.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/ClubDetailView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/ClubDraft.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/ClubEditorView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/ClubProfileView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Performance/PerformanceView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/RoundTracker/RoundViews.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Settings/PrivacyView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Settings/SettingsView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Swing/PracticeSessionViews.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Swing/SeededClubTrackingView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Swing/SwingComparisonView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Swing/SwingDetailView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Swing/SwingVideoStage.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Swing/SwingView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/AudioImpactReader.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/CameraService.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/CourseGeometryService.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/GolfCourseService.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/LocationService.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/PoseEstimationService.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/SeededClubTrackingService.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/VideoLibrary.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/VideoPlaybackController.swift /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/DerivedSources/GeneratedAssetSymbols.swift -supplementary-output-file-map /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/supplementaryOutputs-1 -emit-localized-strings -emit-localized-strings-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64 -target arm64-apple-ios17.0-simulator -module-can-import-version DeveloperToolsSupport 24.0.24 24.0.24 -disable-cross-import-overlay-search -swift-module-cross-import MapKit /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/Frameworks/MapKit.framework/Modules/MapKit.swiftcrossimport/SwiftUI.swiftoverlay -swift-module-cross-import MapKit /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk/System/Library/Frameworks/MapKit.framework/Modules/MapKit.swiftcrossimport/SwiftUI.swiftoverlay -swift-module-cross-import PhotosUI /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/Frameworks/PhotosUI.framework/Modules/PhotosUI.swiftcrossimport/SwiftUI.swiftoverlay -swift-module-cross-import PhotosUI /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/Frameworks/PhotosUI.framework/Modules/PhotosUI.swiftcrossimport/WidgetKit.swiftoverlay -swift-module-cross-import PhotosUI /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk/System/Library/Frameworks/PhotosUI.framework/Modules/PhotosUI.swiftcrossimport/SwiftUI.swiftoverlay -swift-module-cross-import PhotosUI /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk/System/Library/Frameworks/PhotosUI.framework/Modules/PhotosUI.swiftcrossimport/WidgetKit.swiftoverlay -swift-module-cross-import SwiftData /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk/System/Library/Frameworks/SwiftData.framework/Modules/SwiftData.swiftcrossimport/CoreData.swiftoverlay -swift-module-cross-import SwiftData /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk/System/Library/Frameworks/SwiftData.framework/Modules/SwiftData.swiftcrossimport/SwiftUI.swiftoverlay -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/swift/host/plugins/libFoundationMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/swift-plugin-server\#FoundationMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/swift/host/plugins/libObservationMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/swift-plugin-server\#ObservationMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/swift/host/plugins/libPreviewsMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/swift-plugin-server\#PreviewsMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/swift/host/plugins/libSwiftDataMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/swift-plugin-server\#SwiftDataMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/swift/host/plugins/libSwiftMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/swift-plugin-server\#SwiftMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/swift/host/plugins/libSwiftUIMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/swift-plugin-server\#SwiftUIMacros -disable-implicit-swift-modules -Xcc -fno-implicit-modules -Xcc -fno-implicit-module-maps -explicit-swift-module-map-file /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab-dependencies-1.json -Xllvm -aarch64-use-tbi -enable-objc-interop -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk -I /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator -F /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator -module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -no-color-diagnostics -Xcc -fno-color-diagnostics -enable-testing -g -debug-info-format\=dwarf -dwarf-version\=4 -swift-version 6 -Onone -D DEBUG -serialize-debugging-options -enable-experimental-feature DebugDescriptionMacro -empty-abi-descriptor -validate-clang-modules-once -clang-build-session-file /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -working-directory -Xcc /Users/jongsulim/Documents/ChatGPT/swing -enable-anonymous-context-mangled-names -file-compilation-dir /Users/jongsulim/Documents/ChatGPT/swing -Xcc -ivfsstatcache -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/SDKStatCaches.noindex/iphonesimulator27.1-24A94232-35d3147121984ba087c28d913653d626.sdkstatcache -Xcc -fmodules-prune-interval\=86400 -Xcc -fmodules-prune-after\=345600 -Xcc -iquote -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/SwingLab-generated-files.hmap -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/SwingLab-own-target-headers.hmap -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/SwingLab-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab-9f3b5f304412910a7131a2e40b8441ad-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/SwingLab-project-headers.hmap -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/DerivedSources-normal/arm64 -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/DerivedSources/arm64 -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/DerivedSources -no-auto-bridging-header-chaining -module-name SwingLab -const-gather-protocols-file /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab_const_extract_protocols.json -disable-clang-spi -clang-target arm64-apple-ios27.1-simulator -target-sdk-version 27.1 -target-sdk-name iphonesimulator27.1 -in-process-plugin-server-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/libSwiftInProcPluginServer.dylib -o /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/AppRouter.o -o /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/OnboardingView.o -o /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLabApp.o -o /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/MetricReadout.o -o /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/Theme.o -debug-module-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab.swiftmodule -index-unit-output-path /SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/AppRouter.o -index-unit-output-path /SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/OnboardingView.o -index-unit-output-path /SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLabApp.o -index-unit-output-path /SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/MetricReadout.o -index-unit-output-path /SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/Theme.o -index-store-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Index.noindex/DataStore -index-system-modules
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/App/AppRouter.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile AppRouter.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/App/OnboardingView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile OnboardingView.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/App/SwingLabApp.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile SwingLabApp.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/DesignSystem/MetricReadout.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile MetricReadout.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/DesignSystem/Theme.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile Theme.swift
+
+SwiftCompile normal arm64 Compiling\ PracticeSessionViews.swift,\ SeededClubTrackingView.swift,\ SwingComparisonView.swift,\ SwingDetailView.swift,\ SwingVideoStage.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Swing/PracticeSessionViews.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Swing/SeededClubTrackingView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Swing/SwingComparisonView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Swing/SwingDetailView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Swing/SwingVideoStage.swift (in target 'SwingLab' from project 'SwingLab')
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Swing/PracticeSessionViews.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile PracticeSessionViews.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Swing/SeededClubTrackingView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile SeededClubTrackingView.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Swing/SwingComparisonView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile SwingComparisonView.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Swing/SwingDetailView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile SwingDetailView.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Swing/SwingVideoStage.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile SwingVideoStage.swift
+
+SwiftCompile normal arm64 Compiling\ ClubProfileView.swift,\ PerformanceView.swift,\ RoundViews.swift,\ PrivacyView.swift,\ SettingsView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/ClubProfileView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Performance/PerformanceView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/RoundTracker/RoundViews.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Settings/PrivacyView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Settings/SettingsView.swift (in target 'SwingLab' from project 'SwingLab')
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/ClubProfileView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile ClubProfileView.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Performance/PerformanceView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile PerformanceView.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/RoundTracker/RoundViews.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile RoundViews.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Settings/PrivacyView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile PrivacyView.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Settings/SettingsView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile SettingsView.swift
+
+SwiftCompile normal arm64 Compiling\ LocationService.swift,\ PoseEstimationService.swift,\ SeededClubTrackingService.swift,\ VideoLibrary.swift,\ VideoPlaybackController.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/LocationService.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/PoseEstimationService.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/SeededClubTrackingService.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/VideoLibrary.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/VideoPlaybackController.swift (in target 'SwingLab' from project 'SwingLab')
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/LocationService.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile LocationService.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/PoseEstimationService.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile PoseEstimationService.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/SeededClubTrackingService.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile SeededClubTrackingService.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/VideoLibrary.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile VideoLibrary.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/VideoPlaybackController.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile VideoPlaybackController.swift
+
+SwiftCompile normal arm64 Compiling\ SwingView.swift,\ AudioImpactReader.swift,\ CameraService.swift,\ CourseGeometryService.swift,\ GolfCourseService.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Swing/SwingView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/AudioImpactReader.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/CameraService.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/CourseGeometryService.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/GolfCourseService.swift (in target 'SwingLab' from project 'SwingLab')
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Swing/SwingView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile SwingView.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/AudioImpactReader.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile AudioImpactReader.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/CameraService.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile CameraService.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/CourseGeometryService.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile CourseGeometryService.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/GolfCourseService.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile GolfCourseService.swift
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ SwingLab (in target 'SwingLab' from project 'SwingLab')
+
+SwiftCompile normal arm64 (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    
+
+SwiftCompile normal arm64 Compiling\ CourseView.swift,\ HypotheticalFlightView.swift,\ HomeView.swift,\ CourseLandingEstimate.swift,\ BagView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/CourseManager/CourseView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/FlightSimulation/HypotheticalFlightView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Home/HomeView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/LandingPrediction/CourseLandingEstimate.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/BagView.swift (in target 'SwingLab' from project 'SwingLab')
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/CourseManager/CourseView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile CourseView.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/FlightSimulation/HypotheticalFlightView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile HypotheticalFlightView.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Home/HomeView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile HomeView.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/LandingPrediction/CourseLandingEstimate.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile CourseLandingEstimate.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/BagView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile BagView.swift
+
+PruneExplicitPrecompiledModules /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/SDKExplicitPrecompiledModules
+
+PruneExplicitPrecompiledModules /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/ExplicitPrecompiledModules
+
+PruneExplicitPrecompiledModules /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules
+
+
+Test session results, code coverage, and logs:
+	/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-47-26-+0900.xcresult
+
+Testing failed:
+	Cannot convert value of type 'any KeyPath<EnvironmentValues, ColorSchemeContrast> & Sendable' to expected argument type 'WritableKeyPath<EnvironmentValues, V>'
+	Cannot infer contextual base in reference to member 'increased'
+	Testing cancelled because the build failed.
+
+** TEST FAILED **
+
+
+The following build commands failed:
+	SwiftCompile normal arm64 Compiling\ AppRouter.swift,\ OnboardingView.swift,\ SwingLabApp.swift,\ MetricReadout.swift,\ Theme.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/App/AppRouter.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/App/OnboardingView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/App/SwingLabApp.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/DesignSystem/MetricReadout.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/DesignSystem/Theme.swift (in target 'SwingLab' from project 'SwingLab')
+	SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/App/AppRouter.swift (in target 'SwingLab' from project 'SwingLab')
+	Testing project SwingLab with scheme SwingLab
+(3 failures)

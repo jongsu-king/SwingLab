@@ -1,101 +1,111 @@
 import SwiftUI
 import SwingLabCore
 
-enum CaddieStrategy: String, CaseIterable, Identifiable {
-    case conservative = "Conservative"
-    case balanced = "Balanced"
-    case aggressive = "Aggressive"
-    var id: String { rawValue }
-    var variabilityWeight: Double {
-        switch self {
-        case .conservative: 2
-        case .balanced: 1
-        case .aggressive: 0.5
-        }
-    }
-}
-
-struct CaddieCandidate: Identifiable {
-    let club: GolfClub
-    let errorScore: Double
-    let remainingMeters: Double
-    var id: UUID { club.id }
-}
-
-@MainActor
-enum CaddieRules {
-    /// Lower score means a smaller target error with the selected variance penalty.
-    /// The score is not a probability, strokes-gained value, or hazard-risk assessment.
-    static func rank(clubs: [GolfClub], targetDistance: Double, strategy: CaddieStrategy) -> [CaddieCandidate] {
-        let profiles = clubs.compactMap { club -> ClubProfile? in
-            guard let carry = club.carryMeters, let forwardSD = club.carryStdDevMeters,
-                  let rightSD = club.lateralStdDevMeters else { return nil }
-            return ClubProfile(id: club.id, carry: carry, lateralMean: club.lateralMeanMeters,
-                               carrySD: forwardSD, lateralSD: rightSD)
-        }
-        return RecommendationEngine.rank(profiles: profiles, targetDistance: targetDistance,
-                                         varianceWeight: strategy.variabilityWeight).compactMap { result in
-            guard let club = clubs.first(where: { $0.id == result.id }) else { return nil }
-            return CaddieCandidate(club: club, errorScore: result.score, remainingMeters: result.remaining)
-        }
-    }
-}
-
 struct CaddieView: View {
-    @Environment(AppPreferences.self) private var preferences
+    @Environment(AppPreferences.self) private var prefs
     @Environment(\.dismiss) private var dismiss
     let clubs: [GolfClub]
-    let targetDistance: Double
-    let selectClub: (GolfClub) -> Void
-    @State private var strategy: CaddieStrategy = .balanced
+    let origin: GeoCoordinate?
+    let target: GeoCoordinate?
+    let areas: [CourseArea]
+    let selectAim: (GolfClub, AimCandidate) -> Void
+    @State private var strategy: AimStrategy = .balanced
+    @State private var shot: CaddieShotKind = .approach
+    @State private var forwardAdjustment = ""
+    @State private var rightAdjustment = ""
+    @State private var recommendation: AimRecommendation?
+    @State private var calculating = false
 
-    private var candidates: [CaddieCandidate] { CaddieRules.rank(clubs: clubs, targetDistance: targetDistance, strategy: strategy) }
-
+    private var calculationID: String { "\(strategy.rawValue):\(shot.rawValue):\(forwardAdjustment):\(rightAdjustment)" }
     var body: some View {
         NavigationStack {
             List {
                 Section {
-                    Picker(preferences.text("Strategy"), selection: $strategy) {
-                        ForEach(CaddieStrategy.allCases) { strategy in Text(preferences.text(strategy.rawValue)).tag(strategy) }
+                    Picker(prefs.text("Strategy"), selection: $strategy) {
+                        ForEach(AimStrategy.allCases, id: \.self) { Text(prefs.text($0.localizationKey)).tag($0) }
                     }
-                    LabeledContent(preferences.text("Target distance")) {
-                        SLMetricReadout(metric: ProvenancedValue(value: targetDistance, unit: "m", provenance: .estimated,
-                            method: "map.targetDistance.v1"))
+                    Picker(prefs.text("Shot type"), selection: $shot) {
+                        Text(prefs.text("Approach · carry")).tag(CaddieShotKind.approach)
+                        Text(prefs.text("Tee shot · total")).tag(CaddieShotKind.tee)
+                    }
+                    if let origin, let target {
+                        SLMetricReadout(metric: .init(value: Geo.distance(from: origin, to: target), unit: "m", provenance: .estimated,
+                            method: "map.targetDistance.v1"), label: prefs.text("Target distance"), alignment: .leading)
                     }
                 }
-                if candidates.isEmpty {
-                    SLEmptyState(title: preferences.text("Build your club profile"),
-                                 message: preferences.text("Add carry and both variability values in My Bag to compare clubs."), symbol: "figure.golf")
+                Section(prefs.text("Optional landing adjustments")) {
+                    adjustmentField("Elevation distance adjustment", value: $forwardAdjustment)
+                    adjustmentField("Wind drift · right positive", value: $rightAdjustment)
+                    Text(prefs.text("Enter expected landing shifts in your distance unit. These assumptions are not a wind or elevation measurement."))
+                        .font(.caption).foregroundStyle(.secondary)
+                    ProvenanceBadge(provenance: .userEntered)
+                }
+                if calculating { ProgressView() }
+                else if let recommendation {
+                    candidateSection("Recommended", candidate: recommendation.recommended)
+                    candidateSection("Safer alternative", candidate: recommendation.safer)
+                    candidateSection("Aggressive alternative", candidate: recommendation.aggressive)
                 } else {
-                    Section(preferences.text("Club recommendations")) {
-                        ForEach(Array(candidates.prefix(3).enumerated()), id: \.element.id) { index, candidate in
-                            Button {
-                                selectClub(candidate.club)
-                                dismiss()
-                            } label: {
-                                VStack(alignment: .leading, spacing: 6) {
-                                    HStack {
-                                        Text(candidate.club.name).font(.headline)
-                                        Spacer()
-                                        if index == 0 { Text(preferences.text("Recommended")).font(.caption).foregroundStyle(SLTheme.forest) }
-                                    }
-                                    SLMetricReadout(metric: ProvenancedValue(value: candidate.remainingMeters, unit: "m",
-                                        provenance: .estimated, method: "caddie.expectedRemaining.v1"),
-                                        label: preferences.text("Expected distance from target"), alignment: .leading)
-                                }
-                                .padding(.vertical, 5)
-                            }.buttonStyle(.plain)
-                        }
-                    }
+                    SLEmptyState(title: prefs.text("Build your club profile"),
+                        message: prefs.text("Add carry or total and both variability values in My Bag to compare aims."), symbol: "figure.golf")
                 }
-                Section(preferences.text("How this works")) {
-                    Text(preferences.text("Clubs are ranked by squared distance from the target plus carry and lateral variability. Conservative gives variability more weight; aggressive gives it less."))
-                    Text(preferences.text("This is a statistical estimate from your entered club profile. Wind, elevation, lie, roll and hazard geometry are unavailable. Check the landing area before choosing a shot."))
-                    Text(preferences.text("Hazard probabilities and safer aim points require verified course geometry and are unavailable."))
+                Section(prefs.text("How this works")) {
+                    Text(prefs.text("Aim search balances target error, variability and supplied hazard areas. Strategy weights are preferences, not predicted scores."))
+                    Text(prefs.text("Hazard risk is conditional on your entered dispersion and mapped boundaries. Missing geometry means unavailable risk, not zero risk."))
+                    Text(prefs.text("Tee shots use entered total distance; approaches use carry. Variability is assumed unchanged by roll and entered adjustments."))
+                    if areas.contains(where: { $0.sourceURL != nil }) {
+                        Link(prefs.text("© OpenStreetMap contributors · ODbL"), destination: URL(string: "https://www.openstreetmap.org/copyright")!)
+                    }
                 }.font(.footnote).foregroundStyle(.secondary)
             }
-            .navigationTitle(preferences.text("Caddie"))
-            .toolbar { ToolbarItem(placement: .confirmationAction) { Button(preferences.text("Done")) { dismiss() } } }
+            .navigationTitle(prefs.text("Caddie"))
+            .toolbar { ToolbarItem(placement: .confirmationAction) { Button(prefs.text("Done")) { dismiss() } } }
+            .task(id: calculationID) { await calculate() }
         }
+    }
+    private func adjustmentField(_ title: LocalizationKey, value: Binding<String>) -> some View {
+        HStack { Text(prefs.text(title)); TextField(prefs.distanceUnit.symbol, text: value).keyboardType(.numbersAndPunctuation).multilineTextAlignment(.trailing) }
+    }
+    private func candidateSection(_ title: LocalizationKey, candidate: AimCandidate) -> some View {
+        Section(prefs.text(title)) {
+            if let club = clubs.first(where: { $0.id == candidate.clubID }) {
+                Button { selectAim(club, candidate); dismiss() } label: {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(club.name).font(.headline)
+                        Text(prefs.format(candidate.aimOffsetMeters < 0 ? "Aim %1$@ left of the target." : "Aim %1$@ right of the target.",
+                            prefs.distance(abs(candidate.aimOffsetMeters))))
+                        SLMetricReadout(metric: .init(value: candidate.expectedDistanceError, unit: "m", provenance: .estimated,
+                            method: "caddie.expectedRemaining.v2"), label: prefs.text("Expected distance from target"), alignment: .leading)
+                        if candidate.hazards.isEmpty { Text(prefs.text("Hazard risk unavailable — no supplied hazard areas.")) }
+                        ForEach(candidate.hazards, id: \.areaID) { risk in
+                            SLMetricReadout(metric: risk.metric, label: prefs.text(risk.kind.localizationKey), displayAsPercent: true, alignment: .leading)
+                        }
+                    }
+                }.buttonStyle(.plain)
+            }
+        }
+    }
+    @MainActor private func calculate() async {
+        recommendation = nil
+        guard let origin, let target else { return }
+        func meters(_ string: String) -> Double? {
+            if string.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty { return 0 }
+            let formatter = NumberFormatter(); formatter.locale = prefs.locale
+            return formatter.number(from: string).map { prefs.distanceUnit.toSI($0.doubleValue) }
+        }
+        guard let forward = meters(forwardAdjustment), let right = meters(rightAdjustment) else { return }
+        let profiles = clubs.compactMap { club -> AimClubProfile? in
+            guard let forwardSD = club.carryStdDevMeters, let lateralSD = club.lateralStdDevMeters else { return nil }
+            return .init(id: club.id, carry: club.carryMeters, total: club.totalMeters, forwardSD: forwardSD,
+                         lateralSD: lateralSD, lateralMean: club.lateralMeanMeters, correlation: club.dispersionCorrelation)
+        }
+        let areas = areas, strategy = strategy, shot = shot
+        calculating = true
+        let result = await Task.detached(priority: .userInitiated) {
+            CaddieAimSearch.recommend(profiles: profiles, origin: origin, target: target, areas: areas,
+                strategy: strategy, shot: shot, forwardAdjustment: forward, rightAdjustment: right)
+        }.value
+        guard !Task.isCancelled else { return }
+        recommendation = result; calculating = false
     }
 }

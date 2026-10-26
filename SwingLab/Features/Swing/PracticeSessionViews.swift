@@ -27,7 +27,7 @@ struct RecordingPracticeSection: View {
             Picker(prefs.text("Practice session"), selection: Binding(get: { recording.practiceSession?.id }, set: { id in
                 guard let session = sessions.first(where: { $0.id == id }) else { return }
                 do { try PracticeSessionStore.regroup(recording: recording, to: session, context: context); try context.save() }
-                catch { context.rollback(); saveFailed = true }
+                catch { context.rollbackPendingChanges(); saveFailed = true }
             })) {
                 if recording.practiceSession == nil { Text(prefs.text("Unspecified")).tag(nil as UUID?) }
                 ForEach(sessions) { session in
@@ -39,7 +39,7 @@ struct RecordingPracticeSection: View {
                 do {
                     _ = try PracticeSessionStore.newSession(for: recording, context: context, defaultHandedness: nil)
                     try context.save()
-                } catch { context.rollback(); saveFailed = true }
+                } catch { context.rollbackPendingChanges(); saveFailed = true }
             }
             if let session = recording.practiceSession {
                 NavigationLink(prefs.text("Session details")) { PracticeSessionDetailView(session: session) }
@@ -53,7 +53,7 @@ struct RecordingPracticeSection: View {
 
     private func save() {
         do { try context.save() }
-        catch { context.rollback(); saveFailed = true }
+        catch { context.rollbackPendingChanges(); saveFailed = true }
     }
 }
 
@@ -152,7 +152,7 @@ struct PracticeSessionDetailView: View {
         }
     }
 
-    private func summaryRow(_ value: Double?, key: String, metric: CoachedMetric, count: Int, isCV: Bool = false) -> some View {
+    private func summaryRow(_ value: Double?, key: LocalizationKey, metric: CoachedMetric, count: Int, isCV: Bool = false) -> some View {
         HStack(alignment: .firstTextBaseline) {
             Text(prefs.text(key)).font(.subheadline)
             Spacer(minLength: 16)
@@ -224,6 +224,6 @@ private struct PracticeSessionEditorView: View {
         session.notes = notes; session.clubID = clubID
         session.cameraAngleValue = cameraAngle; session.handedness = handedness
         do { try context.save(); dismiss() }
-        catch { context.rollback(); saveFailed = true }
+        catch { context.rollbackPendingChanges(); saveFailed = true }
     }
 }

@@ -1,0 +1,68 @@
+Building for debugging...
+[Planning deferred tasks]
+[8 / 32] SwingLabCore
+[15 / 39] SwingLabCore
+[21 / 45] SwingLabCore
+[27 / 43] SwingLabCore
+[32 / 43] SwingLabCoreTests-product
+error: SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/Tests/SwingLabCoreTests/ProvenanceTests.swift failed with a nonzero exit code. Command line:     cd /Users/jongsulim/Documents/ChatGPT
+    builtin-SwiftPerFileCompile ProvenanceTests.swift
+/Users/jongsulim/Documents/ChatGPT/swing/Tests/SwingLabCoreTests/ProvenanceTests.swift:15:40: error: instance method 'encode' requires that 'LocalizationKey' conform to 'Encodable'
+ 13 |             XCTAssertEqual(try decoder.decode(String.self, from: encoded), provenance.rawValue)
+ 14 |             XCTAssertEqual(try decoder.decode(Provenance.self, from: encoded), provenance)
+ 15 |             let oldLabel = try encoder.encode(provenance.localizationKey)
+    |                                        `- error: instance method 'encode' requires that 'LocalizationKey' conform to 'Encodable'
+ 16 |             XCTAssertEqual(try decoder.decode(Provenance.self, from: oldLabel), provenance)
+ 17 |         }
+
+Foundation.JSONEncoder.encode:2:11: note: where 'T' = 'LocalizationKey'
+1 | class JSONEncoder {
+2 | open func encode<T>(_ value: T) throws -> Data where T : Encodable}
+  |           `- note: where 'T' = 'LocalizationKey'
+3 | 
+
+/Users/jongsulim/Documents/ChatGPT/swing/Tests/SwingLabCoreTests/ProvenanceTests.swift:35:79: error: instance method 'encode' requires that 'LocalizationKey' conform to 'Encodable'
+ 33 |         for angle in CameraAngle.allCases {
+ 34 |             XCTAssertEqual(try decoder.decode(String.self, from: encoder.encode(angle)), angle.rawValue)
+ 35 |             XCTAssertEqual(try decoder.decode(CameraAngle.self, from: encoder.encode(angle.localizationKey)), angle)
+    |                                                                               `- error: instance method 'encode' requires that 'LocalizationKey' conform to 'Encodable'
+ 36 |         }
+ 37 |         for source in RecordingSource.allCases {
+
+Foundation.JSONEncoder.encode:2:11: note: where 'T' = 'LocalizationKey'
+1 | class JSONEncoder {
+2 | open func encode<T>(_ value: T) throws -> Data where T : Encodable}
+  |           `- note: where 'T' = 'LocalizationKey'
+3 | 
+
+/Users/jongsulim/Documents/ChatGPT/swing/Tests/SwingLabCoreTests/ProvenanceTests.swift:39:83: error: instance method 'encode' requires that 'LocalizationKey' conform to 'Encodable'
+ 37 |         for source in RecordingSource.allCases {
+ 38 |             XCTAssertEqual(try decoder.decode(String.self, from: encoder.encode(source)), source.rawValue)
+ 39 |             XCTAssertEqual(try decoder.decode(RecordingSource.self, from: encoder.encode(source.localizationKey)), source)
+    |                                                                                   `- error: instance method 'encode' requires that 'LocalizationKey' conform to 'Encodable'
+ 40 |         }
+ 41 |     }
+
+Foundation.JSONEncoder.encode:2:11: note: where 'T' = 'LocalizationKey'
+1 | class JSONEncoder {
+2 | open func encode<T>(_ value: T) throws -> Data where T : Encodable}
+  |           `- note: where 'T' = 'LocalizationKey'
+3 | 
+
+/Users/jongsulim/Documents/ChatGPT/swing/Tests/SwingLabCoreTests/ProvenanceTests.swift:134:48: error: instance method 'encode' requires that 'LocalizationKey' conform to 'Encodable'
+132 |         for phase in SwingPhaseName.allCases {
+133 |             XCTAssertEqual(try JSONDecoder().decode(SwingPhaseName.self,
+134 |                            from: JSONEncoder().encode(phase.localizationKey)), phase)
+    |                                                `- error: instance method 'encode' requires that 'LocalizationKey' conform to 'Encodable'
+135 |         }
+136 |         XCTAssertThrowsError(try JSONDecoder().decode(SwingPhaseName.self, from: Data(#""unknownPhase""#.utf8)))
+
+Foundation.JSONEncoder.encode:2:11: note: where 'T' = 'LocalizationKey'
+1 | class JSONEncoder {
+2 | open func encode<T>(_ value: T) throws -> Data where T : Encodable}
+  |           `- note: where 'T' = 'LocalizationKey'
+3 | 
+Failed frontend command:
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift-frontend -frontend -c /Users/jongsulim/Documents/ChatGPT/swing/.build/out/Intermediates.noindex/SwingLabCore.build/Debug/SwingLabCoreTests-p.build/DerivedSources/test_entry_point.swift /Users/jongsulim/Documents/ChatGPT/swing/Tests/SwingLabCoreTests/BallFlightTests.swift /Users/jongsulim/Documents/ChatGPT/swing/Tests/SwingLabCoreTests/CoachingTests.swift /Users/jongsulim/Documents/ChatGPT/swing/Tests/SwingLabCoreTests/CoreTests.swift /Users/jongsulim/Documents/ChatGPT/swing/Tests/SwingLabCoreTests/CourseGeometryTests.swift /Users/jongsulim/Documents/ChatGPT/swing/Tests/SwingLabCoreTests/ImpactOnsetTests.swift /Users/jongsulim/Documents/ChatGPT/swing/Tests/SwingLabCoreTests/PhaseDetectionTests.swift /Users/jongsulim/Documents/ChatGPT/swing/Tests/SwingLabCoreTests/PracticeGroupingTests.swift -primary-file /Users/jongsulim/Documents/ChatGPT/swing/Tests/SwingLabCoreTests/ProvenanceTests.swift /Users/jongsulim/Documents/ChatGPT/swing/Tests/SwingLabCoreTests/SummaryMigrationTests.swift -emit-dependencies-path /Users/jongsulim/Documents/ChatGPT/swing/.build/out/Intermediates.noindex/SwingLabCore.build/Debug/SwingLabCoreTests-p.build/Objects-normal/arm64/ProvenanceTests.d -emit-const-values-path /Users/jongsulim/Documents/ChatGPT/swing/.build/out/Intermediates.noindex/SwingLabCore.build/Debug/SwingLabCoreTests-p.build/Objects-normal/arm64/ProvenanceTests.swiftconstvalues -emit-reference-dependencies-path /Users/jongsulim/Documents/ChatGPT/swing/.build/out/Intermediates.noindex/SwingLabCore.build/Debug/SwingLabCoreTests-p.build/Objects-normal/arm64/ProvenanceTests.swiftdeps -serialize-diagnostics-path /Users/jongsulim/Documents/ChatGPT/swing/.build/out/Intermediates.noindex/SwingLabCore.build/Debug/SwingLabCoreTests-p.build/Objects-normal/arm64/ProvenanceTests.dia -target arm64-apple-macos14.0 -module-can-import-version Testing 2084 0 -module-can-import-version XCTest 25229 0 -disable-cross-import-overlay-search -swift-module-cross-import Testing /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/Testing.framework/Modules/Testing.swiftcrossimport/AppKit.swiftoverlay -swift-module-cross-import Testing /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/Testing.framework/Modules/Testing.swiftcrossimport/CoreGraphics.swiftoverlay -swift-module-cross-import Testing /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/Testing.framework/Modules/Testing.swiftcrossimport/CoreImage.swiftoverlay -swift-module-cross-import Testing /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/Testing.framework/Modules/Testing.swiftcrossimport/CoreTransferable.swiftoverlay -swift-module-cross-import Testing /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/Testing.framework/Modules/Testing.swiftcrossimport/Foundation.swiftoverlay -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/swift/host/plugins/libFoundationMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server\#FoundationMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/swift/host/plugins/libObservationMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server\#ObservationMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/swift/host/plugins/libPreviewsMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server\#PreviewsMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/swift/host/plugins/libSwiftMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server\#SwiftMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/swift/host/plugins/libSwiftUIMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server\#SwiftUIMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing/libTestingMacros.dylib\#\#TestingMacros -disable-implicit-swift-modules -Xcc -fno-implicit-modules -Xcc -fno-implicit-module-maps -explicit-swift-module-map-file /Users/jongsulim/Documents/ChatGPT/swing/.build/out/Intermediates.noindex/SwingLabCore.build/Debug/SwingLabCoreTests-p.build/Objects-normal/arm64/SwingLabCoreTests-dependencies-1.json -Xllvm -aarch64-use-tbi -enable-objc-interop -stack-check -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -I /Users/jongsulim/Documents/ChatGPT/swing/.build/out/Products/Debug -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib -F /Users/jongsulim/Documents/ChatGPT/swing/.build/out/Products/Debug/PackageFrameworks -F /Users/jongsulim/Documents/ChatGPT/swing/.build/out/Products/Debug -F /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks -module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/.build/out/Intermediates.noindex/SwiftExplicitPrecompiledModules -no-color-diagnostics -Xcc -fno-color-diagnostics -enable-testing -g -debug-info-format\=dwarf -dwarf-version\=4 -swift-version 6 -Onone -D SWIFT_PACKAGE -D DEBUG -D Xcode -serialize-debugging-options -enable-experimental-feature DebugDescriptionMacro -empty-abi-descriptor -validate-clang-modules-once -clang-build-session-file /Users/jongsulim/Documents/ChatGPT/swing/.build/out/ModuleCache.noindex/Session.modulevalidation -disable-sandbox -Xcc -working-directory -Xcc /Users/jongsulim/Documents/ChatGPT -enable-anonymous-context-mangled-names -file-compilation-dir /Users/jongsulim/Documents/ChatGPT -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -Xcc -ivfsstatcache -Xcc /Users/jongsulim/Documents/ChatGPT/swing/.build/out/SDKStatCaches.noindex/macosx27.0-26A425-a0facfad118c1a7a18f0aad9463f65497231f6df4def33e022ae2eb8f782df1a.sdkstatcache -Xcc -fmodules-prune-interval\=86400 -Xcc -fmodules-prune-after\=345600 -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/.build/out/Products/Debug/include -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/.build/out/Intermediates.noindex/SwingLabCore.build/Debug/SwingLabCoreTests-p.build/DerivedSources-normal/arm64 -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/.build/out/Intermediates.noindex/SwingLabCore.build/Debug/SwingLabCoreTests-p.build/DerivedSources/arm64 -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/.build/out/Intermediates.noindex/SwingLabCore.build/Debug/SwingLabCoreTests-p.build/DerivedSources -Xcc -DSWIFT_PACKAGE -Xcc -DDEBUG\=1 -no-auto-bridging-header-chaining -module-name SwingLabCoreTests -package-name swing -const-gather-protocols-file /Users/jongsulim/Documents/ChatGPT/swing/.build/out/Intermediates.noindex/SwingLabCore.build/Debug/SwingLabCoreTests-p.build/Objects-normal/arm64/SwingLabCoreTests_const_extract_protocols.json -disable-clang-spi -clang-target arm64-apple-macos27.0 -target-sdk-version 27.0 -target-sdk-name macosx27.0 -in-process-plugin-server-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/libSwiftInProcPluginServer.dylib -parse-as-library -o /Users/jongsulim/Documents/ChatGPT/swing/.build/out/Intermediates.noindex/SwingLabCore.build/Debug/SwingLabCoreTests-p.build/Objects-normal/arm64/ProvenanceTests.o -debug-module-path /Users/jongsulim/Documents/ChatGPT/swing/.build/out/Intermediates.noindex/SwingLabCore.build/Debug/SwingLabCoreTests-p.build/Objects-normal/arm64/SwingLabCoreTests.swiftmodule -index-unit-output-path /SwingLabCore.build/Debug/SwingLabCoreTests-p.build/Objects-normal/arm64/ProvenanceTests.o -index-store-path /Users/jongsulim/Documents/ChatGPT/swing/.build/out -index-system-modules
+error: Build failed
+error: fatalError

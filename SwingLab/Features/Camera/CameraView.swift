@@ -139,7 +139,7 @@ struct CameraView: View {
             Text(prefs.text(camera.recordsAudio ? "Sound on for impact timing · tap preview to focus"
                                                 : "No sound · impact from pose only · tap preview to focus"))
                 .font(.caption).foregroundStyle(.white.opacity(0.75))
-        }.padding(16).background(.black.opacity(0.7), in: RoundedRectangle(cornerRadius: 14))
+        }.padding(16).background(.black.opacity(0.7), in: RoundedRectangle(cornerRadius: SLTheme.cornerRadius))
     }
 }
 

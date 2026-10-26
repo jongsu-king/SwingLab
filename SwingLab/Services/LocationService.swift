@@ -26,7 +26,7 @@ final class LocationService: NSObject, @preconcurrency CLLocationManagerDelegate
     var authorization: CLAuthorizationStatus = .notDetermined
     var isRequesting = false
     /// Localization keys; never presents raw platform errors to the user.
-    var errorKey: String?
+    var errorKey: LocalizationKey?
 
     override init() {
         super.init()

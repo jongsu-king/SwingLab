@@ -10,6 +10,7 @@ struct SwingVideoStage: View {
     var aspectRatio: Double
     var showSkeleton: Bool
     var showWristPath: Bool
+    var clubTrack: SeededClubTrack? = nil
 
     var body: some View {
         GeometryReader { geometry in
@@ -17,11 +18,24 @@ struct SwingVideoStage: View {
             ZStack {
                 PlayerSurface(player: player)
                 Canvas { context, canvasSize in
-                    guard let report else { return }
                     let origin = CGPoint(x: (canvasSize.width - size.width) / 2, y: (canvasSize.height - size.height) / 2)
                     func point(_ joint: PoseJoint) -> CGPoint {
                         CGPoint(x: origin.x + joint.x * size.width, y: origin.y + (1 - joint.y) * size.height)
                     }
+                    if let clubTrack {
+                        var trace = Path()
+                        let points = clubTrack.points.filter { $0.time <= time }
+                        for (index, point) in points.enumerated() {
+                            let position = CGPoint(x: origin.x + point.x * size.width, y: origin.y + (1 - point.y) * size.height)
+                            if index == 0 { trace.move(to: position) } else { trace.addLine(to: position) }
+                        }
+                        context.stroke(trace, with: .color(.yellow), lineWidth: 3)
+                        if let lost = clubTrack.lostAt, time >= lost, let last = points.last {
+                            let position = CGPoint(x: origin.x + last.x * size.width, y: origin.y + (1 - last.y) * size.height)
+                            context.stroke(Path(ellipseIn: CGRect(x: position.x - 7, y: position.y - 7, width: 14, height: 14)), with: .color(.orange), lineWidth: 3)
+                        }
+                    }
+                    guard let report else { return }
                     if showWristPath {
                         for name in ["leftWrist", "rightWrist"] {
                             var path = Path()

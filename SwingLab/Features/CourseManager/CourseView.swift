@@ -7,6 +7,12 @@ private enum ReferenceKind: String, CaseIterable, Identifiable {
     case target = "Target", ball = "Ball position", front = "Green front", center = "Green center"
     case back = "Green back", hazard = "Hazard reference", layup = "Layup point"
     var id: String { rawValue }
+    var localizationKey: LocalizationKey {
+        switch self {
+        case .target: "Target"; case .ball: "Ball position"; case .front: "Green front"; case .center: "Green center"
+        case .back: "Green back"; case .hazard: "Hazard reference"; case .layup: "Layup point"
+        }
+    }
 }
 
 struct CourseView: View {
@@ -27,7 +33,9 @@ struct CourseView: View {
     @State private var showStart = false
     @State private var showCaddie = false
     @State private var showDetails = false
-    @State private var errorKey: String?
+    @State private var errorKey: LocalizationKey?
+    @State private var editingGeometry: CourseHole?
+    @State private var caddieAim: AimCandidate?
 
     private var activeRound: RoundSession? { rounds.first { $0.endedAt == nil } }
     private var selectedCourse: GolfCourse? { courses.first { $0.id == selectedCourseID } }
@@ -74,11 +82,21 @@ struct CourseView: View {
                                 .stroke(SLTheme.forest, style: StrokeStyle(lineWidth: 2, dash: [5, 5]))
                         }
                     }
+                    ForEach(hole?.areas ?? []) { area in
+                        MapPolygon(coordinates: area.vertices.map(\.mapCoordinate)).foregroundStyle(area.kind.isHazard ? Color.orange.opacity(0.25) : SLTheme.forest.opacity(0.15))
+                            .stroke(area.kind.isHazard ? Color.orange : SLTheme.forest, lineWidth: 1)
+                    }
+                    if let caddieAim {
+                        MapPolygon(coordinates: caddieAim.region80.map(\.mapCoordinate)).foregroundStyle(SLTheme.forest.opacity(0.2))
+                        Annotation(preferences.text("Suggested aim"), coordinate: caddieAim.aimPoint.mapCoordinate) {
+                            Image(systemName: "scope").foregroundStyle(SLTheme.forest)
+                        }
+                    }
                     ForEach(references) { reference in
-                        Marker(preferences.text(reference.kind), coordinate: reference.coordinate.mapCoordinate)
+                        Marker(preferences.text(ReferenceKind(rawValue: reference.kind)?.localizationKey ?? "Unknown"), coordinate: reference.coordinate.mapCoordinate)
                             .tint(reference.kind == ReferenceKind.hazard.rawValue ? .orange : SLTheme.sand)
                     }
-                    if let estimate {
+                    if let estimate, caddieAim == nil {
                         if !estimate.region80.isEmpty {
                             MapPolygon(coordinates: estimate.region80).foregroundStyle(SLTheme.forest.opacity(0.16))
                                 .stroke(SLTheme.forest.opacity(0.8), style: StrokeStyle(lineWidth: 1, dash: [5, 4]))
@@ -127,7 +145,12 @@ struct CourseView: View {
             }
         }
         .sheet(isPresented: $showCaddie) {
-            CaddieView(clubs: clubs, targetDistance: targetDistance ?? 0) { selectedClubID = $0.id }
+            CaddieView(clubs: clubs, origin: origin, target: target, areas: hole?.areas ?? []) { club, candidate in
+                selectedClubID = club.id; caddieAim = candidate
+            }
+        }
+        .sheet(item: $editingGeometry) { editedHole in
+            CourseGeometryEditor(hole: editedHole, center: target ?? origin ?? .init(latitude: selectedCourse?.latitude ?? 0, longitude: selectedCourse?.longitude ?? 0))
         }
         .onAppear {
             if let activeRound {
@@ -136,6 +159,8 @@ struct CourseView: View {
                 loadHole()
             }
         }
+        .onChange(of: target) { _, _ in caddieAim = nil }
+        .onChange(of: origin) { _, _ in caddieAim = nil }
         .onChange(of: location.fix?.timestamp) { _, _ in
             if manualOrigin == nil, let fix = location.fix { center(on: fix.mapCoordinate) }
         }
@@ -178,7 +203,7 @@ struct CourseView: View {
                 Spacer()
                 Menu {
                     Picker(preferences.text("Place on map"), selection: $referenceKind) {
-                        ForEach(ReferenceKind.allCases) { Text(preferences.text($0.rawValue)).tag($0) }
+                        ForEach(ReferenceKind.allCases) { Text(preferences.text($0.localizationKey)).tag($0) }
                     }
                     if let target {
                         Button(preferences.text("Clear target")) {
@@ -188,7 +213,7 @@ struct CourseView: View {
                         Button(preferences.text("Center target")) { center(on: target.mapCoordinate) }
                     }
                 } label: {
-                    Label(preferences.text(referenceKind.rawValue), systemImage: "mappin.and.ellipse").font(.subheadline)
+                    Label(preferences.text(referenceKind.localizationKey), systemImage: "mappin.and.ellipse").font(.subheadline)
                 }
                 Button {
                     manualOrigin = nil
@@ -204,6 +229,8 @@ struct CourseView: View {
                     ForEach(clubs) { Text($0.name).tag(Optional($0.id)) }
                 }.labelsHidden()
                 Spacer()
+                Button { openGeometry() } label: { Image(systemName: "point.3.connected.trianglepath.dotted").frame(minWidth: 44, minHeight: 44) }
+                    .accessibilityLabel(preferences.text("Course areas"))
                 Button(preferences.text("Caddie")) { showCaddie = true }.disabled(targetDistance == nil)
                 if let activeRound {
                     NavigationLink { ScorecardView(round: activeRound) } label: {
@@ -264,10 +291,10 @@ struct CourseView: View {
                     if let origin {
                         SLMetricReadout(metric: ProvenancedValue(value: Geo.distance(from: origin, to: reference.coordinate), unit: "m",
                             provenance: .estimated, method: "map.referenceDistance.v1"),
-                            label: preferences.text(reference.kind), alignment: .leading)
+                            label: preferences.text(ReferenceKind(rawValue: reference.kind)?.localizationKey ?? "Unknown"), alignment: .leading)
                     }
                 }
-                Text(preferences.text("Wind, terrain and hazard probabilities: unavailable. MapKit does not supply verified hole geometry."))
+                Text(preferences.text("Hazard risk uses supplied polygons in Caddie. Missing boundaries remain unavailable."))
                 Text(preferences.text("GPS shots measure ground displacement, including roll. They do not update carry statistics."))
             }.font(.caption).foregroundStyle(.secondary).frame(maxWidth: .infinity, alignment: .leading)
         }
@@ -298,6 +325,7 @@ struct CourseView: View {
     }
 
     private func loadHole() {
+        caddieAim = nil
         target = hole?.references.first { $0.kind == ReferenceKind.target.rawValue }?.coordinate
     }
 
@@ -325,6 +353,14 @@ struct CourseView: View {
         points.append(CourseReferencePoint(kind: kind.rawValue, latitude: coordinate.latitude, longitude: coordinate.longitude))
         editedHole.references = points
         saveContext()
+    }
+
+    private func openGeometry() {
+        guard let coordinate = target ?? origin ?? selectedCourse.map({ GeoCoordinate(latitude: $0.latitude, longitude: $0.longitude) }) else {
+            errorKey = "Place a ball position or select a course first."; return
+        }
+        if hole == nil { saveReference(.target, coordinate: target ?? coordinate) }
+        editingGeometry = hole
     }
 
     private func recordPosition() {
@@ -360,7 +396,7 @@ struct CourseView: View {
 
     private func saveContext() {
         do { try context.save(); errorKey = nil }
-        catch { context.rollback(); errorKey = "Your changes could not be saved. Try again." }
+        catch { context.rollbackPendingChanges(); errorKey = "Your changes could not be saved. Try again." }
     }
 }
 

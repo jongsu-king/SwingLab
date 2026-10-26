@@ -82,7 +82,7 @@ final class ScreenshotTests: XCTestCase {
 
     @MainActor private func save(_ app: XCUIApplication, screen: String, language: String, appearance: String) {
         let attachment = XCTAttachment(screenshot: app.screenshot())
-        attachment.name = "round3-\(language)-\(appearance)-\(screen)"
+        attachment.name = "round4-\(language)-\(appearance)-\(screen)"
         attachment.lifetime = .keepAlways
         add(attachment)
     }
@@ -111,10 +111,11 @@ final class DetailScreenshotTests: XCTestCase {
                 recording.tap()
                 let alert = app.alerts.firstMatch
                 if alert.waitForExistence(timeout: 5) { alert.buttons.firstMatch.tap() }
+                XCTAssertTrue(app.descendants(matching: .any).matching(identifier: "swing.detail.videoUnavailable").firstMatch.waitForExistence(timeout: 5))
                 let measuredLabel = language == "ko" ? "측정값" : language == "de" ? "Gemessen" : "Measured"
                 XCTAssertTrue(app.descendants(matching: .any).matching(NSPredicate(format: "label CONTAINS %@", measuredLabel)).firstMatch.exists)
                 let attachment = XCTAttachment(screenshot: app.screenshot())
-                attachment.name = "round3-\(language)-\(appearance)-swing-detail-empty"
+                attachment.name = "round4-\(language)-\(appearance)-swing-detail-empty"
                 attachment.lifetime = .keepAlways
                 add(attachment)
                 app.terminate()

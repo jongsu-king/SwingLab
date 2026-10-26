@@ -8,7 +8,8 @@ import Vision
 
 enum PoseAnalysisError: LocalizedError {
     case unreadable, noPose, interrupted
-    var errorDescription: String? {
+    var errorDescription: String? { localizationKey.rawValue }
+    var localizationKey: LocalizationKey {
         switch self {
         case .unreadable: "This video could not be decoded for analysis."
         case .noPose: "No reliable body pose was found. Keep one golfer fully visible in good light."

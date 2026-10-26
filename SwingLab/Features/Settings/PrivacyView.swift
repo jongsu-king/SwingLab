@@ -1,4 +1,5 @@
 import SwiftUI
+import SwingLabCore
 
 struct PrivacyView: View {
     @Environment(AppPreferences.self) private var preferences
@@ -28,7 +29,7 @@ struct PrivacyView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
 
-    private func privacyRow(_ title: String, _ detail: String) -> some View {
+    private func privacyRow(_ title: LocalizationKey, _ detail: LocalizationKey) -> some View {
         VStack(alignment: .leading, spacing: 6) {
             Text(preferences.text(title)).font(.headline)
             Text(preferences.text(detail)).font(.subheadline).foregroundStyle(.secondary)
@@ -55,7 +56,7 @@ struct MeasurementGuideView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
 
-    private func entry(_ title: String, _ detail: String) -> some View {
+    private func entry(_ title: LocalizationKey, _ detail: LocalizationKey) -> some View {
         Section {
             Text(preferences.text(detail)).foregroundStyle(.secondary)
         } header: { Text(preferences.text(title)) }

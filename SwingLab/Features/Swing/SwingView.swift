@@ -11,7 +11,7 @@ struct SwingView: View {
     @State private var showCamera = false
     @State private var importedItem: PhotosPickerItem?
     @State private var importing = false
-    @State private var error: String?
+    @State private var error: LocalizationKey?
     @State private var pendingDelete: SwingRecording?
 
     var body: some View {
@@ -156,10 +156,10 @@ struct SwingView: View {
                 try PracticeSessionStore.assign(recording: recording, context: modelContext, defaultHandedness: prefs.handedness)
                 try modelContext.save()
             }
-            catch { modelContext.rollback(); throw error }
+            catch { modelContext.rollbackPendingChanges(); throw error }
         } catch {
             try? FileManager.default.removeItem(at: url)
-            self.error = (error as? VideoLibraryError)?.errorDescription ?? "The recording could not be saved. Check available storage."
+            self.error = (error as? VideoLibraryError)?.localizationKey ?? "The recording could not be saved. Check available storage."
         }
     }
 
@@ -180,7 +180,7 @@ struct SwingView: View {
             PracticeSessionStore.remove(recording: recording, context: modelContext)
             do { try modelContext.save() }
             catch {
-                modelContext.rollback()
+                modelContext.rollbackPendingChanges()
                 if let original, let staged { try FileManager.default.moveItem(at: staged, to: original) }
                 throw error
             }

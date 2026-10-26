@@ -1,5 +1,6 @@
 import Foundation
 import SwiftData
+import SwingLabCore
 
 /// Distances are stored in meters. Values are entered by the golfer, not measured by a sensor.
 @Model
@@ -20,6 +21,16 @@ final class GolfClub {
     var dispersionCorrelation: Double
     var notes: String
     var createdAt: Date
+    // V4. Stable catalog IDs survive catalog refreshes. nil preserves fully custom clubs.
+    var catalogClubID: String?
+    var catalogVariant: String?
+    var catalogShaftID: String?
+    var equipmentData: Data?
+
+    var equipment: ClubEquipmentConfiguration {
+        get { (try? JSONDecoder().decode(ClubEquipmentConfiguration.self, from: equipmentData ?? Data())) ?? .init() }
+        set { equipmentData = try? JSONEncoder().encode(newValue) }
+    }
 
     init(name: String, category: String) {
         id = UUID()
@@ -51,4 +62,15 @@ enum ClubCategory: String, CaseIterable, Identifiable {
     case putter = "Putter"
 
     var id: String { rawValue }
+    var localizationKey: LocalizationKey {
+        switch self {
+        case .driver: return "Driver"
+        case .fairwayWood: return "Fairway Wood"
+        case .hybrid: return "Hybrid"
+        case .utilityIron: return "Utility Iron"
+        case .iron: return "Iron"
+        case .wedge: return "Wedge"
+        case .putter: return "Putter"
+        }
+    }
 }

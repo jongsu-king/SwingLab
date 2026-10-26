@@ -6,7 +6,7 @@ struct RoundHistoryView: View {
     @Environment(AppPreferences.self) private var preferences
     @Environment(\.modelContext) private var context
     @Query(sort: \RoundSession.startedAt, order: .reverse) private var rounds: [RoundSession]
-    @State private var errorKey: String?
+    @State private var errorKey: LocalizationKey?
 
     var body: some View {
         List {
@@ -39,7 +39,7 @@ struct RoundHistoryView: View {
                 let selected = offsets.map { rounds[$0] }
                 for round in selected { context.delete(round) }
                 do { try context.save() }
-                catch { context.rollback(); errorKey = "Your changes could not be saved. Try again." }
+                catch { context.rollbackPendingChanges(); errorKey = "Your changes could not be saved. Try again." }
             }
             if let errorKey { Text(preferences.text(errorKey)).foregroundStyle(.red) }
         }
@@ -51,7 +51,7 @@ struct ScorecardView: View {
     @Environment(AppPreferences.self) private var preferences
     @Environment(\.modelContext) private var context
     let round: RoundSession
-    @State private var errorKey: String?
+    @State private var errorKey: LocalizationKey?
 
     var body: some View {
         List {
@@ -115,7 +115,7 @@ struct ScorecardView: View {
                         }
                         round.endedAt = .now
                         do { try context.save() }
-                        catch { context.rollback(); errorKey = "Your changes could not be saved. Try again." }
+                        catch { context.rollbackPendingChanges(); errorKey = "Your changes could not be saved. Try again." }
                     }
                     Text(preferences.text("You can finish an incomplete round. Unscored holes remain empty."))
                         .font(.footnote).foregroundStyle(.secondary)
@@ -138,7 +138,7 @@ private struct HoleScoreEditor: View {
     @State private var penalties = 0
     @State private var fairway = -1
     @State private var green = -1
-    @State private var errorKey: String?
+    @State private var errorKey: LocalizationKey?
 
     var body: some View {
         Form {
@@ -169,7 +169,7 @@ private struct HoleScoreEditor: View {
         }
     }
 
-    private func numericField(_ key: String, text: Binding<String>) -> some View {
+    private func numericField(_ key: LocalizationKey, text: Binding<String>) -> some View {
         HStack {
             VStack(alignment: .leading, spacing: 3) {
                 Text(preferences.text(key))
@@ -181,7 +181,7 @@ private struct HoleScoreEditor: View {
         }
     }
 
-    private func outcomePicker(_ key: String, selection: Binding<Int>) -> some View {
+    private func outcomePicker(_ key: LocalizationKey, selection: Binding<Int>) -> some View {
         Picker(preferences.text(key), selection: selection) {
             Text(preferences.text("Not recorded")).tag(-1)
             Text(preferences.text("Yes")).tag(1)
@@ -210,7 +210,7 @@ private struct HoleScoreEditor: View {
             }
         }
         do { try context.save(); dismiss() }
-        catch { context.rollback(); errorKey = "Your changes could not be saved. Try again." }
+        catch { context.rollbackPendingChanges(); errorKey = "Your changes could not be saved. Try again." }
     }
 }
 
@@ -224,7 +224,7 @@ private struct ShotEditor: View {
     @State private var shape = "Unknown"
     @State private var penalties = 0
     @State private var notes = ""
-    @State private var errorKey: String?
+    @State private var errorKey: LocalizationKey?
     @State private var confirmDelete = false
 
     var body: some View {
@@ -232,10 +232,10 @@ private struct ShotEditor: View {
             Section(preferences.text("Shot details")) {
                 TextField(preferences.text("Club"), text: $clubName)
                 Picker(preferences.text("Lie"), selection: $lie) {
-                    ForEach(["Unknown", "Tee", "Fairway", "Rough", "Bunker", "Green", "Other"], id: \.self) { Text(preferences.text($0)).tag($0) }
+                    ForEach(["Unknown", "Tee", "Fairway", "Rough", "Bunker", "Green", "Other"] as [LocalizationKey], id: \.self) { Text(preferences.text($0)).tag($0.rawValue) }
                 }
                 Picker(preferences.text("Shot shape"), selection: $shape) {
-                    ForEach(["Unknown", "Straight", "Draw", "Fade", "Hook", "Slice", "Other"], id: \.self) { Text(preferences.text($0)).tag($0) }
+                    ForEach(["Unknown", "Straight", "Draw", "Fade", "Hook", "Slice", "Other"] as [LocalizationKey], id: \.self) { Text(preferences.text($0)).tag($0.rawValue) }
                 }
                 Stepper(value: $penalties, in: 0...10) {
                     SLMetricReadout(metric: ProvenancedValue(value: Double(penalties), unit: "1", provenance: .userEntered,
@@ -281,7 +281,7 @@ private struct ShotEditor: View {
                 shot.penalties = penalties
                 shot.notes = notes
                 do { try context.save(); dismiss() }
-                catch { context.rollback(); errorKey = "Your changes could not be saved. Try again." }
+                catch { context.rollbackPendingChanges(); errorKey = "Your changes could not be saved. Try again." }
             }
             Button(preferences.text("Delete shot"), role: .destructive) { confirmDelete = true }
         }
@@ -291,7 +291,7 @@ private struct ShotEditor: View {
             Button(preferences.text("Delete shot"), role: .destructive) {
                 context.delete(shot)
                 do { try context.save(); dismiss() }
-                catch { context.rollback(); errorKey = "Your changes could not be saved. Try again." }
+                catch { context.rollbackPendingChanges(); errorKey = "Your changes could not be saved. Try again." }
             }
         }
     }

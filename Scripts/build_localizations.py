@@ -19,37 +19,14 @@ for line in (ROOT/'Scripts/Localization-global.tsv').read_text().splitlines():
     values=line.split('|')
     assert len(values)==12, values[0]
     translations.setdefault(values[0],{}).update(dict(zip(LANGS,values[1:])))
-# Extract all literal branches within preferences.text(...), including ternary expressions.
-def literal_keys(source):
-    for match in re.finditer(r'\b(?:prefs|preferences)\.text\(',source):
-        i=match.end(); depth=1
-        while i<len(source) and depth:
-            if source[i]=='"':
-                start=i; i+=1
-                while i<len(source):
-                    if source[i]=='\\': i+=2; continue
-                    if source[i]=='"': break
-                    i+=1
-                literal=source[start:i+1]
-                try:
-                    value=json.loads(literal)
-                    if value and '\\(' not in value: yield value
-                except (ValueError, json.JSONDecodeError): pass
-            elif source[i]=='(': depth+=1
-            elif source[i]==')': depth-=1
-            i+=1
-keys=set(translations)
-for path in (ROOT/'SwingLab').rglob('*.swift'):
-    source=path.read_text()
-    keys.update(literal_keys(source))
-    # Error keys and coaching templates are passed dynamically to text(). Catch their
-    # complete English sentences too; language endonyms are intentionally unchanged.
-    for match in re.finditer(r'"(?:[^"\\]|\\.)*"', source):
-        try: value=json.loads(match.group())
-        except ValueError: continue
-        if (value[:1].isupper() and ' ' in value and re.search(r'[A-Za-z]',value)
-                and '\\(' not in value and value not in ['Português (Brasil)', 'Tiếng Việt']):
-            keys.add(value)
+# Source reachability uses the typed boundary shared with the independent check.
+from check_localizations import scan
+sources={str(p.relative_to(ROOT)):p.read_text() for folder in ['SwingLab','Sources/SwingLabCore']
+         for p in (ROOT/folder).rglob('*.swift')}
+reachable, source_errors=scan(sources)
+keys=set(translations)|reachable
+plural_forms=json.loads((ROOT/'Scripts/LocalizationPluralForms.json').read_text())
+keys.update(plural_forms)
 
 # Only real translations are written. Missing translations fall back to the English source,
 # are recorded explicitly below, and must be resolved before a global release.
@@ -57,6 +34,9 @@ def unit(value): return {'stringUnit':{'state':'translated','value':value}}
 strings={}
 missing={}
 for key in sorted(keys):
+    if key in plural_forms:
+        strings[key]={'extractionState':'manual','localizations':{lang:{'variations':{'plural':{form:unit(value) for form,value in forms.items()}}} for lang,forms in plural_forms[key].items()}}
+        continue
     loc={'en':unit(translations.get(key,{}).get('en',key))}
     for language in LANGS:
         value=translations.get(key,{}).get(language)

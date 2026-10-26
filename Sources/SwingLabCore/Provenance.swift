@@ -6,7 +6,7 @@ public enum Provenance: String, Codable, CaseIterable, Sendable {
 
     /// Audio timing is sensor-derived and belongs to the Measured category.
     public var category: Provenance { self == .audioDerived ? .measured : self }
-    public var localizationKey: String {
+    public var localizationKey: LocalizationKey {
         switch self {
         case .measured: "Measured"
         case .visionDerived: "Vision-derived"
@@ -83,7 +83,7 @@ public struct ProvenancedValue: Codable, Equatable, Sendable {
 public enum RecordingSource: String, CaseIterable, Codable, Sendable, Identifiable {
     case recorded, imported, unspecified
     public var id: String { rawValue }
-    public var localizationKey: String {
+    public var localizationKey: LocalizationKey {
         switch self {
         case .recorded: "Recorded"
         case .imported: "Imported"
@@ -110,7 +110,7 @@ public enum RecordingSource: String, CaseIterable, Codable, Sendable, Identifiab
 public enum CameraAngle: String, CaseIterable, Codable, Sendable, Identifiable {
     case faceOn, downTheLine, unspecified
     public var id: String { rawValue }
-    public var localizationKey: String {
+    public var localizationKey: LocalizationKey {
         switch self {
         case .faceOn: "Face-on"
         case .downTheLine: "Down the line"

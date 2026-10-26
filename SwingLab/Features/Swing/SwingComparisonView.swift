@@ -18,7 +18,7 @@ struct SwingComparisonView: View {
     @State private var overlay = false
     @State private var showPose = true
     @State private var running = false
-    @State private var error: String?
+    @State private var error: LocalizationKey?
     @State private var speaker = AVSpeechSynthesizer()
 
     private var first: SwingRecording? { recordings.first { $0.id == leftID } }
@@ -184,7 +184,7 @@ struct SwingComparisonView: View {
         }.padding(16).background(SLTheme.surface)
     }
 
-    private func coachingKey(_ first: PoseAnalysisReport, _ second: PoseAnalysisReport) -> String {
+    private func coachingKey(_ first: PoseAnalysisReport, _ second: PoseAnalysisReport) -> LocalizationKey {
         guard let a = first.backswingDuration, let b = second.backswingDuration else { return "Review both phase timelines before comparing timing." }
         if b > a { return "The second recording has a longer backswing. Repeat the same drill and compare your next recording." }
         if b < a { return "The second recording has a shorter backswing. Repeat the same drill and compare your next recording." }

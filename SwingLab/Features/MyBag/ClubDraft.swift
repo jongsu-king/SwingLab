@@ -17,8 +17,16 @@ struct ClubDraft {
     var lateralMean = ""
     var correlation = ""
     var notes = ""
-    private var originalInputs: [String: String] = [:]
-    private var originalValues: [String: Double] = [:]
+    var catalogClubID: String?
+    var catalogVariant: String?
+    var catalogShaftID: String?
+    var equipment = ClubEquipmentConfiguration()
+    var shaftWeight = ""
+    var shaftTorque = ""
+    var tipTrimming = ""
+    var lie = ""
+    private var originalInputs: [LocalizationKey: String] = [:]
+    private var originalValues: [LocalizationKey: Double] = [:]
 
     init() {}
 
@@ -30,6 +38,10 @@ struct ClubDraft {
         shaft = club.shaft
         flex = club.flex
         notes = club.notes
+        catalogClubID = club.catalogClubID
+        catalogVariant = club.catalogVariant
+        catalogShaftID = club.catalogShaftID
+        equipment = club.equipment
         func number(_ value: Double?) -> String {
             guard let value else { return "" }
             return value.formatted(.number.locale(locale).grouping(.never).precision(.fractionLength(0...2)))
@@ -37,6 +49,10 @@ struct ClubDraft {
         func distance(_ value: Double?) -> String {
             number(value.map { unit.fromSI($0) })
         }
+        shaftWeight = number(equipment.shaftWeightKilograms.map { $0 * 1000 })
+        shaftTorque = number(equipment.shaftTorqueDegrees)
+        tipTrimming = number(equipment.tipTrimmingMeters.map(ClubEquipmentConfiguration.inches))
+        lie = number(equipment.lieDegrees)
         loft = number(club.loftDegrees)
         carry = distance(club.carryMeters)
         total = distance(club.totalMeters)
@@ -47,7 +63,7 @@ struct ClubDraft {
         originalInputs = ["Loft": loft, "Average carry": carry, "Average total distance": total,
                           "Carry standard deviation": carryDeviation, "Lateral standard deviation": lateralDeviation,
                           "Typical lateral offset": lateralMean, "Carry / lateral correlation": correlation]
-        let values: [String: Double?] = ["Loft": club.loftDegrees, "Average carry": club.carryMeters,
+        let values: [LocalizationKey: Double?] = ["Loft": club.loftDegrees, "Average carry": club.carryMeters,
             "Average total distance": club.totalMeters, "Carry standard deviation": club.carryStdDevMeters,
             "Lateral standard deviation": club.lateralStdDevMeters, "Typical lateral offset": club.lateralMeanMeters,
             "Carry / lateral correlation": club.dispersionCorrelation]
@@ -59,7 +75,7 @@ struct ClubDraft {
         guard !trimmedName.isEmpty else {
             throw ClubInputError(field: "Club name", message: "Enter a name for this club.")
         }
-        func number(_ input: String, field: String, signed: Bool = false) throws -> Double? {
+        func number(_ input: String, field: LocalizationKey, signed: Bool = false) throws -> Double? {
             if originalInputs[field] == input { return originalValues[field] }
             let input = input.trimmingCharacters(in: .whitespacesAndNewlines)
             guard !input.isEmpty else { return nil }
@@ -70,7 +86,7 @@ struct ClubDraft {
             }
             return value
         }
-        func meters(_ input: String, field: String, signed: Bool = false) throws -> Double? {
+        func meters(_ input: String, field: LocalizationKey, signed: Bool = false) throws -> Double? {
             if originalInputs[field] == input { return originalValues[field] }
             return try number(input, field: field, signed: signed).map { unit.toSI($0) }
         }
@@ -87,20 +103,33 @@ struct ClubDraft {
         guard abs(correlationValue) < 1 else {
             throw ClubInputError(field: "Carry / lateral correlation", message: "Correlation must be greater than −1 and less than 1.")
         }
+        var configuration = equipment
+        configuration.shaftWeightKilograms = try number(shaftWeight, field: "Shaft weight").map { $0 / 1000 }
+        configuration.shaftTorqueDegrees = try number(shaftTorque, field: "Shaft torque")
+        configuration.tipTrimmingMeters = try number(tipTrimming, field: "Tip trimming").map { ClubEquipmentConfiguration.meters(inches: $0) }
+        configuration.lieDegrees = try number(lie, field: "Lie angle")
+        if let length = configuration.lengthMeters,
+           !(length.isFinite && length > 0 && ClubEquipmentConfiguration.isQuarterInch(ClubEquipmentConfiguration.inches(meters: length))) {
+            throw ClubInputError(field: "Club length", message: "Use quarter-inch steps.")
+        }
+        if let lie = configuration.lieDegrees, lie > 90 {
+            throw ClubInputError(field: "Lie angle", message: "Enter an angle between 0 and 90 degrees.")
+        }
         return try ValidatedClubDraft(
             name: trimmedName, category: category, brand: brand, modelName: modelName,
             loft: loftValue, shaft: shaft, flex: flex, carry: carryValue, total: totalValue,
             carryDeviation: meters(carryDeviation, field: "Carry standard deviation"),
             lateralDeviation: meters(lateralDeviation, field: "Lateral standard deviation"),
             lateralMean: meters(lateralMean, field: "Typical lateral offset", signed: true) ?? 0,
-            correlation: correlationValue, notes: notes
+            correlation: correlationValue, notes: notes, catalogClubID: catalogClubID,
+            catalogVariant: catalogVariant, catalogShaftID: catalogShaftID, equipment: configuration
         )
     }
 }
 
 struct ClubInputError: Error {
-    var field: String
-    var message: String
+    var field: LocalizationKey
+    var message: LocalizationKey
 }
 
 struct ValidatedClubDraft {
@@ -118,8 +147,16 @@ struct ValidatedClubDraft {
     var lateralMean: Double
     var correlation: Double
     var notes: String
+    var catalogClubID: String?
+    var catalogVariant: String?
+    var catalogShaftID: String?
+    var equipment: ClubEquipmentConfiguration
 
     func apply(to club: GolfClub) {
+        club.catalogClubID = catalogClubID
+        club.catalogVariant = catalogVariant
+        club.catalogShaftID = catalogShaftID
+        club.equipment = equipment
         club.name = name
         club.category = category
         club.brand = brand.trimmingCharacters(in: .whitespacesAndNewlines)

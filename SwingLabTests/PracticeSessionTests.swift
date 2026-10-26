@@ -55,7 +55,7 @@ final class PracticeSessionTests: XCTestCase {
         XCTAssertEqual(original.recordings.map(\.id), [first.id])
         XCTAssertEqual(separated.recordings.map(\.id), [second.id])
         try PracticeSessionStore.regroup(recording: second, to: original, context: context)
-        context.rollback()
+        context.rollbackPendingChanges()
         XCTAssertEqual(second.practiceSession?.id, separated.id)
         try PracticeSessionStore.regroup(recording: second, to: original, context: context)
         try context.save()

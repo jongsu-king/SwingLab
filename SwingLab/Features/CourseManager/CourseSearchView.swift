@@ -1,3 +1,4 @@
+import SwingLabCore
 import SwiftUI
 import SwiftData
 import MapKit
@@ -13,7 +14,7 @@ struct CourseSearchView: View {
     @State private var results: [CourseSearchResult] = []
     @State private var isSearching = false
     @State private var searched = false
-    @State private var errorKey: String?
+    @State private var errorKey: LocalizationKey?
     @State private var searchTask: Task<Void, Never>?
 
     var body: some View {
@@ -37,7 +38,7 @@ struct CourseSearchView: View {
                                                         longitude: result.coordinate.longitude, source: "mapKitPlace")
                                 context.insert(course)
                                 do { try context.save(); select(course); dismiss() }
-                                catch { context.rollback(); errorKey = "Your changes could not be saved. Try again." }
+                                catch { context.rollbackPendingChanges(); errorKey = "Your changes could not be saved. Try again." }
                             } label: {
                                 VStack(alignment: .leading, spacing: 4) {
                                     Text(result.name).foregroundStyle(.primary)
@@ -94,7 +95,7 @@ struct StartRoundView: View {
     let started: (RoundSession) -> Void
     @State private var name = ""
     @State private var holeCount = 18
-    @State private var errorKey: String?
+    @State private var errorKey: LocalizationKey?
 
     var body: some View {
         NavigationStack {
@@ -118,7 +119,7 @@ struct StartRoundView: View {
                         round.holeScores.append(score)
                     }
                     do { try context.save(); started(round); dismiss() }
-                    catch { context.rollback(); errorKey = "Your changes could not be saved. Try again." }
+                    catch { context.rollbackPendingChanges(); errorKey = "Your changes could not be saved. Try again." }
                 }.disabled(name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
             }
             .navigationTitle(preferences.text("Start round"))

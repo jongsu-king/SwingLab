@@ -199,22 +199,22 @@ enum SwingLabSchemaV1: VersionedSchema {
     }
 }
 
-/// Current models. V1 and V2 are immutable snapshots, never aliases to these types.
-enum SwingLabSchemaV3: VersionedSchema {
-    static var versionIdentifier: Schema.Version { .init(3, 0, 0) }
+/// Current models. V1–V3 are immutable snapshots, never aliases to these types.
+enum SwingLabSchemaV4: VersionedSchema {
+    static var versionIdentifier: Schema.Version { .init(4, 0, 0) }
     static var models: [any PersistentModel.Type] {
         [GolfClub.self, SwingRecording.self, GolfCourse.self, CourseHole.self,
          RoundSession.self, HoleScore.self, ShotRecord.self, PracticeSession.self]
     }
 }
 
-typealias SwingLabCurrentSchema = SwingLabSchemaV3
+typealias SwingLabCurrentSchema = SwingLabSchemaV4
 
 enum SwingLabMigrationPlan: SchemaMigrationPlan {
     static var schemas: [any VersionedSchema.Type] {
-        [SwingLabSchemaV1.self, SwingLabSchemaV2.self, SwingLabSchemaV3.self]
+        [SwingLabSchemaV1.self, SwingLabSchemaV2.self, SwingLabSchemaV3.self, SwingLabSchemaV4.self]
     }
-    static var stages: [MigrationStage] { [migrateV1ToV2, migrateV2ToV3] }
+    static var stages: [MigrationStage] { [migrateV1ToV2, migrateV2ToV3, migrateV3ToV4] }
 
     static var migrateV1ToV2: MigrationStage {
         .custom(fromVersion: SwingLabSchemaV1.self, toVersion: SwingLabSchemaV2.self,
@@ -234,8 +234,26 @@ enum SwingLabMigrationPlan: SchemaMigrationPlan {
                 willMigrate: nil, didMigrate: { context in
             // V3 adds optional associations. Existing payload/cache columns are untouched.
             // Imported recordings use their saved library-added date, not an invented capture date.
-            try PracticeSessionStore.groupUngroupedRecordings(context: context)
+            let recordings = try context.fetch(FetchDescriptor<SwingLabSchemaV3.SwingRecording>())
+            let lookup = Dictionary(uniqueKeysWithValues: recordings.map { ($0.id, $0) })
+            let samples = recordings.filter { $0.practiceSession == nil }.map {
+                PracticeGroupingSample(id: $0.id, date: $0.createdAt,
+                    context: .init(clubID: $0.clubID, cameraAngle: $0.cameraAngleValue,
+                                   handedness: $0.handednessOverride))
+            }
+            for group in PracticeGrouping.groups(for: samples) {
+                let session = SwingLabSchemaV3.PracticeSession(date: group.date, clubID: group.context.clubID,
+                    cameraAngle: group.context.cameraAngle, handedness: group.context.handedness)
+                session.id = group.id
+                context.insert(session)
+                for id in group.recordingIDs { lookup[id]?.practiceSession = session }
+            }
             try context.save()
         })
     }
+
+    static var migrateV3ToV4: MigrationStage {
+        .lightweight(fromVersion: SwingLabSchemaV3.self, toVersion: SwingLabSchemaV4.self)
+    }
+
 }

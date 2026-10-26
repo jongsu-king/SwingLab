@@ -76,7 +76,7 @@ final class SchemaMigrationTests: XCTestCase {
         edited.markers = []
         try recording.applyAnalysis(edited)
         XCTAssertNil(recording.tempoRatio)
-        context.rollback()
+        context.rollbackPendingChanges()
         XCTAssertEqual(recording.analysisData, Self.legacyAnalysis)
         XCTAssertEqual(try XCTUnwrap(recording.tempoRatio), 3, accuracy: 1e-10)
 
@@ -158,7 +158,7 @@ final class SchemaMigrationTests: XCTestCase {
         edited.markers = []
         try recording.applyAnalysis(edited)
         XCTAssertNil(recording.tempoRatio)
-        context.rollback()
+        context.rollbackPendingChanges()
         XCTAssertEqual(recording.analysisData, Self.legacyAnalysis)
         XCTAssertEqual(try XCTUnwrap(recording.tempoRatio), 3, accuracy: 1e-10)
 

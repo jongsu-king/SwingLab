@@ -18,7 +18,7 @@ def ref(path):
 app_sources = sorted(str(p.relative_to(ROOT)) for p in (ROOT/'SwingLab').rglob('*.swift'))
 test_sources = sorted(str(p.relative_to(ROOT)) for p in (ROOT/'SwingLabTests').rglob('*.swift'))
 ui_sources = sorted(str(p.relative_to(ROOT)) for p in (ROOT/'SwingLabUITests').rglob('*.swift'))
-resources = ['SwingLab/Resources/Assets.xcassets', 'SwingLab/Resources/Localizable.xcstrings', 'SwingLab/Resources/InfoPlist.xcstrings', 'SwingLab/Resources/PrivacyInfo.xcprivacy']
+resources = sorted(str(p.relative_to(ROOT)) for p in (ROOT/'SwingLab/Resources').rglob('*.json') if '.xcassets' not in str(p)) + ['SwingLab/Resources/Assets.xcassets', 'SwingLab/Resources/Localizable.xcstrings', 'SwingLab/Resources/InfoPlist.xcstrings', 'SwingLab/Resources/PrivacyInfo.xcprivacy']
 all_paths = app_sources+test_sources+ui_sources+resources+['SwingLab/Resources/Info.plist']
 refs = {path:ref(path) for path in all_paths}
 products=[]

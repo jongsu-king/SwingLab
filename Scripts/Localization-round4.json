@@ -1,0 +1,80 @@
+{
+  "Camera, microphone, and location access are requested only when you use them. No account required.": {
+    "ko": "카메라, 마이크, 위치 접근 권한은 해당 기능을 사용할 때만 요청합니다. 계정이 필요하지 않습니다.",
+    "ja": "カメラ、マイク、位置情報へのアクセスは、使用時にのみ求められます。アカウントは不要です。",
+    "zh-Hans": "仅在使用时请求相机、麦克风和位置权限。无需账户。",
+    "zh-Hant": "僅在使用時要求相機、麥克風和位置權限。無需帳號。",
+    "es": "Los permisos de cámara, micrófono y ubicación solo se solicitan al usarlos. No necesitas una cuenta.",
+    "pt-BR": "O acesso à câmera, ao microfone e à localização só é solicitado quando você os usa. Não é necessário ter uma conta.",
+    "de": "Zugriff auf Kamera, Mikrofon und Standort wird nur bei Nutzung angefragt. Kein Konto erforderlich.",
+    "fr": "L’accès à la caméra, au microphone et à la position n’est demandé que lors de leur utilisation. Aucun compte requis.",
+    "it": "L’accesso a fotocamera, microfono e posizione viene richiesto solo quando li usi. Non serve un account.",
+    "th": "ขอสิทธิ์เข้าถึงกล้อง ไมโครโฟน และตำแหน่งเมื่อใช้งานเท่านั้น ไม่ต้องมีบัญชี",
+    "vi": "Chỉ yêu cầu quyền truy cập camera, micrô và vị trí khi bạn sử dụng. Không cần tài khoản."
+  },
+  "Outdoor high contrast": {
+    "ko": "야외 고대비",
+    "ja": "屋外用高コントラスト",
+    "zh-Hans": "户外高对比度",
+    "zh-Hant": "戶外高對比度",
+    "es": "Alto contraste exterior",
+    "pt-BR": "Alto contraste ao ar livre",
+    "de": "Hoher Kontrast im Freien",
+    "fr": "Contraste élevé en extérieur",
+    "it": "Contrasto elevato all’aperto",
+    "th": "ความคมชัดสูงกลางแจ้ง",
+    "vi": "Độ tương phản cao ngoài trời"
+  },
+  "Appearance": {
+    "ko": "화면 모양",
+    "ja": "外観",
+    "zh-Hans": "外观",
+    "zh-Hant": "外觀",
+    "es": "Apariencia",
+    "pt-BR": "Aparência",
+    "de": "Darstellung",
+    "fr": "Apparence",
+    "it": "Aspetto",
+    "th": "ลักษณะที่ปรากฏ",
+    "vi": "Giao diện"
+  },
+  "Tempo trend": {
+    "ko": "템포 추세",
+    "ja": "テンポの推移",
+    "zh-Hans": "节奏趋势",
+    "zh-Hant": "節奏趨勢",
+    "es": "Tendencia del tempo",
+    "pt-BR": "Tendência do ritmo",
+    "de": "Tempoverlauf",
+    "fr": "Évolution du tempo",
+    "it": "Andamento del tempo",
+    "th": "แนวโน้มจังหวะ",
+    "vi": "Xu hướng nhịp độ"
+  },
+  "Record a swing to begin your practice history.": {
+    "ko": "스윙을 촬영하여 연습 기록을 시작하세요.",
+    "ja": "スイングを撮影して練習履歴を始めましょう。",
+    "zh-Hans": "录制一次挥杆，开始记录练习历史。",
+    "zh-Hant": "錄製一次揮桿，開始記錄練習歷程。",
+    "es": "Graba un swing para comenzar tu historial de práctica.",
+    "pt-BR": "Grave um swing para iniciar seu histórico de prática.",
+    "de": "Nimm einen Schwung auf, um deinen Trainingsverlauf zu beginnen.",
+    "fr": "Enregistrez un swing pour commencer votre historique d’entraînement.",
+    "it": "Registra uno swing per iniziare la cronologia degli allenamenti.",
+    "th": "บันทึกวงสวิงเพื่อเริ่มประวัติการฝึกซ้อม",
+    "vi": "Ghi lại cú swing để bắt đầu lịch sử luyện tập."
+  },
+  "Same club and camera angle. Review estimated phase markers.": {
+    "ko": "같은 클럽과 카메라 각도입니다. 추정된 단계 마커를 검토하세요.",
+    "ja": "同じクラブとカメラアングルです。推定フェーズマーカーを確認してください。",
+    "zh-Hans": "相同球杆和相机角度。请检查估算的阶段标记。",
+    "zh-Hant": "相同球桿和相機角度。請檢查估計的階段標記。",
+    "es": "Mismo palo y ángulo de cámara. Revisa los marcadores de fase estimados.",
+    "pt-BR": "Mesmo taco e ângulo de câmera. Revise os marcadores de fase estimados.",
+    "de": "Gleicher Schläger und Kamerawinkel. Prüfe die geschätzten Phasenmarkierungen.",
+    "fr": "Même club et même angle de caméra. Vérifiez les repères de phase estimés.",
+    "it": "Stessa mazza e angolazione della fotocamera. Controlla i marcatori di fase stimati.",
+    "th": "ไม้และมุมกล้องเดียวกัน ตรวจสอบจุดแบ่งช่วงที่ประมาณไว้",
+    "vi": "Cùng gậy và góc camera. Xem lại các mốc giai đoạn ước tính."
+  }
+}
