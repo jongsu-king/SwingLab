@@ -32,6 +32,13 @@ struct SwingDetailView: View {
                     } label: { Label(prefs.text("Club trace"), systemImage: "point.topleft.down.curvedto.point.bottomright.up") }
                         .padding(.horizontal, 20)
                 }
+                if let videoURL, recording.nominalFrameRate >= 200 {
+                    NavigationLink {
+                        LaunchMeasureView(videoURL: videoURL,
+                                          defaultDirection: recording.effectiveHandedness(default: prefs.handedness) == .right ? 1 : -1)
+                    } label: { Label(prefs.text("Measure launch (experimental)"), systemImage: "gauge.with.dots.needle.67percent") }
+                        .padding(.horizontal, 20)
+                }
                 if let report { phaseSection(report); metricsSection(report); coachingSection }
                 limitations
             }.padding(.bottom, 32)

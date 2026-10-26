@@ -63,6 +63,8 @@ public enum BallScaleFitter {
 public enum LaunchFailure: String, Error, Codable, Sendable {
     /// The shutter was open long enough to smear the ball into a long streak; the mode refuses.
     case exposureTooLong
+    /// Exposure unknown (imported video) and the ball is smeared over more than four diameters.
+    case tooBlurred
     case ballNotFound
     case tooFewObservations
     case implausibleSpeed
@@ -90,9 +92,13 @@ public enum LaunchTracker {
 
     /// `reference` is a still frame with the ball at address. `targetDirection` is +1 when the ball
     /// flies toward increasing image x, −1 otherwise. Only motion ahead of and not below the ball counts.
+    /// `exposure` is nil for imported video whose shutter time is unknown: positions are then timed at
+    /// frame start (a constant offset that cancels in the velocity) and smear is limited by shape instead.
     public static func observe(frames: [(time: Double, image: GrayImage)], reference: GrayImage, scale: BallScale,
-                               exposure: Double, targetDirection: Double) -> Result<[LaunchObservation], LaunchFailure> {
-        guard exposure.isFinite, exposure > 0, exposure <= maximumExposure else { return .failure(.exposureTooLong) }
+                               exposure: Double?, targetDirection: Double) -> Result<[LaunchObservation], LaunchFailure> {
+        if let exposure { guard exposure.isFinite, exposure > 0, exposure <= maximumExposure else { return .failure(.exposureTooLong) } }
+        let timeOffset = (exposure ?? 0) / 2
+        var rejectedForBlur = false
         let radius = scale.diameterPixels / 2
         let sx = Int(scale.center.x), sy = Int(scale.center.y)
         guard reference.contains(sx, sy) else { return .failure(.ballNotFound) }
@@ -120,12 +126,17 @@ public enum LaunchTracker {
                                                        width: image.width, height: image.height,
                                                        bounds: (0, 0, image.width - 1, image.height - 1)) else { continue }
                 seen.formUnion(found.members)
-                if found.blob.area >= 0.3 * ballArea, !found.blob.touchesBorder { blobs.append(found.blob) }
+                guard found.blob.area >= 0.3 * ballArea, !found.blob.touchesBorder else { continue }
+                if exposure == nil, max(found.blob.width, found.blob.height) > 4 * scale.diameterPixels {
+                    rejectedForBlur = true
+                    continue
+                }
+                blobs.append(found.blob)
             }
             let expected: PixelPoint
             if observations.count >= 2 {
                 let a = observations[observations.count - 2], b = observations[observations.count - 1]
-                let dt = (frame.time + exposure / 2 - b.time) / (b.time - a.time)
+                let dt = (frame.time + timeOffset - b.time) / (b.time - a.time)
                 expected = PixelPoint(x: b.center.x + (b.center.x - a.center.x) * dt, y: b.center.y + (b.center.y - a.center.y) * dt)
             } else {
                 expected = observations.last?.center ?? scale.center
@@ -134,9 +145,10 @@ public enum LaunchTracker {
                                                  hypot($1.center.x - expected.x, $1.center.y - expected.y) }) else { continue }
             // The ball must keep moving forward; a static blob is not the ball.
             if let last = observations.last, (chosen.center.x - last.center.x) * targetDirection < radius { continue }
-            observations.append(LaunchObservation(time: frame.time + exposure / 2, center: chosen.center))
+            observations.append(LaunchObservation(time: frame.time + timeOffset, center: chosen.center))
         }
-        return observations.isEmpty ? .failure(.ballNotFound) : .success(observations)
+        if observations.isEmpty { return .failure(rejectedForBlur ? .tooBlurred : .ballNotFound) }
+        return .success(observations)
     }
 
     /// Least-squares straight line through the observations. Over the first ~20 ms gravity moves the

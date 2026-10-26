@@ -105,6 +105,14 @@ final class LaunchMonitorTests: XCTestCase {
         let fast = LaunchScene.shot(speed: 54, angleDegrees: 16)
         XCTAssertEqual(LaunchTracker.observe(frames: fast.flight, reference: fast.address[0], scale: scale,
                                              exposure: 1.0 / 2000, targetDirection: -1).failureValue, .ballNotFound)
+        // Imported video (exposure unknown): a short smear is accepted with the same speed. A 1/240 s smear
+        // (≈ 5 diameters) is refused: it is either rejected by shape or too faint to detect at all.
+        let unknownShort = try LaunchTracker.observe(frames: fast.flight, reference: fast.address[0], scale: scale,
+                                                     exposure: nil, targetDirection: 1).get()
+        XCTAssertEqual(try XCTUnwrap(LaunchTracker.fit(unknownShort, scale: scale).get().ballSpeed.value), 54, accuracy: 54 * 0.02)
+        let smeared = LaunchTracker.observe(frames: shot.flight, reference: shot.address[0], scale: scale,
+                                            exposure: nil, targetDirection: 1).failureValue
+        XCTAssertTrue(smeared == .tooBlurred || smeared == .ballNotFound)
         let one = [LaunchObservation(time: 0.01, center: PixelPoint(x: 200, y: 250))]
         XCTAssertEqual(LaunchTracker.fit(one, scale: scale).failureValue, .tooFewObservations)
         // 2 px in 4 ms at this scale is ≈ 1 m/s: implausible for a struck ball.

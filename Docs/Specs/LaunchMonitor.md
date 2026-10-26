@@ -90,6 +90,16 @@ Reported uncertainty is about 1 %. **These numbers say nothing about real accura
 
 **Known gap:** the 7-iron carry range at 54 m/s / 16° is 188–190 yd. The cited spin interval is narrow (6,630–7,124 rpm, tour data), and the flight model overestimates iron carry (`Docs/Physics.md`). The range must not be presented as the user's expected carry until A22/A23 and the physics model are validated.
 
+**Measure launch from a video (added 26 Oct, reviewer).** Swing detail → "Measure launch (experimental)" appears for recordings at ≥ 200 fps.
+1. `LaunchVideoAnalyzer` finds the single clear impact sound (audio-derived).
+2. It shows the frame 0.2 s before impact; the user taps the ball.
+3. It fits the scale on 4 address frames, then tracks the first 6 frames after impact.
+4. The result shows ball speed and launch angle (vision-derived), carry as a simulated range for a chosen club, and spin and club speed as Unavailable.
+
+The shutter time of imported clips is unknown, so smear is limited by shape (over 4 diameters is refused).
+
+**Untested on real video.** iPhone Camera slow-motion clips may arrive through the photo picker as a slowed 30 fps composition; the screen then refuses ("needs 200 fps").
+
 **Not yet done:**
 - Masking the club head and body near impact.
 - Live camera ring buffer and short-exposure configuration.

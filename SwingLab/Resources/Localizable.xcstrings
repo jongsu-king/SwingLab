@@ -4775,6 +4775,83 @@
         }
       }
     },
+    "Ball direction": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ball direction"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "공 방향"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ボールの方向"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "球的方向"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "球的方向"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dirección de la bola"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Direção da bola"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ballrichtung"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Direction de la balle"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Direzione della palla"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ทิศทางลูก"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hướng bóng"
+          }
+        }
+      }
+    },
     "Ball position": {
       "extractionState": "manual",
       "localizations": {
@@ -6623,6 +6700,160 @@
         }
       }
     },
+    "Carry (longest)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carry (longest)"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "캐리 (최장)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "キャリー（最長）"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "飞行距离（最长）"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "飛行距離（最長）"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carry (más largo)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carry (mais longo)"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carry (längste)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carry (le plus long)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carry (massimo)"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ระยะลอย (ไกลสุด)"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Khoảng bay (dài nhất)"
+          }
+        }
+      }
+    },
+    "Carry (shortest)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carry (shortest)"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "캐리 (최단)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "キャリー（最短）"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "飞行距离（最短）"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "飛行距離（最短）"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carry (más corto)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carry (mais curto)"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carry (kürzeste)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carry (le plus court)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carry (minimo)"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ระยะลอย (สั้นสุด)"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Khoảng bay (ngắn nhất)"
+          }
+        }
+      }
+    },
     "Carry / lateral correlation": {
       "extractionState": "manual",
       "localizations": {
@@ -6696,6 +6927,83 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tương quan khoảng cách bay / độ lệch ngang"
+          }
+        }
+      }
+    },
+    "Carry is simulated across published spin rates for this club; it is not measured. Spin and club speed cannot be observed with one iPhone camera.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carry is simulated across published spin rates for this club; it is not measured. Spin and club speed cannot be observed with one iPhone camera."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "캐리는 이 클럽의 공개된 스핀량 범위로 시뮬레이션한 값이며 측정값이 아닙니다. 스핀과 클럽 스피드는 iPhone 카메라 한 대로 관측할 수 없습니다."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "キャリーはこのクラブの公表スピン量の範囲でシミュレーションした値で、測定値ではありません。スピンとクラブスピードはiPhoneのカメラ1台では観測できません。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "飞行距离是按此球杆公开的转速范围模拟的，并非测量值。仅凭一台 iPhone 摄像头无法观测转速和杆头速度。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "飛行距離是按此球桿公開的轉速範圍模擬的，並非測量值。僅憑一台 iPhone 相機無法觀測轉速和桿頭速度。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El carry se simula con las tasas de giro publicadas para este palo; no se mide. El giro y la velocidad del palo no se pueden observar con una sola cámara de iPhone."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O carry é simulado com as taxas de spin publicadas para este taco; não é medido. Spin e velocidade do taco não podem ser observados com uma única câmera de iPhone."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carry wird über veröffentlichte Spinraten für diesen Schläger simuliert, nicht gemessen. Spin und Schlägerkopfgeschwindigkeit lassen sich mit einer iPhone-Kamera nicht beobachten."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le carry est simulé sur les taux de rotation publiés pour ce club ; il n’est pas mesuré. La rotation et la vitesse du club ne sont pas observables avec une seule caméra d’iPhone."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il carry è simulato sulle velocità di rotazione pubblicate per questo bastone; non è misurato. Rotazione e velocità del bastone non sono osservabili con una sola fotocamera di iPhone."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ระยะลอยเป็นค่าจำลองตามอัตราสปินที่เผยแพร่สำหรับไม้นี้ ไม่ใช่ค่าที่วัดได้ สปินและความเร็วหัวไม้ไม่สามารถสังเกตได้ด้วยกล้อง iPhone เพียงตัวเดียว"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Khoảng bay được mô phỏng theo dải tốc độ xoáy đã công bố cho gậy này, không phải giá trị đo. Không thể quan sát độ xoáy và tốc độ đầu gậy chỉ bằng một camera iPhone."
           }
         }
       }
@@ -14092,6 +14400,83 @@
         }
       }
     },
+    "Experimental: launch values come from video and have not been checked against a launch monitor.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Experimental: launch values come from video and have not been checked against a launch monitor."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "실험적 기능: 발사 값은 영상에서 측정했으며 런치모니터와 비교 검증되지 않았습니다."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "試験的機能：打ち出し値は動画から測定したもので、弾道計測器との比較検証はされていません。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "实验性功能：出球数值来自视频，尚未与弹道监测仪进行对比验证。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "實驗性功能：出球數值來自影片，尚未與彈道監測儀進行對比驗證。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Experimental: los valores de salida provienen del video y no se han comprobado con un monitor de lanzamiento."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Experimental: os valores de lançamento vêm do vídeo e não foram conferidos com um monitor de lançamento."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Experimentell: Die Abflugwerte stammen aus dem Video und wurden nicht mit einem Launch-Monitor abgeglichen."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Expérimental : les valeurs de départ proviennent de la vidéo et n’ont pas été vérifiées avec un launch monitor."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sperimentale: i valori di lancio provengono dal video e non sono stati verificati con un launch monitor."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ทดลอง: ค่าการออกตัวได้จากวิดีโอและยังไม่ได้ตรวจสอบเทียบกับเครื่องวัดการออกตัว"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thử nghiệm: các giá trị phóng được đo từ video và chưa được đối chiếu với máy đo launch monitor."
+          }
+        }
+      }
+    },
     "Export original video": {
       "extractionState": "manual",
       "localizations": {
@@ -15093,6 +15478,83 @@
         }
       }
     },
+    "Finding the impact sound…": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finding the impact sound…"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "타구음을 찾는 중…"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打球音を探しています…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在查找击球声…"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在尋找擊球聲…"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscando el sonido del impacto…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Procurando o som do impacto…"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlaggeräusch wird gesucht …"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recherche du son d’impact…"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ricerca del suono d’impatto…"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "กำลังค้นหาเสียงกระทบ…"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đang tìm tiếng chạm bóng…"
+          }
+        }
+      }
+    },
     "Finish": {
       "extractionState": "manual",
       "localizations": {
@@ -15551,6 +16013,160 @@
           "stringUnit": {
             "state": "translated",
             "value": "Độ cứng cán"
+          }
+        }
+      }
+    },
+    "Flies left": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Flies left"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "왼쪽으로 날아감"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "左へ飛ぶ"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "向左飞"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "向左飛"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vuela a la izquierda"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voa para a esquerda"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fliegt nach links"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Part à gauche"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vola a sinistra"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ไปทางซ้าย"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bay sang trái"
+          }
+        }
+      }
+    },
+    "Flies right": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Flies right"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "오른쪽으로 날아감"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "右へ飛ぶ"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "向右飞"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "向右飛"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vuela a la derecha"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voa para a direita"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fliegt nach rechts"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Part à droite"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vola a destra"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ไปทางขวา"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bay sang phải"
           }
         }
       }
@@ -20714,6 +21330,83 @@
         }
       }
     },
+    "Launch measurement needs a video recorded at 200 fps or more.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Launch measurement needs a video recorded at 200 fps or more."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "발사 측정에는 200fps 이상으로 촬영한 영상이 필요합니다."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打ち出しの測定には200fps以上で撮影した動画が必要です。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "测量出球需要以 200 fps 或更高帧率录制的视频。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "測量出球需要以 200 fps 或更高影格率錄製的影片。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La medición de la salida necesita un video grabado a 200 fps o más."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A medição do lançamento precisa de um vídeo gravado a 200 fps ou mais."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Abflugmessung braucht ein Video mit mindestens 200 fps."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La mesure du départ nécessite une vidéo enregistrée à 200 i/s ou plus."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La misura del lancio richiede un video registrato a 200 fps o più."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "การวัดการออกตัวต้องใช้วิดีโอที่บันทึกที่ 200 fps ขึ้นไป"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đo cú phóng cần video quay từ 200 fps trở lên."
+          }
+        }
+      }
+    },
     "Layup point": {
       "extractionState": "manual",
       "localizations": {
@@ -22173,6 +22866,160 @@
           "stringUnit": {
             "state": "translated",
             "value": "Trung bình"
+          }
+        }
+      }
+    },
+    "Measure launch": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Measure launch"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "발사 측정"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打ち出しを測定"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "测量出球"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "測量出球"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Medir la salida"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Medir o lançamento"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abflug messen"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mesurer le départ"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Misura il lancio"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "วัดการออกตัว"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đo cú phóng"
+          }
+        }
+      }
+    },
+    "Measure launch (experimental)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Measure launch (experimental)"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "발사 측정 (실험적)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打ち出しを測定（試験的）"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "测量出球（实验性）"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "測量出球（實驗性）"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Medir la salida (experimental)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Medir o lançamento (experimental)"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abflug messen (experimentell)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mesurer le départ (expérimental)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Misura il lancio (sperimentale)"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "วัดการออกตัว (ทดลอง)"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đo cú phóng (thử nghiệm)"
           }
         }
       }
@@ -24021,6 +24868,83 @@
           "stringUnit": {
             "state": "translated",
             "value": "Chưa ghi cú đánh nào."
+          }
+        }
+      }
+    },
+    "No single clear impact sound was found, so the launch frames cannot be located.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No single clear impact sound was found, so the launch frames cannot be located."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "뚜렷한 타구음이 하나로 확인되지 않아 발사 프레임을 찾을 수 없습니다."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "明確な打球音が1つに特定できないため、打ち出しのフレームを特定できません。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未找到唯一清晰的击球声，因此无法定位出球画面。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未找到唯一清晰的擊球聲，因此無法定位出球畫面。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se encontró un único sonido de impacto claro, así que no se pueden localizar los fotogramas de salida."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não foi encontrado um único som de impacto claro, então os quadros do lançamento não podem ser localizados."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Es wurde kein eindeutiges Schlaggeräusch gefunden, daher lassen sich die Abflugbilder nicht finden."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun son d’impact unique et net n’a été trouvé ; les images du départ ne peuvent pas être localisées."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non è stato trovato un unico suono d’impatto chiaro, quindi non si possono individuare i fotogrammi del lancio."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ไม่พบเสียงกระทบที่ชัดเจนเพียงเสียงเดียว จึงหาเฟรมการออกตัวไม่ได้"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Không tìm thấy một tiếng chạm bóng rõ ràng duy nhất, nên không thể xác định các khung hình phóng."
           }
         }
       }
@@ -37962,6 +38886,83 @@
         }
       }
     },
+    "Tap the centre of the ball at address.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap the centre of the ball at address."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "어드레스 때 공의 중앙을 탭하세요."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "アドレス時のボールの中心をタップしてください。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请轻点准备击球时球的中心。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "請輕點準備擊球時球的中心。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toca el centro de la bola en el address."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toque no centro da bola no address."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tippe auf die Mitte des Balls in der Ansprechposition."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touchez le centre de la balle à l’adresse."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tocca il centro della palla all’address."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "แตะที่กึ่งกลางลูกในท่าแอดเดรส"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chạm vào tâm quả bóng ở tư thế chuẩn bị."
+          }
+        }
+      }
+    },
     "Tap the club head at address. Tracking stops at the top or at the first loss of confidence.": {
       "extractionState": "manual",
       "localizations": {
@@ -39194,6 +40195,83 @@
         }
       }
     },
+    "The ball could not be followed after impact. Keep the first metre of flight in the frame.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The ball could not be followed after impact. Keep the first metre of flight in the frame."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "임팩트 후 공을 추적하지 못했습니다. 비행 첫 1m가 화면에 들어오게 촬영하세요."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "インパクト後のボールを追跡できませんでした。飛び出し最初の1メートルが画面に入るように撮影してください。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "击球后无法追踪到球。请让飞行的前 1 米保持在画面内。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "擊球後無法追蹤到球。請讓飛行的前 1 公尺保持在畫面內。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo seguir la bola tras el impacto. Mantén el primer metro de vuelo dentro del encuadre."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não foi possível seguir a bola após o impacto. Mantenha o primeiro metro de voo no enquadramento."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Ball ließ sich nach dem Treffmoment nicht verfolgen. Halte den ersten Meter des Flugs im Bild."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La balle n’a pas pu être suivie après l’impact. Gardez le premier mètre de vol dans le cadre."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non è stato possibile seguire la palla dopo l’impatto. Tieni il primo metro di volo nell’inquadratura."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ติดตามลูกหลังกระทบไม่ได้ ให้ช่วง 1 เมตรแรกของการบินอยู่ในเฟรม"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Không theo dõi được bóng sau khi chạm. Hãy giữ mét bay đầu tiên trong khung hình."
+          }
+        }
+      }
+    },
     "The ball does not come down to that landing height.": {
       "extractionState": "manual",
       "localizations": {
@@ -39267,6 +40345,160 @@
           "stringUnit": {
             "state": "translated",
             "value": "Bóng không rơi xuống tới độ cao điểm rơi đó."
+          }
+        }
+      }
+    },
+    "The ball is too blurred to measure. Record in bright light with a fast shutter.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The ball is too blurred to measure. Record in bright light with a fast shutter."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "공이 너무 번져 측정할 수 없습니다. 밝은 곳에서 빠른 셔터로 촬영하세요."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ボールのブレが大きすぎて測定できません。明るい場所で速いシャッターで撮影してください。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "球体模糊过度，无法测量。请在明亮处用高速快门拍摄。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "球體模糊過度，無法測量。請在明亮處用高速快門拍攝。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La bola está demasiado borrosa para medirla. Graba con buena luz y obturador rápido."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A bola está borrada demais para medir. Grave com boa luz e obturador rápido."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Ball ist zu verwischt für eine Messung. Nimm bei hellem Licht mit kurzer Verschlusszeit auf."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La balle est trop floue pour être mesurée. Filmez en pleine lumière avec un obturateur rapide."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La palla è troppo mossa per essere misurata. Registra con molta luce e otturatore veloce."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ลูกเบลอเกินกว่าจะวัดได้ ให้ถ่ายในที่สว่างด้วยชัตเตอร์เร็ว"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bóng bị nhòe quá nên không đo được. Hãy quay ở nơi đủ sáng với tốc độ màn trập nhanh."
+          }
+        }
+      }
+    },
+    "The ball was not found at the point you tapped. Tap the centre of the ball at address.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The ball was not found at the point you tapped. Tap the centre of the ball at address."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "탭한 위치에서 공을 찾지 못했습니다. 어드레스 때 공의 중앙을 탭하세요."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "タップした位置でボールが見つかりませんでした。アドレス時のボールの中心をタップしてください。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在你轻点的位置未找到球。请轻点准备击球时球的中心。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在你輕點的位置未找到球。請輕點準備擊球時球的中心。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se encontró la bola en el punto que tocaste. Toca el centro de la bola en el address."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A bola não foi encontrada no ponto tocado. Toque no centro da bola no address."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "An der getippten Stelle wurde kein Ball gefunden. Tippe auf die Mitte des Balls in der Ansprechposition."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La balle n’a pas été trouvée à l’endroit touché. Touchez le centre de la balle à l’adresse."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La palla non è stata trovata nel punto toccato. Tocca il centro della palla all’address."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ไม่พบลูกตรงจุดที่แตะ แตะที่กึ่งกลางลูกในท่าแอดเดรส"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Không tìm thấy bóng ở điểm bạn chạm. Hãy chạm vào tâm quả bóng ở tư thế chuẩn bị."
           }
         }
       }
@@ -39729,6 +40961,83 @@
           "stringUnit": {
             "state": "translated",
             "value": "Âm thanh lớn nhất không khớp với nhịp swing, nên thời điểm chạm bóng là ước tính từ tư thế."
+          }
+        }
+      }
+    },
+    "The measured motion is not plausible for a struck ball, so no value is shown.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The measured motion is not plausible for a struck ball, so no value is shown."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "측정된 움직임이 타구된 공으로 보기 어려워 값을 표시하지 않습니다."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "測定された動きは打たれたボールとして妥当でないため、値を表示しません。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "测得的运动不符合被击出的球，因此不显示数值。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "測得的運動不符合被擊出的球，因此不顯示數值。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El movimiento medido no es plausible para una bola golpeada, así que no se muestra ningún valor."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O movimento medido não é plausível para uma bola golpeada, então nenhum valor é exibido."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die gemessene Bewegung ist für einen geschlagenen Ball nicht plausibel, daher wird kein Wert angezeigt."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le mouvement mesuré n’est pas plausible pour une balle frappée ; aucune valeur n’est affichée."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il movimento misurato non è plausibile per una palla colpita, quindi non viene mostrato alcun valore."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "การเคลื่อนที่ที่วัดได้ไม่สมเหตุสมผลสำหรับลูกที่ถูกตี จึงไม่แสดงค่า"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chuyển động đo được không hợp lý với một quả bóng được đánh, nên không hiển thị giá trị."
           }
         }
       }
@@ -41423,6 +42732,83 @@
           "stringUnit": {
             "state": "translated",
             "value": "Không thể giải mã video để phân tích."
+          }
+        }
+      }
+    },
+    "This video could not be read for launch measurement.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This video could not be read for launch measurement."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "이 영상은 발사 측정을 위해 읽을 수 없습니다."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "この動画は打ち出し測定用に読み込めませんでした。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法读取此视频以测量出球。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法讀取此影片以測量出球。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo leer este video para medir la salida."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não foi possível ler este vídeo para medir o lançamento."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dieses Video konnte für die Abflugmessung nicht gelesen werden."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cette vidéo n’a pas pu être lue pour mesurer le départ."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non è stato possibile leggere questo video per misurare il lancio."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "อ่านวิดีโอนี้เพื่อวัดการออกตัวไม่ได้"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Không thể đọc video này để đo cú phóng."
           }
         }
       }
