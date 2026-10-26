@@ -34,7 +34,7 @@ enum CheckFailure: Error { case nilValue }
     @MainActor static func main() throws {
         let units = UnitsTests(), geography = GeographyTests(), dispersion = DispersionTests(), timing = TimingAndGeometryTests()
         let provenance = ProvenanceTests(), summary = SummaryMigrationTests(), phases = PhaseDetectionTests()
-        let audio = ImpactOnsetTests(), flight = BallFlightTests()
+        let audio = ImpactOnsetTests(), flight = BallFlightTests(), coaching = CoachingTests()
         let checks: [(String, () throws -> Void)] = [
             ("independent unit conversions", units.testIndependentUnitsRoundTrip),
             ("language fallback", units.testLanguageFallbackAndRegionalMatching),
@@ -77,7 +77,12 @@ enum CheckFailure: Error { case nilValue }
             ("flight vs tour reference shots", flight.testReferenceShotsAgainstTourAverages),
             ("spin axis and start direction", flight.testSpinAxisAndStartDirectionCurveTheRightWay),
             ("wind, air density, landing height", flight.testWindAirDensityAndLandingHeight),
-            ("invalid flight inputs", flight.testInvalidOrUnreachableInputsThrow)
+            ("invalid flight inputs", flight.testInvalidOrUnreachableInputsThrow),
+            ("summary statistics", coaching.testSummaryStatistics),
+            ("coaching needs five comparable swings", coaching.testFewerThanFiveComparableSwingsGivesNoStatement),
+            ("coaching baseline shift templates", coaching.testShiftFromOwnBaselineUsesTheRightTemplate),
+            ("coaching excludes other angles and clubs", coaching.testOtherAnglesClubsFutureAndUnavailableValuesAreExcluded),
+            ("coaching baseline limited to recent 20", coaching.testBaselineIsLimitedToTheMostRecentTwenty)
         ]
         for (name, check) in checks {
             let before = failures

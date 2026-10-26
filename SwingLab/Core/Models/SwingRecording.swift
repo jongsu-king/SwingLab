@@ -136,6 +136,14 @@ final class SwingRecording {
         set { cameraAngle = newValue.rawValue }
     }
 
+    /// Cached summary columns only; never decodes pose JSON. Recordings do not store a club yet,
+    /// so every recording shares the same (nil) club baseline.
+    var coachingSample: CoachingSample {
+        CoachingSample(id: id, date: createdAt, club: nil, cameraAngle: cameraAngleValue,
+                       metrics: [.tempo: tempoMetric, .backswing: backswingMetric,
+                                 .downswing: downswingMetric, .headDisplacement: headDisplacementMetric])
+    }
+
     var sourceValue: RecordingSource {
         get { RecordingSource(legacyValue: source) }
         set { source = newValue.rawValue }

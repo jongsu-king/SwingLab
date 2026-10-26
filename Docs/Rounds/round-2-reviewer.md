@@ -9,7 +9,7 @@ The same rules apply: honest provenance, core-first logic with tests, no claims 
 | WP1 | Done (Codex) | swift build + harness | — |
 | WP2 | Done except optional 3D | swift build + harness (29 groups) + `verify.sh` | Reviewer added `SwingPhaseDetector` (8 phases, confidence, rule IDs), merge fix (R8), smoothing and detector tests, `Docs/PhaseDetection.md`. Codex wrote two-pass sampling, smoothing, gap handling, handedness, and the summary cache. |
 | WP3 | Done in source; device timing unverified | swift build + harness (37 groups) + macOS AAC/LPCM movie check + `verify.sh` | `ImpactOnsetDetector` (Core), `AudioImpactReader`, mic capture, `apply` (audio replaces the pose impact only when clear and in order), status line in Swing detail, mic permission in 12 languages. |
-| WP4 | Not started | — | — |
+| WP4 | Partial | swift test (47 XCTest) + iOS simulator build | Coaching engine (own-baseline z rule, n ≥ 5, same angle), consistency statistics, swing-detail section, 14 strings in 12 languages, `Docs/Coaching.md`. Missing: `PracticeSession` model and club on recordings. |
 | WP5 | Done in source | swift build + harness (42 groups) | `BallFlight` RK4 with drag, Magnus lift, spin decay, wind, and moist-air density. Validation in `Docs/Physics.md`: the integrator matches vacuum closed form; driver carry is −0.7 % but apex +32 %; 7-iron carry +8.5 %. Model left as cited, not tuned. Swing → Ball Lab → Hypothetical flight: typed inputs only, tour-average driver example on request, simulated badges, dashed side and top charts. |
 | WP6 | Not started | — | — |
 | WP7 | Not started | — | — |

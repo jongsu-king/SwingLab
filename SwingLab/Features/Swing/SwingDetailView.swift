@@ -6,6 +6,7 @@ struct SwingDetailView: View {
     @Environment(AppPreferences.self) private var prefs
     @Environment(\.modelContext) private var modelContext
     @Bindable var recording: SwingRecording
+    @Query(sort: \SwingRecording.createdAt, order: .reverse) private var library: [SwingRecording]
     @State private var playback = VideoPlaybackController()
     @State private var videoURL: URL?
     @State private var report: PoseAnalysisReport?
@@ -23,7 +24,7 @@ struct SwingDetailView: View {
                 videoSection
                 recordingDetails
                 analysisSection
-                if let report { phaseSection(report); metricsSection(report) }
+                if let report { phaseSection(report); metricsSection(report); coachingSection }
                 limitations
             }.padding(.bottom, 32)
         }.background(SLTheme.background)
@@ -208,6 +209,47 @@ struct SwingDetailView: View {
                     .disabled(report.marker(selectedPhase) == nil)
             }.disabled(analysisTask != nil || videoURL == nil)
         }.padding(.horizontal, 20)
+    }
+
+    /// Observations against the golfer's own recent swings from the same camera angle. No judgements.
+    private var coachingSection: some View {
+        let feedback = CoachingEngine.feedback(for: recording.coachingSample, history: library.map(\.coachingSample))
+        return VStack(alignment: .leading, spacing: 12) {
+            SLSectionHeader(title: prefs.text("Compared with your recent swings"),
+                            subtitle: prefs.text("Same camera angle, up to 20 earlier analyzed swings. Observations, not faults."))
+            if feedback.isEmpty {
+                Text(prefs.text("Within your usual range for every timing and head measure."))
+                    .font(.subheadline).foregroundStyle(.secondary)
+            }
+            ForEach(Array(feedback.enumerated()), id: \.offset) { _, item in
+                VStack(alignment: .leading, spacing: 6) {
+                    Text(coachingText(item)).font(.subheadline).foregroundStyle(SLTheme.ink)
+                        .fixedSize(horizontal: false, vertical: true)
+                    if let drill = item.drillID {
+                        Text(prefs.text(drill)).font(.caption).foregroundStyle(.secondary)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                }
+            }
+        }.padding(20).background(SLTheme.surface).padding(.horizontal, 20)
+    }
+
+    private func coachingText(_ item: CoachingFeedback) -> String {
+        let locale = prefs.locale
+        if item.templateID == "coach.needMoreSwings" {
+            let remaining = max(1, MetricSummary.minimumForStatement - item.baselineCount)
+            return String(format: prefs.text(item.templateID), locale: locale, remaining.formatted(.number.locale(locale)))
+        }
+        func format(_ value: Double?) -> String {
+            guard let value else { return prefs.text("Unavailable") }
+            switch item.metric {
+            case .tempo: return value.formatted(.number.precision(.fractionLength(2)).locale(locale))
+            case .headDisplacement: return value.formatted(.percent.precision(.fractionLength(1)).locale(locale))
+            default: return value.formatted(.number.precision(.fractionLength(3)).locale(locale))
+            }
+        }
+        return String(format: prefs.text(item.templateID), locale: locale, format(item.current), format(item.baselineMean),
+                      item.baselineCount.formatted(.number.locale(locale)))
     }
 
     /// Explains where the impact time came from. Nothing is shown for a user-entered impact

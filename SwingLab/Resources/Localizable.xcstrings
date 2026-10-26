@@ -6392,6 +6392,83 @@
         }
       }
     },
+    "Compared with your recent swings": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compared with your recent swings"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "최근 스윙과 비교"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最近のスイングとの比較"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "与你最近的挥杆比较"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "與你最近的揮桿比較"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comparado con tus swings recientes"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comparado com seus swings recentes"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Im Vergleich zu deinen letzten Schwüngen"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comparé à vos swings récents"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confronto con i tuoi swing recenti"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เทียบกับสวิงล่าสุดของคุณ"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "So với các cú swing gần đây của bạn"
+          }
+        }
+      }
+    },
     "Comparison": {
       "extractionState": "manual",
       "localizations": {
@@ -24718,6 +24795,83 @@
         }
       }
     },
+    "Same camera angle, up to 20 earlier analyzed swings. Observations, not faults.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Same camera angle, up to 20 earlier analyzed swings. Observations, not faults."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "같은 카메라 각도에서 분석한 이전 스윙 최대 20개와 비교합니다. 잘못을 지적하는 것이 아니라 관찰 결과입니다."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "同じカメラアングルで分析した過去最大20回のスイングと比較します。欠点の指摘ではなく、観察結果です。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "与同一机位下最多 20 次此前分析过的挥杆比较。这些是观察结果，不是错误判断。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "與同一機位下最多 20 次先前分析過的揮桿比較。這些是觀察結果，不是錯誤判斷。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mismo ángulo de cámara, hasta 20 swings analizados antes. Son observaciones, no fallos."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mesmo ângulo de câmera, até 20 swings analisados antes. São observações, não erros."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gleicher Kamerawinkel, bis zu 20 zuvor analysierte Schwünge. Beobachtungen, keine Fehler."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Même angle de caméra, jusqu’à 20 swings analysés auparavant. Des observations, pas des fautes."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stessa angolazione, fino a 20 swing analizzati in precedenza. Osservazioni, non errori."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "มุมกล้องเดียวกัน เทียบกับสวิงที่วิเคราะห์ก่อนหน้าสูงสุด 20 ครั้ง เป็นข้อสังเกต ไม่ใช่ข้อผิดพลาด"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cùng góc máy, tối đa 20 cú swing đã phân tích trước đó. Đây là nhận xét, không phải lỗi."
+          }
+        }
+      }
+    },
     "Save": {
       "extractionState": "manual",
       "localizations": {
@@ -35113,6 +35267,83 @@
         }
       }
     },
+    "Within your usual range for every timing and head measure.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Within your usual range for every timing and head measure."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "모든 타이밍과 머리 움직임 지표가 평소 범위 안에 있습니다."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "すべてのタイミングと頭部の指標がいつもの範囲内です。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "所有节奏与头部指标都在你平常的范围内。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "所有節奏與頭部指標都在你平常的範圍內。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todas las medidas de ritmo y de cabeza están dentro de tu rango habitual."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todas as medidas de ritmo e de cabeça estão dentro da sua faixa habitual."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle Timing- und Kopfwerte liegen in deinem üblichen Bereich."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toutes les mesures de rythme et de tête sont dans votre plage habituelle."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tutte le misure di ritmo e della testa sono nel tuo intervallo abituale."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ค่าจังหวะและการเคลื่อนไหวศีรษะทั้งหมดอยู่ในช่วงปกติของคุณ"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mọi chỉ số nhịp và chuyển động đầu đều nằm trong khoảng thường ngày của bạn."
+          }
+        }
+      }
+    },
     "Wrist path": {
       "extractionState": "manual",
       "localizations": {
@@ -36341,6 +36572,853 @@
           "stringUnit": {
             "state": "translated",
             "value": "Video, chi tiết gậy, ghi chú sân và vòng chơi được lưu cục bộ. Phân tích swing chạy trên iPhone. Phiên bản này không tải video lên hay yêu cầu tài khoản."
+          }
+        }
+      }
+    },
+    "coach.backswing.higher": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backswing took %1$@ s, longer than your recent average of %2$@ s (%3$@ swings)."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "백스윙 %1$@초: 최근 평균 %2$@초보다 깁니다 (스윙 %3$@개 기준)."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "バックスイング %1$@秒：最近の平均 %2$@秒より長めです（%3$@回のスイング）。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "上杆用时 %1$@ 秒，长于你最近的平均值 %2$@ 秒（%3$@ 次挥杆）。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "上桿用時 %1$@ 秒，長於你最近的平均值 %2$@ 秒（%3$@ 次揮桿）。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backswing de %1$@ s: más largo que tu media reciente de %2$@ s (%3$@ swings)."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backswing de %1$@ s: mais longo que sua média recente de %2$@ s (%3$@ swings)."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rückschwung %1$@ s: länger als dein jüngster Durchschnitt von %2$@ s (%3$@ Schwünge)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Montée de %1$@ s : plus longue que votre moyenne récente de %2$@ s (%3$@ swings)."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backswing di %1$@ s: più lungo della tua media recente di %2$@ s (%3$@ swing)."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "แบ็กสวิง %1$@ วินาที นานกว่าค่าเฉลี่ยล่าสุดของคุณ %2$@ วินาที (%3$@ สวิง)"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backswing %1$@ giây, dài hơn mức trung bình gần đây %2$@ giây (%3$@ cú swing)."
+          }
+        }
+      }
+    },
+    "coach.backswing.lower": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backswing took %1$@ s, shorter than your recent average of %2$@ s (%3$@ swings)."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "백스윙 %1$@초: 최근 평균 %2$@초보다 짧습니다 (스윙 %3$@개 기준)."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "バックスイング %1$@秒：最近の平均 %2$@秒より短めです（%3$@回のスイング）。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "上杆用时 %1$@ 秒，短于你最近的平均值 %2$@ 秒（%3$@ 次挥杆）。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "上桿用時 %1$@ 秒，短於你最近的平均值 %2$@ 秒（%3$@ 次揮桿）。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backswing de %1$@ s: más corto que tu media reciente de %2$@ s (%3$@ swings)."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backswing de %1$@ s: mais curto que sua média recente de %2$@ s (%3$@ swings)."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rückschwung %1$@ s: kürzer als dein jüngster Durchschnitt von %2$@ s (%3$@ Schwünge)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Montée de %1$@ s : plus courte que votre moyenne récente de %2$@ s (%3$@ swings)."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backswing di %1$@ s: più corto della tua media recente di %2$@ s (%3$@ swing)."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "แบ็กสวิง %1$@ วินาที สั้นกว่าค่าเฉลี่ยล่าสุดของคุณ %2$@ วินาที (%3$@ สวิง)"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backswing %1$@ giây, ngắn hơn mức trung bình gần đây %2$@ giây (%3$@ cú swing)."
+          }
+        }
+      }
+    },
+    "coach.downswing.higher": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Downswing took %1$@ s, longer than your recent average of %2$@ s (%3$@ swings)."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "다운스윙 %1$@초: 최근 평균 %2$@초보다 깁니다 (스윙 %3$@개 기준)."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ダウンスイング %1$@秒：最近の平均 %2$@秒より長めです（%3$@回のスイング）。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下杆用时 %1$@ 秒，长于你最近的平均值 %2$@ 秒（%3$@ 次挥杆）。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下桿用時 %1$@ 秒，長於你最近的平均值 %2$@ 秒（%3$@ 次揮桿）。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Downswing de %1$@ s: más largo que tu media reciente de %2$@ s (%3$@ swings)."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Downswing de %1$@ s: mais longo que sua média recente de %2$@ s (%3$@ swings)."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abschwung %1$@ s: länger als dein jüngster Durchschnitt von %2$@ s (%3$@ Schwünge)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descente de %1$@ s : plus longue que votre moyenne récente de %2$@ s (%3$@ swings)."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Downswing di %1$@ s: più lungo della tua media recente di %2$@ s (%3$@ swing)."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ดาวน์สวิง %1$@ วินาที นานกว่าค่าเฉลี่ยล่าสุดของคุณ %2$@ วินาที (%3$@ สวิง)"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Downswing %1$@ giây, dài hơn mức trung bình gần đây %2$@ giây (%3$@ cú swing)."
+          }
+        }
+      }
+    },
+    "coach.downswing.lower": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Downswing took %1$@ s, shorter than your recent average of %2$@ s (%3$@ swings)."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "다운스윙 %1$@초: 최근 평균 %2$@초보다 짧습니다 (스윙 %3$@개 기준)."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ダウンスイング %1$@秒：最近の平均 %2$@秒より短めです（%3$@回のスイング）。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下杆用时 %1$@ 秒，短于你最近的平均值 %2$@ 秒（%3$@ 次挥杆）。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下桿用時 %1$@ 秒，短於你最近的平均值 %2$@ 秒（%3$@ 次揮桿）。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Downswing de %1$@ s: más corto que tu media reciente de %2$@ s (%3$@ swings)."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Downswing de %1$@ s: mais curto que sua média recente de %2$@ s (%3$@ swings)."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abschwung %1$@ s: kürzer als dein jüngster Durchschnitt von %2$@ s (%3$@ Schwünge)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descente de %1$@ s : plus courte que votre moyenne récente de %2$@ s (%3$@ swings)."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Downswing di %1$@ s: più corto della tua media recente di %2$@ s (%3$@ swing)."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ดาวน์สวิง %1$@ วินาที สั้นกว่าค่าเฉลี่ยล่าสุดของคุณ %2$@ วินาที (%3$@ สวิง)"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Downswing %1$@ giây, ngắn hơn mức trung bình gần đây %2$@ giây (%3$@ cú swing)."
+          }
+        }
+      }
+    },
+    "coach.headDisplacement.higher": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Head displacement %1$@ is more than your recent average of %2$@ (%3$@ swings)."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "머리 이동 %1$@: 최근 평균 %2$@보다 큽니다 (스윙 %3$@개 기준)."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "頭の移動 %1$@：最近の平均 %2$@ より大きめです（%3$@回のスイング）。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "头部位移 %1$@，大于你最近的平均值 %2$@（%3$@ 次挥杆）。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "頭部位移 %1$@，大於你最近的平均值 %2$@（%3$@ 次揮桿）。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desplazamiento de la cabeza %1$@: mayor que tu media reciente de %2$@ (%3$@ swings)."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deslocamento da cabeça %1$@: maior que sua média recente de %2$@ (%3$@ swings)."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kopfverschiebung %1$@: größer als dein jüngster Durchschnitt von %2$@ (%3$@ Schwünge)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Déplacement de la tête %1$@ : plus grand que votre moyenne récente de %2$@ (%3$@ swings)."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spostamento della testa %1$@: maggiore della tua media recente di %2$@ (%3$@ swing)."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "การเคลื่อนของศีรษะ %1$@ มากกว่าค่าเฉลี่ยล่าสุดของคุณ %2$@ (%3$@ สวิง)"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Độ dịch chuyển đầu %1$@ lớn hơn mức trung bình gần đây %2$@ (%3$@ cú swing)."
+          }
+        }
+      }
+    },
+    "coach.headDisplacement.lower": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Head displacement %1$@ is less than your recent average of %2$@ (%3$@ swings)."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "머리 이동 %1$@: 최근 평균 %2$@보다 작습니다 (스윙 %3$@개 기준)."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "頭の移動 %1$@：最近の平均 %2$@ より小さめです（%3$@回のスイング）。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "头部位移 %1$@，小于你最近的平均值 %2$@（%3$@ 次挥杆）。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "頭部位移 %1$@，小於你最近的平均值 %2$@（%3$@ 次揮桿）。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desplazamiento de la cabeza %1$@: menor que tu media reciente de %2$@ (%3$@ swings)."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deslocamento da cabeça %1$@: menor que sua média recente de %2$@ (%3$@ swings)."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kopfverschiebung %1$@: kleiner als dein jüngster Durchschnitt von %2$@ (%3$@ Schwünge)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Déplacement de la tête %1$@ : plus petit que votre moyenne récente de %2$@ (%3$@ swings)."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spostamento della testa %1$@: minore della tua media recente di %2$@ (%3$@ swing)."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "การเคลื่อนของศีรษะ %1$@ น้อยกว่าค่าเฉลี่ยล่าสุดของคุณ %2$@ (%3$@ สวิง)"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Độ dịch chuyển đầu %1$@ nhỏ hơn mức trung bình gần đây %2$@ (%3$@ cú swing)."
+          }
+        }
+      }
+    },
+    "coach.needMoreSwings": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Analyze %1$@ more swings from this camera angle to compare this one with your own baseline."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "같은 카메라 각도로 스윙 %1$@개를 더 분석하면 본인 기준과 비교할 수 있습니다."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "同じカメラアングルでさらに%1$@回スイングを分析すると、自分の基準と比較できます。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在同一机位再分析 %1$@ 次挥杆，即可与你自己的基准比较。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在同一機位再分析 %1$@ 次揮桿，即可與你自己的基準比較。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Analiza %1$@ swings más desde este ángulo de cámara para comparar este con tu propia referencia."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Analise mais %1$@ swings deste ângulo de câmera para comparar este com sua própria referência."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Analysiere %1$@ weitere Schwünge aus diesem Kamerawinkel, um diesen mit deiner eigenen Basis zu vergleichen."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Analysez %1$@ swings de plus sous cet angle de caméra pour comparer celui-ci à votre propre référence."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Analizza altri %1$@ swing da questa angolazione per confrontare questo con il tuo riferimento personale."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "วิเคราะห์สวิงจากมุมกล้องนี้อีก %1$@ ครั้ง เพื่อเทียบสวิงนี้กับค่าพื้นฐานของคุณเอง"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phân tích thêm %1$@ cú swing ở góc máy này để so sánh với mức chuẩn của chính bạn."
+          }
+        }
+      }
+    },
+    "coach.tempo.higher": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo ratio %1$@ is higher than your recent average of %2$@ (%3$@ swings)."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "템포 비율 %1$@: 최근 평균 %2$@보다 높습니다 (스윙 %3$@개 기준)."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "テンポ比 %1$@：最近の平均 %2$@ より高めです（%3$@回のスイング）。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "节奏比 %1$@，高于你最近的平均值 %2$@（%3$@ 次挥杆）。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "節奏比 %1$@，高於你最近的平均值 %2$@（%3$@ 次揮桿）。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ratio de ritmo %1$@: más alto que tu media reciente de %2$@ (%3$@ swings)."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Razão de ritmo %1$@: mais alta que sua média recente de %2$@ (%3$@ swings)."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempoverhältnis %1$@: höher als dein jüngster Durchschnitt von %2$@ (%3$@ Schwünge)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rapport de tempo %1$@ : plus élevé que votre moyenne récente de %2$@ (%3$@ swings)."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rapporto di ritmo %1$@: più alto della tua media recente di %2$@ (%3$@ swing)."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "อัตราส่วนจังหวะ %1$@ สูงกว่าค่าเฉลี่ยล่าสุดของคุณ %2$@ (%3$@ สวิง)"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tỷ lệ nhịp %1$@ cao hơn mức trung bình gần đây %2$@ (%3$@ cú swing)."
+          }
+        }
+      }
+    },
+    "coach.tempo.lower": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo ratio %1$@ is lower than your recent average of %2$@ (%3$@ swings)."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "템포 비율 %1$@: 최근 평균 %2$@보다 낮습니다 (스윙 %3$@개 기준)."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "テンポ比 %1$@：最近の平均 %2$@ より低めです（%3$@回のスイング）。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "节奏比 %1$@，低于你最近的平均值 %2$@（%3$@ 次挥杆）。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "節奏比 %1$@，低於你最近的平均值 %2$@（%3$@ 次揮桿）。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ratio de ritmo %1$@: más bajo que tu media reciente de %2$@ (%3$@ swings)."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Razão de ritmo %1$@: mais baixa que sua média recente de %2$@ (%3$@ swings)."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempoverhältnis %1$@: niedriger als dein jüngster Durchschnitt von %2$@ (%3$@ Schwünge)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rapport de tempo %1$@ : plus bas que votre moyenne récente de %2$@ (%3$@ swings)."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rapporto di ritmo %1$@: più basso della tua media recente di %2$@ (%3$@ swing)."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "อัตราส่วนจังหวะ %1$@ ต่ำกว่าค่าเฉลี่ยล่าสุดของคุณ %2$@ (%3$@ สวิง)"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tỷ lệ nhịp %1$@ thấp hơn mức trung bình gần đây %2$@ (%3$@ cú swing)."
+          }
+        }
+      }
+    },
+    "drill.countedTempo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drill: count “one-two-three” to the top and “one” down to impact for five swings, then record one and compare."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "연습: 탑까지 “하나-둘-셋”, 임팩트까지 “하나”를 세며 다섯 번 스윙한 뒤 한 번 촬영해 비교하세요."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ドリル：トップまで「いち・に・さん」、インパクトまで「いち」と数えて5回スイングし、1回撮影して比べましょう。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "练习：上杆到顶点数“一、二、三”，下杆到击球数“一”，挥五次后录一次进行比较。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "練習：上桿到頂點數「一、二、三」，下桿到擊球數「一」，揮五次後錄一次進行比較。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ejercicio: cuenta “uno-dos-tres” hasta arriba y “uno” hasta el impacto durante cinco swings; luego graba uno y compara."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exercício: conte “um-dois-três” até o topo e “um” até o impacto por cinco swings; depois grave um e compare."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Übung: Zähle bis oben „eins-zwei-drei“ und bis zum Treffmoment „eins“, fünf Schwünge lang; dann einen aufnehmen und vergleichen."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exercice : comptez « un-deux-trois » jusqu’en haut et « un » jusqu’à l’impact pendant cinq swings, puis filmez-en un et comparez."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esercizio: conta “uno-due-tre” fino in cima e “uno” fino all’impatto per cinque swing, poi registrane uno e confronta."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "แบบฝึก: นับ “หนึ่ง-สอง-สาม” ถึงจุดสูงสุด และ “หนึ่ง” ถึงจังหวะกระทบ ทำห้าสวิง แล้วบันทึกหนึ่งครั้งเพื่อเปรียบเทียบ"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bài tập: đếm “một-hai-ba” lên đỉnh và “một” xuống chạm bóng trong năm cú swing, rồi quay một cú để so sánh."
+          }
+        }
+      }
+    },
+    "drill.steadyHeadMirror": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drill: make five slow swings keeping your head against a fixed reference line, then record one and compare."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "연습: 고정된 기준선에 머리를 맞춘 채 천천히 다섯 번 스윙한 뒤 한 번 촬영해 비교하세요."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ドリル：頭を固定した基準線に合わせたまま、ゆっくり5回スイングし、1回撮影して比べましょう。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "练习：让头部对准一条固定参照线，慢速挥五次，然后录一次进行比较。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "練習：讓頭部對準一條固定參考線，慢速揮五次，然後錄一次進行比較。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ejercicio: haz cinco swings lentos manteniendo la cabeza junto a una línea de referencia fija; luego graba uno y compara."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exercício: faça cinco swings lentos mantendo a cabeça junto a uma linha de referência fixa; depois grave um e compare."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Übung: Fünf langsame Schwünge mit dem Kopf an einer festen Referenzlinie; dann einen aufnehmen und vergleichen."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exercice : faites cinq swings lents en gardant la tête contre une ligne de référence fixe, puis filmez-en un et comparez."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esercizio: fai cinque swing lenti tenendo la testa allineata a una linea di riferimento fissa, poi registrane uno e confronta."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "แบบฝึก: สวิงช้า ๆ ห้าครั้งโดยให้ศีรษะอยู่ตรงกับเส้นอ้างอิงที่คงที่ แล้วบันทึกหนึ่งครั้งเพื่อเปรียบเทียบ"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bài tập: thực hiện năm cú swing chậm, giữ đầu sát một đường tham chiếu cố định, rồi quay một cú để so sánh."
           }
         }
       }
