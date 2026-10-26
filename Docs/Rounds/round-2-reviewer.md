@@ -2,7 +2,7 @@
 
 Codex stopped at its usage limit mid-WP2 (`4dc9668`). Until Codex is available again (1 November 2026), the reviewer continues the v7.0 work packages. Every reviewer commit after `4dc9668` is in scope for Codex's review in Round 3.
 
-The same rules apply: honest provenance, core-first logic with tests, no claims about builds that were not run. This Mac still has no full Xcode, so app-layer changes are typechecked against the macOS SDK where `Scripts/verify.sh` covers them, and are otherwise listed in `Docs/CompileRisk.md`.
+The same rules apply: honest provenance, core-first logic with tests, no claims about builds that were not run. Full Xcode 27.1 arrived during the round. The first iOS simulator build succeeded with 0 errors and 0 warnings (Swift 6 mode), and `swift test` passes 42 XCTest cases. Runtime checks remain open (see `Docs/CompileRisk.md`).
 
 | WP | Status | Verified by | Notes |
 |---|---|---|---|

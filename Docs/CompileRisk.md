@@ -1,5 +1,11 @@
 # Round 2 compile-risk ledger
 
+> **Update (26 Oct 2026, reviewer):** Full Xcode 27.1 (iOS 27.1 SDK) is now installed. The first native build
+> `xcodebuild -project SwingLab.xcodeproj -scheme SwingLab -destination 'generic/platform=iOS Simulator' -derivedDataPath ./DerivedData CODE_SIGNING_ALLOWED=NO build`
+> reported **BUILD SUCCEEDED with 0 errors and 0 warnings** in Swift 6 language mode, compiling 51 app and core sources.
+> `swift test` ran all 42 core tests under real XCTest, with 0 failures. Compile risk below is therefore resolved;
+> the **runtime** checks listed in each row (simulator and device behaviour, layout, persistence migration) remain open.
+
 Full Xcode and simulator tools are absent at the WP1 boundary. `swift build` and portable harnesses validate Core; frontend parsing does not validate SwiftUI or SwiftData macros. Every changed native Swift source is listed below. No new permission in WP1.
 
 | App file | First native build / runtime check |
