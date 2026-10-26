@@ -78,10 +78,18 @@ struct SwingView: View {
                     }
                 }.listRowBackground(SLTheme.surface)
                 Section {
+                    NavigationLink {
+                        HypotheticalFlightView()
+                    } label: {
+                        Label(prefs.text("Hypothetical flight"), systemImage: "point.topleft.down.to.point.bottomright.curvepath")
+                    }
+                } header: { Text(prefs.text("Ball Lab")) }
+                .listRowBackground(SLTheme.surface)
+                Section {
                     VStack(alignment: .leading, spacing: 8) {
                         Label(prefs.text("Private by design"), systemImage: "iphone")
                             .font(.subheadline.weight(.medium))
-                        Text(prefs.text("Videos and pose analysis stay on your iPhone. Camera recording is silent. Imported videos keep their original audio."))
+                        Text(prefs.text("Videos, sound, and pose analysis stay on your iPhone. Imported videos keep their original audio."))
                             .font(.caption).foregroundStyle(.secondary)
                     }.padding(.vertical, 5)
                 }.listRowBackground(Color.clear)

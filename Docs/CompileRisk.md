@@ -39,3 +39,6 @@ WP3 adds one permission: `NSMicrophoneUsageDescription` (12 languages). Recordin
 | `SwingLab/Services/PoseEstimationService.swift` | New actor method `audioImpact(asset:duration:markers:)` passes `AVAsset` to a nonisolated async helper; the `@preconcurrency` import is unchanged. Typechecked on macOS. |
 | `SwingLab/Features/Camera/CameraView.swift` | Ternary localization keys for the sound caption. |
 | `SwingLab/Features/Swing/SwingDetailView.swift` | `Label` with a dynamic SF Symbol name; exhaustive `switch` over `AudioImpactRejection?`. |
+| `SwingLab/Features/FlightSimulation/HypotheticalFlightView.swift` (new) | `TextField(_:value:format:)` with `Double?` bindings and `.number.locale(_:)`; `Grid`/`GridRow` (iOS 16+); Swift Charts `LineMark` with a `KeyPath` value; `catch ModelError.insufficientData` pattern. Layout of long German/Thai labels next to 96 pt fields. |
+| `SwingLab/Features/Swing/SwingView.swift` | New Ball Lab section; SF Symbol `point.topleft.down.to.point.bottomright.curvepath` (iOS 16+). |
+| `SwingLab/Core/DesignSystem/MetricReadout.swift` | New `"deg"` unit case. |

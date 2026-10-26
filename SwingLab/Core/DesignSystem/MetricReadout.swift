@@ -68,6 +68,9 @@ struct SLMetricReadout: View {
         case "rad":
             displayValue = value * 180 / .pi
             displayUnit = "°"
+        case "deg":
+            displayValue = value
+            displayUnit = "°"
         case "1":
             displayValue = value
             displayUnit = ""
