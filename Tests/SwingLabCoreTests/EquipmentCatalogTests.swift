@@ -11,6 +11,7 @@ final class EquipmentCatalogTests: XCTestCase {
         let data = try catalog()
         XCTAssertEqual(data.search("QÍ10").map(\.id), data.search("qi10").map(\.id))
         XCTAssertFalse(data.search("qi10").isEmpty)
+        for name in ["Tour Edge", "Ben Hogan", "L.A.B. Golf"] { XCTAssertFalse(data.search(name).isEmpty, name) }
         let results = data.search("", brandID: "titleist", category: "Driver")
         XCTAssertEqual(results.map(\.releaseYear), results.map(\.releaseYear).sorted(by: >))
         XCTAssertTrue(data.search("qi10", brandID: "titleist").isEmpty)

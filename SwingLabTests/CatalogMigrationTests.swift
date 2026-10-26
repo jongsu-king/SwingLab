@@ -77,6 +77,21 @@ final class CatalogMigrationTests: XCTestCase {
         XCTAssertNoThrow(try draft.validated(unit: .yards, locale: Locale(identifier: "en")))
     }
 
+    @MainActor func testUnchangedEquipmentInputPreservesFullPrecision() throws {
+        let club = GolfClub(name: "Custom", category: "Iron")
+        var equipment = ClubEquipmentConfiguration()
+        equipment.shaftWeightKilograms = 0.11412345
+        equipment.shaftTorqueDegrees = 1.712345
+        equipment.tipTrimmingMeters = ClubEquipmentConfiguration.meters(inches: 0.125)
+        equipment.lieDegrees = 62.512345
+        club.equipment = equipment
+        let draft = ClubDraft(club: club, unit: .yards, locale: Locale(identifier: "de"))
+        let values = try draft.validated(unit: .yards, locale: Locale(identifier: "de"))
+        XCTAssertEqual(values.equipment, equipment)
+        values.apply(to: club)
+        XCTAssertEqual(club.equipment, equipment)
+    }
+
     @MainActor func testBundledCatalogIsAvailableToTheEditor() {
         XCTAssertEqual(CatalogStore.catalog.brands.count, 23)
         XCTAssertGreaterThan(CatalogStore.catalog.clubs.count, 1000)

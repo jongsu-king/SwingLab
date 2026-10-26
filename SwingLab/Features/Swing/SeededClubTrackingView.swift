@@ -9,6 +9,7 @@ struct SeededClubTrackingView: View {
     let top: Double?
     let aspectRatio: Double
     @State private var imageData: Data?
+    @State private var imageTime: Double?
     @State private var seed: CGPoint?
     @State private var track: SeededClubTrack?
     @State private var playback = VideoPlaybackController()
@@ -64,13 +65,16 @@ struct SeededClubTrackingView: View {
         .navigationTitle(prefs.text("Club trace"))
         .task {
             guard let address, let top, top > address else { return }
-            do { imageData = try await service.addressImage(url: url, time: address) }
+            do {
+                let image = try await service.addressImage(url: url, time: address)
+                imageData = image.data; imageTime = image.time
+            }
             catch { self.error = "This video could not be decoded for analysis." }
         }
         .onDisappear { task?.cancel(); playback.close() }
     }
     private func run() {
-        guard let seed, let address, let top else { return }
+        guard let seed, let address = imageTime ?? address, let top else { return }
         working = true; error = nil
         task = Task { @MainActor in
             defer { working = false }

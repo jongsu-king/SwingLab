@@ -54,9 +54,16 @@ final class PracticeSessionTests: XCTestCase {
         XCTAssertEqual(try context.fetch(FetchDescriptor<PracticeSession>()).count, 2)
         XCTAssertEqual(original.recordings.map(\.id), [first.id])
         XCTAssertEqual(separated.recordings.map(\.id), [second.id])
-        try PracticeSessionStore.regroup(recording: second, to: original, context: context)
-        context.rollbackPendingChanges()
+        enum SimulatedSaveFailure: Error { case diskFull }
+        XCTAssertThrowsError(try PracticeSessionStore.saveChange(context: context,
+            save: { throw SimulatedSaveFailure.diskFull }) {
+                try PracticeSessionStore.regroup(recording: second, to: original, context: context)
+            })
         XCTAssertEqual(second.practiceSession?.id, separated.id)
+        XCTAssertEqual(original.recordings.map(\.id), [first.id])
+        XCTAssertEqual(separated.recordings.map(\.id), [second.id])
+        let failedReader = ModelContext(container)
+        XCTAssertEqual(try failedReader.fetch(FetchDescriptor<SwingRecording>()).first { $0.id == second.id }?.practiceSession?.id, separated.id)
         try PracticeSessionStore.regroup(recording: second, to: original, context: context)
         try context.save()
         let reader = ModelContext(container)

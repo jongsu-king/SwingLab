@@ -376,8 +376,7 @@ struct SwingDetailView: View {
     }
 
     private func persist(_ result: PoseAnalysisReport) throws {
-        try recording.applyAnalysis(result)
-        do { try modelContext.save(); report = result }
-        catch { modelContext.rollbackPendingChanges(); throw error }
+        try AnalysisPersistence.save(result, to: recording, context: modelContext)
+        report = result
     }
 }

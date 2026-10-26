@@ -22,7 +22,7 @@ struct ClubEditorView: View {
         NavigationStack {
             Form {
                 Section {
-                    Button(preferences.text("Choose from catalog")) { choosingClub = true }
+                    Button(preferences.text("Choose from catalog")) { choosingClub = true }.accessibilityIdentifier("bag.catalog")
                     Button(preferences.text("Not in the list")) {
                         draft.catalogClubID = nil; draft.catalogVariant = nil
                         draft.equipment.hoselSystemID = nil; draft.equipment.hoselPositionID = nil
@@ -40,9 +40,9 @@ struct ClubEditorView: View {
                         ForEach(ClubCategory.allCases) { category in
                             Text(preferences.text(category.localizationKey)).tag(category.rawValue)
                         }
-                    }
-                    TextField(preferences.text("Brand"), text: $draft.brand)
-                    TextField(preferences.text("Model"), text: $draft.modelName)
+                    }.disabled(draft.catalogClubID != nil)
+                    TextField(preferences.text("Brand"), text: $draft.brand).disabled(draft.catalogClubID != nil)
+                    TextField(preferences.text("Model"), text: $draft.modelName).disabled(draft.catalogClubID != nil)
                     decimalField("Loft", value: Binding(get: { draft.loft }, set: {
                         draft.loft = $0; draft.equipment.baseLoftFromCatalog = false
                     }), suffix: "°")
@@ -94,14 +94,14 @@ struct ClubEditorView: View {
                     Button(preferences.text("Cancel")) { dismiss() }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button(preferences.text("Save"), action: save).fontWeight(.semibold)
+                    Button(preferences.text("Save"), action: save).fontWeight(.semibold).accessibilityIdentifier("bag.save")
                 }
             }
             .alert(preferences.text("Could not save club"), isPresented: $showingError) {
                 Button(preferences.text("OK"), role: .cancel) {}
             } message: {
                 if let inputError {
-                    Text("\(preferences.text(inputError.field)): \(preferences.text(inputError.message))")
+                    Text(preferences.format("club.inputError", preferences.text(inputError.field), preferences.text(inputError.message)))
                 }
             }
             .sheet(isPresented: $choosingClub) {
@@ -117,11 +117,14 @@ struct ClubEditorView: View {
             }
             .sheet(isPresented: $choosingShaft) {
                 NavigationStack {
-                    ShaftCatalogPickerView { shaft in
+                    ShaftCatalogPickerView(onSelect: { shaft in
                         draft.catalogShaftID = shaft.id; draft.equipment.shaftBrand = shaft.brand
                         draft.shaft = shaft.model; draft.flex = ""; draft.shaftWeight = ""
                         choosingShaft = false
-                    }
+                    }, onCustom: {
+                        draft.catalogShaftID = nil; draft.equipment.shaftMode = "custom"
+                        choosingShaft = false
+                    })
                     .toolbar { ToolbarItem(placement: .cancellationAction) { Button(preferences.text("Cancel")) { choosingShaft = false } } }
                 }
             }
@@ -189,8 +192,8 @@ struct ClubEditorView: View {
                     }
                 }
             }
-            TextField(preferences.text("Shaft brand"), text: $draft.equipment.shaftBrand)
-            TextField(preferences.text("Shaft"), text: $draft.shaft)
+            TextField(preferences.text("Shaft brand"), text: $draft.equipment.shaftBrand).disabled(draft.catalogShaftID != nil)
+            TextField(preferences.text("Shaft"), text: $draft.shaft).disabled(draft.catalogShaftID != nil)
             TextField(preferences.text("Flex"), text: $draft.flex)
             decimalField("Shaft weight", value: $draft.shaftWeight, suffix: "g")
             decimalField("Shaft torque", value: $draft.shaftTorque, suffix: "°")
@@ -198,6 +201,9 @@ struct ClubEditorView: View {
             decimalField("Tip trimming", value: $draft.tipTrimming, suffix: "in")
         } header: { Text(preferences.text("Shaft")) }
         footer: { Text(preferences.text("Stock shaft details remain blank until you identify your build.")) }
+        .onChange(of: draft.equipment.shaftMode) { _, mode in
+            if mode != "catalog" { draft.catalogShaftID = nil }
+        }
     }
 
     private var configurationSection: some View {
@@ -218,6 +224,13 @@ struct ClubEditorView: View {
             TextField(preferences.text("Swing weight"), text: $draft.equipment.swingWeight)
             TextField(preferences.text("Grip"), text: $draft.equipment.grip)
             decimalField("Lie angle", value: $draft.lie, suffix: "°")
+            Picker(preferences.text("Sleeve system"), selection: Binding(get: { draft.equipment.hoselSystemID ?? "" }, set: {
+                draft.equipment.hoselSystemID = $0.isEmpty ? nil : $0
+                draft.equipment.hoselPositionID = nil
+            })) {
+                Text(preferences.text("Unavailable")).tag("")
+                ForEach(CatalogStore.catalog.hoselSystems) { system in Text(system.name).tag(system.id) }
+            }
         } header: { Text(preferences.text("Club configuration")) }
     }
 
@@ -225,6 +238,7 @@ struct ClubEditorView: View {
         if let hosel {
             Section {
                 Text(hosel.name)
+                if hosel.handedness == "right" { Text(preferences.text("Right-handed settings only.")).font(.caption.weight(.semibold)) }
                 if hosel.positions.isEmpty {
                     Text(preferences.text("Sleeve positions are not yet verified."))
                 } else {
@@ -257,7 +271,7 @@ struct ClubEditorView: View {
         func delta(_ value: Double?) -> String {
             value.map { $0.formatted(.number.locale(preferences.locale).precision(.fractionLength(0...2))) + "°" } ?? preferences.text("Unavailable")
         }
-        return preferences.format("%@: loft Δ %@, lie Δ %@", position.label + (position.label == "—" ? " (\(position.index))" : ""),
+        return preferences.format("catalog.hoselDeltas", position.label + (position.label == "—" ? " (\(position.index))" : ""),
                                   delta(position.loftDeltaDegrees), delta(position.lieDeltaDegrees))
     }
 

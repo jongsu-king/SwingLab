@@ -60,7 +60,7 @@ struct ClubDraft {
         lateralDeviation = distance(club.lateralStdDevMeters)
         lateralMean = distance(club.lateralMeanMeters)
         correlation = number(club.dispersionCorrelation)
-        originalInputs = ["Loft": loft, "Average carry": carry, "Average total distance": total,
+        originalInputs = ["Shaft weight": shaftWeight, "Shaft torque": shaftTorque, "Tip trimming": tipTrimming, "Lie angle": lie, "Loft": loft, "Average carry": carry, "Average total distance": total,
                           "Carry standard deviation": carryDeviation, "Lateral standard deviation": lateralDeviation,
                           "Typical lateral offset": lateralMean, "Carry / lateral correlation": correlation]
         let values: [LocalizationKey: Double?] = ["Loft": club.loftDegrees, "Average carry": club.carryMeters,
@@ -104,10 +104,18 @@ struct ClubDraft {
             throw ClubInputError(field: "Carry / lateral correlation", message: "Correlation must be greater than −1 and less than 1.")
         }
         var configuration = equipment
-        configuration.shaftWeightKilograms = try number(shaftWeight, field: "Shaft weight").map { $0 / 1000 }
-        configuration.shaftTorqueDegrees = try number(shaftTorque, field: "Shaft torque")
-        configuration.tipTrimmingMeters = try number(tipTrimming, field: "Tip trimming").map { ClubEquipmentConfiguration.meters(inches: $0) }
-        configuration.lieDegrees = try number(lie, field: "Lie angle")
+        if originalInputs["Shaft weight"] != shaftWeight {
+            configuration.shaftWeightKilograms = try number(shaftWeight, field: "Shaft weight").map { $0 / 1000 }
+        }
+        if originalInputs["Shaft torque"] != shaftTorque {
+            configuration.shaftTorqueDegrees = try number(shaftTorque, field: "Shaft torque")
+        }
+        if originalInputs["Tip trimming"] != tipTrimming {
+            configuration.tipTrimmingMeters = try number(tipTrimming, field: "Tip trimming").map { ClubEquipmentConfiguration.meters(inches: $0) }
+        }
+        if originalInputs["Lie angle"] != lie {
+            configuration.lieDegrees = try number(lie, field: "Lie angle")
+        }
         if let length = configuration.lengthMeters,
            !(length.isFinite && length > 0 && ClubEquipmentConfiguration.isQuarterInch(ClubEquipmentConfiguration.inches(meters: length))) {
             throw ClubInputError(field: "Club length", message: "Use quarter-inch steps.")

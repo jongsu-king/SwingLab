@@ -19,7 +19,7 @@ public struct EquipmentCatalog: Codable, Sendable {
         return clubs.filter { club in
             (brandID == nil || club.brandID == brandID) && (category == nil || club.category == category) &&
             (year == nil || club.releaseYear == year) && (query.isEmpty ||
-                ([club.brandID, club.model] + club.variants).joined(separator: " ")
+                ([club.brandID, brands.first { $0.id == club.brandID }?.name ?? "", club.model] + club.variants).joined(separator: " ")
                     .folding(options: [.caseInsensitive, .diacriticInsensitive], locale: Locale(identifier: "en_US_POSIX"))
                     .contains(query))
         }.sorted { $0.releaseYear == $1.releaseYear ? $0.model < $1.model : $0.releaseYear > $1.releaseYear }

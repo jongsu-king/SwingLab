@@ -74,6 +74,11 @@ public struct CourseArea: Codable, Sendable, Identifiable, Equatable {
     public func probability(distribution: GaussianDispersion, origin: GeoCoordinate, bearingDegrees: Double,
                             sampleCount: Int = 2048) -> Double? {
         guard isValid, origin.isValid, bearingDegrees.isFinite else { return nil }
+        return probabilityValidated(distribution: distribution, origin: origin, bearingDegrees: bearingDegrees, sampleCount: sampleCount)
+    }
+    // Called only after complete geometry validation, allowing aim search to validate once per area.
+    func probabilityValidated(distribution: GaussianDispersion, origin: GeoCoordinate, bearingDegrees: Double,
+                              sampleCount: Int = 2048) -> Double? {
         let outer = vertices.map { Geo.unproject($0, origin: origin, bearingDegrees: bearingDegrees) }
         guard let mass = distribution.probability(in: outer, sampleCount: sampleCount) else { return nil }
         let excluded = holes.compactMap { ring in

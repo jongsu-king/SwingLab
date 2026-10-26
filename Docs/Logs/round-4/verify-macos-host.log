@@ -1,0 +1,265 @@
+647 UI keys; 3 permission descriptions; 0 keys with missing locales.
+PASS localization source reachability: 617 literal/typed-enum/helper keys, 12 locales, plural forms; no unresolved text/format calls
+............
+----------------------------------------------------------------------
+Ran 12 tests in 0.001s
+
+OK
+PASS equipment catalog: 23 brands, 1515 clubs (814 sourced; 701 explicitly unverified), 93 shafts, 17 adapter generations
+Generated project: 52 app sources, 7 integration sources, 3 UI test sources.
+PASS no string-literal provenance comparisons or initializers
+Building for debugging...
+[2 / 7] SwingLabCore
+[4 / 9] SwingLabCore
+[9 / 10] SwingLabCore
+Build complete! (1.27 sec)
+Building for debugging...
+[Provisioning 1 / 4]
+[2 / 12] SwingLabCore
+[4 / 13] SwingLabCore
+[7 / 12] SwingLabCoreTests-product
+[9 / 14] SwingLabCoreTests-product
+[13 / 15] SwingLabCoreTests-product
+[14 / 18] SwingLabCoreTests-product
+Build complete! (3.26 sec)
+Test Suite 'All tests' started at 2026-10-26 21:57:47.572.
+Test Suite 'SwingLabCoreTests.xctest' started at 2026-10-26 21:57:47.574.
+Test Suite 'BallFlightTests' started at 2026-10-26 21:57:47.575.
+Test Case '-[SwingLabCoreTests.BallFlightTests testIntegratorMatchesClosedFormProjectileInVacuum]' started.
+Test Case '-[SwingLabCoreTests.BallFlightTests testIntegratorMatchesClosedFormProjectileInVacuum]' passed (0.006 seconds).
+Test Case '-[SwingLabCoreTests.BallFlightTests testInvalidOrUnreachableInputsThrow]' started.
+Test Case '-[SwingLabCoreTests.BallFlightTests testInvalidOrUnreachableInputsThrow]' passed (0.010 seconds).
+Test Case '-[SwingLabCoreTests.BallFlightTests testLevelAndDownwardLaunchTouchFlatGroundImmediately]' started.
+Test Case '-[SwingLabCoreTests.BallFlightTests testLevelAndDownwardLaunchTouchFlatGroundImmediately]' passed (0.000 seconds).
+Test Case '-[SwingLabCoreTests.BallFlightTests testReferenceShotsAgainstTourAverages]' started.
+Test Case '-[SwingLabCoreTests.BallFlightTests testReferenceShotsAgainstTourAverages]' passed (0.007 seconds).
+Test Case '-[SwingLabCoreTests.BallFlightTests testSpinAxisAndStartDirectionCurveTheRightWay]' started.
+Test Case '-[SwingLabCoreTests.BallFlightTests testSpinAxisAndStartDirectionCurveTheRightWay]' passed (0.012 seconds).
+Test Case '-[SwingLabCoreTests.BallFlightTests testWindAirDensityAndLandingHeight]' started.
+Test Case '-[SwingLabCoreTests.BallFlightTests testWindAirDensityAndLandingHeight]' passed (0.024 seconds).
+Test Suite 'BallFlightTests' passed at 2026-10-26 21:57:47.635.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.059 (0.061) seconds
+Test Suite 'CoachingTests' started at 2026-10-26 21:57:47.635.
+Test Case '-[SwingLabCoreTests.CoachingTests testBaselineIsLimitedToTheMostRecentTwenty]' started.
+Test Case '-[SwingLabCoreTests.CoachingTests testBaselineIsLimitedToTheMostRecentTwenty]' passed (0.001 seconds).
+Test Case '-[SwingLabCoreTests.CoachingTests testEmptyFeedbackDoesNotImplyAValidComparison]' started.
+Test Case '-[SwingLabCoreTests.CoachingTests testEmptyFeedbackDoesNotImplyAValidComparison]' passed (0.000 seconds).
+Test Case '-[SwingLabCoreTests.CoachingTests testFewerThanFiveComparableSwingsGivesNoStatement]' started.
+Test Case '-[SwingLabCoreTests.CoachingTests testFewerThanFiveComparableSwingsGivesNoStatement]' passed (0.000 seconds).
+Test Case '-[SwingLabCoreTests.CoachingTests testOtherAnglesClubsFutureAndUnavailableValuesAreExcluded]' started.
+Test Case '-[SwingLabCoreTests.CoachingTests testOtherAnglesClubsFutureAndUnavailableValuesAreExcluded]' passed (0.000 seconds).
+Test Case '-[SwingLabCoreTests.CoachingTests testShiftFromOwnBaselineUsesTheRightTemplate]' started.
+Test Case '-[SwingLabCoreTests.CoachingTests testShiftFromOwnBaselineUsesTheRightTemplate]' passed (0.001 seconds).
+Test Case '-[SwingLabCoreTests.CoachingTests testSummaryStatistics]' started.
+Test Case '-[SwingLabCoreTests.CoachingTests testSummaryStatistics]' passed (0.001 seconds).
+Test Case '-[SwingLabCoreTests.CoachingTests testUnanalyzedRecordingsDoNotEvictTheAnalyzedBaseline]' started.
+Test Case '-[SwingLabCoreTests.CoachingTests testUnanalyzedRecordingsDoNotEvictTheAnalyzedBaseline]' passed (0.001 seconds).
+Test Case '-[SwingLabCoreTests.CoachingTests testUnknownCameraAnglesDoNotEstablishAComparableBaseline]' started.
+Test Case '-[SwingLabCoreTests.CoachingTests testUnknownCameraAnglesDoNotEstablishAComparableBaseline]' passed (0.000 seconds).
+Test Suite 'CoachingTests' passed at 2026-10-26 21:57:47.640.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.004 (0.005) seconds
+Test Suite 'CourseGeometryTests' started at 2026-10-26 21:57:47.640.
+Test Case '-[SwingLabCoreTests.CourseGeometryTests testAimMovesAwayFromExistingWaterAndMissingGeometryHasNoRiskClaim]' started.
+Test Case '-[SwingLabCoreTests.CourseGeometryTests testAimMovesAwayFromExistingWaterAndMissingGeometryHasNoRiskClaim]' passed (0.059 seconds).
+Test Case '-[SwingLabCoreTests.CourseGeometryTests testInvalidAndExcludedPolygonGeometry]' started.
+Test Case '-[SwingLabCoreTests.CourseGeometryTests testInvalidAndExcludedPolygonGeometry]' passed (0.083 seconds).
+Test Case '-[SwingLabCoreTests.CourseGeometryTests testOSMFixtureReadsEverySupportedTagAndRejectsOpenPolygon]' started.
+Test Case '-[SwingLabCoreTests.CourseGeometryTests testOSMFixtureReadsEverySupportedTagAndRejectsOpenPolygon]' passed (0.001 seconds).
+Test Case '-[SwingLabCoreTests.CourseGeometryTests testRectangleProbabilityAgainstAnalyticGaussian]' started.
+Test Case '-[SwingLabCoreTests.CourseGeometryTests testRectangleProbabilityAgainstAnalyticGaussian]' passed (0.040 seconds).
+Test Case '-[SwingLabCoreTests.CourseGeometryTests testSphericalProjectionRoundTripIncludingDateline]' started.
+Test Case '-[SwingLabCoreTests.CourseGeometryTests testSphericalProjectionRoundTripIncludingDateline]' passed (0.000 seconds).
+Test Suite 'CourseGeometryTests' passed at 2026-10-26 21:57:47.823.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.183 (0.183) seconds
+Test Suite 'DispersionTests' started at 2026-10-26 21:57:47.823.
+Test Case '-[SwingLabCoreTests.DispersionTests testHazardHalfPlaneAndMissingGeometry]' started.
+Test Case '-[SwingLabCoreTests.DispersionTests testHazardHalfPlaneAndMissingGeometry]' passed (0.005 seconds).
+Test Case '-[SwingLabCoreTests.DispersionTests testInvalidDistributionRejected]' started.
+Test Case '-[SwingLabCoreTests.DispersionTests testInvalidDistributionRejected]' passed (0.000 seconds).
+Test Case '-[SwingLabCoreTests.DispersionTests testProbabilityEllipseHasCorrectMassRadius]' started.
+Test Case '-[SwingLabCoreTests.DispersionTests testProbabilityEllipseHasCorrectMassRadius]' passed (0.294 seconds).
+Test Suite 'DispersionTests' passed at 2026-10-26 21:57:48.123.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.300 (0.300) seconds
+Test Suite 'EquipmentCatalogTests' started at 2026-10-26 21:57:48.123.
+Test Case '-[SwingLabCoreTests.EquipmentCatalogTests testCatalogSearchIgnoresCaseAndDiacriticsAndSortsNewestFirst]' started.
+Test Case '-[SwingLabCoreTests.EquipmentCatalogTests testCatalogSearchIgnoresCaseAndDiacriticsAndSortsNewestFirst]' passed (0.052 seconds).
+Test Case '-[SwingLabCoreTests.EquipmentCatalogTests testEffectiveLoftRequiresTheSelectedPublishedPosition]' started.
+Test Case '-[SwingLabCoreTests.EquipmentCatalogTests testEffectiveLoftRequiresTheSelectedPublishedPosition]' passed (0.007 seconds).
+Test Case '-[SwingLabCoreTests.EquipmentCatalogTests testEquipmentDimensionsAreSIAndLengthUsesQuarterInches]' started.
+Test Case '-[SwingLabCoreTests.EquipmentCatalogTests testEquipmentDimensionsAreSIAndLengthUsesQuarterInches]' passed (0.001 seconds).
+Test Case '-[SwingLabCoreTests.EquipmentCatalogTests testSourcedAdapterTablesHaveUniqueStablePositions]' started.
+Test Case '-[SwingLabCoreTests.EquipmentCatalogTests testSourcedAdapterTablesHaveUniqueStablePositions]' passed (0.009 seconds).
+Test Suite 'EquipmentCatalogTests' passed at 2026-10-26 21:57:48.193.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.069 (0.070) seconds
+Test Suite 'GeographyTests' started at 2026-10-26 21:57:48.193.
+Test Case '-[SwingLabCoreTests.GeographyTests testDateLineAndInvalidLocation]' started.
+Test Case '-[SwingLabCoreTests.GeographyTests testDateLineAndInvalidLocation]' passed (0.000 seconds).
+Test Case '-[SwingLabCoreTests.GeographyTests testIdentityAndKnownDistance]' started.
+Test Case '-[SwingLabCoreTests.GeographyTests testIdentityAndKnownDistance]' passed (0.000 seconds).
+Test Case '-[SwingLabCoreTests.GeographyTests testProjectionAndBearing]' started.
+Test Case '-[SwingLabCoreTests.GeographyTests testProjectionAndBearing]' passed (0.000 seconds).
+Test Suite 'GeographyTests' passed at 2026-10-26 21:57:48.195.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'ImpactOnsetTests' started at 2026-10-26 21:57:48.195.
+Test Case '-[SwingLabCoreTests.ImpactOnsetTests testAudioImpactReplacesPoseProxyOnlyWhenClearAndOrdered]' started.
+Test Case '-[SwingLabCoreTests.ImpactOnsetTests testAudioImpactReplacesPoseProxyOnlyWhenClearAndOrdered]' passed (0.001 seconds).
+Test Case '-[SwingLabCoreTests.ImpactOnsetTests testClickInNoiseIsTimedWithinOneMillisecond]' started.
+Test Case '-[SwingLabCoreTests.ImpactOnsetTests testClickInNoiseIsTimedWithinOneMillisecond]' passed (0.125 seconds).
+Test Case '-[SwingLabCoreTests.ImpactOnsetTests testClippedClickIsStillTimed]' started.
+Test Case '-[SwingLabCoreTests.ImpactOnsetTests testClippedClickIsStillTimed]' passed (0.130 seconds).
+Test Case '-[SwingLabCoreTests.ImpactOnsetTests testFaintClickStaysEstimatedAndInvalidInputIsRejected]' started.
+Test Case '-[SwingLabCoreTests.ImpactOnsetTests testFaintClickStaysEstimatedAndInvalidInputIsRejected]' passed (0.159 seconds).
+Test Case '-[SwingLabCoreTests.ImpactOnsetTests testNoClickOrClickOutsideWindowFindsNothing]' started.
+Test Case '-[SwingLabCoreTests.ImpactOnsetTests testNoClickOrClickOutsideWindowFindsNothing]' passed (0.370 seconds).
+Test Case '-[SwingLabCoreTests.ImpactOnsetTests testSelectsNearestPoseCandidateRatherThanLoudestNeighbor]' started.
+Test Case '-[SwingLabCoreTests.ImpactOnsetTests testSelectsNearestPoseCandidateRatherThanLoudestNeighbor]' passed (0.128 seconds).
+Test Case '-[SwingLabCoreTests.ImpactOnsetTests testTransientFarFromPoseImpactIsRejected]' started.
+Test Case '-[SwingLabCoreTests.ImpactOnsetTests testTransientFarFromPoseImpactIsRejected]' passed (0.463 seconds).
+Test Case '-[SwingLabCoreTests.ImpactOnsetTests testTwoComparableClicksAreAmbiguous]' started.
+Test Case '-[SwingLabCoreTests.ImpactOnsetTests testTwoComparableClicksAreAmbiguous]' passed (0.200 seconds).
+Test Case '-[SwingLabCoreTests.ImpactOnsetTests testWeakSecondaryTransientDoesNotBlockTheImpact]' started.
+Test Case '-[SwingLabCoreTests.ImpactOnsetTests testWeakSecondaryTransientDoesNotBlockTheImpact]' passed (0.352 seconds).
+Test Suite 'ImpactOnsetTests' passed at 2026-10-26 21:57:50.124.
+	 Executed 9 tests, with 0 failures (0 unexpected) in 1.928 (1.929) seconds
+Test Suite 'PhaseDetectionTests' started at 2026-10-26 21:57:50.124.
+Test Case '-[SwingLabCoreTests.PhaseDetectionTests testDetectorRecoversKnownEventsAcrossFrameRates]' started.
+Test Case '-[SwingLabCoreTests.PhaseDetectionTests testDetectorRecoversKnownEventsAcrossFrameRates]' passed (1.741 seconds).
+Test Case '-[SwingLabCoreTests.PhaseDetectionTests testLeftHandedMirrorProducesSameTiming]' started.
+Test Case '-[SwingLabCoreTests.PhaseDetectionTests testLeftHandedMirrorProducesSameTiming]' passed (0.933 seconds).
+Test Case '-[SwingLabCoreTests.PhaseDetectionTests testLongWristGapCannotBecomeAnImpact]' started.
+Test Case '-[SwingLabCoreTests.PhaseDetectionTests testLongWristGapCannotBecomeAnImpact]' passed (1.298 seconds).
+Test Case '-[SwingLabCoreTests.PhaseDetectionTests testMergeKeepsUserMarkersAndDropsConflictingEstimates]' started.
+Test Case '-[SwingLabCoreTests.PhaseDetectionTests testMergeKeepsUserMarkersAndDropsConflictingEstimates]' passed (0.152 seconds).
+Test Case '-[SwingLabCoreTests.PhaseDetectionTests testMixedCoarseAndDensePassRetainsAddressAndFinish]' started.
+Test Case '-[SwingLabCoreTests.PhaseDetectionTests testMixedCoarseAndDensePassRetainsAddressAndFinish]' passed (0.510 seconds).
+Test Case '-[SwingLabCoreTests.PhaseDetectionTests testNoisyLandmarksStayWithinNoiseLimitedTolerance]' started.
+Test Case '-[SwingLabCoreTests.PhaseDetectionTests testNoisyLandmarksStayWithinNoiseLimitedTolerance]' passed (1.094 seconds).
+Test Case '-[SwingLabCoreTests.PhaseDetectionTests testNoSwingOrMissingBodyReturnsNoGuesses]' started.
+Test Case '-[SwingLabCoreTests.PhaseDetectionTests testNoSwingOrMissingBodyReturnsNoGuesses]' passed (0.153 seconds).
+Test Case '-[SwingLabCoreTests.PhaseDetectionTests testZeroPhaseSmoothingPreservesPeakTiming]' started.
+Test Case '-[SwingLabCoreTests.PhaseDetectionTests testZeroPhaseSmoothingPreservesPeakTiming]' passed (0.045 seconds).
+Test Suite 'PhaseDetectionTests' passed at 2026-10-26 21:57:56.052.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 5.927 (5.928) seconds
+Test Suite 'PracticeGroupingTests' started at 2026-10-26 21:57:56.052.
+Test Case '-[SwingLabCoreTests.PracticeGroupingTests testAssignChoosesMostRecentCompatiblePastSession]' started.
+Test Case '-[SwingLabCoreTests.PracticeGroupingTests testAssignChoosesMostRecentCompatiblePastSession]' passed (0.000 seconds).
+Test Case '-[SwingLabCoreTests.PracticeGroupingTests testEqualTimesAndDuplicateInputsAreDeterministic]' started.
+Test Case '-[SwingLabCoreTests.PracticeGroupingTests testEqualTimesAndDuplicateInputsAreDeterministic]' passed (0.000 seconds).
+Test Case '-[SwingLabCoreTests.PracticeGroupingTests testRollingNinetyMinuteWindowAndBoundary]' started.
+Test Case '-[SwingLabCoreTests.PracticeGroupingTests testRollingNinetyMinuteWindowAndBoundary]' passed (0.000 seconds).
+Test Case '-[SwingLabCoreTests.PracticeGroupingTests testUnknownClubAngleAndHandednessStaySeparate]' started.
+Test Case '-[SwingLabCoreTests.PracticeGroupingTests testUnknownClubAngleAndHandednessStaySeparate]' passed (0.000 seconds).
+Test Suite 'PracticeGroupingTests' passed at 2026-10-26 21:57:56.053.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'ProvenanceTests' started at 2026-10-26 21:57:56.053.
+Test Case '-[SwingLabCoreTests.ProvenanceTests testDecodingCannotBypassMeasurementValidation]' started.
+Test Case '-[SwingLabCoreTests.ProvenanceTests testDecodingCannotBypassMeasurementValidation]' passed (0.000 seconds).
+Test Case '-[SwingLabCoreTests.ProvenanceTests testInvalidOrMissingPoseMetricsRemainUnavailable]' started.
+Test Case '-[SwingLabCoreTests.ProvenanceTests testInvalidOrMissingPoseMetricsRemainUnavailable]' passed (0.000 seconds).
+Test Case '-[SwingLabCoreTests.ProvenanceTests testMeasurementInvariants]' started.
+Test Case '-[SwingLabCoreTests.ProvenanceTests testMeasurementInvariants]' passed (0.001 seconds).
+Test Case '-[SwingLabCoreTests.ProvenanceTests testSchemaOneAnalysisJSONStillDecodes]' started.
+Test Case '-[SwingLabCoreTests.ProvenanceTests testSchemaOneAnalysisJSONStillDecodes]' passed (0.002 seconds).
+Test Case '-[SwingLabCoreTests.ProvenanceTests testStableProvenanceAndLegacyLabels]' started.
+Test Case '-[SwingLabCoreTests.ProvenanceTests testStableProvenanceAndLegacyLabels]' passed (0.000 seconds).
+Test Case '-[SwingLabCoreTests.ProvenanceTests testTypedMetricSIUnitsAndProvenance]' started.
+Test Case '-[SwingLabCoreTests.ProvenanceTests testTypedMetricSIUnitsAndProvenance]' passed (0.001 seconds).
+Test Case '-[SwingLabCoreTests.ProvenanceTests testTypedRecordingMetadataMigration]' started.
+Test Case '-[SwingLabCoreTests.ProvenanceTests testTypedRecordingMetadataMigration]' passed (0.000 seconds).
+Test Suite 'ProvenanceTests' passed at 2026-10-26 21:57:56.058.
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.004 (0.005) seconds
+Test Suite 'ReferenceLaunchDataTests' started at 2026-10-26 21:57:56.058.
+Test Case '-[SwingLabCoreTests.ReferenceLaunchDataTests testEveryPublishedValueHasAnAuditableSourceAndCompatibleUnit]' started.
+Test Case '-[SwingLabCoreTests.ReferenceLaunchDataTests testEveryPublishedValueHasAnAuditableSourceAndCompatibleUnit]' passed (0.004 seconds).
+Test Case '-[SwingLabCoreTests.ReferenceLaunchDataTests testExactEndpointsDoNotClaimInterpolation]' started.
+Test Case '-[SwingLabCoreTests.ReferenceLaunchDataTests testExactEndpointsDoNotClaimInterpolation]' passed (0.000 seconds).
+Test Case '-[SwingLabCoreTests.ReferenceLaunchDataTests testLinearInterpolationRetainsBothCitationsAndDoesNotManufactureMissingValues]' started.
+Test Case '-[SwingLabCoreTests.ReferenceLaunchDataTests testLinearInterpolationRetainsBothCitationsAndDoesNotManufactureMissingValues]' passed (0.000 seconds).
+Test Case '-[SwingLabCoreTests.ReferenceLaunchDataTests testNoExtrapolationCrossPopulationOrInvalidSpeed]' started.
+Test Case '-[SwingLabCoreTests.ReferenceLaunchDataTests testNoExtrapolationCrossPopulationOrInvalidSpeed]' passed (0.000 seconds).
+Test Case '-[SwingLabCoreTests.ReferenceLaunchDataTests testPersonalMatchingRequiresActualBallSpeedEvidence]' started.
+Test Case '-[SwingLabCoreTests.ReferenceLaunchDataTests testPersonalMatchingRequiresActualBallSpeedEvidence]' passed (0.003 seconds).
+Test Case '-[SwingLabCoreTests.ReferenceLaunchDataTests testSpinAssumptionsAreOnlyEnvelopeOfPublishedMeans]' started.
+Test Case '-[SwingLabCoreTests.ReferenceLaunchDataTests testSpinAssumptionsAreOnlyEnvelopeOfPublishedMeans]' passed (0.000 seconds).
+Test Case '-[SwingLabCoreTests.ReferenceLaunchDataTests testTranscriptionAnchorsAndOriginalRoundingRemainSeparateFromConversions]' started.
+Test Case '-[SwingLabCoreTests.ReferenceLaunchDataTests testTranscriptionAnchorsAndOriginalRoundingRemainSeparateFromConversions]' passed (0.000 seconds).
+Test Suite 'ReferenceLaunchDataTests' passed at 2026-10-26 21:57:56.066.
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.007 (0.008) seconds
+Test Suite 'SeededClubTrackTests' started at 2026-10-26 21:57:56.066.
+Test Case '-[SwingLabCoreTests.SeededClubTrackTests testConfidenceLossStopsPermanentlyAndNeverExtrapolates]' started.
+Test Case '-[SwingLabCoreTests.SeededClubTrackTests testConfidenceLossStopsPermanentlyAndNeverExtrapolates]' passed (0.000 seconds).
+Test Case '-[SwingLabCoreTests.SeededClubTrackTests testLongGapAndInvalidCoordinatesStopButTopNeverAddsPoint]' started.
+Test Case '-[SwingLabCoreTests.SeededClubTrackTests testLongGapAndInvalidCoordinatesStopButTopNeverAddsPoint]' passed (0.000 seconds).
+Test Suite 'SeededClubTrackTests' passed at 2026-10-26 21:57:56.067.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.000 (0.000) seconds
+Test Suite 'SummaryMigrationTests' started at 2026-10-26 21:57:56.067.
+Test Case '-[SwingLabCoreTests.SummaryMigrationTests testCurrentSummaryPreservesVersionAndFrameRate]' started.
+Test Case '-[SwingLabCoreTests.SummaryMigrationTests testCurrentSummaryPreservesVersionAndFrameRate]' passed (0.000 seconds).
+Test Case '-[SwingLabCoreTests.SummaryMigrationTests testMissingAnalysisRemainsUnavailable]' started.
+Test Case '-[SwingLabCoreTests.SummaryMigrationTests testMissingAnalysisRemainsUnavailable]' passed (0.000 seconds).
+Test Case '-[SwingLabCoreTests.SummaryMigrationTests testSchemaOneSummaryMigrationPreservesProvenanceAndSI]' started.
+Test Case '-[SwingLabCoreTests.SummaryMigrationTests testSchemaOneSummaryMigrationPreservesProvenanceAndSI]' passed (0.000 seconds).
+Test Suite 'SummaryMigrationTests' passed at 2026-10-26 21:57:56.068.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'TimingAndGeometryTests' started at 2026-10-26 21:57:56.068.
+Test Case '-[SwingLabCoreTests.TimingAndGeometryTests testExplainableClubRankingChangesWithRiskPreference]' started.
+Test Case '-[SwingLabCoreTests.TimingAndGeometryTests testExplainableClubRankingChangesWithRiskPreference]' passed (0.000 seconds).
+Test Case '-[SwingLabCoreTests.TimingAndGeometryTests testInterruptedMediaDeletionRecovery]' started.
+Test Case '-[SwingLabCoreTests.TimingAndGeometryTests testInterruptedMediaDeletionRecovery]' passed (0.004 seconds).
+Test Case '-[SwingLabCoreTests.TimingAndGeometryTests testInvalidTimingRejected]' started.
+Test Case '-[SwingLabCoreTests.TimingAndGeometryTests testInvalidTimingRejected]' passed (0.000 seconds).
+Test Case '-[SwingLabCoreTests.TimingAndGeometryTests testProjectedAngleMissingJointHandling]' started.
+Test Case '-[SwingLabCoreTests.TimingAndGeometryTests testProjectedAngleMissingJointHandling]' passed (0.000 seconds).
+Test Case '-[SwingLabCoreTests.TimingAndGeometryTests testTempoUsesActualSeconds]' started.
+Test Case '-[SwingLabCoreTests.TimingAndGeometryTests testTempoUsesActualSeconds]' passed (0.000 seconds).
+Test Suite 'TimingAndGeometryTests' passed at 2026-10-26 21:57:56.073.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.005 (0.005) seconds
+Test Suite 'UnitsTests' started at 2026-10-26 21:57:56.073.
+Test Case '-[SwingLabCoreTests.UnitsTests testIndependentUnitsRoundTrip]' started.
+Test Case '-[SwingLabCoreTests.UnitsTests testIndependentUnitsRoundTrip]' passed (0.000 seconds).
+Test Case '-[SwingLabCoreTests.UnitsTests testLanguageFallbackAndRegionalMatching]' started.
+Test Case '-[SwingLabCoreTests.UnitsTests testLanguageFallbackAndRegionalMatching]' passed (0.001 seconds).
+Test Suite 'UnitsTests' passed at 2026-10-26 21:57:56.074.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'SwingLabCoreTests.xctest' passed at 2026-10-26 21:57:56.074.
+	 Executed 76 tests, with 0 failures (0 unexpected) in 8.489 (8.499) seconds
+Test Suite 'All tests' passed at 2026-10-26 21:57:56.074.
+	 Executed 76 tests, with 0 failures (0 unexpected) in 8.489 (8.502) seconds
+◇ Test run started.
+↳ Testing Library Version: 2084
+↳ Target Platform: arm64e-apple-macos14.0
+✔ Test run with 0 tests in 0 suites passed after 0.003 seconds.
+PASS testRoundOneStoreMigratesToFrozenV2WithoutLosingRecordsOrRelationships
+PASS testRoundOneStoreMigratesWithoutLosingRecordsOrRelationships
+PASS testV2StorePreservesCachesAndAddsSessionsWithoutLosingRelationships
+PASS testAssignGroupsByRollingWindowAndCapturesPreference
+PASS testRegroupPersistsAndRollbackRestoresMembership
+PASS testDeletingRecordingsUpdatesSessionDateAndPreservesNotes
+PASS 6 migration/session tests on macOS SwiftData (not iOS simulator XCTest)
+PASS tempo uses actual timestamps
+PASS manual marker provenance
+PASS estimated impact propagates to tempo
+PASS analysis JSON round trip
+PASS out-of-order timing rejected
+PASS non-finite timing rejected
+PASS missing measurements remain unavailable
+PASS head proxy uses normalized displacement
+PASS insufficient head observations rejected
+PASS shared macOS AVFoundation/Vision/Transferable service typecheck (not an iOS build)
+PASS landscape video decoding and honest no-pose result
+PASS portrait video decoding and honest no-pose result
+PASS mirrored video decoding and honest no-pose result
+PASS invalid video rejected
+PASS LPCM click read on the movie timeline (error -0.46 ms)
+PASS AAC click read on the movie timeline (error -0.46 ms)
+PASS movie without audio reports no audio
+PASS GPS stale/future time gates
+PASS GPS accuracy/invalid-coordinate gates
+PASS unknown scores preserved and strokes not double counted
+PASS impossible and malformed scores rejected
+PASS manual reference JSON round trip
+PASS shared macOS CoreLocation/MapKit services typecheck (not an iOS build)
+SwingLab.xcodeproj/project.pbxproj: OK
+SwingLab/Resources/Info.plist: OK
+SwingLab/Resources/PrivacyInfo.xcprivacy: OK
+Catalogs and project syntax validated. Parsing does not validate iOS compilation.

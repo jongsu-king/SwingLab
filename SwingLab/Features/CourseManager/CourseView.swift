@@ -400,10 +400,10 @@ struct CourseView: View {
     }
 }
 
-private extension GeoCoordinate {
+extension GeoCoordinate {
     var mapCoordinate: CLLocationCoordinate2D { CLLocationCoordinate2D(latitude: latitude, longitude: longitude) }
 }
 
-private extension CLLocationCoordinate2D {
+extension CLLocationCoordinate2D {
     var geoCoordinate: GeoCoordinate { GeoCoordinate(latitude: latitude, longitude: longitude) }
 }

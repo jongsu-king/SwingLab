@@ -1,0 +1,35 @@
+Command: swift test --filter ReferenceLaunchDataTests
+Host: macOS 27.0.1 (26A434), Apple silicon. Simulator device: none. iOS runtime: none (Core host XCTest).
+
+Building for debugging...
+[Planning deferred tasks]
+[5 / 25] SwingLabCore
+[8 / 28] SwingLabCore
+[14 / 28] SwingLabCore
+[17 / 28] SwingLabCoreTests-product
+[20 / 31] SwingLabCoreTests-product
+[26 / 30] SwingLabCoreTests-product
+Build complete! (1.59 sec)
+Test Suite 'Selected tests' started at 2026-10-26 21:49:43.812.
+Test Suite 'SwingLabCoreTests.xctest' started at 2026-10-26 21:49:43.813.
+Test Suite 'ReferenceLaunchDataTests' started at 2026-10-26 21:49:43.813.
+Test Case '-[SwingLabCoreTests.ReferenceLaunchDataTests testEveryPublishedValueHasAnAuditableSourceAndCompatibleUnit]' started.
+Test Case '-[SwingLabCoreTests.ReferenceLaunchDataTests testEveryPublishedValueHasAnAuditableSourceAndCompatibleUnit]' passed (0.002 seconds).
+Test Case '-[SwingLabCoreTests.ReferenceLaunchDataTests testExactEndpointsDoNotClaimInterpolation]' started.
+Test Case '-[SwingLabCoreTests.ReferenceLaunchDataTests testExactEndpointsDoNotClaimInterpolation]' passed (0.000 seconds).
+Test Case '-[SwingLabCoreTests.ReferenceLaunchDataTests testLinearInterpolationRetainsBothCitationsAndDoesNotManufactureMissingValues]' started.
+Test Case '-[SwingLabCoreTests.ReferenceLaunchDataTests testLinearInterpolationRetainsBothCitationsAndDoesNotManufactureMissingValues]' passed (0.000 seconds).
+Test Case '-[SwingLabCoreTests.ReferenceLaunchDataTests testNoExtrapolationCrossPopulationOrInvalidSpeed]' started.
+Test Case '-[SwingLabCoreTests.ReferenceLaunchDataTests testNoExtrapolationCrossPopulationOrInvalidSpeed]' passed (0.000 seconds).
+Test Case '-[SwingLabCoreTests.ReferenceLaunchDataTests testPersonalMatchingRequiresActualBallSpeedEvidence]' started.
+Test Case '-[SwingLabCoreTests.ReferenceLaunchDataTests testPersonalMatchingRequiresActualBallSpeedEvidence]' passed (0.001 seconds).
+Test Case '-[SwingLabCoreTests.ReferenceLaunchDataTests testSpinAssumptionsAreOnlyEnvelopeOfPublishedMeans]' started.
+Test Case '-[SwingLabCoreTests.ReferenceLaunchDataTests testSpinAssumptionsAreOnlyEnvelopeOfPublishedMeans]' passed (0.000 seconds).
+Test Case '-[SwingLabCoreTests.ReferenceLaunchDataTests testTranscriptionAnchorsAndOriginalRoundingRemainSeparateFromConversions]' started.
+Test Case '-[SwingLabCoreTests.ReferenceLaunchDataTests testTranscriptionAnchorsAndOriginalRoundingRemainSeparateFromConversions]' passed (0.000 seconds).
+Test Suite 'ReferenceLaunchDataTests' passed at 2026-10-26 21:49:43.817.
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.004 (0.005) seconds
+Test Suite 'SwingLabCoreTests.xctest' passed at 2026-10-26 21:49:43.817.
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.004 (0.005) seconds
+Test Suite 'Selected tests' passed at 2026-10-26 21:49:43.817.
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.004 (0.005) seconds

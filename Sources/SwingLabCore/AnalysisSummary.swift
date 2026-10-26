@@ -10,6 +10,13 @@ public struct AnalysisSummary: Codable, Sendable, Equatable {
     public let analysisVersion: Int
     public let poseFrameRate: Double?
 
+    public init(tempo: ProvenancedValue, backswing: ProvenancedValue, downswing: ProvenancedValue,
+                headDisplacement: ProvenancedValue, analysisVersion: Int, poseFrameRate: Double?) {
+        self.tempo = tempo; self.backswing = backswing; self.downswing = downswing
+        self.headDisplacement = headDisplacement; self.analysisVersion = analysisVersion
+        self.poseFrameRate = poseFrameRate
+    }
+
     public init(report: PoseAnalysisReport?) {
         tempo = report?.tempoMetric ?? .init(value: nil, unit: "1", provenance: .unavailable, method: "phase.tempoRatio.v1")
         backswing = report?.backswingMetric ?? .init(value: nil, unit: "s", provenance: .unavailable, method: "phase.backswingDuration.v1")

@@ -6,6 +6,9 @@ export CLANG_MODULE_CACHE_PATH="$PWD/.build/ModuleCache"
 export SWIFTPM_MODULECACHE_OVERRIDE="$CLANG_MODULE_CACHE_PATH"
 mkdir -p "$CLANG_MODULE_CACHE_PATH" .build/SwiftPMCache
 python3 Scripts/build_localizations.py
+python3 Scripts/check_localizations.py
+python3 Scripts/test_localizations.py
+python3 Scripts/validate_catalog.py
 python3 Scripts/generate_project.py
 # Legacy labels are accepted only by enum decoders, never compared by domain/UI logic.
 if rg -n '(provenance|Provenance)\s*(==|!=)\s*"|provenance:\s*"' Sources SwingLab --glob '*.swift'; then

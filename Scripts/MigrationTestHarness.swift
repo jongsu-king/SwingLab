@@ -31,3 +31,8 @@ func XCTUnwrap<T>(_ value: T?, file: StaticString = #filePath, line: UInt = #lin
     }
     return value
 }
+
+func XCTAssertThrowsError<T>(_ expression: @autoclosure () throws -> T, file: StaticString = #filePath, line: UInt = #line) {
+    do { _ = try expression(); preconditionFailure("Expected error at \(file):\(line)") }
+    catch { }
+}

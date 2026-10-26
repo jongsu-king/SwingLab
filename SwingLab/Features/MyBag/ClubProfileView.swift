@@ -27,6 +27,17 @@ struct ClubProfileView: View {
         ReferenceLaunchData.rows.filter { $0.club == referenceClub && $0.population == population }
     }
 
+    private var clubOptions: [ReferenceClub] {
+        switch ClubCategory(rawValue: club.category) {
+        case .driver: [.driver]
+        case .fairwayWood: [.wood3, .wood5, .wood7]
+        case .hybrid: [.hybrid]
+        case .iron: [.iron3, .iron4, .iron5, .iron6, .iron7, .iron8, .iron9]
+        case .wedge: [.pitchingWedge]
+        case .utilityIron, .putter, nil: []
+        }
+    }
+
     private var match: ReferenceSpeedMatch? {
         guard let referenceClub, let measuredBallSpeed else { return nil }
         return ReferenceLaunchData.match(club: referenceClub, population: population, ballSpeed: measuredBallSpeed)
@@ -46,7 +57,7 @@ struct ClubProfileView: View {
             Section(preferences.text(ReferenceLaunchData.label)) {
                 Picker(preferences.text("Reference club"), selection: $referenceClub) {
                     Text(preferences.text("Choose a club")).tag(Optional<ReferenceClub>.none)
-                    ForEach(ReferenceClub.allCases) { item in
+                    ForEach(clubOptions) { item in
                         Text(preferences.text(item.localizationKey)).tag(Optional(item))
                     }
                 }

@@ -232,10 +232,10 @@ private struct ShotEditor: View {
             Section(preferences.text("Shot details")) {
                 TextField(preferences.text("Club"), text: $clubName)
                 Picker(preferences.text("Lie"), selection: $lie) {
-                    ForEach(["Unknown", "Tee", "Fairway", "Rough", "Bunker", "Green", "Other"] as [LocalizationKey], id: \.self) { Text(preferences.text($0)).tag($0.rawValue) }
+                    ForEach(["Unknown", "Tee", "Fairway", "Rough", "Bunker", "Green", "Other"] as [LocalizationKey], id: \.self) { (key: LocalizationKey) in Text(preferences.text(key)).tag(key.rawValue) }
                 }
                 Picker(preferences.text("Shot shape"), selection: $shape) {
-                    ForEach(["Unknown", "Straight", "Draw", "Fade", "Hook", "Slice", "Other"] as [LocalizationKey], id: \.self) { Text(preferences.text($0)).tag($0.rawValue) }
+                    ForEach(["Unknown", "Straight", "Draw", "Fade", "Hook", "Slice", "Other"] as [LocalizationKey], id: \.self) { (key: LocalizationKey) in Text(preferences.text(key)).tag(key.rawValue) }
                 }
                 Stepper(value: $penalties, in: 0...10) {
                     SLMetricReadout(metric: ProvenancedValue(value: Double(penalties), unit: "1", provenance: .userEntered,

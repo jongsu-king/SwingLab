@@ -21,7 +21,7 @@ def tokens(source):
 def assignment_rhs(ts,start):
     result=[];i=start
     while i<len(ts):
-        if ts[i] in [';','}']:break
+        if ts[i] in [';','}'] or (result and ts[i]=='{'):break
         if result and ts[i].line>ts[i-1].line and ts[i] not in ['?',':','??','.'] and ts[i-1] not in ['?',':','??','=']:break
         if ts[i] in ['let','var','return']:break
         if ts[i] in ['(','[','{']:
@@ -80,31 +80,64 @@ def scan(sources):
         typed=set(); names[path]=typed
         if path.endswith('LocalizationKey.swift') is False and any(ts[i:i+2]==['stringLiteral',':'] for i in range(len(ts)-1)):
             errors.append(f'{path}: direct stringLiteral constructor is forbidden; use source literals or a typed enum')
+        # Synthesized memberwise initializers are part of the typed boundary too.
+        for i,t in enumerate(ts[:-2]):
+            if t=='struct':
+                j=i+2
+                while j<len(ts) and ts[j]!='{':j+=1
+                if j==len(ts):continue
+                end=close(ts,j);body=ts[j+1:end]
+                for k in range(len(body)-3):
+                    if body[k] in ['let','var'] and body[k+2]==':' and body[k+3]=='LocalizationKey':
+                        label=body[k+1]
+                        helpers.setdefault(ts[i+1],[]).append((0,label))
+                        helpers.setdefault('init',[]).append((0,label))
         for i,t in enumerate(ts):
             # Every typed stored/computed key is a root, even when reached via an enum.
-            if t in ['var','let'] and i+3<len(ts) and ts[i+2]==':' and ts[i+3]=='LocalizationKey':
-                typed.add(ts[i+1]);producers.add(ts[i+1])
-                j=i+4
-                while j<len(ts) and ts[j] in ['?','!']: j+=1
-                if j<len(ts) and ts[j]=='=':
-                    try:keys.update(literals(assignment_rhs(ts,j+1)))
-                    except ValueError as e:errors.append(f'{path}: {e}')
-                if j<len(ts) and ts[j]=='{':
-                    try: keys.update(literals(ts[j:close(ts,j)+1]))
-                    except ValueError as e: errors.append(f'{path}: {e}')
+            if t in ['var','let'] and i+3<len(ts) and ts[i+2]==':':
+                j=i+3
+                while j<len(ts) and ts[j] not in ['=','{',';','}'] and ts[j].line==ts[i+3].line:j+=1
+                if 'LocalizationKey' in ts[i+3:j]:
+                    typed.add(ts[i+1]);producers.add(ts[i+1])
+                    if j<len(ts) and ts[j]=='=':
+                        try:keys.update(literals(assignment_rhs(ts,j+1)))
+                        except ValueError as e:errors.append(f'{path}: {e}')
+                    if j<len(ts) and ts[j]=='{':
+                        try: keys.update(literals(ts[j:close(ts,j)+1]))
+                        except ValueError as e: errors.append(f'{path}: {e}')
+            # Explicit closure parameter annotations also form a typed binding.
+            if i+2<len(ts) and ts[i+1]==':' and ts[i+2]=='LocalizationKey':typed.add(t)
+            # Method references bypass the argument graph; require an explicit typed wrapper.
+            if t in ['text','format'] and i>0 and ts[i-1]=='.' and ts[i+1:i+2]!=['(']:
+                errors.append(f'{path}: indirect localization method reference is forbidden')
+            # SwiftUI localized literal initializers must use the same boundary. Only the
+            # product name and numeric-only picker labels are deliberate verbatim text.
+            if t in ['Text','Button','Label','Picker','Section','Toggle','TextField','LabeledContent','NavigationLink','navigationTitle','accessibilityLabel','navigationSubtitle','alert','confirmationDialog'] and ts[i+1:i+2]==['('] and i+2<len(ts) and ts[i+2].startswith(chr(34)):
+                literal=ts[i+2]
+                if '\\(' in literal:errors.append(f'{path}: use a localized positional format for SwiftUI interpolation')
+                else:
+                    value=json.loads(literal)
+                    if value!='SwingLab' and not value.isdigit():keys.add(value)
             # Function labels and positional arguments are extracted from the declaration,
             # not a hard-coded list of helper names.
-            if t in ['func','case'] and i+2<len(ts) and ts[i+2]=='(':
-                end=close(ts,i+2); params=split(ts[i+3:end]); keyparams=[]
+            if (t in ['func','case'] and i+2<len(ts) and ts[i+2]=='(') or (t=='init' and ts[i+1:i+2]==['(']):
+                opening=i+1 if t=='init' else i+2
+                helper_name='init' if t=='init' else ts[i+1]
+                end=close(ts,opening); params=split(ts[opening+1:end]); keyparams=[]
                 for index,param in enumerate(params):
                     if 'LocalizationKey' in param:
+                        if '=' in param:
+                            try:keys.update(literals(param[param.index('=')+1:]))
+                            except ValueError as e:errors.append(f'{path}: {e}')
                         colon=param.index(':') if ':' in param else -1
                         label=param[0] if colon>0 and param[0]!='_' else None
                         if colon>0: typed.add(param[colon-1])
                         keyparams.append((index,label))
-                if keyparams: helpers.setdefault(ts[i+1],[]).extend(keyparams)
+                if keyparams: helpers.setdefault(helper_name,[]).extend(keyparams)
                 j=end+1
-                if ts[j:j+2]==['->','LocalizationKey']:
+                return_end=j
+                while return_end<len(ts) and ts[return_end] not in ['{',';','}']:return_end+=1
+                if ts[j:j+1]==['->'] and 'LocalizationKey' in ts[j:return_end]:
                     producers.add(ts[i+1])
                     while j<len(ts) and ts[j]!='{':j+=1
                     if j<len(ts):
@@ -137,11 +170,10 @@ def scan(sources):
                 # must resolve here; Swift validates all other typed helper arguments.
                 try:keys.update(literals(arg))
                 except ValueError as e: errors.append(f'{path}: {e}')
-                if t in ['text','format'] and i>=2 and ts[i-1]=='.' and ts[i-2] in ['prefs','preferences']:
+                if t in ['text','format'] and i>=2 and ts[i-1]=='.' and True:
                     resolved=key_expression(arg,typed,producers)
                     # $0 in a typed LocalizationKey array or typed enum closure is
                     # compiler checked; explicitly annotated arrays are roots below.
-                    if arg==['$0'] and 'LocalizationKey' in ts:resolved=True
                     if not resolved:errors.append(f'{path}: unresolved dynamic {t}({" ".join(arg)})')
         # Explicit typed array literal (e.g. picker options) is also a source root.
         for i,t in enumerate(ts):
@@ -156,10 +188,12 @@ def validate(keys, catalog):
     errors=[]
     for key in sorted(keys):
         entry=catalog.get('strings',{}).get(key,{})
+        plural_required=any('plural' in loc.get('variations',{}) for loc in entry.get('localizations',{}).values())
         for locale in LOCALES:
             loc=entry.get('localizations',{}).get(locale)
             if not loc: errors.append(f'{key}: missing {locale}');continue
             plural=loc.get('variations',{}).get('plural')
+            if plural_required and plural is None:errors.append(f'{key}/{locale}: missing plural structure')
             forms=plural or {'value':loc}
             required={'other'} if locale in ['ko','ja','zh-Hans','zh-Hant','th','vi'] else {'one','other'}
             if plural and not required.issubset(forms):errors.append(f'{key}/{locale}: missing plural forms {required-set(forms)}')
@@ -173,7 +207,8 @@ def main():
     # The one storage implementation receives the typed parameter, not an unchecked API.
     keys,errors=scan(sources)
     catalog=json.loads((ROOT/'SwingLab/Resources/Localizable.xcstrings').read_text())
-    errors+=validate(keys,catalog)
+    plural_keys={key for key,entry in catalog['strings'].items() if any('plural' in loc.get('variations',{}) for loc in entry.get('localizations',{}).values())}
+    errors+=validate(keys|plural_keys,catalog)
     if errors:
         print('\n'.join(errors));return 1
     print(f'PASS localization source reachability: {len(keys)} literal/typed-enum/helper keys, {len(LOCALES)} locales, plural forms; no unresolved text/format calls')

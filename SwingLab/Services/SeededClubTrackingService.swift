@@ -6,8 +6,13 @@ import SwingLabCore
 @preconcurrency import AVFoundation
 import Vision
 
+struct ClubSeedImage: Sendable {
+    let data: Data
+    let time: Double
+}
+
 actor SeededClubTrackingService {
-    func addressImage(url: URL, time: Double) async throws -> Data {
+    func addressImage(url: URL, time: Double) async throws -> ClubSeedImage {
         let generator = AVAssetImageGenerator(asset: AVURLAsset(url: url))
         generator.appliesPreferredTrackTransform = true
         generator.requestedTimeToleranceBefore = .zero; generator.requestedTimeToleranceAfter = .zero
@@ -17,7 +22,7 @@ actor SeededClubTrackingService {
         guard let destination = CGImageDestinationCreateWithData(data, UTType.png.identifier as CFString, 1, nil) else { throw ModelError.invalidInput }
         CGImageDestinationAddImage(destination, result.image, nil)
         guard CGImageDestinationFinalize(destination) else { throw ModelError.invalidInput }
-        return data as Data
+        return .init(data: data as Data, time: result.actualTime.seconds)
     }
 
     func track(url: URL, seedX: Double, seedY: Double, address: Double, top: Double) async throws -> SeededClubTrack {
@@ -52,6 +57,7 @@ actor SeededClubTrackingService {
             request.inputObservation = observation
         }
         if reader.status == .failed { throw reader.error ?? ModelError.invalidInput }
+        if result.points.isEmpty { result.markLost(at: address) }
         return result
     }
     private func imageOrientation(_ transform: CGAffineTransform) throws -> CGImagePropertyOrientation {

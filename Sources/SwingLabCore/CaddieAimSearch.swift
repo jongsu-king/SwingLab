@@ -59,6 +59,7 @@ public enum CaddieAimSearch {
               abs(forwardAdjustment) <= 200, abs(rightAdjustment) <= 200 else { return nil }
         let distance = Geo.distance(from: origin, to: target), targetBearing = Geo.bearing(from: origin, to: target)
         guard distance > 1, distance < 1000 else { return nil }
+        let hazards = areas.filter { $0.kind.isHazard && $0.isValid }
         var candidates: [(candidate: AimCandidate, variance: Double)] = []
         for profile in profiles {
             guard let mean = shot == .tee ? profile.total : profile.carry, mean.isFinite,
@@ -66,12 +67,13 @@ public enum CaddieAimSearch {
                     meanLateral: profile.lateralMean + rightAdjustment, carrySD: profile.forwardSD,
                     lateralSD: profile.lateralSD, correlation: profile.correlation) else { continue }
             for offset in stride(from: -30.0, through: 30.0, by: 2.0) {
+                if Task.isCancelled { return nil }
                 let aim = Geo.project(origin: origin, bearingDegrees: targetBearing, forward: distance, right: offset)
                 let bearing = Geo.bearing(from: origin, to: aim)
                 let landing = Geo.project(origin: origin, bearingDegrees: bearing, forward: distribution.mean.forward, right: distribution.mean.right)
                 let remaining = Geo.distance(from: landing, to: target)
-                let risks = areas.filter { $0.kind.isHazard }.compactMap { area -> HazardRisk? in
-                    guard let p = area.probability(distribution: distribution, origin: origin, bearingDegrees: bearing) else { return nil }
+                let risks = hazards.compactMap { area -> HazardRisk? in
+                    guard let p = area.probabilityValidated(distribution: distribution, origin: origin, bearingDegrees: bearing) else { return nil }
                     return .init(areaID: area.id, kind: area.kind, probability: p)
                 }
                 let region = distribution.ellipse(probability: 0.8, segments: 48).map {

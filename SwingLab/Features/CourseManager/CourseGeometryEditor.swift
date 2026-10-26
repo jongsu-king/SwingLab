@@ -59,8 +59,7 @@ struct CourseGeometryEditor: View {
                             }
                         }.swipeActions {
                             Button(prefs.text("Delete"), role: .destructive) {
-                                hole.areas.removeAll { $0.id == area.id }; save()
-                                if editingID == area.id { vertices = []; editingID = nil }
+                                if save(hole.areas.filter { $0.id != area.id }), editingID == area.id { vertices = []; editingID = nil }
                             }
                         }
                     }
@@ -86,13 +85,12 @@ struct CourseGeometryEditor: View {
         let old = editingID.flatMap { id in hole.areas.first { $0.id == id } }
         let area = CourseArea(id: editingID ?? UUID().uuidString, kind: kind, vertices: vertices,
                               provenance: .userEntered, sourceURL: old?.sourceURL)
-        guard area.isValid else { return }
-        hole.areas.removeAll { $0.id == area.id }; hole.areas.append(area)
-        save(); vertices = []; editingID = nil
+        guard area.isValid else { error = "Use at least three distinct points without crossing edges."; return }
+        if save(hole.areas.filter { $0.id != area.id } + [area]) { vertices = []; editingID = nil }
     }
-    private func save() {
-        do { try context.save(); error = nil }
-        catch { context.rollbackPendingChanges(); self.error = "Changes could not be saved." }
+    @discardableResult private func save(_ areas: [CourseArea]) -> Bool {
+        do { try CourseGeometryStore.replaceAreas(areas, on: hole, context: context); error = nil; return true }
+        catch { self.error = "Changes could not be saved."; return false }
     }
     private func importAreas() {
         importing = true; error = nil
@@ -103,9 +101,9 @@ struct CourseGeometryEditor: View {
                 try Task.checkCancellation()
                 // Preserve user edits and existing offline copies on re-import.
                 let existing = Set(hole.areas.map(\.id))
-                hole.areas += parsed.areas.filter { !existing.contains($0.id) }
-                save()
-                if parsed.areas.isEmpty { error = "No complete mapped areas were found here." }
+                if save(hole.areas + parsed.areas.filter { !existing.contains($0.id) }), parsed.areas.isEmpty {
+                    error = "No complete mapped areas were found here."
+                }
             } catch is CancellationError { }
             catch { self.error = "Map import failed. Your saved areas are still available." }
         }

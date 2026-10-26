@@ -5,6 +5,34 @@ import SwingLabCore
 /// Thin SwiftData adapter. Each method stages mutations; its caller saves and rolls back
 /// on failure. No actor annotation: migration closures already own their ModelContext.
 enum PracticeSessionStore {
+    /// The edit and save are synchronous. On failure restore actual captured values,
+    /// including both sides of the relationship, after aborting the store transaction.
+    /// iOS 26.4 rollback does not refresh retained @Model instances.
+    static func saveChange<T>(context: ModelContext, save: (() throws -> Void)? = nil,
+                              _ change: () throws -> T) throws -> T {
+        let recordings = try context.fetch(FetchDescriptor<SwingRecording>())
+        let sessions = try context.fetch(FetchDescriptor<PracticeSession>())
+        let memberships = recordings.map { ($0, $0.practiceSession, $0.clubID, $0.handednessOverride) }
+        let snapshots = sessions.map { ($0, $0.date, $0.clubID, $0.cameraAngleValue, $0.handedness, $0.notes, $0.recordings) }
+        do {
+            let result = try change()
+            if let save { try save() } else { try context.save() }
+            return result
+        } catch {
+            context.rollback()
+            for (recording, session, club, hand) in memberships {
+                recording.practiceSession = session
+                recording.clubID = club
+                recording.handednessOverride = hand
+            }
+            for (session, date, club, angle, hand, notes, members) in snapshots {
+                session.date = date; session.clubID = club; session.cameraAngleValue = angle
+                session.handedness = hand; session.notes = notes; session.recordings = members
+            }
+            throw error
+        }
+    }
+
     static func groupUngroupedRecordings(context: ModelContext) throws {
         let ungrouped = try context.fetch(FetchDescriptor<SwingRecording>()).filter { $0.practiceSession == nil }
         let lookup = Dictionary(uniqueKeysWithValues: ungrouped.map { ($0.id, $0) })

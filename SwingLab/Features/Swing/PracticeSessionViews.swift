@@ -15,8 +15,8 @@ struct RecordingPracticeSection: View {
         VStack(alignment: .leading, spacing: 12) {
             SLSectionHeader(title: prefs.text("Practice session"))
             Picker(prefs.text("Club"), selection: Binding(get: { recording.clubID }, set: { id in
-                recording.clubID = id
-                save()
+                do { try PracticeSessionStore.saveChange(context: context) { recording.clubID = id } }
+                catch { saveFailed = true }
             })) {
                 Text(prefs.text("Unspecified")).tag(nil as UUID?)
                 ForEach(clubs) { club in Text(club.name).tag(Optional(club.id)) }
@@ -26,8 +26,10 @@ struct RecordingPracticeSection: View {
             }
             Picker(prefs.text("Practice session"), selection: Binding(get: { recording.practiceSession?.id }, set: { id in
                 guard let session = sessions.first(where: { $0.id == id }) else { return }
-                do { try PracticeSessionStore.regroup(recording: recording, to: session, context: context); try context.save() }
-                catch { context.rollbackPendingChanges(); saveFailed = true }
+                do { try PracticeSessionStore.saveChange(context: context) {
+                    try PracticeSessionStore.regroup(recording: recording, to: session, context: context)
+                } }
+                catch { saveFailed = true }
             })) {
                 if recording.practiceSession == nil { Text(prefs.text("Unspecified")).tag(nil as UUID?) }
                 ForEach(sessions) { session in
@@ -37,9 +39,10 @@ struct RecordingPracticeSection: View {
             }
             Button(prefs.text("Move to a new session")) {
                 do {
-                    _ = try PracticeSessionStore.newSession(for: recording, context: context, defaultHandedness: nil)
-                    try context.save()
-                } catch { context.rollbackPendingChanges(); saveFailed = true }
+                    _ = try PracticeSessionStore.saveChange(context: context) {
+                        try PracticeSessionStore.newSession(for: recording, context: context, defaultHandedness: nil)
+                    }
+                } catch { saveFailed = true }
             }
             if let session = recording.practiceSession {
                 NavigationLink(prefs.text("Session details")) { PracticeSessionDetailView(session: session) }
@@ -221,9 +224,12 @@ private struct PracticeSessionEditorView: View {
     }
 
     private func save() {
-        session.notes = notes; session.clubID = clubID
-        session.cameraAngleValue = cameraAngle; session.handedness = handedness
-        do { try context.save(); dismiss() }
-        catch { context.rollbackPendingChanges(); saveFailed = true }
+        do {
+            try PracticeSessionStore.saveChange(context: context) {
+                session.notes = notes; session.clubID = clubID
+                session.cameraAngleValue = cameraAngle; session.handedness = handedness
+            }
+            dismiss()
+        } catch { saveFailed = true }
     }
 }

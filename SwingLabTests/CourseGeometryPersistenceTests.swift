@@ -26,8 +26,12 @@ final class CourseGeometryPersistenceTests: XCTestCase {
         reopened.references = []
         try reader.save()
         XCTAssertEqual(reopened.areas, [polygon])
-        reopened.areas = []
-        reader.rollbackPendingChanges()
+        enum SimulatedSaveError: Error { case failure }
+        XCTAssertThrowsError(try CourseGeometryStore.replaceAreas([], on: reopened, context: reader,
+            save: { _ in throw SimulatedSaveError.failure }))
         XCTAssertEqual(reopened.areas, [polygon])
+        XCTAssertTrue(reopened.references.isEmpty)
+        let durable = ModelContext(container)
+        XCTAssertEqual(try durable.fetch(FetchDescriptor<CourseHole>()).first?.areas, [polygon])
     }
 }

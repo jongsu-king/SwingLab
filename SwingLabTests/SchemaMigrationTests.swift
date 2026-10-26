@@ -74,9 +74,11 @@ final class SchemaMigrationTests: XCTestCase {
         // An unsuccessful later save must restore both payload and summary columns together.
         var edited = try XCTUnwrap(recording.analysis)
         edited.markers = []
-        try recording.applyAnalysis(edited)
-        XCTAssertNil(recording.tempoRatio)
-        context.rollbackPendingChanges()
+        enum SimulatedSaveFailure: Error { case diskFull }
+        XCTAssertThrowsError(try AnalysisPersistence.save(edited, to: recording, context: context, save: {
+            XCTAssertNil(recording.tempoRatio)
+            throw SimulatedSaveFailure.diskFull
+        }))
         XCTAssertEqual(recording.analysisData, Self.legacyAnalysis)
         XCTAssertEqual(try XCTUnwrap(recording.tempoRatio), 3, accuracy: 1e-10)
 
@@ -156,9 +158,11 @@ final class SchemaMigrationTests: XCTestCase {
         // An unsuccessful later save must restore both payload and summary columns together.
         var edited = try XCTUnwrap(recording.analysis)
         edited.markers = []
-        try recording.applyAnalysis(edited)
-        XCTAssertNil(recording.tempoRatio)
-        context.rollbackPendingChanges()
+        enum SimulatedSaveFailure: Error { case diskFull }
+        XCTAssertThrowsError(try AnalysisPersistence.save(edited, to: recording, context: context, save: {
+            XCTAssertNil(recording.tempoRatio)
+            throw SimulatedSaveFailure.diskFull
+        }))
         XCTAssertEqual(recording.analysisData, Self.legacyAnalysis)
         XCTAssertEqual(try XCTUnwrap(recording.tempoRatio), 3, accuracy: 1e-10)
 

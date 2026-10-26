@@ -34,7 +34,7 @@ swiftc -swift-version 6 -module-name SwingLab -parse-as-library \
     -I "$migration_check_dir" -L "$migration_check_dir" -lSwingLabCore \
     -Xlinker -rpath -Xlinker "$migration_check_dir" \
     SwingLab/Core/Models/*.swift SwingLab/Core/Persistence/Schema*.swift \
-    SwingLab/Core/Persistence/PracticeSessionStore.swift SwingLab/Core/Persistence/PersistenceRollback.swift \
+    SwingLab/Core/Persistence/PracticeSessionStore.swift SwingLab/Core/Persistence/PersistenceRollback.swift SwingLab/Core/Persistence/AnalysisPersistence.swift \
     Scripts/MigrationTestHarness.swift "$migration_check_dir/SchemaMigrationTests.swift" \
     "$migration_check_dir/PracticeSessionTests.swift" \
     "$migration_check_dir/Runner.swift" -o "$migration_check_dir/MigrationChecks"

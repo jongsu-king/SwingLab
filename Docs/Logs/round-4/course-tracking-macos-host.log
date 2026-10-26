@@ -1,0 +1,37 @@
+Execution: macOS host 27.0.1 (26A434); simulator device: none; simulator runtime: none.
+Command: swift test --filter 'CourseGeometryTests|SeededClubTrackTests'
+
+Building for debugging...
+[1 / 1]
+[2 / 11] SwingLabCore
+[5 / 14] SwingLabCore
+[13 / 18] SwingLabCoreTests-product
+[15 / 20] SwingLabCoreTests-product
+[19 / 23] SwingLabCoreTests-product
+Build complete! (1.69 sec)
+Test Suite 'Selected tests' started at 2026-10-26 21:52:39.206.
+Test Suite 'SwingLabCoreTests.xctest' started at 2026-10-26 21:52:39.207.
+Test Suite 'CourseGeometryTests' started at 2026-10-26 21:52:39.207.
+Test Case '-[SwingLabCoreTests.CourseGeometryTests testAimMovesAwayFromExistingWaterAndMissingGeometryHasNoRiskClaim]' started.
+Test Case '-[SwingLabCoreTests.CourseGeometryTests testAimMovesAwayFromExistingWaterAndMissingGeometryHasNoRiskClaim]' passed (0.038 seconds).
+Test Case '-[SwingLabCoreTests.CourseGeometryTests testInvalidAndExcludedPolygonGeometry]' started.
+Test Case '-[SwingLabCoreTests.CourseGeometryTests testInvalidAndExcludedPolygonGeometry]' passed (0.074 seconds).
+Test Case '-[SwingLabCoreTests.CourseGeometryTests testOSMFixtureReadsEverySupportedTagAndRejectsOpenPolygon]' started.
+Test Case '-[SwingLabCoreTests.CourseGeometryTests testOSMFixtureReadsEverySupportedTagAndRejectsOpenPolygon]' passed (0.001 seconds).
+Test Case '-[SwingLabCoreTests.CourseGeometryTests testRectangleProbabilityAgainstAnalyticGaussian]' started.
+Test Case '-[SwingLabCoreTests.CourseGeometryTests testRectangleProbabilityAgainstAnalyticGaussian]' passed (0.036 seconds).
+Test Case '-[SwingLabCoreTests.CourseGeometryTests testSphericalProjectionRoundTripIncludingDateline]' started.
+Test Case '-[SwingLabCoreTests.CourseGeometryTests testSphericalProjectionRoundTripIncludingDateline]' passed (0.000 seconds).
+Test Suite 'CourseGeometryTests' passed at 2026-10-26 21:52:39.356.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.149 (0.149) seconds
+Test Suite 'SeededClubTrackTests' started at 2026-10-26 21:52:39.356.
+Test Case '-[SwingLabCoreTests.SeededClubTrackTests testConfidenceLossStopsPermanentlyAndNeverExtrapolates]' started.
+Test Case '-[SwingLabCoreTests.SeededClubTrackTests testConfidenceLossStopsPermanentlyAndNeverExtrapolates]' passed (0.000 seconds).
+Test Case '-[SwingLabCoreTests.SeededClubTrackTests testLongGapAndInvalidCoordinatesStopButTopNeverAddsPoint]' started.
+Test Case '-[SwingLabCoreTests.SeededClubTrackTests testLongGapAndInvalidCoordinatesStopButTopNeverAddsPoint]' passed (0.000 seconds).
+Test Suite 'SeededClubTrackTests' passed at 2026-10-26 21:52:39.357.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.000 (0.000) seconds
+Test Suite 'SwingLabCoreTests.xctest' passed at 2026-10-26 21:52:39.357.
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.149 (0.150) seconds
+Test Suite 'Selected tests' passed at 2026-10-26 21:52:39.357.
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.149 (0.151) seconds

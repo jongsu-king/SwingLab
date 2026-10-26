@@ -52,7 +52,7 @@ enum SwingLabSchemaV2: VersionedSchema {
     }
 
     @Model
-    final class SwingRecording {
+    final class SwingRecording: AnalysisRestorable {
         @Attribute(.unique) var id: UUID
         var createdAt: Date
         var title: String
@@ -135,7 +135,18 @@ enum SwingLabSchemaV2: VersionedSchema {
             applySummary(AnalysisSummary.migrating(analysisData: analysisData))
         }
 
-        private func applySummary(_ summary: AnalysisSummary) {
+        var analysisSnapshot: RecordingAnalysisSnapshot {
+        .init(data: analysisData, summary: .init(tempo: tempoMetric, backswing: backswingMetric,
+            downswing: downswingMetric, headDisplacement: headDisplacementMetric,
+            analysisVersion: analysisVersion, poseFrameRate: poseFrameRate))
+    }
+
+    func restoreAnalysis(_ snapshot: RecordingAnalysisSnapshot) {
+        analysisData = snapshot.data
+        applySummary(snapshot.summary)
+    }
+
+    private func applySummary(_ summary: AnalysisSummary) {
             analysisVersion = summary.analysisVersion
             poseFrameRate = summary.poseFrameRate
             tempoValue = summary.tempo.value

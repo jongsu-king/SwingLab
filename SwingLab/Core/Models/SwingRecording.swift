@@ -3,7 +3,7 @@ import SwiftData
 import SwingLabCore
 
 @Model
-final class SwingRecording {
+final class SwingRecording: AnalysisRestorable {
     @Attribute(.unique) var id: UUID
     var createdAt: Date
     var title: String
@@ -88,6 +88,17 @@ final class SwingRecording {
     /// Used by the V1→V2 migration only, or an explicit future repair action.
     func rebuildAnalysisSummary() {
         applySummary(AnalysisSummary.migrating(analysisData: analysisData))
+    }
+
+    var analysisSnapshot: RecordingAnalysisSnapshot {
+        .init(data: analysisData, summary: .init(tempo: tempoMetric, backswing: backswingMetric,
+            downswing: downswingMetric, headDisplacement: headDisplacementMetric,
+            analysisVersion: analysisVersion, poseFrameRate: poseFrameRate))
+    }
+
+    func restoreAnalysis(_ snapshot: RecordingAnalysisSnapshot) {
+        analysisData = snapshot.data
+        applySummary(snapshot.summary)
     }
 
     private func applySummary(_ summary: AnalysisSummary) {

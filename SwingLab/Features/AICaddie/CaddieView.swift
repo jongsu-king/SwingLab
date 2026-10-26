@@ -101,10 +101,11 @@ struct CaddieView: View {
         }
         let areas = areas, strategy = strategy, shot = shot
         calculating = true
-        let result = await Task.detached(priority: .userInitiated) {
+        let worker = Task.detached(priority: .userInitiated) {
             CaddieAimSearch.recommend(profiles: profiles, origin: origin, target: target, areas: areas,
                 strategy: strategy, shot: shot, forwardAdjustment: forward, rightAdjustment: right)
-        }.value
+        }
+        let result = await withTaskCancellationHandler(operation: { await worker.value }, onCancel: { worker.cancel() })
         guard !Task.isCancelled else { return }
         recommendation = result; calculating = false
     }

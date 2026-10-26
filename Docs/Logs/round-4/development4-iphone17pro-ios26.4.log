@@ -354,3 +354,293 @@ CopyStringsFile /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Produ
 /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/de.lproj/Localizable.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SwingLab' from project 'SwingLab')
 
 SwiftCompile normal arm64 Compiling\ LocalDataController.swift,\ PersistenceRollback.swift,\ PracticeSessionStore.swift,\ Schema.swift,\ SchemaV2.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Persistence/LocalDataController.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Persistence/PersistenceRollback.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Persistence/PracticeSessionStore.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Persistence/Schema.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Persistence/SchemaV2.swift (in target 'SwingLab' from project 'SwingLab')
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Persistence/LocalDataController.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile LocalDataController.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Persistence/PersistenceRollback.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile PersistenceRollback.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Persistence/PracticeSessionStore.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile PracticeSessionStore.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Persistence/Schema.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile Schema.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Persistence/SchemaV2.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile SchemaV2.swift
+
+SwiftCompile normal arm64 Compiling\ SchemaV3.swift,\ CaddieView.swift,\ CameraView.swift,\ CourseGeometryEditor.swift,\ CourseSearchView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Persistence/SchemaV3.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/AICaddie/CaddieView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Camera/CameraView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/CourseManager/CourseGeometryEditor.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/CourseManager/CourseSearchView.swift (in target 'SwingLab' from project 'SwingLab')
+/Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/CourseManager/CourseGeometryEditor.swift:26:71: error: 'mapCoordinate' is inaccessible due to 'fileprivate' protection level
+ 24 |                     Map(position: $camera) {
+ 25 |                         ForEach(hole.areas.filter { $0.id != editingID }) { area in
+ 26 |                             MapPolygon(coordinates: area.vertices.map(\.mapCoordinate)).foregroundStyle(color(area.kind).opacity(0.25))
+    |                                                                       `- error: 'mapCoordinate' is inaccessible due to 'fileprivate' protection level
+ 27 |                                 .stroke(color(area.kind), lineWidth: 1)
+ 28 |                         }
+
+/Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/CourseManager/CourseView.swift:404:9: note: 'mapCoordinate' declared here
+402 | 
+403 | private extension GeoCoordinate {
+404 |     var mapCoordinate: CLLocationCoordinate2D { CLLocationCoordinate2D(latitude: latitude, longitude: longitude) }
+    |         `- note: 'mapCoordinate' declared here
+405 | }
+406 | 
+
+/Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/CourseManager/CourseGeometryEditor.swift:37:135: error: 'geoCoordinate' is inaccessible due to 'fileprivate' protection level
+ 35 |                     }.mapStyle(.hybrid(elevation: .flat))
+ 36 |                         .onTapGesture { point in
+ 37 |                             if let coordinate = proxy.convert(point, from: .local), vertices.count < 200 { vertices.append(coordinate.geoCoordinate) }
+    |                                                                                                                                       `- error: 'geoCoordinate' is inaccessible due to 'fileprivate' protection level
+ 38 |                         }
+ 39 |                 }.frame(minHeight: 220)
+
+/Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/CourseManager/CourseView.swift:408:9: note: 'geoCoordinate' declared here
+406 | 
+407 | private extension CLLocationCoordinate2D {
+408 |     var geoCoordinate: GeoCoordinate { GeoCoordinate(latitude: latitude, longitude: longitude) }
+    |         `- note: 'geoCoordinate' declared here
+409 | }
+410 | 
+
+/Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/CourseManager/CourseGeometryEditor.swift:78:63: error: 'mapCoordinate' is inaccessible due to 'fileprivate' protection level
+ 76 |             .navigationTitle(prefs.text("Course areas"))
+ 77 |             .toolbar { ToolbarItem(placement: .confirmationAction) { Button(prefs.text("Done")) { dismiss() } } }
+ 78 |             .onAppear { camera = .region(.init(center: center.mapCoordinate, latitudinalMeters: 700, longitudinalMeters: 700)) }
+    |                                                               `- error: 'mapCoordinate' is inaccessible due to 'fileprivate' protection level
+ 79 |             .onDisappear { importTask?.cancel() }
+ 80 |         }
+
+/Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/CourseManager/CourseView.swift:404:9: note: 'mapCoordinate' declared here
+402 | 
+403 | private extension GeoCoordinate {
+404 |     var mapCoordinate: CLLocationCoordinate2D { CLLocationCoordinate2D(latitude: latitude, longitude: longitude) }
+    |         `- note: 'mapCoordinate' declared here
+405 | }
+406 | 
+Failed frontend command:
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Persistence/SchemaV3.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile SchemaV3.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/AICaddie/CaddieView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile CaddieView.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Camera/CameraView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile CameraView.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/CourseManager/CourseGeometryEditor.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile CourseGeometryEditor.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/CourseManager/CourseSearchView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile CourseSearchView.swift
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift-frontend -frontend -c /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/App/AppRouter.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/App/OnboardingView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/App/SwingLabApp.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/DesignSystem/MetricReadout.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/DesignSystem/Theme.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Localization/AppPreferences.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Models/CourseModels.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Models/GolfClub.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Models/PracticeSession.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Models/SwingRecording.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Persistence/LocalDataController.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Persistence/PersistenceRollback.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Persistence/PracticeSessionStore.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Persistence/Schema.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Persistence/SchemaV2.swift -primary-file /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Persistence/SchemaV3.swift -primary-file /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/AICaddie/CaddieView.swift -primary-file /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Camera/CameraView.swift -primary-file /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/CourseManager/CourseGeometryEditor.swift -primary-file /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/CourseManager/CourseSearchView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/CourseManager/CourseView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/FlightSimulation/HypotheticalFlightView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Home/HomeView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/LandingPrediction/CourseLandingEstimate.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/BagView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/CatalogPickerView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/CatalogStore.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/ClubDetailView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/ClubDraft.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/ClubEditorView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/ClubProfileView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Performance/PerformanceView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/RoundTracker/RoundViews.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Settings/PrivacyView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Settings/SettingsView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Swing/PracticeSessionViews.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Swing/SeededClubTrackingView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Swing/SwingComparisonView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Swing/SwingDetailView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Swing/SwingVideoStage.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Swing/SwingView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/AudioImpactReader.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/CameraService.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/CourseGeometryService.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/GolfCourseService.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/LocationService.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/PoseEstimationService.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/SeededClubTrackingService.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/VideoLibrary.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/VideoPlaybackController.swift /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/DerivedSources/GeneratedAssetSymbols.swift -supplementary-output-file-map /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/supplementaryOutputs-4 -emit-localized-strings -emit-localized-strings-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64 -target arm64-apple-ios17.0-simulator -module-can-import-version DeveloperToolsSupport 24.0.24 24.0.24 -disable-cross-import-overlay-search -swift-module-cross-import MapKit /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/Frameworks/MapKit.framework/Modules/MapKit.swiftcrossimport/SwiftUI.swiftoverlay -swift-module-cross-import MapKit /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk/System/Library/Frameworks/MapKit.framework/Modules/MapKit.swiftcrossimport/SwiftUI.swiftoverlay -swift-module-cross-import PhotosUI /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/Frameworks/PhotosUI.framework/Modules/PhotosUI.swiftcrossimport/SwiftUI.swiftoverlay -swift-module-cross-import PhotosUI /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/Frameworks/PhotosUI.framework/Modules/PhotosUI.swiftcrossimport/WidgetKit.swiftoverlay -swift-module-cross-import PhotosUI /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk/System/Library/Frameworks/PhotosUI.framework/Modules/PhotosUI.swiftcrossimport/SwiftUI.swiftoverlay -swift-module-cross-import PhotosUI /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk/System/Library/Frameworks/PhotosUI.framework/Modules/PhotosUI.swiftcrossimport/WidgetKit.swiftoverlay -swift-module-cross-import SwiftData /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk/System/Library/Frameworks/SwiftData.framework/Modules/SwiftData.swiftcrossimport/CoreData.swiftoverlay -swift-module-cross-import SwiftData /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk/System/Library/Frameworks/SwiftData.framework/Modules/SwiftData.swiftcrossimport/SwiftUI.swiftoverlay -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/swift/host/plugins/libFoundationMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/swift-plugin-server\#FoundationMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/swift/host/plugins/libObservationMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/swift-plugin-server\#ObservationMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/swift/host/plugins/libPreviewsMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/swift-plugin-server\#PreviewsMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/swift/host/plugins/libSwiftDataMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/swift-plugin-server\#SwiftDataMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/swift/host/plugins/libSwiftMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/swift-plugin-server\#SwiftMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/swift/host/plugins/libSwiftUIMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/swift-plugin-server\#SwiftUIMacros -disable-implicit-swift-modules -Xcc -fno-implicit-modules -Xcc -fno-implicit-module-maps -explicit-swift-module-map-file /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab-dependencies-1.json -Xllvm -aarch64-use-tbi -enable-objc-interop -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk -I /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator -F /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator -module-cache-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -no-color-diagnostics -Xcc -fno-color-diagnostics -enable-testing -g -debug-info-format\=dwarf -dwarf-version\=4 -swift-version 6 -Onone -D DEBUG -serialize-debugging-options -enable-experimental-feature DebugDescriptionMacro -empty-abi-descriptor -validate-clang-modules-once -clang-build-session-file /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -working-directory -Xcc /Users/jongsulim/Documents/ChatGPT/swing -enable-anonymous-context-mangled-names -file-compilation-dir /Users/jongsulim/Documents/ChatGPT/swing -Xcc -ivfsstatcache -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/SDKStatCaches.noindex/iphonesimulator27.1-24A94232-35d3147121984ba087c28d913653d626.sdkstatcache -Xcc -fmodules-prune-interval\=86400 -Xcc -fmodules-prune-after\=345600 -Xcc -iquote -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/SwingLab-generated-files.hmap -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/SwingLab-own-target-headers.hmap -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/SwingLab-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab-9f3b5f304412910a7131a2e40b8441ad-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/SwingLab-project-headers.hmap -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/DerivedSources-normal/arm64 -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/DerivedSources/arm64 -Xcc -I/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/DerivedSources -no-auto-bridging-header-chaining -module-name SwingLab -const-gather-protocols-file /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab_const_extract_protocols.json -disable-clang-spi -clang-target arm64-apple-ios27.1-simulator -target-sdk-version 27.1 -target-sdk-name iphonesimulator27.1 -in-process-plugin-server-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/libSwiftInProcPluginServer.dylib -o /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SchemaV3.o -o /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/CaddieView.o -o /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/CameraView.o -o /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/CourseGeometryEditor.o -o /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/CourseSearchView.o -debug-module-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SwingLab.swiftmodule -index-unit-output-path /SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/SchemaV3.o -index-unit-output-path /SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/CaddieView.o -index-unit-output-path /SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/CameraView.o -index-unit-output-path /SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/CourseGeometryEditor.o -index-unit-output-path /SwingLab.build/Debug-iphonesimulator/SwingLab.build/Objects-normal/arm64/CourseSearchView.o -index-store-path /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Index.noindex/DataStore -index-system-modules
+SwiftCompile normal arm64 Compiling\ CourseView.swift,\ HypotheticalFlightView.swift,\ HomeView.swift,\ CourseLandingEstimate.swift,\ BagView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/CourseManager/CourseView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/FlightSimulation/HypotheticalFlightView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Home/HomeView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/LandingPrediction/CourseLandingEstimate.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/BagView.swift (in target 'SwingLab' from project 'SwingLab')
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/CourseManager/CourseView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile CourseView.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/FlightSimulation/HypotheticalFlightView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile HypotheticalFlightView.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Home/HomeView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile HomeView.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/LandingPrediction/CourseLandingEstimate.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile CourseLandingEstimate.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/BagView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile BagView.swift
+
+SwiftCompile normal arm64 Compiling\ AppPreferences.swift,\ CourseModels.swift,\ GolfClub.swift,\ PracticeSession.swift,\ SwingRecording.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Localization/AppPreferences.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Models/CourseModels.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Models/GolfClub.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Models/PracticeSession.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Models/SwingRecording.swift (in target 'SwingLab' from project 'SwingLab')
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Localization/AppPreferences.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile AppPreferences.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Models/CourseModels.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile CourseModels.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Models/GolfClub.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile GolfClub.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Models/PracticeSession.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile PracticeSession.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Models/SwingRecording.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile SwingRecording.swift
+
+SwiftCompile normal arm64 Compiling\ AppRouter.swift,\ OnboardingView.swift,\ SwingLabApp.swift,\ MetricReadout.swift,\ Theme.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/App/AppRouter.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/App/OnboardingView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/App/SwingLabApp.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/DesignSystem/MetricReadout.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/DesignSystem/Theme.swift (in target 'SwingLab' from project 'SwingLab')
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/App/AppRouter.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile AppRouter.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/App/OnboardingView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile OnboardingView.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/App/SwingLabApp.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile SwingLabApp.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/DesignSystem/MetricReadout.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile MetricReadout.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/DesignSystem/Theme.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile Theme.swift
+
+SwiftCompile normal arm64 Compiling\ PrivacyView.swift,\ SettingsView.swift,\ PracticeSessionViews.swift,\ SeededClubTrackingView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Settings/PrivacyView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Settings/SettingsView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Swing/PracticeSessionViews.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Swing/SeededClubTrackingView.swift (in target 'SwingLab' from project 'SwingLab')
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Settings/PrivacyView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile PrivacyView.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Settings/SettingsView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile SettingsView.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Swing/PracticeSessionViews.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile PracticeSessionViews.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Swing/SeededClubTrackingView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile SeededClubTrackingView.swift
+
+SwiftCompile normal arm64 Compiling\ AudioImpactReader.swift,\ CameraService.swift,\ CourseGeometryService.swift,\ GolfCourseService.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/AudioImpactReader.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/CameraService.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/CourseGeometryService.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/GolfCourseService.swift (in target 'SwingLab' from project 'SwingLab')
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/AudioImpactReader.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile AudioImpactReader.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/CameraService.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile CameraService.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/CourseGeometryService.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile CourseGeometryService.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Services/GolfCourseService.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile GolfCourseService.swift
+
+SwiftCompile normal arm64 Compiling\ SwingComparisonView.swift,\ SwingDetailView.swift,\ SwingVideoStage.swift,\ SwingView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Swing/SwingComparisonView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Swing/SwingDetailView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Swing/SwingVideoStage.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Swing/SwingView.swift (in target 'SwingLab' from project 'SwingLab')
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Swing/SwingComparisonView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile SwingComparisonView.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Swing/SwingDetailView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile SwingDetailView.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Swing/SwingVideoStage.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile SwingVideoStage.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Swing/SwingView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile SwingView.swift
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ SwingLab (in target 'SwingLab' from project 'SwingLab')
+
+SwiftCompile normal arm64 (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    
+
+SwiftCompile normal arm64 Compiling\ CatalogPickerView.swift,\ CatalogStore.swift,\ ClubDetailView.swift,\ ClubDraft.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/CatalogPickerView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/CatalogStore.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/ClubDetailView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/ClubDraft.swift (in target 'SwingLab' from project 'SwingLab')
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/CatalogPickerView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile CatalogPickerView.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/CatalogStore.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile CatalogStore.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/ClubDetailView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile ClubDetailView.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/ClubDraft.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile ClubDraft.swift
+
+SwiftCompile normal arm64 Compiling\ ClubEditorView.swift,\ ClubProfileView.swift,\ PerformanceView.swift,\ RoundViews.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/ClubEditorView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/ClubProfileView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Performance/PerformanceView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/RoundTracker/RoundViews.swift (in target 'SwingLab' from project 'SwingLab')
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/ClubEditorView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile ClubEditorView.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/MyBag/ClubProfileView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile ClubProfileView.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Performance/PerformanceView.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile PerformanceView.swift
+
+SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/RoundTracker/RoundViews.swift (in target 'SwingLab' from project 'SwingLab')
+    cd /Users/jongsulim/Documents/ChatGPT/swing
+    builtin-SwiftPerFileCompile RoundViews.swift
+
+SwiftDriverJobDiscovery normal arm64 Compiling CatalogPickerView.swift, CatalogStore.swift, ClubDetailView.swift, ClubDraft.swift (in target 'SwingLab' from project 'SwingLab')
+
+SwiftDriverJobDiscovery normal arm64 Compiling AudioImpactReader.swift, CameraService.swift, CourseGeometryService.swift, GolfCourseService.swift (in target 'SwingLab' from project 'SwingLab')
+
+SwiftDriverJobDiscovery normal arm64 Compiling AppRouter.swift, OnboardingView.swift, SwingLabApp.swift, MetricReadout.swift, Theme.swift (in target 'SwingLab' from project 'SwingLab')
+
+SwiftDriverJobDiscovery normal arm64 Compiling AppPreferences.swift, CourseModels.swift, GolfClub.swift, PracticeSession.swift, SwingRecording.swift (in target 'SwingLab' from project 'SwingLab')
+
+SwiftDriverJobDiscovery normal arm64 Compiling PrivacyView.swift, SettingsView.swift, PracticeSessionViews.swift, SeededClubTrackingView.swift (in target 'SwingLab' from project 'SwingLab')
+
+SwiftDriverJobDiscovery normal arm64 Compiling LocalDataController.swift, PersistenceRollback.swift, PracticeSessionStore.swift, Schema.swift, SchemaV2.swift (in target 'SwingLab' from project 'SwingLab')
+
+PruneExplicitPrecompiledModules /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/ExplicitPrecompiledModules
+
+PruneExplicitPrecompiledModules /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/SDKExplicitPrecompiledModules
+
+PruneExplicitPrecompiledModules /Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules
+
+
+Test session results, code coverage, and logs:
+	/Users/jongsulim/Documents/ChatGPT/swing/DerivedData/Logs/Test/Test-SwingLab-2026.10.26_21-48-58-+0900.xcresult
+
+Testing failed:
+	'mapCoordinate' is inaccessible due to 'fileprivate' protection level
+	'geoCoordinate' is inaccessible due to 'fileprivate' protection level
+	'mapCoordinate' is inaccessible due to 'fileprivate' protection level
+	Testing cancelled because the build failed.
+
+** TEST FAILED **
+
+
+The following build commands failed:
+	SwiftCompile normal arm64 /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/CourseManager/CourseGeometryEditor.swift (in target 'SwingLab' from project 'SwingLab')
+	SwiftCompile normal arm64 Compiling\ SchemaV3.swift,\ CaddieView.swift,\ CameraView.swift,\ CourseGeometryEditor.swift,\ CourseSearchView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Core/Persistence/SchemaV3.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/AICaddie/CaddieView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/Camera/CameraView.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/CourseManager/CourseGeometryEditor.swift /Users/jongsulim/Documents/ChatGPT/swing/SwingLab/Features/CourseManager/CourseSearchView.swift (in target 'SwingLab' from project 'SwingLab')
+	Testing project SwingLab with scheme SwingLab
+(3 failures)

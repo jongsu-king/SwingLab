@@ -20,7 +20,7 @@ struct CatalogPickerView: View {
                 }
             } else {
                 ForEach(catalog.search(query)) { club in
-                    CatalogModelRow(club: club, onSelect: onSelect)
+                    CatalogModelRow(club: club, onSelect: onSelect, onCustom: onCustom)
                 }
             }
         }
@@ -63,7 +63,7 @@ private struct CatalogYearPicker: View {
                     List {
                         Button(preferences.text("Not in the list"), action: onCustom)
                         ForEach(CatalogStore.catalog.search("", brandID: brand.id, category: category.rawValue, year: year)) { club in
-                            CatalogModelRow(club: club, onSelect: onSelect)
+                            CatalogModelRow(club: club, onSelect: onSelect, onCustom: onCustom)
                         }
                     }.navigationTitle(String(year))
                 }
@@ -76,14 +76,17 @@ private struct CatalogModelRow: View {
     @Environment(AppPreferences.self) private var preferences
     let club: CatalogClub
     let onSelect: (CatalogClub, String) -> Void
+    let onCustom: () -> Void
     var body: some View {
         NavigationLink {
             List {
+                Button(preferences.text("Not in the list"), action: onCustom)
                 if !club.verified { Text(preferences.text("Catalog entry not yet verified.")) }
                 if let source = club.source, let url = URL(string: source) { Link(preferences.text("Source"), destination: url) }
                 if club.availableClubs.isEmpty {
                     ForEach(club.variants.isEmpty ? [""] : club.variants, id: \.self) { variant in
                         Button([club.model, variant].filter { !$0.isEmpty }.joined(separator: " ")) { onSelect(club, variant) }
+                            .accessibilityIdentifier("catalog.select.\(club.id).\(variant.isEmpty ? "base" : variant)")
                     }
                 } else {
                     ForEach(club.availableClubs, id: \.self) { member in
@@ -98,25 +101,30 @@ private struct CatalogModelRow: View {
                 if !club.verified { Text(preferences.text("Unverified catalog entry")).font(.caption).foregroundStyle(.secondary) }
             }
         }
+        .accessibilityIdentifier("catalog.model.\(club.id)")
     }
 }
 
 struct ShaftCatalogPickerView: View {
     @Environment(AppPreferences.self) private var preferences
     let onSelect: (CatalogShaft) -> Void
+    let onCustom: () -> Void
     @State private var query = ""
     private var shafts: [CatalogShaft] {
         CatalogStore.catalog.shafts.filter { query.isEmpty ||
             ($0.brand + " " + $0.model).range(of: query, options: [.caseInsensitive, .diacriticInsensitive]) != nil }
     }
     var body: some View {
-        List(shafts) { shaft in
+        List {
+            Button(preferences.text("Not in the list"), action: onCustom)
+            ForEach(shafts) { shaft in
             Button { onSelect(shaft) } label: {
                 VStack(alignment: .leading) {
                     Text(shaft.brand + " · " + shaft.model)
                     if !shaft.verified { Text(preferences.text("Unverified catalog entry")).font(.caption).foregroundStyle(.secondary) }
                 }
             }
+        }
         }
         .navigationTitle(preferences.text("Shaft catalog"))
         .searchable(text: $query, prompt: preferences.text("Search equipment"))

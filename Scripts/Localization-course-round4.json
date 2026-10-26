@@ -460,5 +460,19 @@
     "it": "© Collaboratori OpenStreetMap · ODbL",
     "th": "© ผู้ร่วมสร้าง OpenStreetMap · ODbL",
     "vi": "© Người đóng góp OpenStreetMap · ODbL"
+  },
+  "Use at least three distinct points without crossing edges.": {
+    "en": "Use at least three distinct points without crossing edges.",
+    "ko": "서로 다른 점을 세 개 이상 사용하고 선이 교차하지 않게 하세요.",
+    "ja": "異なる点を3つ以上使い、辺が交差しないようにしてください。",
+    "zh-Hans": "请使用至少三个不同点，且边不能交叉。",
+    "zh-Hant": "請使用至少三個不同點，且邊不能交叉。",
+    "es": "Usa al menos tres puntos distintos sin cruzar los bordes.",
+    "pt-BR": "Use pelo menos três pontos distintos sem cruzar as bordas.",
+    "de": "Mindestens drei verschiedene Punkte ohne sich kreuzende Kanten verwenden.",
+    "fr": "Utilisez au moins trois points distincts sans croiser les bords.",
+    "it": "Usa almeno tre punti distinti senza incrociare i lati.",
+    "th": "ใช้จุดที่ต่างกันอย่างน้อยสามจุดโดยเส้นขอบไม่ตัดกัน",
+    "vi": "Dùng ít nhất ba điểm khác nhau, các cạnh không giao nhau."
   }
 }
