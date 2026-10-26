@@ -39,6 +39,7 @@ def configs(name,base):
         values=dict(base)
         values['SWIFT_OPTIMIZATION_LEVEL']='-Onone' if config=='Debug' else '-O'
         values['DEBUG_INFORMATION_FORMAT']='dwarf' if config=='Debug' else 'dwarf-with-dsym'
+        values['ONLY_ACTIVE_ARCH']='YES' if config=='Debug' else 'NO'
         if config=='Debug': values.update(ENABLE_TESTABILITY='YES', SWIFT_ACTIVE_COMPILATION_CONDITIONS='DEBUG')
         body=' '.join(f'{k} = {q(v)};' for k,v in values.items())
         ids.append(add(f'config:{name}:{config}',f'isa = XCBuildConfiguration; buildSettings = {{ {body} }}; name = {config};'))
