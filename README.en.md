@@ -6,6 +6,7 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/jongsu-king/SwingLab/actions/workflows/core-tests.yml"><img src="https://github.com/jongsu-king/SwingLab/actions/workflows/core-tests.yml/badge.svg" alt="Core tests"></a>
   <img src="https://img.shields.io/badge/tests-80%20core%20%C2%B7%2031%20app-375746" alt="Tests: 80 core, 31 app">
   <img src="https://img.shields.io/badge/Swift-6-F05138?logo=swift&logoColor=white" alt="Swift 6">
   <img src="https://img.shields.io/badge/iOS-17%2B-202823?logo=apple&logoColor=white" alt="iOS 17+">

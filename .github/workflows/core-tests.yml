@@ -1,0 +1,24 @@
+name: Core tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  core:
+    runs-on: macos-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Toolchain
+        run: swift --version
+      - name: SwingLabCore tests
+        run: swift test
+      - name: Localization and catalog checks
+        run: |
+          python3 Scripts/build_localizations.py
+          python3 Scripts/check_localizations.py
+          python3 Scripts/test_localizations.py
+          python3 Scripts/validate_catalog.py
