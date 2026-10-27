@@ -190,5 +190,53 @@
     "vi": {
       "other": "%1$lld buổi"
     }
+  },
+  "count.launchShots": {
+    "en": {
+      "one": "%1$lld shot",
+      "other": "%1$lld shots"
+    },
+    "ko": {
+      "other": "%1$lld샷"
+    },
+    "ja": {
+      "other": "%1$lldショット"
+    },
+    "zh-Hans": {
+      "other": "%1$lld 次击球"
+    },
+    "zh-Hant": {
+      "other": "%1$lld 次擊球"
+    },
+    "es": {
+      "one": "%1$lld golpe",
+      "other": "%1$lld golpes",
+      "many": "%1$lld golpes"
+    },
+    "pt-BR": {
+      "one": "%1$lld tacada",
+      "other": "%1$lld tacadas",
+      "many": "%1$lld tacadas"
+    },
+    "de": {
+      "one": "%1$lld Schlag",
+      "other": "%1$lld Schläge"
+    },
+    "fr": {
+      "one": "%1$lld coup",
+      "other": "%1$lld coups",
+      "many": "%1$lld coups"
+    },
+    "it": {
+      "one": "%1$lld colpo",
+      "other": "%1$lld colpi",
+      "many": "%1$lld colpi"
+    },
+    "th": {
+      "other": "%1$lld ช็อต"
+    },
+    "vi": {
+      "other": "%1$lld cú đánh"
+    }
   }
 }

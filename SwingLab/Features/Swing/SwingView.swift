@@ -97,6 +97,11 @@ struct SwingView: View {
                     } label: {
                         Label(prefs.text("Hypothetical flight"), systemImage: "point.topleft.down.to.point.bottomright.curvepath")
                     }.accessibilityIdentifier("swing.hypotheticalFlight")
+                    NavigationLink {
+                        LaunchLogView()
+                    } label: {
+                        Label(prefs.text("Launch log"), systemImage: "list.bullet.rectangle")
+                    }.accessibilityIdentifier("swing.launchLog")
                 } header: { Text(prefs.text("Ball Lab")) }
                 .listRowBackground(SLTheme.surface)
                 Section {

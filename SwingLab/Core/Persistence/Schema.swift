@@ -199,22 +199,22 @@ enum SwingLabSchemaV1: VersionedSchema {
     }
 }
 
-/// Current models. V1–V3 are immutable snapshots, never aliases to these types.
-enum SwingLabSchemaV4: VersionedSchema {
-    static var versionIdentifier: Schema.Version { .init(4, 0, 0) }
+/// Current models. V1–V4 are immutable snapshots, never aliases to these types.
+enum SwingLabSchemaV5: VersionedSchema {
+    static var versionIdentifier: Schema.Version { .init(5, 0, 0) }
     static var models: [any PersistentModel.Type] {
         [GolfClub.self, SwingRecording.self, GolfCourse.self, CourseHole.self,
-         RoundSession.self, HoleScore.self, ShotRecord.self, PracticeSession.self]
+         RoundSession.self, HoleScore.self, ShotRecord.self, PracticeSession.self, LaunchShot.self]
     }
 }
 
-typealias SwingLabCurrentSchema = SwingLabSchemaV4
+typealias SwingLabCurrentSchema = SwingLabSchemaV5
 
 enum SwingLabMigrationPlan: SchemaMigrationPlan {
     static var schemas: [any VersionedSchema.Type] {
-        [SwingLabSchemaV1.self, SwingLabSchemaV2.self, SwingLabSchemaV3.self, SwingLabSchemaV4.self]
+        [SwingLabSchemaV1.self, SwingLabSchemaV2.self, SwingLabSchemaV3.self, SwingLabSchemaV4.self, SwingLabSchemaV5.self]
     }
-    static var stages: [MigrationStage] { [migrateV1ToV2, migrateV2ToV3, migrateV3ToV4] }
+    static var stages: [MigrationStage] { [migrateV1ToV2, migrateV2ToV3, migrateV3ToV4, migrateV4ToV5] }
 
     static var migrateV1ToV2: MigrationStage {
         .custom(fromVersion: SwingLabSchemaV1.self, toVersion: SwingLabSchemaV2.self,
@@ -254,6 +254,11 @@ enum SwingLabMigrationPlan: SchemaMigrationPlan {
 
     static var migrateV3ToV4: MigrationStage {
         .lightweight(fromVersion: SwingLabSchemaV3.self, toVersion: SwingLabSchemaV4.self)
+    }
+
+    /// V5 adds the launch-shot log as a new entity; existing records are untouched.
+    static var migrateV4ToV5: MigrationStage {
+        .lightweight(fromVersion: SwingLabSchemaV4.self, toVersion: SwingLabSchemaV5.self)
     }
 
 }

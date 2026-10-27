@@ -1,10 +1,12 @@
 import SwiftUI
+import SwiftData
 import SwingLabCore
 
 /// Experimental launch readout from a face-on, high-frame-rate recording. Ball speed and launch
 /// angle are vision-derived; carry is a simulated range; spin and club speed stay unavailable.
 struct LaunchMeasureView: View {
     @Environment(AppPreferences.self) private var prefs
+    @Environment(\.modelContext) private var modelContext
     let videoURL: URL
     let defaultDirection: Double
     @State private var analyzer = LaunchVideoAnalyzer()
@@ -16,6 +18,7 @@ struct LaunchMeasureView: View {
     @State private var outcome: LaunchVideoAnalyzer.Outcome?
     @State private var errorKey: LocalizationKey?
     @State private var working = false
+    @State private var saved = false
 
     var body: some View {
         ScrollView {
@@ -44,7 +47,8 @@ struct LaunchMeasureView: View {
         }
         .background(SLTheme.background)
         .navigationTitle(prefs.text("Launch"))
-        .onChange(of: ballPoint) { outcome = nil }
+        .onChange(of: ballPoint) { outcome = nil; saved = false }
+        .onChange(of: club) { saved = false }
         .task {
             direction = defaultDirection
             do {
@@ -93,13 +97,27 @@ struct LaunchMeasureView: View {
             }
             Text(prefs.text("Carry is simulated across published spin rates for this club; it is not measured. Spin and club speed cannot be observed with one iPhone camera."))
                 .font(.caption).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+            if saved {
+                Label(prefs.text("Saved to the launch log."), systemImage: "checkmark").font(.caption).foregroundStyle(.secondary)
+            } else {
+                Button(prefs.text("Save shot")) { save(measurement) }.buttonStyle(.bordered).tint(SLTheme.forest)
+            }
         }
         .padding(20).background(SLTheme.surface)
     }
 
+    private func save(_ measurement: LaunchMeasurement) {
+        guard let shot = LaunchShot(measurement: measurement, club: club, source: .recordedVideo) else { return }
+        modelContext.insert(shot)
+        do { try modelContext.save(); saved = true } catch {
+            modelContext.rollback()
+            errorKey = "The shot could not be saved. Please try again."
+        }
+    }
+
     private func measure() {
         guard let ballPoint, let impactTime else { return }
-        working = true; errorKey = nil; outcome = nil
+        working = true; errorKey = nil; outcome = nil; saved = false
         Task {
             defer { working = false }
             do {

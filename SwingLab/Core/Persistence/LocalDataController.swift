@@ -34,6 +34,7 @@ import SwingLabCore
             for value in try context.fetch(FetchDescriptor<HoleScore>()) { context.delete(value) }
             for value in try context.fetch(FetchDescriptor<GolfCourse>()) { context.delete(value) }
             for value in try context.fetch(FetchDescriptor<CourseHole>()) { context.delete(value) }
+            for value in try context.fetch(FetchDescriptor<LaunchShot>()) { context.delete(value) }
             try context.save()
         } catch {
             context.rollbackPendingChanges()

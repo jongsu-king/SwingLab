@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 import UIKit
 import SwingLabCore
 @preconcurrency import AVFoundation
@@ -7,6 +8,7 @@ struct CameraView: View {
     @Environment(AppPreferences.self) private var prefs
     @Environment(\.dismiss) private var dismiss
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.modelContext) private var modelContext
     @State private var camera = CameraController()
     @State private var angle = CameraAngle.faceOn
     @State private var showGrid = true
@@ -83,6 +85,15 @@ struct CameraView: View {
             }
             .task { await camera.start() }
             .onDisappear { camera.stop() }
+            .onChange(of: camera.liveShotCount) { _, _ in
+                guard let outcome = camera.liveOutcome,
+                      let shot = LaunchShot(measurement: outcome.measurement, club: liveClub, source: .liveCamera) else { return }
+                modelContext.insert(shot)
+                do { try modelContext.save() } catch {
+                    modelContext.rollback()
+                    camera.liveMessage = "The shot could not be saved. Please try again."
+                }
+            }
             .onChange(of: camera.savedURL) { _, url in
                 guard let url else { return }
                 onSave(url, angle)

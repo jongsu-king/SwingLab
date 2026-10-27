@@ -12,7 +12,7 @@ _Last updated: 27 Oct 2026, reviewer work between Rounds 4 and 5._
 |---|---|---|---|---|
 | G1 | iOS build | `xcodebuild … build` 0 errors, 0 warnings (Swift 6) | ✅ | First native build, 26 Oct (`Docs/CompileRisk.md`) |
 | G2 | Core tests | `swift test` all pass under XCTest | ✅ | 85/85 on 27 Oct (reviewer); also on every push in GitHub Actions (`core-tests.yml`, Swift 6.3.3) |
-| G3 | App tests on simulator | `xcodebuild test` (`SwingLabTests` + `SwingLabUITests`) all pass on iOS 26.4 and 27.1 | ✅ | Reviewer, 27 Oct, no build-setting overrides: iPhone 17 Pro iOS 26.4 and iPhone Duo iOS 27.1 each 36 passed, 0 failed (27 app + 9 UI); 1 skipped by design (the opt-in 12-language screenshot pass) |
+| G3 | App tests on simulator | `xcodebuild test` (`SwingLabTests` + `SwingLabUITests`) all pass on iOS 26.4 and 27.1 | ✅ | Reviewer, 27 Oct, no build-setting overrides: iPhone 17 Pro iOS 26.4 and iPhone Duo iOS 27.1 each 38 passed, 0 failed (29 app + 9 UI); 1 skipped by design (the opt-in 12-language screenshot pass) |
 | G4 | Project opens and runs from Xcode | Simulator run from Xcode without command-line overrides | 🟡 | Debug `ONLY_ACTIVE_ARCH=YES` fixed; concrete-device build+test passes without overrides. A manual Xcode Run is not yet observed. |
 | G5 | Repository checks | `Scripts/verify.sh` passes | ✅ | Round 4: 647 keys, 0 missing; catalog validator passes (reproduced) |
 
@@ -49,7 +49,7 @@ _Last updated: 27 Oct 2026, reviewer work between Rounds 4 and 5._
 Requested by the user on 26 Oct 2026; specified in `Docs/Specs/LaunchMonitor.md`. Spin RPM stays Unavailable.
 
 Evidence notes (reviewer, 27 Oct):
-- **A17 ✅.** No account or sign-in code exists. On both simulators: `SchemaMigrationTests` (V1→V2, V2→V3), `CatalogMigrationTests` (V3→V4), and `PersistenceTests.testDeleteAllRemovesEveryRecordAndStoredVideo` (every record type and every stored video removed, library usable afterwards) pass.
+- **A17 ✅.** No account or sign-in code exists. On both simulators: `SchemaMigrationTests` (V1→V2, V2→V3), `CatalogMigrationTests` (V3→V4→V5), `LaunchShotTests` (V4→V5), and `PersistenceTests.testDeleteAllRemovesEveryRecordAndStoredVideo` (every record type and every stored video removed, library usable afterwards) pass.
 - **A20 🟡.** Corrupt video is now tested (`CorruptVideoTests`: import metadata, pose analysis, and launch measurement each fail with an error). Denied permissions, interruptions, and low storage still need a device run.
 - **A22/A23 🟡.** Implemented end to end: live readout from the camera (ring buffer, streaming audio trigger, shared measurement pipeline). On a synthetic stream the frames are ready about 0.1 s after the strike and speed/angle are within 2 %/1°. Nothing is verified on a device or against a reference launch monitor.
 - **A24 🟡.** T2 (duplicate model line) and T3 ("Unavailable" on empty inputs) fixed by the reviewer. T1 (release-year evidence) is open for Round 5.

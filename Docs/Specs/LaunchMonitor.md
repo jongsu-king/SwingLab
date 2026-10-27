@@ -110,8 +110,10 @@ The shutter time of imported clips is unknown, so smear is limited by shape (ove
 
 Core tests stream a synthetic shot as 1,024-sample sound buffers delivered 20 ms late and 240 fps sensor-orientation crops. The strike is timed within 1 ms, the frames are ready about 0.1 s after impact, and speed and angle match the recorded-video path (±2 %, ±1°). **Nothing about the device path is verified yet**: the clockwise turn assumes the rear camera's native landscape buffers, and whether a session accepts the data outputs beside a 240 fps movie output differs by device.
 
+**Launch log (added 27 Oct, reviewer).** SwiftData V5 adds `LaunchShot` (lightweight migration from a frozen V4 snapshot). Each live readout is saved automatically, and a recorded-clip measurement can be saved with "Save shot". A shot stores ball speed (m/s) and launch angle (rad) with provenance, confidence, uncertainty, tracked positions, method, and the club chosen for the carry range. Carry is not stored. Swing → Ball Lab → Launch log lists the shots and a per-club average; the speed spread appears from 5 shots. "Delete all local data" removes them.
+
 **Not yet done:**
 - Masking the club head and body near impact.
-- Saving each live shot with its clip and values (session log).
+- Saving the clip around each live shot (values are saved; see below).
 - On-device check of the live path: orientation, dropped frames, and latency.
 - Validation against TrackMan.

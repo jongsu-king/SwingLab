@@ -3,7 +3,7 @@ import SwiftData
 import SwingLabCore
 
 /// Frozen V3 persisted declarations. Keep all stored fields and relationships unchanged.
-/// V4 adds only optional equipment data; V5 is reserved for the launch-shot log.
+/// V4 adds only optional equipment data; V5 adds the launch-shot log.
 enum SwingLabSchemaV3: VersionedSchema {
     static var versionIdentifier: Schema.Version { .init(3, 0, 0) }
     static var models: [any PersistentModel.Type] {

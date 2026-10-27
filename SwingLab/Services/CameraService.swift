@@ -343,6 +343,8 @@ final class CameraController {
     var liveListening = false
     var liveMeasuring = false
     var liveOutcome: LaunchPipeline.Outcome?
+    /// Increments once per measured shot; the camera view saves each one to the launch log.
+    var liveShotCount = 0
     var liveMessage: LocalizationKey?
     var liveSnapshot: CGImage?
     private var wantsCamera = false
@@ -393,7 +395,7 @@ final class CameraController {
         case let .snapshot(image): liveSnapshot = image
         case .listening: liveListening = true; liveMessage = nil
         case .impact: liveMeasuring = true; liveMessage = nil
-        case let .measured(outcome): liveMeasuring = false; liveOutcome = outcome
+        case let .measured(outcome): liveMeasuring = false; liveOutcome = outcome; liveShotCount += 1
         case let .failure(key): liveMeasuring = false; liveMessage = key
         case let .reset(key): liveMeasuring = false; liveListening = false; liveMessage = key
         }
