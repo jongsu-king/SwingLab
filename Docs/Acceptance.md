@@ -21,7 +21,7 @@ _Last updated: 27 Oct 2026, reviewer work between Rounds 4 and 5._
 | # | Criterion | Bar for ✅ | Status |
 |---|---|---|---|
 | A1 | One-iPhone operation | No feature requires external hardware; verified by code review and device run | 🟡 |
-| A2 | Premium native interface | Every primary screen reviewed in light and dark mode and in 12 languages. No v6.0 §4 "strictly avoid" item. No marketing hero on Home. | ❌ |
+| A2 | Premium native interface | Every primary screen reviewed in light and dark mode and in 12 languages. No v6.0 §4 "strictly avoid" item. No marketing hero on Home. |🟡 |
 | A3 | Camera recording | On a real iPhone: every advertised fps is recorded at the actual rate; sound recorded; save, playback, frame-step, and export work | ⬜ |
 | A4 | Vision pose detection | On ≥ 10 real full-body clips in good light, pose found in ≥ 80 % of frames | ⬜ |
 | A5 | Swing phase analysis | On ≥ 10 hand-labelled real swings at 120 fps or more: median absolute error of address, top, and impact ≤ 20 ms. Audio impact ≤ 5 ms where sound exists. | ⬜ |
@@ -34,7 +34,7 @@ _Last updated: 27 Oct 2026, reviewer work between Rounds 4 and 5._
 | A12 | Club management | Create, edit, delete, and gapping, verified in the UI | 🟡 |
 | A13 | Landing regions | Statistical regions from user data, math-tested, drawn on the map | 🟡 |
 | A14 | Strategy recommendations | Caddie v2 searches aim, accounts for hazards, and is explainable and localized | ❌ |
-| A15 | Language selection | 12 languages; the checker fails on any missing key, including keys passed through helpers; screenshots reviewed | 🟡 |
+| A15 | Language selection | 12 languages; the checker fails on any missing key, including keys passed through helpers; screenshots reviewed |✅ |
 | A16 | Independent units | Distance, speed, wind, and temperature switch independently everywhere | 🟡 |
 | A17 | Local-first storage | No account; V1→V2→V3 migration tests pass on the simulator; full deletion works | ✅ |
 | A18 | Honest provenance | Every displayed number carries a typed origin; spin and ball speed stay Unavailable; audit passes | 🟡 |
@@ -52,6 +52,8 @@ Evidence notes (reviewer, 27 Oct):
 - **A17 ✅.** No account or sign-in code exists. On both simulators: `SchemaMigrationTests` (V1→V2, V2→V3), `CatalogMigrationTests` (V3→V4→V5), `LaunchShotTests` (V4→V5), and `PersistenceTests.testDeleteAllRemovesEveryRecordAndStoredVideo` (every record type and every stored video removed, library usable afterwards) pass.
 - **A20 🟡.** Corrupt video is now tested (`CorruptVideoTests`: import metadata, pose analysis, and launch measurement each fail with an error). Denied permissions, interruptions, and low storage still need a device run.
 - **A22/A23 🟡.** Implemented end to end: live readout from the camera (ring buffer, streaming audio trigger, shared measurement pipeline). On a synthetic stream the frames are ready about 0.1 s after the strike and speed/angle are within 2 %/1°. Nothing is verified on a device or against a reference launch monitor.
+- **A15 ✅.** 689 keys in 12 languages with 0 missing; the reachability checker passes locally and in GitHub Actions. All 12 languages reviewed on the eight primary screens: en/ko/de light and dark (Round 4), and the other nine in light (`Docs/Review/layout-review-12-languages.md`). Two layout findings (L1, L2) were fixed and re-captured.
+- **A2 🟡.** Light mode is reviewed in 12 languages. Still to do: dark mode in the nine added languages, and the screens the screenshot flow does not reach (club editor, camera, live readout, launch log, scorecard).
 - **A24 🟡.** T2 (duplicate model line) and T3 ("Unavailable" on empty inputs) fixed by the reviewer. T1 (release-year evidence) is open for Round 5.
 
 Ball tracking beyond the launch window, and spin, are not acceptance criteria for 1.0. They ship only if they pass their own validation (v6.0 §34), and spin RPM stays **Unavailable**.
