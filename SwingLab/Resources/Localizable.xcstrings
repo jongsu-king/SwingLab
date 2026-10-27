@@ -7547,6 +7547,83 @@
         }
       }
     },
+    "Change ball position": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Change ball position"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "공 위치 변경"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ボール位置を変更"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "更改球的位置"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "更改球的位置"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cambiar posición de la bola"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alterar posição da bola"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ballposition ändern"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modifier la position de la balle"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cambia posizione della palla"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เปลี่ยนตำแหน่งลูก"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đổi vị trí bóng"
+          }
+        }
+      }
+    },
     "Changes could not be saved.": {
       "extractionState": "manual",
       "localizations": {
@@ -21946,6 +22023,237 @@
         }
       }
     },
+    "Listening for the strike…": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Listening for the strike…"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "타구음을 기다리는 중…"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打球音を待っています…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在等待击球声…"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在等待擊球聲…"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esperando el golpe…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aguardando a tacada…"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warte auf den Schlag…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En attente de la frappe…"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In attesa del colpo…"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "กำลังรอเสียงตีลูก…"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đang chờ tiếng đánh…"
+          }
+        }
+      }
+    },
+    "Live readout": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Live readout"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "실시간 측정"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "リアルタイム計測"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "实时读数"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "即時讀數"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lectura en directo"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leitura ao vivo"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Live-Anzeige"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mesure en direct"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lettura dal vivo"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "อ่านค่าแบบเรียลไทม์"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đo trực tiếp"
+          }
+        }
+      }
+    },
+    "Live readout is unavailable: it needs the rear camera, microphone access, and launch mode.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Live readout is unavailable: it needs the rear camera, microphone access, and launch mode."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "실시간 측정을 쓸 수 없어요. 후면 카메라, 마이크 권한, 발사 측정 모드가 필요해요."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "リアルタイム計測は使用できません。背面カメラ、マイクへのアクセス、打ち出し測定モードが必要です。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法使用实时读数：需要后置摄像头、麦克风权限和出球测量模式。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法使用即時讀數：需要後置相機、麥克風權限和出球測量模式。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La lectura en directo no está disponible: necesita la cámara trasera, acceso al micrófono y el modo de salida."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A leitura ao vivo não está disponível: requer a câmera traseira, acesso ao microfone e o modo de lançamento."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Live-Anzeige ist nicht verfügbar: Sie braucht die Rückkamera, Mikrofonzugriff und den Abflugmodus."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La mesure en direct n'est pas disponible : elle nécessite la caméra arrière, l'accès au micro et le mode départ."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La lettura dal vivo non è disponibile: servono la fotocamera posteriore, l'accesso al microfono e la modalità lancio."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ใช้การอ่านค่าแบบเรียลไทม์ไม่ได้ ต้องใช้กล้องหลัง สิทธิ์ไมโครโฟน และโหมดวัดการออกตัว"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Không thể đo trực tiếp: cần camera sau, quyền truy cập micrô và chế độ đo phóng."
+          }
+        }
+      }
+    },
     "Local by design": {
       "extractionState": "manual",
       "localizations": {
@@ -23405,6 +23713,83 @@
           "stringUnit": {
             "state": "translated",
             "value": "Đơn vị đo"
+          }
+        }
+      }
+    },
+    "Measuring…": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Measuring…"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "측정 중…"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "計測中…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在测量…"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在測量…"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Midiendo…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Medindo…"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wird gemessen…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mesure en cours…"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Misurazione…"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "กำลังวัด…"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đang đo…"
           }
         }
       }
@@ -34651,6 +35036,160 @@
         }
       }
     },
+    "Set ball position": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set ball position"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "공 위치 지정"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ボール位置を指定"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "设定球的位置"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "設定球的位置"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fijar posición de la bola"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Definir posição da bola"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ballposition festlegen"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Placer la balle"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imposta posizione della palla"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "กำหนดตำแหน่งลูก"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đặt vị trí bóng"
+          }
+        }
+      }
+    },
+    "Set the ball position, then hit. The readout appears about a second after impact.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set the ball position, then hit. The readout appears about a second after impact."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "공 위치를 지정한 뒤 치세요. 임팩트 후 1초 정도면 값이 나와요."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ボール位置を指定してから打ってください。インパクトの約1秒後に表示されます。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "先设定球的位置再击球。击球后约一秒显示读数。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "先設定球的位置再擊球。擊球後約一秒顯示讀數。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fija la posición de la bola y golpea. La lectura aparece un segundo después del impacto."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Defina a posição da bola e dê a tacada. A leitura aparece cerca de um segundo após o impacto."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ballposition festlegen, dann schlagen. Die Werte erscheinen etwa eine Sekunde nach dem Treffmoment."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Placez la balle, puis frappez. La mesure s'affiche environ une seconde après l'impact."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imposta la posizione della palla, poi colpisci. La lettura compare circa un secondo dopo l'impatto."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "กำหนดตำแหน่งลูกแล้วตี ค่าจะแสดงประมาณหนึ่งวินาทีหลังอิมแพ็ค"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đặt vị trí bóng rồi đánh. Kết quả hiện khoảng một giây sau khi chạm bóng."
+          }
+        }
+      }
+    },
     "Settings": {
       "extractionState": "manual",
       "localizations": {
@@ -39040,6 +39579,83 @@
         }
       }
     },
+    "Tap the ball where it sits now. Shots are measured from this spot until you change it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap the ball where it sits now. Shots are measured from this spot until you change it."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "지금 놓인 공을 누르세요. 위치를 바꿀 때까지 이 자리에서 친 샷을 측정해요."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今置いてあるボールをタップしてください。変更するまでこの位置からのショットを計測します。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "轻点现在放置的球。在更改之前，都会测量从此位置击出的球。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "輕點現在放置的球。在更改之前，都會測量從此位置擊出的球。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toca la bola donde está ahora. Se medirán los golpes desde este punto hasta que lo cambies."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toque na bola onde ela está agora. As tacadas são medidas a partir deste ponto até você mudá-lo."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tippe auf den Ball, wo er gerade liegt. Schläge werden von dieser Stelle aus gemessen, bis du sie änderst."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touchez la balle là où elle se trouve. Les coups sont mesurés depuis cet endroit jusqu'à ce que vous le changiez."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tocca la palla dove si trova ora. I colpi vengono misurati da questo punto finché non lo cambi."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "แตะที่ลูกตรงตำแหน่งที่วางอยู่ตอนนี้ จะวัดช็อตจากจุดนี้จนกว่าคุณจะเปลี่ยน"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chạm vào bóng ở vị trí hiện tại. Các cú đánh được đo từ vị trí này cho đến khi bạn thay đổi."
+          }
+        }
+      }
+    },
     "Tap the centre of the ball at address.": {
       "extractionState": "manual",
       "localizations": {
@@ -40811,6 +41427,83 @@
         }
       }
     },
+    "The camera format changed. Set the ball position again.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The camera format changed. Set the ball position again."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "카메라 형식이 바뀌었어요. 공 위치를 다시 지정하세요."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "カメラの形式が変わりました。ボール位置をもう一度指定してください。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "相机格式已更改。请重新设定球的位置。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "相機格式已更改。請重新設定球的位置。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El formato de la cámara cambió. Fija de nuevo la posición de la bola."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O formato da câmera mudou. Defina a posição da bola novamente."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das Kameraformat hat sich geändert. Lege die Ballposition erneut fest."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le format de la caméra a changé. Placez de nouveau la balle."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il formato della fotocamera è cambiato. Imposta di nuovo la posizione della palla."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "รูปแบบกล้องเปลี่ยนไป กรุณากำหนดตำแหน่งลูกอีกครั้ง"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Định dạng camera đã thay đổi. Hãy đặt lại vị trí bóng."
+          }
+        }
+      }
+    },
     "The camera stopped. Close the camera and try again.": {
       "extractionState": "manual",
       "localizations": {
@@ -41731,6 +42424,83 @@
           "stringUnit": {
             "state": "translated",
             "value": "Không đọc được rãnh âm thanh, nên thời điểm chạm bóng là ước tính từ tư thế."
+          }
+        }
+      }
+    },
+    "The strike was heard, but the frames around it were not all captured. Wait a moment after setting the ball, then hit.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The strike was heard, but the frames around it were not all captured. Wait a moment after setting the ball, then hit."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "타구음은 잡혔지만 그 전후 프레임이 다 담기지 않았어요. 공 위치를 지정하고 잠시 뒤에 치세요."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打球音は検出しましたが、前後のフレームがすべて取得できませんでした。ボール位置を指定してから少し待って打ってください。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "听到了击球声，但前后的画面没有全部捕获。设定球的位置后稍等片刻再击球。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "聽到了擊球聲，但前後的畫面沒有全部擷取。設定球的位置後稍等片刻再擊球。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se oyó el golpe, pero no se capturaron todos los fotogramas a su alrededor. Espera un momento tras fijar la bola y golpea."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A tacada foi ouvida, mas nem todos os quadros ao redor foram capturados. Aguarde um instante após definir a bola e dê a tacada."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Schlag wurde gehört, aber nicht alle Bilder davor und danach wurden erfasst. Nach dem Festlegen des Balls kurz warten, dann schlagen."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La frappe a été entendue, mais toutes les images autour n'ont pas été capturées. Attendez un instant après avoir placé la balle, puis frappez."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il colpo è stato sentito, ma non tutti i fotogrammi attorno sono stati acquisiti. Attendi un momento dopo aver impostato la palla, poi colpisci."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ได้ยินเสียงตีลูกแล้ว แต่เก็บเฟรมรอบ ๆ ได้ไม่ครบ หลังกำหนดตำแหน่งลูกให้รอสักครู่แล้วจึงตี"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đã nghe tiếng đánh nhưng không ghi đủ các khung hình xung quanh. Hãy đợi một chút sau khi đặt bóng rồi đánh."
           }
         }
       }

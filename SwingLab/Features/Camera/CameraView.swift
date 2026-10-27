@@ -11,6 +11,7 @@ struct CameraView: View {
     @State private var angle = CameraAngle.faceOn
     @State private var showGrid = true
     @State private var exposure = 0.0
+    @State private var liveClub = ReferenceClub.iron7
     var onSave: (URL, CameraAngle) -> Void
 
     var body: some View {
@@ -32,9 +33,13 @@ struct CameraView: View {
                         }
                     }
                     VStack {
-                        Text(prefs.text(angle == .faceOn ? "Keep your full body and club in view." : "Place the camera along your hand line."))
-                            .font(.subheadline).multilineTextAlignment(.center)
-                            .padding(12).background(.black.opacity(0.6), in: RoundedRectangle(cornerRadius: 8))
+                        if camera.live == .on {
+                            LiveLaunchPanel(camera: camera, club: $liveClub)
+                        } else {
+                            Text(prefs.text(angle == .faceOn ? "Keep your full body and club in view." : "Place the camera along your hand line."))
+                                .font(.subheadline).multilineTextAlignment(.center)
+                                .padding(12).background(.black.opacity(0.6), in: RoundedRectangle(cornerRadius: 8))
+                        }
                         if camera.interrupted {
                             Text(prefs.text("Camera interrupted. Recording will resume only when you start it again."))
                                 .padding().background(.black.opacity(0.7))
@@ -87,6 +92,13 @@ struct CameraView: View {
                 if phase == .active { Task { await camera.start() } }
                 else { camera.stop() }
             }
+            .sheet(isPresented: Binding(get: { camera.liveSnapshot != nil }, set: { if !$0 { camera.liveSnapshot = nil } })) {
+                if let image = camera.liveSnapshot {
+                    LiveBallPositionSheet(image: image, direction: prefs.handedness == .right ? 1 : -1) { point, direction in
+                        camera.engine.live.setBall(at: point, direction: direction)
+                    }
+                }
+            }
             .alert(prefs.text("Camera"), isPresented: Binding(get: { camera.error != nil }, set: { if !$0 { camera.error = nil } })) {
                 Button(prefs.text("OK"), role: .cancel) { camera.error = nil }
             } message: { Text(prefs.text(camera.error ?? "")) }
@@ -103,6 +115,13 @@ struct CameraView: View {
         case let .tooDark(shutter, fps):
             return String(format: prefs.text("launch.modeTooDark"), locale: prefs.locale,
                           fps.formatted(.number.locale(prefs.locale)), (1 / shutter).rounded().formatted(.number.locale(prefs.locale)))
+        }
+    }
+
+    private var launchModeOn: Bool {
+        switch camera.launchMode {
+        case .active, .tooDark: true
+        case .off, .unsupported: false
         }
     }
 
@@ -155,6 +174,16 @@ struct CameraView: View {
             }.tint(SLTheme.sage).disabled(camera.isRecording || !camera.ready)
             if let status = launchStatus {
                 Text(status).font(.caption).foregroundStyle(.white.opacity(0.85)).fixedSize(horizontal: false, vertical: true)
+            }
+            if launchModeOn {
+                Toggle(isOn: Binding(get: { camera.live == .on }, set: { camera.engine.setLiveLaunch($0) })) {
+                    Label(prefs.text("Live readout"), systemImage: "dot.radiowaves.left.and.right").font(.subheadline)
+                }.tint(SLTheme.sage).disabled(!camera.ready)
+                    .accessibilityIdentifier("camera.live")
+                if camera.live == .unsupported {
+                    Text(prefs.text("Live readout is unavailable: it needs the rear camera, microphone access, and launch mode."))
+                        .font(.caption).foregroundStyle(.white.opacity(0.85)).fixedSize(horizontal: false, vertical: true)
+                }
             }
             Text(prefs.text(camera.recordsAudio ? "Sound on for impact timing · tap preview to focus"
                                                 : "No sound · impact from pose only · tap preview to focus"))

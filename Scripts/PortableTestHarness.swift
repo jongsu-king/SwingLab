@@ -35,7 +35,7 @@ enum CheckFailure: Error { case nilValue }
         let units = UnitsTests(), geography = GeographyTests(), dispersion = DispersionTests(), timing = TimingAndGeometryTests()
         let provenance = ProvenanceTests(), summary = SummaryMigrationTests(), phases = PhaseDetectionTests()
         let audio = ImpactOnsetTests(), flight = BallFlightTests(), coaching = CoachingTests(), grouping = PracticeGroupingTests()
-        let launch = LaunchMonitorTests()
+        let launch = LaunchMonitorTests(), live = LaunchMonitorLiveTests()
         let checks: [(String, () throws -> Void)] = [
             ("independent unit conversions", units.testIndependentUnitsRoundTrip),
             ("language fallback", units.testLanguageFallbackAndRegionalMatching),
@@ -98,7 +98,12 @@ enum CheckFailure: Error { case nilValue }
             ("launch: ball scale from address frames", launch.testBallScaleFromAddressFrames),
             ("launch: synthetic 7-iron and driver", launch.testSevenIronAndDriverLaunchesAreMeasuredOnSyntheticFrames),
             ("launch: refusals", launch.testLongExposureNoBallAndTooFewPointsAreRefused),
-            ("launch: carry is a simulated range", launch.testCarryIsASimulatedRangeFromCitedSpin)
+            ("launch: carry is a simulated range", launch.testCarryIsASimulatedRangeFromCitedSpin),
+            ("live launch: clockwise crop", live.testClockwiseCropMatchesCropOfRotatedFrame),
+            ("live launch: frame ring", live.testFrameRingKeepsNewestFramesInOrder),
+            ("live launch: streaming impact trigger", live.testStreamingTriggerTimesStrikesAndIgnoresEchoes),
+            ("live launch: streamed shot within latency budget", live.testLiveSessionMeasuresAStreamedShotWithinTheLatencyBudget),
+            ("live launch: missing history reported", live.testStrikeHeardBeforeEnoughHistoryIsReportedAsMissed)
         ]
         for (name, check) in checks {
             let before = failures

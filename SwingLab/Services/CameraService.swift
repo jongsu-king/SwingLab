@@ -1,4 +1,5 @@
 import Foundation
+import CoreGraphics
 import SwingLabCore
 import Observation
 @preconcurrency import AVFoundation
@@ -19,6 +20,15 @@ enum CameraEvent: Sendable {
     case interrupted(Bool)
     case audio(Bool)
     case launchMode(LaunchModeState)
+    case liveLaunch(LiveLaunchAvailability)
+}
+
+/// Whether the real-time launch readout is streaming frames and sound.
+enum LiveLaunchAvailability: Sendable, Equatable {
+    case off
+    /// Needs launch mode, the rear camera, sound, and a session that can stream while recording.
+    case unsupported
+    case on
 }
 
 /// Launch mode (`Docs/Specs/LaunchMonitor.md`): ≥ 200 fps and a fixed short shutter.
@@ -45,6 +55,9 @@ final class CameraEngine: NSObject, @unchecked Sendable, AVCaptureFileOutputReco
     private var observers: [NSObjectProtocol] = []
     private var wantsRunning = false
     private var launchModeEnabled = false
+    private var launchFrameRate = 240
+    /// Frame and sound streams for the real-time launch readout.
+    let live = LiveLaunchCapture()
 
     override init() {
         super.init()
@@ -76,6 +89,7 @@ final class CameraEngine: NSObject, @unchecked Sendable, AVCaptureFileOutputReco
                 }
                 let newInput = try AVCaptureDeviceInput(device: device)
                 session.beginConfiguration()
+                removeLiveOutputs()
                 if let input { session.removeInput(input) }
                 guard session.canAddInput(newInput) else {
                     if let input, session.canAddInput(input) { session.addInput(input) }
@@ -174,6 +188,9 @@ final class CameraEngine: NSObject, @unchecked Sendable, AVCaptureFileOutputReco
             do {
                 guard enabled else {
                     launchModeEnabled = false
+                    session.beginConfiguration()
+                    removeLiveOutputs()
+                    session.commitConfiguration()
                     try device.lockForConfiguration()
                     defer { device.unlockForConfiguration() }
                     if device.isExposureModeSupported(.continuousAutoExposure) { device.exposureMode = .continuousAutoExposure }
@@ -195,11 +212,57 @@ final class CameraEngine: NSObject, @unchecked Sendable, AVCaptureFileOutputReco
                 device.setExposureModeCustom(duration: duration, iso: min(format.maxISO, max(format.minISO, wanted)),
                                              completionHandler: nil)
                 launchModeEnabled = true
+                launchFrameRate = fast.fps
                 onEvent?(.ready(formats, selectedID, device.position == .front))
                 onEvent?(.launchMode(wanted > format.maxISO ? .tooDark(shutter: duration.seconds, fps: fast.fps)
                                                            : .active(shutter: duration.seconds, fps: fast.fps)))
             } catch { onEvent?(.failure("Launch mode could not be set.")) }
         }
+    }
+
+    /// Adds the frame and sound streams that feed `LiveLaunchCapture`. Launch mode must be active.
+    func setLiveLaunch(_ enabled: Bool) {
+        queue.async { [self] in
+            guard enabled else {
+                session.beginConfiguration()
+                removeLiveOutputs()
+                session.commitConfiguration()
+                return
+            }
+            guard launchModeEnabled, input?.device.position == .back, audioInput != nil else {
+                onEvent?(.liveLaunch(.unsupported)); return
+            }
+            session.beginConfiguration()
+            for output in [live.videoOutput, live.audioOutput] as [AVCaptureOutput]
+            where !session.outputs.contains(output) && session.canAddOutput(output) {
+                session.addOutput(output)
+            }
+            let streaming = session.outputs.contains(live.videoOutput) && session.outputs.contains(live.audioOutput)
+            if streaming, let connection = live.videoOutput.connection(with: .video) {
+                // Sensor orientation, unmirrored: the clockwise turn happens only on the few analysed crops.
+                if connection.isVideoRotationAngleSupported(0) { connection.videoRotationAngle = 0 }
+                if connection.isVideoMirroringSupported {
+                    connection.automaticallyAdjustsVideoMirroring = false
+                    connection.isVideoMirrored = false
+                }
+                if connection.isVideoStabilizationSupported { connection.preferredVideoStabilizationMode = .off }
+            }
+            if !streaming { removeLiveOutputs() }
+            session.commitConfiguration()
+            guard streaming else { onEvent?(.liveLaunch(.unsupported)); return }
+            live.start(frameRate: Double(launchFrameRate))
+            onEvent?(.liveLaunch(.on))
+        }
+    }
+
+    /// Call between `beginConfiguration` and `commitConfiguration`.
+    private func removeLiveOutputs() {
+        let streaming = session.outputs.contains(live.videoOutput) || session.outputs.contains(live.audioOutput)
+        for output in [live.videoOutput, live.audioOutput] as [AVCaptureOutput] where session.outputs.contains(output) {
+            session.removeOutput(output)
+        }
+        live.stop()
+        if streaming { onEvent?(.liveLaunch(.off)) }
     }
 
     func exposure(bias: Float) {
@@ -276,10 +339,19 @@ final class CameraController {
     var error: LocalizationKey?
     var recordsAudio = false
     var launchMode = LaunchModeState.off
+    var live = LiveLaunchAvailability.off
+    var liveListening = false
+    var liveMeasuring = false
+    var liveOutcome: LaunchPipeline.Outcome?
+    var liveMessage: LocalizationKey?
+    var liveSnapshot: CGImage?
     private var wantsCamera = false
     init() {
         engine = CameraEngine()
         engine.onEvent = { [weak self] event in
+            Task { @MainActor [weak self] in self?.receive(event) }
+        }
+        engine.live.onEvent = { [weak self] event in
             Task { @MainActor [weak self] in self?.receive(event) }
         }
     }
@@ -309,6 +381,21 @@ final class CameraController {
         case let .interrupted(value): interrupted = value
         case let .audio(value): recordsAudio = value
         case let .launchMode(state): launchMode = state
+        case let .liveLaunch(state):
+            // Turning the stream on or off always starts over from "set the ball position".
+            live = state
+            liveListening = false; liveMeasuring = false; liveOutcome = nil; liveMessage = nil
+        }
+    }
+
+    private func receive(_ event: LiveLaunchEvent) {
+        switch event {
+        case let .snapshot(image): liveSnapshot = image
+        case .listening: liveListening = true; liveMessage = nil
+        case .impact: liveMeasuring = true; liveMessage = nil
+        case let .measured(outcome): liveMeasuring = false; liveOutcome = outcome
+        case let .failure(key): liveMeasuring = false; liveMessage = key
+        case let .reset(key): liveMeasuring = false; liveListening = false; liveMessage = key
         }
     }
 }

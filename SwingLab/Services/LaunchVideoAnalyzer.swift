@@ -21,6 +21,14 @@ enum LaunchVideoError: LocalizedError, Equatable {
         case .launch(.implausibleSpeed): "The measured motion is not plausible for a struck ball, so no value is shown."
         }
     }
+
+    init(_ failure: LaunchPipelineFailure) {
+        switch failure {
+        case .scaleNotFound: self = .scaleNotFound
+        case .missingFrames: self = .unreadable
+        case let .launch(reason): self = .launch(reason)
+        }
+    }
 }
 
 /// Measures a face-on launch from a high-frame-rate movie (`Docs/Specs/LaunchMonitor.md`).
@@ -53,34 +61,23 @@ actor LaunchVideoAnalyzer {
             return (actual.seconds, image)
         }
         var addressImages: [(time: Double, image: CGImage)] = [], flightImages: [(time: Double, image: CGImage)] = []
-        for lead in [0.25, 0.20, 0.15, 0.10] { addressImages.append(try await grab(max(0, impactTime - lead))) }
-        for index in 1...6 { flightImages.append(try await grab(impactTime + Double(index) / fps)) }
+        for lead in LiveLaunchSession.addressLeads { addressImages.append(try await grab(max(0, impactTime - lead))) }
+        for index in 1...LiveLaunchSession.flightFrameCount { flightImages.append(try await grab(impactTime + Double(index) / fps)) }
         guard let first = addressImages.first?.image else { throw LaunchVideoError.unreadable }
         let width = first.width, height = first.height
-        let ball = CGPoint(x: ballPoint.x * Double(width), y: ballPoint.y * Double(height))
-        // Region: a little behind the ball, most of the frame ahead of it, mostly above it.
-        let ahead = Int(0.65 * Double(width)), back = max(40, width / 25)
-        let left = targetDirection > 0 ? Int(ball.x) - back : Int(ball.x) - ahead
-        let roi = CGRect(x: max(0, left), y: max(0, Int(ball.y) - Int(0.5 * Double(height))),
-                         width: back + ahead, height: Int(0.5 * Double(height)) + back)
-            .intersection(CGRect(x: 0, y: 0, width: width, height: height)).integral
-        guard roi.width > 32, roi.height > 32 else { throw LaunchVideoError.unreadable }
+        let ball = PixelPoint(x: ballPoint.x * Double(width), y: ballPoint.y * Double(height))
+        guard let region = LaunchRegion.around(ball: ball, frameWidth: width, frameHeight: height, targetDirection: targetDirection) else {
+            throw LaunchVideoError.unreadable
+        }
+        let roi = CGRect(x: region.x, y: region.y, width: region.width, height: region.height)
         let address = addressImages.compactMap { Self.gray($0.image, roi: roi) }
         let flight = flightImages.compactMap { item in Self.gray(item.image, roi: roi).map { (time: item.time, image: $0) } }
         guard address.count == addressImages.count, flight.count == flightImages.count else { throw LaunchVideoError.unreadable }
-        let local = PixelPoint(x: ball.x - roi.minX, y: ball.y - roi.minY)
-        guard let scale = BallScaleFitter.fit(frames: address, near: local, searchRadius: max(20, width / 40)) else {
-            throw LaunchVideoError.scaleNotFound
-        }
-        let observations: [LaunchObservation]
-        switch LaunchTracker.observe(frames: flight, reference: address[address.count - 1], scale: scale,
-                                     exposure: nil, targetDirection: targetDirection) {
-        case let .success(found): observations = found
-        case let .failure(reason): throw LaunchVideoError.launch(reason)
-        }
-        switch LaunchTracker.fit(observations, scale: scale) {
-        case let .success(measurement): return Outcome(measurement: measurement, impactTime: impactTime, scale: scale)
-        case let .failure(reason): throw LaunchVideoError.launch(reason)
+        switch LaunchPipeline.measure(address: address, flight: flight,
+                                      ball: PixelPoint(x: ball.x - Double(region.x), y: ball.y - Double(region.y)),
+                                      searchRadius: LaunchRegion.searchRadius(frameWidth: width), targetDirection: targetDirection) {
+        case let .success(found): return Outcome(measurement: found.measurement, impactTime: impactTime, scale: found.scale)
+        case let .failure(reason): throw LaunchVideoError(reason)
         }
     }
 

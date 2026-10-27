@@ -65,7 +65,7 @@
   - vertical launch within ±1.5°.
 - **Until validated,** the mode is labelled **"Experimental"** in the UI, and no marketing copy may call it a launch monitor.
 
-## Status (reviewer, 26 Oct 2026)
+## Status (reviewer, 27 Oct 2026)
 
 Core implemented in `Sources/SwingLabCore/LaunchMonitor.swift` and `LaunchMonitorImaging.swift`. They sit flat in the core folder, not in a `LaunchMonitor/` subfolder, because the portable check scripts glob only `Sources/SwingLabCore/*.swift`.
 
@@ -100,9 +100,18 @@ The shutter time of imported clips is unknown, so smear is limited by shape (ove
 
 **Untested on real video.** iPhone Camera slow-motion clips may arrive through the photo picker as a slowed 30 fps composition; the screen then refuses ("needs 200 fps").
 
+**Live readout (added 27 Oct, reviewer).** Camera → Launch mode → "Live readout".
+1. `CameraEngine.setLiveLaunch` adds an `AVCaptureVideoDataOutput` and an `AVCaptureAudioDataOutput` next to the movie output. If the session refuses either (rear camera, microphone, and launch mode are required), the toggle reports "unavailable".
+2. "Set ball position" grabs one luma frame, turns it upright, and the user taps the ball and picks the direction.
+3. `LiveLaunchCapture` copies only the launch region (`LaunchRegion`, shared with the video path) from the luma plane of each frame into a `FrameRing`. At 240 fps that is 139 frames (0.51 s, ≈ 48 MB for a 720 × 1280 view); crops stay in sensor orientation and only the 10 analysed frames are turned upright.
+4. `StreamingImpactTrigger` checks each sound buffer: a first-difference peak 12 dB over the recent floor proposes a strike, and 60 ms later the full `ImpactOnsetDetector` confirms and times it on the last second of sound. Echoes within 1.5 s are ignored.
+5. `LiveLaunchSession` waits for six frames after the strike and picks the four address frames (0.25…0.10 s before), then `LaunchPipeline` measures them off the capture queue. Audio and video timestamps share the capture session clock.
+6. The panel shows ball speed and launch angle (vision-derived), carry as a simulated range for a chosen club, and the Experimental notice. Spin and club speed are not shown.
+
+Core tests stream a synthetic shot as 1,024-sample sound buffers delivered 20 ms late and 240 fps sensor-orientation crops. The strike is timed within 1 ms, the frames are ready about 0.1 s after impact, and speed and angle match the recorded-video path (±2 %, ±1°). **Nothing about the device path is verified yet**: the clockwise turn assumes the rear camera's native landscape buffers, and whether a session accepts the data outputs beside a 240 fps movie output differs by device.
+
 **Not yet done:**
 - Masking the club head and body near impact.
-- Live camera ring buffer and short-exposure configuration.
-- Streaming audio trigger.
-- The readout UI.
+- Saving each live shot with its clip and values (session log).
+- On-device check of the live path: orientation, dropped frames, and latency.
 - Validation against TrackMan.

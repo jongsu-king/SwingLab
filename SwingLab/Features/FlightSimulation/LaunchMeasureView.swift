@@ -44,6 +44,7 @@ struct LaunchMeasureView: View {
         }
         .background(SLTheme.background)
         .navigationTitle(prefs.text("Launch"))
+        .onChange(of: ballPoint) { outcome = nil }
         .task {
             direction = defaultDirection
             do {
@@ -58,35 +59,12 @@ struct LaunchMeasureView: View {
         if let frame {
             VStack(alignment: .leading, spacing: 8) {
                 Text(prefs.text("Tap the centre of the ball at address.")).font(.subheadline)
-                GeometryReader { geometry in
-                    let size = fittedSize(for: geometry.size)
-                    ZStack(alignment: .topLeading) {
-                        Image(decorative: frame, scale: 1).resizable().frame(width: size.width, height: size.height)
-                        if let ballPoint {
-                            Circle().stroke(SLTheme.sage, lineWidth: 2).frame(width: 28, height: 28)
-                                .position(x: ballPoint.x * size.width, y: ballPoint.y * size.height)
-                        }
-                    }
-                    .frame(width: size.width, height: size.height)
-                    .contentShape(Rectangle())
-                    .onTapGesture { location in
-                        ballPoint = CGPoint(x: min(1, max(0, location.x / size.width)), y: min(1, max(0, location.y / size.height)))
-                        outcome = nil
-                    }
-                    .accessibilityLabel(prefs.text("Tap the centre of the ball at address."))
-                }
-                .frame(height: 360)
+                BallTapImage(image: frame, point: $ballPoint, accessibilityLabel: prefs.text("Tap the centre of the ball at address."))
+                    .frame(height: 360)
             }
         } else if errorKey == nil {
             ProgressView(prefs.text("Finding the impact sound…"))
         }
-    }
-
-    private func fittedSize(for available: CGSize) -> CGSize {
-        guard let frame, frame.width > 0, frame.height > 0 else { return available }
-        let aspect = Double(frame.width) / Double(frame.height)
-        let height = min(available.height, available.width / aspect)
-        return CGSize(width: height * aspect, height: height)
     }
 
     private func readout(_ outcome: LaunchVideoAnalyzer.Outcome) -> some View {

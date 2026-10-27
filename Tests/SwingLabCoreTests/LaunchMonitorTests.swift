@@ -7,7 +7,7 @@ import Foundation
 
 /// Renders a 480×360 face-on region: textured turf-like background and a 42.67 mm ball drawn at
 /// 0.4922 px/mm (≈ 21 px), anti-aliased by 4×4 supersampling and smeared over the exposure window.
-private enum LaunchScene {
+enum LaunchScene {
     static let width = 480, height = 360
     static let pixelsPerMillimetre = 0.4922
     static let address = PixelPoint(x: 120.3, y: 280.6)
