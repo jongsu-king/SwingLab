@@ -228,6 +228,8 @@ struct CourseView: View {
                     Text(preferences.text("Select club")).tag(UUID?.none)
                     ForEach(clubs) { Text($0.name).tag(Optional($0.id)) }
                 }.labelsHidden()
+                    // One line in every language; long club names truncate instead of wrapping (A2 review).
+                    .lineLimit(1).layoutPriority(1)
                 Spacer()
                 Button { openGeometry() } label: { Image(systemName: "point.3.connected.trianglepath.dotted").frame(minWidth: 44, minHeight: 44) }
                     .accessibilityLabel(preferences.text("Course areas"))

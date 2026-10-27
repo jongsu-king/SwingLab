@@ -41,8 +41,10 @@ struct SLMetricReadout: View {
             Text(Self.formattedValue(metric, preferences: preferences, fractionDigits: fractionDigits,
                                      displayAsPercent: displayAsPercent, displayAsRatio: displayAsRatio))
                 .font(valueFont).monospacedDigit().foregroundStyle(SLTheme.ink)
-            ProvenanceBadge(provenance: metric.value == nil ? .unavailable : metric.provenance,
-                            sampleCount: metric.sampleCount)
+            // The value already reads "Unavailable"; a second badge saying so (and a sample count) adds nothing.
+            if metric.value != nil, metric.provenance != .unavailable {
+                ProvenanceBadge(provenance: metric.provenance, sampleCount: metric.sampleCount)
+            }
         }
         .accessibilityElement(children: .combine)
     }
