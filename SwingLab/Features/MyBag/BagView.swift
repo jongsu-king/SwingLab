@@ -68,7 +68,7 @@ struct BagView: View {
             ToolbarItem(placement: .primaryAction) {
                 Button { addingClub = true } label: {
                     Image(systemName: "plus").accessibilityLabel(preferences.text("Add club"))
-                }
+                }.accessibilityIdentifier("bag.add")
             }
         }
         .sheet(isPresented: $addingClub) { ClubEditorView() }

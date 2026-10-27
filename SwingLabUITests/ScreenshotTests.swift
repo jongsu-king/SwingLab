@@ -16,10 +16,40 @@ final class ScreenshotTests: XCTestCase {
     /// Runs only when asked: `xcodebuild … TEST_RUNNER_SWINGLAB_ALL_LANGUAGES=1 test`.
     @MainActor func testRemainingLanguagesLight() throws {
         try XCTSkipUnless(ProcessInfo.processInfo.environment["SWINGLAB_ALL_LANGUAGES"] == "1")
-        for language in ["ja", "zh-Hans", "zh-Hant", "es", "pt-BR", "fr", "it", "th", "vi"] {
-            try capture(language: language, appearance: "light")
+        for language in Self.remainingLanguages { try capture(language: language, appearance: "light") }
+    }
+
+    @MainActor func testRemainingLanguagesDark() throws {
+        try XCTSkipUnless(ProcessInfo.processInfo.environment["SWINGLAB_ALL_LANGUAGES"] == "1")
+        for language in Self.remainingLanguages { try capture(language: language, appearance: "dark") }
+    }
+
+    /// Screens the main flow does not reach: the launch log and the add-club editor, in all 12 languages.
+    @MainActor func testExtraScreensAllLanguages() throws {
+        try XCTSkipUnless(ProcessInfo.processInfo.environment["SWINGLAB_ALL_LANGUAGES"] == "1")
+        for language in ["en", "ko", "de"] + Self.remainingLanguages {
+            for appearance in ["light", "dark"] {
+                let app = XCUIApplication()
+                app.launchArguments = ["--ui-testing", "--screenshot-testing", "--screenshot-language", language,
+                    "--screenshot-appearance", appearance, "-AppleLanguages", "(\(language))", "-AppleLocale", language]
+                app.launch()
+                let labels = tabLabels(language)
+                XCTAssertTrue(app.buttons[labels[0]].firstMatch.waitForExistence(timeout: 15))
+                app.buttons[labels[1]].firstMatch.tap()
+                try tap("swing.launchLog", in: app)
+                save(app, screen: "launch-log", language: language, appearance: appearance)
+                app.terminate(); app.launch()
+                XCTAssertTrue(app.buttons[labels[0]].firstMatch.waitForExistence(timeout: 15))
+                try tap("home.bag", in: app)
+                try tap("bag.add", in: app)
+                XCTAssertTrue(app.buttons["bag.catalog"].waitForExistence(timeout: 5))
+                save(app, screen: "club-editor", language: language, appearance: appearance)
+                app.terminate()
+            }
         }
     }
+
+    private static let remainingLanguages = ["ja", "zh-Hans", "zh-Hant", "es", "pt-BR", "fr", "it", "th", "vi"]
 
     @MainActor private func capture(language: String, appearance: String) throws {
         let app = XCUIApplication()

@@ -138,22 +138,30 @@ struct CameraView: View {
 
     private var controls: some View {
         VStack(spacing: 16) {
-            HStack {
-                Image(systemName: "sun.min")
-                Slider(value: $exposure, in: -2...2).tint(.white)
-                    .accessibilityLabel(prefs.text("Exposure"))
-                    .onChange(of: exposure) { _, value in camera.engine.exposure(bias: Float(value)) }
-                Image(systemName: "sun.max")
+            // Launch mode fixes the shutter, ISO, and format, so these controls would do nothing there.
+            if !launchModeOn {
+                HStack {
+                    Image(systemName: "sun.min")
+                    Slider(value: $exposure, in: -2...2).tint(.white)
+                        .accessibilityLabel(prefs.text("Exposure"))
+                        .onChange(of: exposure) { _, value in camera.engine.exposure(bias: Float(value)) }
+                    Image(systemName: "sun.max")
+                }
             }
             HStack {
-                Menu {
-                    ForEach(camera.formats) { format in
-                        Button(format.label) { camera.engine.selectFormat(format.id) }
-                    }
-                } label: {
-                    Text(camera.formats.first(where: { $0.id == camera.selectedFormat })?.label ?? prefs.text("Camera format"))
+                if launchModeOn {
+                    Text(camera.formats.first(where: { $0.id == camera.selectedFormat })?.label ?? "")
                         .font(.caption).monospacedDigit()
-                }.disabled(camera.isRecording)
+                } else {
+                    Menu {
+                        ForEach(camera.formats) { format in
+                            Button(format.label) { camera.engine.selectFormat(format.id) }
+                        }
+                    } label: {
+                        Text(camera.formats.first(where: { $0.id == camera.selectedFormat })?.label ?? prefs.text("Camera format"))
+                            .font(.caption).monospacedDigit()
+                    }.disabled(camera.isRecording)
+                }
                 Spacer()
                 Picker(prefs.text("Camera angle"), selection: $angle) {
                     Text(prefs.text(CameraAngle.faceOn.localizationKey)).tag(CameraAngle.faceOn)
