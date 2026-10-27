@@ -28,9 +28,9 @@ struct ClubEditorView: View {
                         draft.equipment.hoselSystemID = nil; draft.equipment.hoselPositionID = nil
                         draft.equipment.baseLoftFromCatalog = false
                     }
-                    if let selectedClub {
-                        Text(selectedClub.model)
-                        if !selectedClub.verified { Text(preferences.text("Catalog entry not yet verified.")).font(.caption).foregroundStyle(.secondary) }
+                    // The selected model already fills the locked Brand and Model fields below.
+                    if let selectedClub, !selectedClub.verified {
+                        Text(preferences.text("Catalog entry not yet verified.")).font(.caption).foregroundStyle(.secondary)
                     }
                 }
                 Section {
@@ -279,7 +279,8 @@ struct ClubEditorView: View {
         HStack(alignment: .firstTextBaseline) {
             VStack(alignment: .leading, spacing: 3) {
                 Text(preferences.text(title))
-                ProvenanceBadge(provenance: value.wrappedValue.isEmpty ? .unavailable : .userEntered)
+                // An empty input is not a missing measurement; the placeholder already says it is optional.
+                if !value.wrappedValue.isEmpty { ProvenanceBadge(provenance: .userEntered) }
             }
             Spacer(minLength: 12)
             TextField(preferences.text("Optional"), text: value)
