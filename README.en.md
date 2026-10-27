@@ -13,6 +13,7 @@
   <img src="https://img.shields.io/badge/SwiftUI%20%C2%B7%20Vision%20%C2%B7%20AVFoundation-375746" alt="SwiftUI, Vision, AVFoundation">
   <img src="https://img.shields.io/badge/languages-12-786443" alt="12 languages">
   <img src="https://img.shields.io/badge/dependencies-0-375746" alt="No third-party dependencies">
+  <a href="https://doi.org/10.5281/zenodo.23682465"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.23682465.svg" alt="DOI"></a>
 </p>
 
 <p align="center"><a href="README.md">한국어</a> · <b>English</b></p>
