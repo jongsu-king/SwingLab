@@ -51,7 +51,7 @@ project_config=configs('project',dict(IPHONEOS_DEPLOYMENT_TARGET='17.0', SDKROOT
 targets=[]
 for name,sources in [('SwingLab',app_sources),('SwingLabTests',test_sources),('SwingLabUITests',ui_sources)]:
     is_app=name=='SwingLab'
-    settings=dict(PRODUCT_NAME='$(TARGET_NAME)', PRODUCT_BUNDLE_IDENTIFIER='com.swinglab.app'+('' if is_app else '.'+name), CODE_SIGN_STYLE='Automatic', DEVELOPMENT_TEAM='', TARGETED_DEVICE_FAMILY='1', SUPPORTED_PLATFORMS='iphoneos iphonesimulator', SUPPORTS_MACCATALYST='NO', GENERATE_INFOPLIST_FILE='YES', MARKETING_VERSION='0.1.0', CURRENT_PROJECT_VERSION='1')
+    settings=dict(PRODUCT_NAME='$(TARGET_NAME)', PRODUCT_BUNDLE_IDENTIFIER='com.swinglab.app'+('' if is_app else '.'+name), CODE_SIGN_STYLE='Automatic', DEVELOPMENT_TEAM='', TARGETED_DEVICE_FAMILY='1', SUPPORTED_PLATFORMS='iphoneos iphonesimulator', SUPPORTS_MACCATALYST='NO', GENERATE_INFOPLIST_FILE='YES', MARKETING_VERSION='0.4.0', CURRENT_PROJECT_VERSION='1')
     if is_app:
         settings.update(GENERATE_INFOPLIST_FILE='NO', INFOPLIST_FILE='SwingLab/Resources/Info.plist', ASSETCATALOG_COMPILER_APPICON_NAME='AppIcon', SWIFT_EMIT_LOC_STRINGS='YES', LD_RUNPATH_SEARCH_PATHS='$(inherited) @executable_path/Frameworks')
     elif name=='SwingLabTests':

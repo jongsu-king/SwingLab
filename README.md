@@ -165,3 +165,7 @@ xcodebuild -project SwingLab.xcodeproj -scheme SwingLab -destination 'platform=i
 ## 개인정보
 
 계정이 필요 없고, 광고·분석 SDK와 업로드 서버가 없어요. 촬영한 영상과 기록은 기기 안에만 저장되고, 설정에서 한 번에 지울 수 있어요. 자세한 내용은 [Docs/PrivacyPolicy.md](Docs/PrivacyPolicy.md)에 있어요.
+
+## 라이선스
+
+MIT 라이선스예요. 자세한 내용은 [LICENSE](LICENSE)에 있어요.

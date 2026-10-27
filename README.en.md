@@ -165,3 +165,7 @@ After adding a source file, run `python3 Scripts/generate_project.py`. After edi
 ## Privacy
 
 No account, no ads or analytics SDK, no upload server. Recordings and records stay on the device and can be deleted at once from Settings. See [Docs/PrivacyPolicy.md](Docs/PrivacyPolicy.md).
+
+## License
+
+MIT. See [LICENSE](LICENSE).

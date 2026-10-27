@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "SwingLab"
+abstract: >-
+  Native iPhone golf lab: swing video analysis with Vision body pose, an
+  experimental 240 fps launch monitor, a club catalog covering 2000 to 2026,
+  and course strategy. Every number shows where it came from; 12 languages.
+type: software
+version: "0.4.0"
+date-released: 2026-10-27
+license: MIT
+repository-code: "https://github.com/jongsu-king/SwingLab"
+authors:
+  - family-names: Lim
+    given-names: Jongsu
+    orcid: "https://orcid.org/0009-0000-3395-1484"
+keywords:
+  - golf
+  - golf swing
+  - sports analytics
+  - launch monitor
+  - iOS
+  - Vision framework
