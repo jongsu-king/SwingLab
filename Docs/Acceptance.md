@@ -4,15 +4,15 @@ The reviewer grants the final **PASS** only when every row is ✅ with evidence 
 
 Legend: ✅ verified · 🟡 implemented, not yet verified to the bar · ❌ missing or failing · ⬜ needs a real iPhone or user data
 
-_Last updated: 26 Oct 2026, after Round 4._
+_Last updated: 27 Oct 2026, reviewer work between Rounds 4 and 5._
 
 ## Engineering gates
 
 | # | Gate | Bar | Status | Evidence |
 |---|---|---|---|---|
 | G1 | iOS build | `xcodebuild … build` 0 errors, 0 warnings (Swift 6) | ✅ | First native build, 26 Oct (`Docs/CompileRisk.md`) |
-| G2 | Core tests | `swift test` all pass under XCTest | ✅ | 76/76 after Round 4 (reproduced by reviewer) |
-| G3 | App tests on simulator | `xcodebuild test` (`SwingLabTests` + `SwingLabUITests`) all pass on iOS 26.4 and 27.1 | ✅ | Reviewer, Round 4, no build-setting overrides: iPhone 17 Pro iOS 26.4 22/22 + 9/9; iPhone Duo iOS 27.1 22/22 + 9/9 |
+| G2 | Core tests | `swift test` all pass under XCTest | ✅ | 85/85 on 27 Oct (reviewer); also on every push in GitHub Actions (`core-tests.yml`, Swift 6.3.3) |
+| G3 | App tests on simulator | `xcodebuild test` (`SwingLabTests` + `SwingLabUITests`) all pass on iOS 26.4 and 27.1 | ✅ | Reviewer, 27 Oct, no build-setting overrides: iPhone 17 Pro iOS 26.4 and iPhone Duo iOS 27.1 each 36 passed, 0 failed (27 app + 9 UI); 1 skipped by design (the opt-in 12-language screenshot pass) |
 | G4 | Project opens and runs from Xcode | Simulator run from Xcode without command-line overrides | 🟡 | Debug `ONLY_ACTIVE_ARCH=YES` fixed; concrete-device build+test passes without overrides. A manual Xcode Run is not yet observed. |
 | G5 | Repository checks | `Scripts/verify.sh` passes | ✅ | Round 4: 647 keys, 0 missing; catalog validator passes (reproduced) |
 
@@ -36,17 +36,23 @@ _Last updated: 26 Oct 2026, after Round 4._
 | A14 | Strategy recommendations | Caddie v2 searches aim, accounts for hazards, and is explainable and localized | ❌ |
 | A15 | Language selection | 12 languages; the checker fails on any missing key, including keys passed through helpers; screenshots reviewed | 🟡 |
 | A16 | Independent units | Distance, speed, wind, and temperature switch independently everywhere | 🟡 |
-| A17 | Local-first storage | No account; V1→V2→V3 migration tests pass on the simulator; full deletion works | ⬜ |
+| A17 | Local-first storage | No account; V1→V2→V3 migration tests pass on the simulator; full deletion works | ✅ |
 | A18 | Honest provenance | Every displayed number carries a typed origin; spin and ball speed stay Unavailable; audit passes | 🟡 |
 | A19 | Device performance | Recording holds the selected fps; analysis of a 10 s 240 fps clip finishes in reasonable time without thermal shutdown | ⬜ |
 | A20 | Error handling | Denied permissions, interruptions, low storage, and corrupt video each tested | 🟡 |
 | A21 | App Store readiness | Public privacy policy URL, metadata in 12 languages, TestFlight build uploaded (needs a paid developer account) | ❌ |
 
-| A22 | Launch monitor: ball speed | Real-time readout ≤ 2 s after impact. On ≥ 10 real shots recorded alongside a reference launch monitor: within ±3 %. | ❌ |
-| A23 | Launch monitor: launch angle | Same shots: vertical launch within ±1.5°. Spin, club speed, and smash factor stay Unavailable. | ❌ |
+| A22 | Launch monitor: ball speed | Real-time readout ≤ 2 s after impact. On ≥ 10 real shots recorded alongside a reference launch monitor: within ±3 %. | 🟡 |
+| A23 | Launch monitor: launch angle | Same shots: vertical launch within ±1.5°. Spin, club speed, and smash factor stay Unavailable. | 🟡 |
 | A24 | Club & shaft catalog (user request) | Brand → category → year → model picker with search; custom entry; shafts (catalog and custom); length in inches; hosel position picker with loft/lie Δ. Every entry sourced or labelled unverified. | 🟡 |
 
 Requested by the user on 26 Oct 2026; specified in `Docs/Specs/LaunchMonitor.md`. Spin RPM stays Unavailable.
+
+Evidence notes (reviewer, 27 Oct):
+- **A17 ✅.** No account or sign-in code exists. On both simulators: `SchemaMigrationTests` (V1→V2, V2→V3), `CatalogMigrationTests` (V3→V4), and `PersistenceTests.testDeleteAllRemovesEveryRecordAndStoredVideo` (every record type and every stored video removed, library usable afterwards) pass.
+- **A20 🟡.** Corrupt video is now tested (`CorruptVideoTests`: import metadata, pose analysis, and launch measurement each fail with an error). Denied permissions, interruptions, and low storage still need a device run.
+- **A22/A23 🟡.** Implemented end to end: live readout from the camera (ring buffer, streaming audio trigger, shared measurement pipeline). On a synthetic stream the frames are ready about 0.1 s after the strike and speed/angle are within 2 %/1°. Nothing is verified on a device or against a reference launch monitor.
+- **A24 🟡.** T2 (duplicate model line) and T3 ("Unavailable" on empty inputs) fixed by the reviewer. T1 (release-year evidence) is open for Round 5.
 
 Ball tracking beyond the launch window, and spin, are not acceptance criteria for 1.0. They ship only if they pass their own validation (v6.0 §34), and spin RPM stays **Unavailable**.
 

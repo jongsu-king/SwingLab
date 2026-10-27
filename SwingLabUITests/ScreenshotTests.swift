@@ -12,6 +12,15 @@ final class ScreenshotTests: XCTestCase {
     @MainActor func testGermanLight() throws { try capture(language: "de", appearance: "light") }
     @MainActor func testGermanDark() throws { try capture(language: "de", appearance: "dark") }
 
+    /// The other nine languages in light mode, for the reviewer's layout pass (Acceptance A2, A15).
+    /// Runs only when asked: `xcodebuild … TEST_RUNNER_SWINGLAB_ALL_LANGUAGES=1 test`.
+    @MainActor func testRemainingLanguagesLight() throws {
+        try XCTSkipUnless(ProcessInfo.processInfo.environment["SWINGLAB_ALL_LANGUAGES"] == "1")
+        for language in ["ja", "zh-Hans", "zh-Hant", "es", "pt-BR", "fr", "it", "th", "vi"] {
+            try capture(language: language, appearance: "light")
+        }
+    }
+
     @MainActor private func capture(language: String, appearance: String) throws {
         let app = XCUIApplication()
         app.launchArguments = ["--ui-testing", "--screenshot-testing", "--screenshot-language", language,
@@ -61,6 +70,15 @@ final class ScreenshotTests: XCTestCase {
         switch language {
         case "ko": ["홈", "스윙", "코스", "퍼포먼스"]
         case "de": ["Start", "Schwung", "Platz", "Leistung"]
+        case "ja": ["ホーム", "スイング", "コース", "パフォーマンス"]
+        case "zh-Hans": ["主页", "挥杆", "球场", "表现"]
+        case "zh-Hant": ["首頁", "揮桿", "球場", "表現"]
+        case "es": ["Inicio", "Swing", "Campo", "Rendimiento"]
+        case "pt-BR": ["Início", "Swing", "Campo", "Desempenho"]
+        case "fr": ["Accueil", "Swing", "Parcours", "Performances"]
+        case "it": ["Home", "Swing", "Campo", "Prestazioni"]
+        case "th": ["หน้าหลัก", "วงสวิง", "สนาม", "ผลงาน"]
+        case "vi": ["Trang chủ", "Swing", "Sân golf", "Hiệu suất"]
         default: ["Home", "Swing", "Course", "Performance"]
         }
     }

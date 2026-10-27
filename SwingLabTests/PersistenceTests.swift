@@ -69,4 +69,42 @@ final class PersistenceTests: XCTestCase {
         invalid.carry = "nan"
         XCTAssertThrowsError(try invalid.validated(unit: .yards, locale: Locale(identifier: "de")))
     }
+
+    /// Settings → Delete all local data (Acceptance A17): every record type and every stored video go,
+    /// and the library is usable again afterwards.
+    @MainActor func testDeleteAllRemovesEveryRecordAndStoredVideo() throws {
+        let schema = Schema(SwingLabCurrentSchema.models)
+        let container = try ModelContainer(for: schema, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
+        let context = ModelContext(container)
+        let video = try VideoLibrary.newURL()
+        try Data("placeholder movie".utf8).write(to: video)
+        let recording = SwingRecording(title: "Practice", videoFileName: video.lastPathComponent, durationSeconds: 3,
+                                       nominalFrameRate: 240, videoWidth: 720, videoHeight: 1280)
+        let club = GolfClub(name: "7 iron", category: "Iron")
+        let course = GolfCourse(name: "Entered course", latitude: 37.5, longitude: 127)
+        let round = RoundSession(courseName: course.name, holeCount: 9, course: course)
+        round.holeScores.append(HoleScore(number: 1))
+        round.shots.append(ShotRecord(holeNumber: 1, shotNumber: 1, clubID: club.id, clubName: club.name, startLatitude: 37.5,
+                                      startLongitude: 127, startAccuracyMeters: 5, startedAt: .now))
+        context.insert(recording); context.insert(club); context.insert(course); context.insert(round)
+        context.insert(PracticeSession(date: .now, clubID: club.id))
+        try context.save()
+
+        try LocalDataController.deleteAll(context: context)
+
+        let reader = ModelContext(container)
+        XCTAssertTrue(try reader.fetch(FetchDescriptor<SwingRecording>()).isEmpty)
+        XCTAssertTrue(try reader.fetch(FetchDescriptor<GolfClub>()).isEmpty)
+        XCTAssertTrue(try reader.fetch(FetchDescriptor<GolfCourse>()).isEmpty)
+        XCTAssertTrue(try reader.fetch(FetchDescriptor<RoundSession>()).isEmpty)
+        XCTAssertTrue(try reader.fetch(FetchDescriptor<ShotRecord>()).isEmpty)
+        XCTAssertTrue(try reader.fetch(FetchDescriptor<HoleScore>()).isEmpty)
+        XCTAssertTrue(try reader.fetch(FetchDescriptor<PracticeSession>()).isEmpty)
+        XCTAssertFalse(FileManager.default.fileExists(atPath: video.path))
+        let library = try VideoLibrary.directory()
+        XCTAssertTrue(try FileManager.default.contentsOfDirectory(atPath: library.path).isEmpty)
+        let staged = try FileManager.default.contentsOfDirectory(atPath: library.deletingLastPathComponent().path)
+            .filter { $0.hasPrefix("SwingVideos.deleted-") }
+        XCTAssertTrue(staged.isEmpty)
+    }
 }

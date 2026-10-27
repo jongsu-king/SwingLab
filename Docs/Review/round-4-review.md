@@ -22,6 +22,13 @@ R3-1, R3-2, R3-3, and R3-5 are resolved. Write the missing Round 4 milestone rep
 - **T3 (Low) — Loft "Unavailable" with an Optional placeholder** reads as contradictory in the editor (`round4-en-light-catalog-editor.png`). Show "Unavailable" only for read-only metrics, not for empty inputs.
 - **T4 (Info) — Task D status.** Course geometry, caddie aim search, seeded club tracking, and the localization reachability checker exist in source. Report each against its v7.0 AC.
 
-## Reviewer work while Codex is unavailable
+## Reviewer work while Codex is unavailable (26 Oct – 2 Nov)
 
-The launch-monitor core (`Docs/Specs/LaunchMonitor.md`) is implemented under `Sources/SwingLabCore/LaunchMonitor/` with synthetic-frame tests. It is in scope for your review in Round 5.
+All of it is in scope for your review in Round 5 (see `Docs/Prompts/v10.0.md`, Task B).
+
+- **Launch-monitor core.** `Sources/SwingLabCore/LaunchMonitor.swift` and `LaunchMonitorImaging.swift` (flat, because the portable check scripts glob only `Sources/SwingLabCore/*.swift`), with synthetic-frame tests in `Tests/SwingLabCoreTests/LaunchMonitorTests.swift`.
+- **Measure launch from a recorded video.** `SwingLab/Services/LaunchVideoAnalyzer.swift`, `SwingLab/Features/FlightSimulation/LaunchMeasureView.swift`.
+- **Camera launch mode.** `CameraEngine.setLaunchMode` in `SwingLab/Services/CameraService.swift`: fastest ≥ 200 fps format with a custom 1/2000 s shutter.
+- **Live readout.** `Sources/SwingLabCore/LaunchMonitorLive.swift` (`LaunchRegion`, `LaunchPipeline`, `LumaFrame`, `FrameRing`, `StreamingImpactTrigger`, `LiveLaunchSession`), `SwingLab/Services/LiveLaunchCapture.swift`, `CameraEngine.setLiveLaunch`, `SwingLab/Features/Camera/LiveLaunchPanel.swift`, with streamed-shot tests in `Tests/SwingLabCoreTests/LaunchMonitorLiveTests.swift`.
+- **T2 and T3 fixed by the reviewer** in `ClubEditorView.swift`: the duplicate model line is gone, and empty inputs no longer carry an "Unavailable" badge. Check that the fix is right; do not redo it.
+- **Tests added:** `PersistenceTests.testDeleteAllRemovesEveryRecordAndStoredVideo` (A17) and `CorruptVideoTests` (A20, corrupt video).

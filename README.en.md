@@ -7,7 +7,7 @@
 
 <p align="center">
   <a href="https://github.com/jongsu-king/SwingLab/actions/workflows/core-tests.yml"><img src="https://github.com/jongsu-king/SwingLab/actions/workflows/core-tests.yml/badge.svg" alt="Core tests"></a>
-  <img src="https://img.shields.io/badge/tests-80%20core%20%C2%B7%2031%20app-375746" alt="Tests: 80 core, 31 app">
+  <img src="https://img.shields.io/badge/tests-85%20core%20%C2%B7%2036%20app-375746" alt="Tests: 85 core, 36 app">
   <img src="https://img.shields.io/badge/Swift-6-F05138?logo=swift&logoColor=white" alt="Swift 6">
   <img src="https://img.shields.io/badge/iOS-17%2B-202823?logo=apple&logoColor=white" alt="iOS 17+">
   <img src="https://img.shields.io/badge/SwiftUI%20%C2%B7%20Vision%20%C2%B7%20AVFoundation-375746" alt="SwiftUI, Vision, AVFoundation">
@@ -44,7 +44,7 @@
 ## What it does
 
 - 🎥 **Swing capture and review**: high-frame-rate recording (120/240 fps where the device supports it) with sound. Vision 2D pose, eight swing phases from address to finish, and tempo. Impact is located from the recorded strike sound.
-- 🎯 **Launch monitor** <sub>experimental</sub>: film face-on at 240 fps with a 1/2000 s shutter. The ball's own diameter (42.67 mm) is the ruler for **ball speed** and **launch angle**.
+- 🎯 **Launch monitor** <sub>experimental</sub>: film face-on at 240 fps with a 1/2000 s shutter. The ball's own diameter (42.67 mm) is the ruler for **ball speed** and **launch angle**. Turn on **Live readout** in the camera to see values right after the strike, or measure a recorded clip.
 - 🏌️ **Club catalog**: 2000–2026, **23 brands, 1,515 clubs, 93 shafts, 17 hosel systems**. Custom shafts, length in 0.25" steps, and the loft/lie change for each sleeve position.
 - 🪂 **Hypothetical flight**: enter ball speed, launch, and spin; an RK4 physics model simulates carry, apex, and landing angle.
 - 🗺️ **Course and rounds**: MapKit course search, GPS distances, 9/18-hole scorecards, shot logging, and 50 %/80 % landing regions from your own club data.
@@ -79,6 +79,7 @@ flowchart TD
 ```
 
 - On synthetic video it is within 0.1 % on ball speed and 0.01° on launch angle.
+- Live readout listens for the strike and runs the same measurement on buffered frames from just before and after it. On a synthetic stream the frames are ready about 0.1 s after impact; latency on a real iPhone has not been measured yet.
 - It has not been checked on real shots yet. The "Experimental" label comes off only after **10+ shots beside a TrackMan land within ±3 % on ball speed and ±1.5° on launch angle**.
 - Design: [Docs/Specs/LaunchMonitor.md](Docs/Specs/LaunchMonitor.md)
 
@@ -90,9 +91,9 @@ flowchart TD
 | Check | Result |
 |---|---|
 | iOS build (Swift 6) | ✅ 0 errors · 0 warnings |
-| Core tests | ✅ 80 / 80 |
-| App · UI tests (2 simulators) | ✅ 22 + 9 |
-| Strings in 12 languages | ✅ 0 missing / 670 |
+| Core tests | ✅ 85 / 85 |
+| App · UI tests (2 simulators) | ✅ 27 + 9 |
+| Strings in 12 languages | ✅ 0 missing / 680 |
 | Real-iPhone capture · pose · GPS | ⬜ waiting for a device |
 | Launch monitor accuracy | ⬜ waiting for TrackMan shots |
 | App Store readiness | ❌ needs a developer account |

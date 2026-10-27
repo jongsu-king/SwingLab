@@ -7,7 +7,7 @@
 
 <p align="center">
   <a href="https://github.com/jongsu-king/SwingLab/actions/workflows/core-tests.yml"><img src="https://github.com/jongsu-king/SwingLab/actions/workflows/core-tests.yml/badge.svg" alt="Core tests"></a>
-  <img src="https://img.shields.io/badge/tests-80%20core%20%C2%B7%2031%20app-375746" alt="Tests: 80 core, 31 app">
+  <img src="https://img.shields.io/badge/tests-85%20core%20%C2%B7%2036%20app-375746" alt="Tests: 85 core, 36 app">
   <img src="https://img.shields.io/badge/Swift-6-F05138?logo=swift&logoColor=white" alt="Swift 6">
   <img src="https://img.shields.io/badge/iOS-17%2B-202823?logo=apple&logoColor=white" alt="iOS 17+">
   <img src="https://img.shields.io/badge/SwiftUI%20%C2%B7%20Vision%20%C2%B7%20AVFoundation-375746" alt="SwiftUI, Vision, AVFoundation">
@@ -44,7 +44,7 @@
 ## 할 수 있는 것
 
 - 🎥 **스윙 촬영·분석**: 기기가 지원하는 고속 촬영(120/240fps)과 소리 녹음. Vision 2D 자세 추정, 8단계 스윙 구간(어드레스~피니시), 템포. 임팩트 순간은 녹음된 타구음으로 찾아요.
-- 🎯 **런치모니터** <sub>실험적</sub>: 정면에서 240fps, 셔터 1/2000초로 찍으면 공 지름(42.67mm)을 자로 삼아 **볼 스피드**와 **발사각**을 계산해요.
+- 🎯 **런치모니터** <sub>실험적</sub>: 정면에서 240fps, 셔터 1/2000초로 찍으면 공 지름(42.67mm)을 자로 삼아 **볼 스피드**와 **발사각**을 계산해요. 촬영 화면에서 **실시간 측정**을 켜면 타구음을 듣고 바로 값을 보여주고, 찍어 둔 영상으로도 잴 수 있어요.
 - 🏌️ **클럽 카탈로그**: 2000~2026년 **23개 브랜드, 클럽 1,515개, 샤프트 93종, 슬리브 17종**. 커스텀 샤프트, 0.25인치 단위 길이, 슬리브 위치별 로프트·라이 변화까지 입력해요.
 - 🪂 **가상 비행**: 볼 스피드, 발사각, 스핀을 넣으면 RK4 물리 모델로 캐리, 최고 높이, 낙하각을 시뮬레이션해요.
 - 🗺️ **코스·라운드**: MapKit 코스 검색, GPS 거리, 9/18홀 스코어카드, 샷 기록. 내 클럽 데이터로 50%/80% 낙하 영역을 그려요.
@@ -79,6 +79,7 @@ flowchart TD
 ```
 
 - 합성 영상에서는 볼 스피드 오차 0.1%, 발사각 오차 0.01° 이내예요.
+- 실시간 측정은 마이크로 타구음을 듣고, 버퍼에 담아 둔 직전·직후 프레임으로 같은 계산을 해요. 합성 스트림에서는 임팩트 후 약 0.1초 만에 계산할 프레임이 모여요. 실제 iPhone에서의 지연 시간은 아직 재지 않았어요.
 - 실제 샷으로는 아직 검증하지 않았어요. **TrackMan 옆에서 10샷 이상 찍어 볼 스피드 ±3%, 발사각 ±1.5° 안에 들어야** "실험적" 표시를 뗄 수 있어요.
 - 자세한 설계: [Docs/Specs/LaunchMonitor.md](Docs/Specs/LaunchMonitor.md)
 
@@ -90,9 +91,9 @@ flowchart TD
 | 검사 | 결과 |
 |---|---|
 | iOS 빌드 (Swift 6) | ✅ 에러 0 · 경고 0 |
-| 코어 테스트 | ✅ 80 / 80 |
-| 앱 · UI 테스트 (시뮬레이터 2종) | ✅ 22 + 9 |
-| 12개 언어 문구 | ✅ 누락 0 / 670 |
+| 코어 테스트 | ✅ 85 / 85 |
+| 앱 · UI 테스트 (시뮬레이터 2종) | ✅ 27 + 9 |
+| 12개 언어 문구 | ✅ 누락 0 / 680 |
 | 실제 iPhone 촬영 · 자세 · GPS | ⬜ 실기기 대기 |
 | 런치모니터 정확도 | ⬜ TrackMan 비교 대기 |
 | App Store 준비 | ❌ 개발자 계정 필요 |
