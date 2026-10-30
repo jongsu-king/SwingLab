@@ -50,7 +50,11 @@ Requested by the user on 26 Oct 2026; specified in `Docs/Specs/LaunchMonitor.md`
 
 Evidence notes (reviewer, 27 Oct):
 - **A17 ✅.** No account or sign-in code exists. On both simulators: `SchemaMigrationTests` (V1→V2, V2→V3), `CatalogMigrationTests` (V3→V4→V5), `LaunchShotTests` (V4→V5), and `PersistenceTests.testDeleteAllRemovesEveryRecordAndStoredVideo` (every record type and every stored video removed, library usable afterwards) pass.
-- **A20 🟡.** Corrupt video is now tested (`CorruptVideoTests`: import metadata, pose analysis, and launch measurement each fail with an error). Denied permissions, interruptions, and low storage still need a device run.
+- **A20 🟡.** Tested on the simulator:
+  - **Corrupt video** (`CorruptVideoTests`): import metadata, pose analysis, and launch measurement each fail with an error.
+  - **Location denied** (`PermissionTests`, run with `simctl privacy revoke location`): Course shows how to turn it on.
+  - **Camera failure:** the camera shows its error alert and closes cleanly. Screenshots: `Docs/Screenshots/reviewer-2026-10-27/a20-*.jpg`.
+  - **Still need a device:** denied camera access (the simulator cannot revoke the camera), interruptions, and low storage.
 - **A22/A23 🟡.** Implemented end to end: live readout from the camera (ring buffer, streaming audio trigger, shared measurement pipeline). On a synthetic stream the frames are ready about 0.1 s after the strike and speed/angle are within 2 %/1°. Nothing is verified on a device or against a reference launch monitor.
 - **A15 ✅.** 689 keys in 12 languages with 0 missing; the reachability checker passes locally and in GitHub Actions. All 12 languages reviewed on the eight primary screens: en/ko/de light and dark (Round 4), and the other nine in light (`Docs/Review/layout-review-12-languages.md`). Two layout findings (L1, L2) were fixed and re-captured.
 - **A2 🟡.** The eight primary screens are reviewed in light and dark mode in all 12 languages (30 Oct), and the launch log and add-club editor in all 12, light and dark. Five layout findings (L1–L5) are fixed and re-captured, and the v6.0 §4 check is done (`Docs/Review/layout-review-12-languages.md`). Still to do: camera and live readout (need a device), launch measurement, catalog picker, and scorecard.
