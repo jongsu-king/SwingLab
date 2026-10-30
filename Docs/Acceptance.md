@@ -37,7 +37,7 @@ _Last updated: 30 Oct 2026, reviewer work between Rounds 4 and 5._
 | A15 | Language selection | 12 languages; the checker fails on any missing key, including keys passed through helpers; screenshots reviewed |✅ |
 | A16 | Independent units | Distance, speed, wind, and temperature switch independently everywhere |✅ |
 | A17 | Local-first storage | No account; V1→V2→V3 migration tests pass on the simulator; full deletion works | ✅ |
-| A18 | Honest provenance | Every displayed number carries a typed origin; spin and ball speed stay Unavailable; audit passes | 🟡 |
+| A18 | Honest provenance | Every displayed number carries a typed origin; spin stays Unavailable; ball speed is Unavailable except the experimental vision-derived launch readout (A22); audit passes | ✅ |
 | A19 | Device performance | Recording holds the selected fps; analysis of a 10 s 240 fps clip finishes in reasonable time without thermal shutdown | ⬜ |
 | A20 | Error handling | Denied permissions, interruptions, low storage, and corrupt video each tested | 🟡 |
 | A21 | App Store readiness | Public privacy policy URL, metadata in 12 languages, TestFlight build uploaded (needs a paid developer account) | ❌ |
@@ -69,6 +69,15 @@ Evidence notes (reviewer, 27 Oct):
   - Consistency appears from 5 values (`CoachingEngine.consistency`, tested), and the session screen says so.
 - **A12 ✅.** `BagAndUnitsTests.testCreateEditGapAndDeleteClubs` passes on both simulators. It adds two clubs with carries (the gapping chart appears), renames one through Edit, and deletes the other with confirmation. `CatalogEditorTests` covers adding from the catalog.
 - **A16 ✅.** `BagAndUnitsTests.testDistanceAndSpeedUnitsSwitchIndependently` passes on both simulators. With distance in m, wind in km/h, and temperature in °F, Hypothetical flight shows each in its own unit while ball speed stays in mph. Code check: no screen hardcodes a unit; every displayed measurement goes through `SLMetricReadout` or the preference's `symbol`, `fromSI`, and `toSI`.
+- **A18 ✅.** Audit on 30 Oct of every chart and number-formatting site in `SwingLab/Features`:
+  - measurements go through `SLMetricReadout` or `ProvenanceBadge` with a typed `Provenance`;
+  - charts carry a badge or an origin footer (Bag: user-entered; Performance: per-source counts; Hypothetical flight: simulated values);
+  - reference ranges are labelled as published averages;
+  - the remaining formatted numbers are counts, hole numbers, playback rates, catalog specifications, and camera settings.
+
+  `verify.sh` rejects string-literal provenance. Spin and club speed are always Unavailable.
+
+  Bar change: on 26 Oct the user asked for a launch monitor, so ball speed may now appear as a vision-derived, experimental value (A22). The bar was reworded to match. The rule that nothing unmeasured is shown as measured is unchanged.
 - **A2 🟡.** The eight primary screens are reviewed in light and dark mode in all 12 languages (30 Oct), and the launch log and add-club editor in all 12, light and dark. Five layout findings (L1–L5) are fixed and re-captured, and the v6.0 §4 check is done (`Docs/Review/layout-review-12-languages.md`). Still to do: camera and live readout (need a device), launch measurement, catalog picker, and scorecard.
 - **A24 🟡.** T2 (duplicate model line) and T3 ("Unavailable" on empty inputs) fixed by the reviewer. T1 (release-year evidence) is open for Round 5.
 
