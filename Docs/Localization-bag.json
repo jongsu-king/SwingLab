@@ -32,7 +32,7 @@
     "zh-Hant": "新增球桿",
     "es": "Añadir palo",
     "pt-BR": "Adicionar taco",
-    "de": "Schläger hinzufügen",
+    "de": "Neuer Schläger",
     "fr": "Ajouter un club",
     "it": "Aggiungi bastone",
     "th": "เพิ่มไม้กอล์ฟ",
@@ -894,7 +894,7 @@
     "fr": "Facultatif",
     "it": "Facoltativo",
     "th": "ไม่บังคับ",
-    "vi": "Không bắt buộc"
+    "vi": "Tùy chọn"
   },
   "PLAY WITH PRECISION.": {
     "ko": "정교하게 플레이하세요.",

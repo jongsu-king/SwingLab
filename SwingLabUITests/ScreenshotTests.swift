@@ -49,7 +49,13 @@ final class ScreenshotTests: XCTestCase {
         }
     }
 
-    private static let remainingLanguages = ["ja", "zh-Hans", "zh-Hant", "es", "pt-BR", "fr", "it", "th", "vi"]
+    /// `SWINGLAB_LANGUAGES=fr,th` limits a rerun to those languages.
+    private static var remainingLanguages: [String] {
+        let all = ["ja", "zh-Hans", "zh-Hant", "es", "pt-BR", "fr", "it", "th", "vi"]
+        guard let only = ProcessInfo.processInfo.environment["SWINGLAB_LANGUAGES"], !only.isEmpty else { return all }
+        let wanted = Set(only.split(separator: ",").map(String.init))
+        return all.filter(wanted.contains)
+    }
 
     @MainActor private func capture(language: String, appearance: String) throws {
         let app = XCUIApplication()
@@ -120,10 +126,13 @@ final class ScreenshotTests: XCTestCase {
 
     @MainActor private func reveal(_ identifier: String, in app: XCUIApplication) throws {
         let element = app.descendants(matching: .any).matching(identifier: identifier).firstMatch
+        // "Hittable" still allows the centre to sit under the floating tab bar, where a tap lands on the bar.
+        let clearOfTabBar = app.windows.firstMatch.frame.maxY - 120
         for _ in 0..<10 {
-            if element.exists && element.isHittable { return }
+            if element.exists && element.isHittable && element.frame.midY < clearOfTabBar { return }
             app.swipeUp()
         }
+        if element.exists && element.isHittable { return }
         XCTFail("Required screenshot control was not reachable: \(identifier)")
         throw NSError(domain: "SwingLabScreenshots", code: 1, userInfo: [NSLocalizedDescriptionKey: identifier])
     }

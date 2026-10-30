@@ -63,6 +63,8 @@ struct LaunchLogView: View {
         }
         .scrollContentBackground(.hidden).background(SLTheme.background)
         .navigationTitle(prefs.text("Launch log"))
+        // Inline like Hypothetical flight: a large title truncates in Spanish and Portuguese.
+        .navigationBarTitleDisplayMode(.inline)
         .alert(prefs.text("Launch log"), isPresented: Binding(get: { error != nil }, set: { if !$0 { error = nil } })) {
             Button(prefs.text("OK"), role: .cancel) { error = nil }
         } message: { Text(prefs.text(error ?? "")) }

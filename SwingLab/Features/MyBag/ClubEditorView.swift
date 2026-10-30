@@ -93,6 +93,11 @@ struct ClubEditorView: View {
                 ToolbarItem(placement: .cancellationAction) {
                     Button(preferences.text("Cancel")) { dismiss() }
                 }
+                // Long Cancel/Save labels (German) leave little room; shrink the title rather than truncate it.
+                ToolbarItem(placement: .principal) {
+                    Text(preferences.text(club == nil ? "Add club" : "Edit club")).font(.headline)
+                        .lineLimit(1).minimumScaleFactor(0.75)
+                }
                 ToolbarItem(placement: .confirmationAction) {
                     Button(preferences.text("Save"), action: save).fontWeight(.semibold).accessibilityIdentifier("bag.save")
                 }

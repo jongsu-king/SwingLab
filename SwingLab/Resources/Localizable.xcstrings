@@ -1512,7 +1512,7 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Schläger hinzufügen"
+            "value": "Neuer Schläger"
           }
         },
         "fr": {
@@ -26792,7 +26792,7 @@
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Không bắt buộc"
+            "value": "Tùy chọn"
           }
         }
       }
