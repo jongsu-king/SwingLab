@@ -48,3 +48,10 @@ No new findings. Contrast holds: sage buttons carry dark text, and secondary tex
 | L5 | Add club | vi | The loft placeholder truncates: "Không bắt b…". | Fixed and re-captured: "Tùy chọn". |
 
 Not reached yet in any language: camera (no camera in the simulator), live readout, launch measurement, catalog picker, and scorecard.
+
+## Found while writing the club-management UI test (30 Oct)
+
+| # | Screen | Device | Problem | Status |
+|---|---|---|---|---|
+| L6 | Add club, Hypothetical flight, hole score | all | Number and decimal pads have no return key, so once a number field had focus the keyboard could not be closed. On iPhone Duo (iOS 27.1) the open keyboard also kept the sheet's Save button out of reach. | Fixed: a Done button above the keyboard (`keyboardDoneButton`, `Theme.swift`). |
+| L7 | Add club sheet | iPhone Duo, iOS 27.1 | After scrolling the form, the system hides the sheet's Cancel and Save until you scroll back to the top. | System behaviour; kept. The UI test scrolls back before saving. |

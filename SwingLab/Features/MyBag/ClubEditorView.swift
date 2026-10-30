@@ -89,6 +89,7 @@ struct ClubEditorView: View {
             .background(SLTheme.background)
             .navigationTitle(preferences.text(club == nil ? "Add club" : "Edit club"))
             .navigationBarTitleDisplayMode(.inline)
+            .keyboardDoneButton(preferences.text("Done"))
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button(preferences.text("Cancel")) { dismiss() }

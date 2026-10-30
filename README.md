@@ -7,7 +7,7 @@
 
 <p align="center">
   <a href="https://github.com/jongsu-king/SwingLab/actions/workflows/core-tests.yml"><img src="https://github.com/jongsu-king/SwingLab/actions/workflows/core-tests.yml/badge.svg" alt="Core tests"></a>
-  <img src="https://img.shields.io/badge/tests-85%20core%20%C2%B7%2038%20app-375746" alt="Tests: 85 core, 38 app">
+  <img src="https://img.shields.io/badge/tests-85%20core%20%C2%B7%2040%20app-375746" alt="Tests: 85 core, 40 app">
   <img src="https://img.shields.io/badge/Swift-6-F05138?logo=swift&logoColor=white" alt="Swift 6">
   <img src="https://img.shields.io/badge/iOS-17%2B-202823?logo=apple&logoColor=white" alt="iOS 17+">
   <img src="https://img.shields.io/badge/SwiftUI%20%C2%B7%20Vision%20%C2%B7%20AVFoundation-375746" alt="SwiftUI, Vision, AVFoundation">
@@ -92,7 +92,7 @@ flowchart TD
 |---|---|
 | iOS 빌드 (Swift 6) | ✅ 에러 0 · 경고 0 |
 | 코어 테스트 | ✅ 85 / 85 |
-| 앱 · UI 테스트 (시뮬레이터 2종) | ✅ 29 + 9 |
+| 앱 · UI 테스트 (시뮬레이터 2종) | ✅ 29 + 11 |
 | 12개 언어 문구 | ✅ 누락 0 / 689 |
 | 실제 iPhone 촬영 · 자세 · GPS | ⬜ 실기기 대기 |
 | 런치모니터 정확도 | ⬜ TrackMan 비교 대기 |

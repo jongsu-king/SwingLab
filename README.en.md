@@ -7,7 +7,7 @@
 
 <p align="center">
   <a href="https://github.com/jongsu-king/SwingLab/actions/workflows/core-tests.yml"><img src="https://github.com/jongsu-king/SwingLab/actions/workflows/core-tests.yml/badge.svg" alt="Core tests"></a>
-  <img src="https://img.shields.io/badge/tests-85%20core%20%C2%B7%2038%20app-375746" alt="Tests: 85 core, 38 app">
+  <img src="https://img.shields.io/badge/tests-85%20core%20%C2%B7%2040%20app-375746" alt="Tests: 85 core, 40 app">
   <img src="https://img.shields.io/badge/Swift-6-F05138?logo=swift&logoColor=white" alt="Swift 6">
   <img src="https://img.shields.io/badge/iOS-17%2B-202823?logo=apple&logoColor=white" alt="iOS 17+">
   <img src="https://img.shields.io/badge/SwiftUI%20%C2%B7%20Vision%20%C2%B7%20AVFoundation-375746" alt="SwiftUI, Vision, AVFoundation">
@@ -92,7 +92,7 @@ flowchart TD
 |---|---|
 | iOS build (Swift 6) | ✅ 0 errors · 0 warnings |
 | Core tests | ✅ 85 / 85 |
-| App · UI tests (2 simulators) | ✅ 29 + 9 |
+| App · UI tests (2 simulators) | ✅ 29 + 11 |
 | Strings in 12 languages | ✅ 0 missing / 689 |
 | Real-iPhone capture · pose · GPS | ⬜ waiting for a device |
 | Launch monitor accuracy | ⬜ waiting for TrackMan shots |

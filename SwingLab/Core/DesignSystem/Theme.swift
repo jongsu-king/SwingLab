@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 enum SLTheme {
     enum Space {
@@ -76,5 +77,20 @@ struct SLInlineNotice: View {
     var body: some View {
         Label(message, systemImage: symbol).font(SLTheme.TypeScale.caption)
             .foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+    }
+}
+
+extension View {
+    /// Number and decimal pads have no return key. A Done button above the keyboard closes it, so a
+    /// sheet's toolbar (Save) is reachable again on every iPhone layout.
+    func keyboardDoneButton(_ title: String) -> some View {
+        toolbar {
+            ToolbarItemGroup(placement: .keyboard) {
+                Spacer()
+                Button(title) {
+                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                }.accessibilityIdentifier("keyboard.done")
+            }
+        }
     }
 }

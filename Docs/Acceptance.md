@@ -4,7 +4,7 @@ The reviewer grants the final **PASS** only when every row is ✅ with evidence 
 
 Legend: ✅ verified · 🟡 implemented, not yet verified to the bar · ❌ missing or failing · ⬜ needs a real iPhone or user data
 
-_Last updated: 27 Oct 2026, reviewer work between Rounds 4 and 5._
+_Last updated: 30 Oct 2026, reviewer work between Rounds 4 and 5._
 
 ## Engineering gates
 
@@ -12,8 +12,8 @@ _Last updated: 27 Oct 2026, reviewer work between Rounds 4 and 5._
 |---|---|---|---|---|
 | G1 | iOS build | `xcodebuild … build` 0 errors, 0 warnings (Swift 6) | ✅ | First native build, 26 Oct (`Docs/CompileRisk.md`) |
 | G2 | Core tests | `swift test` all pass under XCTest | ✅ | 85/85 on 27 Oct (reviewer); also on every push in GitHub Actions (`core-tests.yml`, Swift 6.3.3) |
-| G3 | App tests on simulator | `xcodebuild test` (`SwingLabTests` + `SwingLabUITests`) all pass on iOS 26.4 and 27.1 | ✅ | Reviewer, 27 Oct, no build-setting overrides: iPhone 17 Pro iOS 26.4 and iPhone Duo iOS 27.1 each 38 passed, 0 failed (29 app + 9 UI); 1 skipped by design (the opt-in 12-language screenshot pass) |
-| G4 | Project opens and runs from Xcode | Simulator run from Xcode without command-line overrides | 🟡 | Debug `ONLY_ACTIVE_ARCH=YES` fixed; concrete-device build+test passes without overrides. A manual Xcode Run is not yet observed. |
+| G3 | App tests on simulator | `xcodebuild test` (`SwingLabTests` + `SwingLabUITests`) all pass on iOS 26.4 and 27.1 | ✅ | Reviewer, 27 Oct, no build-setting overrides: iPhone 17 Pro iOS 26.4 and iPhone Duo iOS 27.1 each 40 passed, 0 failed (29 app + 11 UI) on 30 Oct; 4 opt-in tests skipped by design (12-language screenshots, location-denied run) |
+| G4 | Project opens and runs from Xcode | Simulator run from Xcode without command-line overrides | ✅ | Reviewer, 30 Oct: opened `SwingLab.xcodeproj` in Xcode 27.1, scheme SwingLab, destination iPhone 17 Pro (iOS 26.4), Product → Run. Xcode reported the run as running and the app's Home screen was on the simulator. |
 | G5 | Repository checks | `Scripts/verify.sh` passes | ✅ | Round 4: 647 keys, 0 missing; catalog validator passes (reproduced) |
 
 ## Product criteria (v6.0 §34, made measurable)
@@ -31,7 +31,7 @@ _Last updated: 27 Oct 2026, reviewer work between Rounds 4 and 5._
 | A9 | Practice tracking | Sessions, grouping, consistency (n ≥ 5) | 🟡 |
 | A10 | GPS course | On a real course or field: distances to known points agree within the reported GPS accuracy | ⬜ |
 | A11 | Shot recording | A full 9-hole round recorded end to end on device, with edits | ⬜ |
-| A12 | Club management | Create, edit, delete, and gapping, verified in the UI | 🟡 |
+| A12 | Club management | Create, edit, delete, and gapping, verified in the UI | ✅ |
 | A13 | Landing regions | Statistical regions from user data, math-tested, drawn on the map | 🟡 |
 | A14 | Strategy recommendations | Caddie v2 searches aim, accounts for hazards, and is explainable and localized | ❌ |
 | A15 | Language selection | 12 languages; the checker fails on any missing key, including keys passed through helpers; screenshots reviewed |✅ |
@@ -57,6 +57,8 @@ Evidence notes (reviewer, 27 Oct):
   - **Still need a device:** denied camera access (the simulator cannot revoke the camera), interruptions, and low storage.
 - **A22/A23 🟡.** Implemented end to end: live readout from the camera (ring buffer, streaming audio trigger, shared measurement pipeline). On a synthetic stream the frames are ready about 0.1 s after the strike and speed/angle are within 2 %/1°. Nothing is verified on a device or against a reference launch monitor.
 - **A15 ✅.** 689 keys in 12 languages with 0 missing; the reachability checker passes locally and in GitHub Actions. All 12 languages reviewed on the eight primary screens: en/ko/de light and dark (Round 4), and the other nine in light (`Docs/Review/layout-review-12-languages.md`). Two layout findings (L1, L2) were fixed and re-captured.
+- **A12 ✅.** `BagAndUnitsTests.testCreateEditGapAndDeleteClubs` passes on both simulators. It adds two clubs with carries (the gapping chart appears), renames one through Edit, and deletes the other with confirmation. `CatalogEditorTests` covers adding from the catalog.
+- **A16 🟡.** `BagAndUnitsTests.testDistanceAndSpeedUnitsSwitchIndependently` passes on both simulators: distance set to meters shows carry in m while ball speed stays in mph. Wind and temperature, and the other screens, are not covered by a test yet.
 - **A2 🟡.** The eight primary screens are reviewed in light and dark mode in all 12 languages (30 Oct), and the launch log and add-club editor in all 12, light and dark. Five layout findings (L1–L5) are fixed and re-captured, and the v6.0 §4 check is done (`Docs/Review/layout-review-12-languages.md`). Still to do: camera and live readout (need a device), launch measurement, catalog picker, and scorecard.
 - **A24 🟡.** T2 (duplicate model line) and T3 ("Unavailable" on empty inputs) fixed by the reviewer. T1 (release-year evidence) is open for Round 5.
 

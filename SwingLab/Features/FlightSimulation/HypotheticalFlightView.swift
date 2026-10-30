@@ -58,6 +58,7 @@ struct HypotheticalFlightView: View {
         }
         .scrollContentBackground(.hidden).background(SLTheme.background)
         .navigationTitle(prefs.text("Hypothetical flight"))
+        .keyboardDoneButton(prefs.text("Done"))
         .onChange(of: [ballSpeed, launchAngle, startDirection, spinRate, spinAxis, tailwind, crosswind,
                        temperature, pressure, humidity, landingHeight]) { _, _ in
             // A result belongs to the submitted inputs, not subsequently edited fields.

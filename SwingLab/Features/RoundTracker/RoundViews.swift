@@ -159,6 +159,7 @@ private struct HoleScoreEditor: View {
             Button(preferences.text("Save"), action: save).fontWeight(.semibold)
         }
         .navigationTitle(preferences.format("metric.hole", score.number.formatted(.number.locale(preferences.locale))))
+        .keyboardDoneButton(preferences.text("Done"))
         .onAppear {
             par = score.par.map(String.init) ?? ""
             strokes = score.strokes.map(String.init) ?? ""
