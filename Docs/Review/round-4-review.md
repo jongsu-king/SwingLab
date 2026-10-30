@@ -32,3 +32,7 @@ All of it is in scope for your review in Round 5 (see `Docs/Prompts/v10.0.md`, T
 - **Live readout.** `Sources/SwingLabCore/LaunchMonitorLive.swift` (`LaunchRegion`, `LaunchPipeline`, `LumaFrame`, `FrameRing`, `StreamingImpactTrigger`, `LiveLaunchSession`), `SwingLab/Services/LiveLaunchCapture.swift`, `CameraEngine.setLiveLaunch`, `SwingLab/Features/Camera/LiveLaunchPanel.swift`, with streamed-shot tests in `Tests/SwingLabCoreTests/LaunchMonitorLiveTests.swift`.
 - **T2 and T3 fixed by the reviewer** in `ClubEditorView.swift`: the duplicate model line is gone, and empty inputs no longer carry an "Unavailable" badge. Check that the fix is right; do not redo it.
 - **Tests added:** `PersistenceTests.testDeleteAllRemovesEveryRecordAndStoredVideo` (A17) and `CorruptVideoTests` (A20, corrupt video).
+- **Launch log (27 Oct).** SwiftData V5 `LaunchShot` with a frozen `SchemaV4.swift` snapshot, `LaunchLogView`, and `LaunchShotTests` (V4→V5 migration).
+- **12-language layout review (27–30 Oct).** Findings L1–L7 in `Docs/Review/layout-review-12-languages.md`, with fixes in `CourseView`, `MetricReadout`, `LaunchLogView`, `ClubEditorView`, and translations. Opt-in screenshot tests are in `ScreenshotTests`.
+- **Keyboard Done button (30 Oct).** `keyboardDoneButton` in `Theme.swift`, used by the club editor, Hypothetical flight, and hole score.
+- **UI tests (30 Oct).** `BagAndUnitsTests` (A12, A16) and the opt-in `PermissionTests` (A20, location denied).

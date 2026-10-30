@@ -97,6 +97,7 @@ flowchart TD
 | 실제 iPhone 촬영 · 자세 · GPS | ⬜ 실기기 대기 |
 | 런치모니터 정확도 | ⬜ TrackMan 비교 대기 |
 | App Store 준비 | ❌ 개발자 계정 필요 |
+| **합격 기준표** | **✅ 12 / 29** · 🟡 9 · ⬜ 6 · ❌ 2 |
 
 <sub>앱 · UI 테스트: iPhone 17 Pro (iOS 26.4), iPhone Duo (iOS 27.1)</sub>
 

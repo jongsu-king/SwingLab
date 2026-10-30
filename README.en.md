@@ -97,6 +97,7 @@ flowchart TD
 | Real-iPhone capture · pose · GPS | ⬜ waiting for a device |
 | Launch monitor accuracy | ⬜ waiting for TrackMan shots |
 | App Store readiness | ❌ needs a developer account |
+| **Acceptance scorecard** | **✅ 12 / 29** · 🟡 9 · ⬜ 6 · ❌ 2 |
 
 <sub>App · UI tests: iPhone 17 Pro (iOS 26.4), iPhone Duo (iOS 27.1)</sub>
 
