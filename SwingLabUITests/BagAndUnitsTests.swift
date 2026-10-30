@@ -46,27 +46,39 @@ final class BagAndUnitsTests: XCTestCase {
         XCTAssertFalse(app.staticTexts["Pitching wedge"].exists)
     }
 
-    /// Distance switches to meters while ball speed stays in mph.
+    /// Distance → meters, wind → km/h, temperature → °F, while ball speed stays in mph.
     @MainActor func testDistanceAndSpeedUnitsSwitchIndependently() throws {
         let app = launch()
         let settings = app.buttons["home.settings"]
         XCTAssertTrue(settings.waitForExistence(timeout: 15)); settings.tap()
-        let distance = app.buttons.matching(NSPredicate(format: "label BEGINSWITH 'Distance'")).firstMatch
-        XCTAssertTrue(distance.waitForExistence(timeout: 5)); distance.tap()
-        let meters = app.buttons["Meters"].firstMatch
-        XCTAssertTrue(meters.waitForExistence(timeout: 5)); meters.tap()
+        try choose("Meters", in: "Distance", app: app)
+        try choose("km/h", in: "Wind speed", app: app)
+        try choose("°F", in: "Temperature", app: app)
 
         // The tab bar (or the iPhone Duo side rail) stays visible over Settings.
         app.buttons["Swing"].firstMatch.tap()
         try tapRevealed("swing.hypotheticalFlight", in: app)
         try tapRevealed("flight.driverExample", in: app)
         XCTAssertTrue(app.staticTexts["mph"].firstMatch.exists, "ball speed keeps its own unit")
+        // Lower form rows load only when scrolled into view (iPhone Duo).
+        for (unit, what) in [("km/h", "wind"), ("°F", "temperature")] {
+            let label = app.staticTexts[unit].firstMatch
+            for _ in 0..<4 where !label.exists { app.swipeUp() }
+            XCTAssertTrue(label.exists, "\(what) uses its own unit")
+        }
         try tapRevealed("flight.simulate", in: app)
         let carry = app.descendants(matching: .any).matching(identifier: "flight.result.carry").firstMatch
         for _ in 0..<10 where !(carry.exists && carry.isHittable) { app.swipeUp() }
         XCTAssertTrue(carry.exists)
         XCTAssertTrue(carry.label.contains(" m"), carry.label)
         XCTAssertFalse(carry.label.contains("yd"), carry.label)
+    }
+
+    @MainActor private func choose(_ option: String, in picker: String, app: XCUIApplication) throws {
+        let row = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", picker)).firstMatch
+        XCTAssertTrue(row.waitForExistence(timeout: 5), picker); row.tap()
+        let choice = app.buttons[option].firstMatch
+        XCTAssertTrue(choice.waitForExistence(timeout: 5), option); choice.tap()
     }
 
     @MainActor private func addClub(in app: XCUIApplication, opener: XCUIElement, name: String, carry: String) throws {

@@ -35,7 +35,7 @@ _Last updated: 30 Oct 2026, reviewer work between Rounds 4 and 5._
 | A13 | Landing regions | Statistical regions from user data, math-tested, drawn on the map | 🟡 |
 | A14 | Strategy recommendations | Caddie v2 searches aim, accounts for hazards, and is explainable and localized | ❌ |
 | A15 | Language selection | 12 languages; the checker fails on any missing key, including keys passed through helpers; screenshots reviewed |✅ |
-| A16 | Independent units | Distance, speed, wind, and temperature switch independently everywhere | 🟡 |
+| A16 | Independent units | Distance, speed, wind, and temperature switch independently everywhere |✅ |
 | A17 | Local-first storage | No account; V1→V2→V3 migration tests pass on the simulator; full deletion works | ✅ |
 | A18 | Honest provenance | Every displayed number carries a typed origin; spin and ball speed stay Unavailable; audit passes | 🟡 |
 | A19 | Device performance | Recording holds the selected fps; analysis of a 10 s 240 fps clip finishes in reasonable time without thermal shutdown | ⬜ |
@@ -58,7 +58,7 @@ Evidence notes (reviewer, 27 Oct):
 - **A22/A23 🟡.** Implemented end to end: live readout from the camera (ring buffer, streaming audio trigger, shared measurement pipeline). On a synthetic stream the frames are ready about 0.1 s after the strike and speed/angle are within 2 %/1°. Nothing is verified on a device or against a reference launch monitor.
 - **A15 ✅.** 689 keys in 12 languages with 0 missing; the reachability checker passes locally and in GitHub Actions. All 12 languages reviewed on the eight primary screens: en/ko/de light and dark (Round 4), and the other nine in light (`Docs/Review/layout-review-12-languages.md`). Two layout findings (L1, L2) were fixed and re-captured.
 - **A12 ✅.** `BagAndUnitsTests.testCreateEditGapAndDeleteClubs` passes on both simulators. It adds two clubs with carries (the gapping chart appears), renames one through Edit, and deletes the other with confirmation. `CatalogEditorTests` covers adding from the catalog.
-- **A16 🟡.** `BagAndUnitsTests.testDistanceAndSpeedUnitsSwitchIndependently` passes on both simulators: distance set to meters shows carry in m while ball speed stays in mph. Wind and temperature, and the other screens, are not covered by a test yet.
+- **A16 ✅.** `BagAndUnitsTests.testDistanceAndSpeedUnitsSwitchIndependently` passes on both simulators. With distance in m, wind in km/h, and temperature in °F, Hypothetical flight shows each in its own unit while ball speed stays in mph. Code check: no screen hardcodes a unit; every displayed measurement goes through `SLMetricReadout` or the preference's `symbol`, `fromSI`, and `toSI`.
 - **A2 🟡.** The eight primary screens are reviewed in light and dark mode in all 12 languages (30 Oct), and the launch log and add-club editor in all 12, light and dark. Five layout findings (L1–L5) are fixed and re-captured, and the v6.0 §4 check is done (`Docs/Review/layout-review-12-languages.md`). Still to do: camera and live readout (need a device), launch measurement, catalog picker, and scorecard.
 - **A24 🟡.** T2 (duplicate model line) and T3 ("Unavailable" on empty inputs) fixed by the reviewer. T1 (release-year evidence) is open for Round 5.
 
