@@ -1,8 +1,10 @@
 import Foundation
 
 /// Stable storage IDs. Labels are localization keys, never persistence values.
+/// `reference` marks a published population value shown beside a measurement (a cited spin
+/// bracket, for example); it is never a property of the golfer's own shot.
 public enum Provenance: String, Codable, CaseIterable, Sendable {
-    case measured, visionDerived, audioDerived, estimated, simulated, userEntered, unavailable
+    case measured, visionDerived, audioDerived, estimated, simulated, userEntered, reference, unavailable
 
     /// Audio timing is sensor-derived and belongs to the Measured category.
     public var category: Provenance { self == .audioDerived ? .measured : self }
@@ -14,6 +16,7 @@ public enum Provenance: String, Codable, CaseIterable, Sendable {
         case .estimated: "Estimated"
         case .simulated: "Simulated"
         case .userEntered: "User-entered"
+        case .reference: "Reference — published averages"
         case .unavailable: "Unavailable"
         }
     }
@@ -28,6 +31,7 @@ public enum Provenance: String, Codable, CaseIterable, Sendable {
         case "Estimated": self = .estimated
         case "Simulated": self = .simulated
         case "User-entered", "User-Entered": self = .userEntered
+        case "Reference — published averages": self = .reference
         default: self = .unavailable
         }
     }

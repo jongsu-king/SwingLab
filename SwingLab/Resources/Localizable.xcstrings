@@ -4005,6 +4005,83 @@
         }
       }
     },
+    "Auto club": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auto club"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "자동 클럽"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "クラブ自動選択"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自动选杆"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自動選桿"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Palo automático"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Taco automático"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schläger automatisch"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Club automatique"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bastone automatico"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เลือกไม้อัตโนมัติ"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tự chọn gậy"
+          }
+        }
+      }
+    },
     "Automatic markers are unvalidated estimates. Wrist motion does not establish ball impact. Correct the markers before interpreting tempo.": {
       "extractionState": "manual",
       "localizations": {
@@ -4386,6 +4463,83 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tổng khoảng cách trung bình"
+          }
+        }
+      }
+    },
+    "Back spin": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Back spin"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "백스핀"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "バックスピン"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "后旋"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "後旋"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backspin"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backspin"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backspin"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backspin"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backspin"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "แบ็คสปิน"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Xoáy ngược"
           }
         }
       }
@@ -6315,6 +6469,83 @@
         }
       }
     },
+    "Camera distance is good. Hit when ready.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Camera distance is good. Hit when ready."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "카메라 거리가 알맞아요. 준비되면 치세요."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "カメラの距離は適切です。準備ができたら打ってください。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "相机距离合适。准备好就可以击球。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "相機距離合適。準備好就可以擊球。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La distancia de la cámara es correcta. Golpea cuando estés listo."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A distância da câmera está boa. Bata quando estiver pronto."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Kameraabstand passt. Schlag, wenn du bereit bist."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La distance de la caméra est bonne. Frappez quand vous êtes prêt."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La distanza della fotocamera è corretta. Colpisci quando sei pronto."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ระยะกล้องเหมาะสม พร้อมเมื่อไรก็ตีได้เลย"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Khoảng cách camera phù hợp. Sẵn sàng thì đánh."
+          }
+        }
+      }
+    },
     "Camera format": {
       "extractionState": "manual",
       "localizations": {
@@ -7004,6 +7235,160 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tương quan khoảng cách bay / độ lệch ngang"
+          }
+        }
+      }
+    },
+    "Carry and total are simulated for a fairway across the published spin bracket for the club; club speed is the ball speed divided by published smash factors; back spin is that published bracket. None of them is measured.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carry and total are simulated for a fairway across the published spin bracket for the club; club speed is the ball speed divided by published smash factors; back spin is that published bracket. None of them is measured."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "캐리와 토탈은 이 클럽의 공개 스핀 범위로 페어웨이 기준 시뮬레이션한 값이고, 클럽 스피드는 볼 스피드를 공개 스매시 팩터로 나눈 값이며, 백스핀은 그 공개 범위 자체예요. 모두 측정값이 아니에요."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "キャリーと総距離はこのクラブの公表スピン範囲でフェアウェイを想定してシミュレーションした値、クラブスピードはボール初速を公表ミート率で割った値、バックスピンはその公表範囲そのものです。いずれも計測値ではありません。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "飞行距离和总距离是按该球杆的公开后旋区间、以球道为前提模拟的；杆头速度是球速除以公开的击球效率；后旋就是那个公开区间。它们都不是测量值。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "飛行距離和總距離是按該球桿的公開後旋區間、以球道為前提模擬的；桿頭速度是球速除以公開的擊球效率；後旋就是那個公開區間。它們都不是測量值。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El carry y el total se simulan para una calle con el rango de spin publicado del palo; la velocidad del palo es la velocidad de bola dividida por los smash factor publicados; el backspin es ese rango publicado. Ninguno se mide."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carry e total são simulados para um fairway com a faixa de spin publicada do taco; a velocidade do taco é a velocidade da bola dividida pelos smash factors publicados; o backspin é essa faixa publicada. Nenhum deles é medido."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carry und Gesamtlänge sind für ein Fairway über die veröffentlichte Spin-Spanne des Schlägers simuliert; die Schlägergeschwindigkeit ist die Ballgeschwindigkeit geteilt durch veröffentlichte Smash-Faktoren; der Backspin ist diese veröffentlichte Spanne. Nichts davon ist gemessen."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le carry et le total sont simulés pour un fairway sur la plage de spin publiée du club ; la vitesse du club est la vitesse de balle divisée par les smash factors publiés ; le backspin est cette plage publiée. Aucun n’est mesuré."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carry e totale sono simulati per un fairway sull’intervallo di spin pubblicato del bastone; la velocità del bastone è la velocità della palla divisa per gli smash factor pubblicati; il backspin è quell’intervallo pubblicato. Nessuno è misurato."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ระยะลอยและระยะรวมจำลองบนแฟร์เวย์จากช่วงสปินที่เผยแพร่ของไม้นี้ ความเร็วหัวไม้คือความเร็วลูกหารด้วยค่าสแมชแฟกเตอร์ที่เผยแพร่ และแบ็คสปินคือช่วงที่เผยแพร่นั้นเอง ทั้งหมดไม่ใช่ค่าที่วัดได้"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carry và tổng được mô phỏng cho fairway trên dải xoáy đã công bố của gậy; tốc độ gậy là tốc độ bóng chia cho smash factor đã công bố; xoáy ngược chính là dải đã công bố đó. Không giá trị nào được đo."
+          }
+        }
+      }
+    },
+    "Carry and total are simulated from the club's average launch across its published spin bracket; club speed is estimated from published smash factors. They are not stored with the shots.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carry and total are simulated from the club's average launch across its published spin bracket; club speed is estimated from published smash factors. They are not stored with the shots."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "캐리와 토탈은 클럽별 평균 발사값을 공개 스핀 범위로 시뮬레이션한 값이고, 클럽 스피드는 공개 스매시 팩터로 추정한 값이에요. 샷과 함께 저장되지 않아요."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "キャリーと総距離はクラブごとの平均打ち出しを公表スピン範囲でシミュレーションした値、クラブスピードは公表ミート率からの推定値です。ショットには保存されません。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "飞行距离和总距离由该球杆的平均出球条件在公开后旋区间内模拟得出；杆头速度由公开的击球效率估算。它们不会随击球保存。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "飛行距離和總距離由該球桿的平均出球條件在公開後旋區間內模擬得出；桿頭速度由公開的擊球效率估算。它們不會隨擊球保存。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El carry y el total se simulan a partir del lanzamiento medio del palo con su rango de spin publicado; la velocidad del palo se estima con smash factor publicados. No se guardan con los golpes."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carry e total são simulados a partir do lançamento médio do taco com sua faixa de spin publicada; a velocidade do taco é estimada por smash factors publicados. Eles não são salvos com as tacadas."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carry und Gesamtlänge werden aus dem mittleren Abflug des Schlägers über seine veröffentlichte Spin-Spanne simuliert; die Schlägergeschwindigkeit wird aus veröffentlichten Smash-Faktoren geschätzt. Sie werden nicht mit den Schlägen gespeichert."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le carry et le total sont simulés à partir du lancement moyen du club sur sa plage de spin publiée ; la vitesse du club est estimée à partir de smash factors publiés. Ils ne sont pas enregistrés avec les coups."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carry e totale sono simulati dal lancio medio del bastone sul suo intervallo di spin pubblicato; la velocità del bastone è stimata da smash factor pubblicati. Non vengono salvati con i colpi."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ระยะลอยและระยะรวมจำลองจากค่าออกตัวเฉลี่ยของไม้บนช่วงสปินที่เผยแพร่ ความเร็วหัวไม้ประเมินจากค่าสแมชแฟกเตอร์ที่เผยแพร่ ค่าเหล่านี้ไม่ได้บันทึกไว้กับช็อต"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carry và tổng được mô phỏng từ cú phóng trung bình của gậy trên dải xoáy đã công bố; tốc độ gậy ước tính từ smash factor đã công bố. Chúng không được lưu cùng các cú đánh."
           }
         }
       }
@@ -7701,6 +8086,83 @@
         }
       }
     },
+    "Change from the previous shot": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Change from the previous shot"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "직전 샷 대비 변화"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "前のショットからの変化"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "与上一杆相比的变化"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "與上一桿相比的變化"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cambio respecto al golpe anterior"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mudança em relação à tacada anterior"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Änderung zum vorherigen Schlag"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Variation par rapport au coup précédent"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Variazione rispetto al colpo precedente"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "การเปลี่ยนแปลงจากช็อตก่อนหน้า"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thay đổi so với cú trước"
+          }
+        }
+      }
+    },
     "Changes could not be saved.": {
       "extractionState": "manual",
       "localizations": {
@@ -7851,6 +8313,83 @@
           "stringUnit": {
             "state": "translated",
             "value": "Kiểm tra điểm. Tổng putt và gậy phạt không được vượt tổng số gậy."
+          }
+        }
+      }
+    },
+    "Checking the ball size…": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Checking the ball size…"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "공 크기를 확인하는 중…"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ボールの大きさを確認中…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在检查球的大小…"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在檢查球的大小…"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comprobando el tamaño de la bola…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verificando o tamanho da bola…"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ballgröße wird geprüft…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vérification de la taille de la balle…"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Controllo delle dimensioni della palla…"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "กำลังตรวจสอบขนาดลูก…"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đang kiểm tra kích thước bóng…"
           }
         }
       }
@@ -12548,6 +13087,83 @@
           "stringUnit": {
             "state": "translated",
             "value": "Góc quay khác nhau hoặc chưa xác định. So sánh chuyển động có thể gây hiểu nhầm."
+          }
+        }
+      }
+    },
+    "Discard last shot": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Discard last shot"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "마지막 샷 취소"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最後のショットを取り消す"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "舍弃最后一杆"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "捨棄最後一桿"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descartar el último golpe"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descartar a última tacada"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Letzten Schlag verwerfen"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer le dernier coup"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scarta l’ultimo colpo"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ยกเลิกช็อตล่าสุด"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bỏ cú đánh cuối"
           }
         }
       }
@@ -24179,6 +24795,160 @@
         }
       }
     },
+    "Move the camera closer: the ball is too small to measure its size precisely.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Move the camera closer: the ball is too small to measure its size precisely."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "카메라를 더 가까이 두세요. 공이 너무 작아서 크기를 정확히 잴 수 없어요."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "カメラを近づけてください。ボールが小さすぎて大きさを正確に測れません。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请把相机移近一些：球太小，无法精确测量其大小。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "請把相機移近一些：球太小，無法精確測量其大小。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acerca la cámara: la bola es demasiado pequeña para medir su tamaño con precisión."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aproxime a câmera: a bola está pequena demais para medir seu tamanho com precisão."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stell die Kamera näher: Der Ball ist zu klein, um seine Größe genau zu messen."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rapprochez la caméra : la balle est trop petite pour mesurer sa taille précisément."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avvicina la fotocamera: la palla è troppo piccola per misurarne le dimensioni con precisione."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ขยับกล้องเข้าใกล้ขึ้น ลูกเล็กเกินไปจนวัดขนาดได้ไม่แม่นยำ"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đưa camera lại gần hơn: bóng quá nhỏ để đo kích thước chính xác."
+          }
+        }
+      }
+    },
+    "Move the camera farther from the ball so it stays in view for more frames.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Move the camera farther from the ball so it stays in view for more frames."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "카메라를 공에서 더 멀리 두세요. 그래야 공이 더 많은 프레임에 담겨요."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "カメラをボールから離してください。より多くのフレームにボールが写ります。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请把相机离球远一些，让球在画面中停留更多帧。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "請把相機離球遠一些，讓球在畫面中停留更多幀。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aleja la cámara de la bola para que siga en el encuadre durante más fotogramas."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afaste a câmera da bola para que ela fique no enquadramento por mais quadros."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stell die Kamera weiter vom Ball weg, damit er für mehr Bilder im Bild bleibt."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Éloignez la caméra de la balle pour qu’elle reste dans le cadre sur davantage d’images."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allontana la fotocamera dalla palla così resta inquadrata per più fotogrammi."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ขยับกล้องให้ห่างจากลูกมากขึ้น เพื่อให้ลูกอยู่ในภาพได้หลายเฟรมขึ้น"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đưa camera ra xa bóng hơn để bóng ở trong khung hình được nhiều khung hơn."
+          }
+        }
+      }
+    },
     "Move to a frame, then set a marker.": {
       "extractionState": "manual",
       "localizations": {
@@ -26331,6 +27101,83 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ghi chú"
+          }
+        }
+      }
+    },
+    "Numbers only": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Numbers only"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "숫자만 보기"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "数値のみ"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "仅显示数字"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "僅顯示數字"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Solo números"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Só números"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nur Zahlen"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chiffres seulement"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Solo numeri"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ตัวเลขเท่านั้น"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chỉ số liệu"
           }
         }
       }
@@ -30416,6 +31263,83 @@
         }
       }
     },
+    "Published tour and USGA averages shown beside your own measurement, such as the spin bracket a carry is simulated across. They describe golfer populations, never your shot.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Published tour and USGA averages shown beside your own measurement, such as the spin bracket a carry is simulated across. They describe golfer populations, never your shot."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "내 측정값 옆에 함께 보여주는 투어·USGA 공개 평균이에요. 캐리를 시뮬레이션할 때 쓰는 스핀 범위가 그 예예요. 골퍼 집단을 설명할 뿐, 내 샷을 말하지 않아요."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自分の計測値の横に示す、ツアーとUSGAの公表平均値です。キャリーのシミュレーションに使うスピン範囲などが該当します。ゴルファー集団を表すもので、あなたのショットではありません。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "显示在你自己测量值旁边的巡回赛和 USGA 公开平均值，例如模拟飞行距离所用的后旋区间。它们描述的是球手群体，而不是你的这一杆。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "顯示在你自己測量值旁邊的巡迴賽和 USGA 公開平均值，例如模擬飛行距離所用的後旋區間。它們描述的是球手群體，而不是你的這一桿。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Promedios publicados del tour y de la USGA que se muestran junto a tu propia medición, como el rango de spin con el que se simula el carry. Describen poblaciones de golfistas, nunca tu golpe."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Médias publicadas do tour e da USGA mostradas ao lado da sua própria medição, como a faixa de spin usada para simular o carry. Elas descrevem populações de golfistas, nunca a sua tacada."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Veröffentlichte Tour- und USGA-Mittelwerte neben deiner eigenen Messung, etwa die Spin-Spanne, über die ein Carry simuliert wird. Sie beschreiben Golfergruppen, nie deinen Schlag."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moyennes publiées du tour et de l’USGA affichées à côté de votre propre mesure, comme la plage de spin sur laquelle un carry est simulé. Elles décrivent des populations de golfeurs, jamais votre coup."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Medie pubblicate del tour e della USGA mostrate accanto alla tua misurazione, come l’intervallo di spin su cui si simula il carry. Descrivono popolazioni di golfisti, mai il tuo colpo."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ค่าเฉลี่ยที่เผยแพร่ของทัวร์และ USGA ซึ่งแสดงข้างค่าที่คุณวัดได้ เช่น ช่วงสปินที่ใช้จำลองระยะลอย ค่าเหล่านี้อธิบายกลุ่มนักกอล์ฟ ไม่ใช่ช็อตของคุณ"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Các giá trị trung bình đã công bố của tour và USGA hiển thị bên cạnh phép đo của bạn, chẳng hạn dải xoáy dùng để mô phỏng carry. Chúng mô tả nhóm golfer, không bao giờ là cú đánh của bạn."
+          }
+        }
+      }
+    },
     "Putter": {
       "extractionState": "manual",
       "localizations": {
@@ -30570,6 +31494,83 @@
         }
       }
     },
+    "Range view (schematic, not to scale)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Range view (schematic, not to scale)"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "레인지 보기 (개념도, 축척 아님)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "レンジ表示（模式図、縮尺なし）"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "练习场视图（示意图，非等比例）"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "練習場視圖（示意圖，非等比例）"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vista de campo (esquema, sin escala)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vista do range (esquema, sem escala)"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Range-Ansicht (Schema, nicht maßstäblich)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vue du practice (schéma, sans échelle)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vista del campo pratica (schema, non in scala)"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "มุมมองสนามไดรฟ์ (ภาพจำลอง ไม่ตามมาตราส่วน)"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Khung sân tập (sơ đồ, không theo tỷ lệ)"
+          }
+        }
+      }
+    },
     "Read observation": {
       "extractionState": "manual",
       "localizations": {
@@ -30643,6 +31644,160 @@
           "stringUnit": {
             "state": "translated",
             "value": "Đọc nhận xét"
+          }
+        }
+      }
+    },
+    "Read values aloud": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Read values aloud"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "값 읽어 주기"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "数値を読み上げる"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "朗读数值"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "朗讀數值"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leer valores en voz alta"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ler valores em voz alta"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Werte vorlesen"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lire les valeurs à voix haute"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leggi i valori ad alta voce"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "อ่านค่าออกเสียง"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đọc to các giá trị"
+          }
+        }
+      }
+    },
+    "Ready": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ready"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "준비 완료"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "準備完了"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "就绪"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "就緒"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Listo"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pronto"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bereit"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prêt"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pronto"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "พร้อม"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sẵn sàng"
           }
         }
       }
@@ -34959,6 +36114,83 @@
         }
       }
     },
+    "Session": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Session"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "세션"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "セッション"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本次练习"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本次練習"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sesión"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sessão"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sitzung"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Session"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sessione"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เซสชัน"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phiên tập"
+          }
+        }
+      }
+    },
     "Session consistency": {
       "extractionState": "manual",
       "localizations": {
@@ -38193,6 +39425,83 @@
         }
       }
     },
+    "Spoken feedback uses an available voice for your selected language. If a suitable voice is unavailable, feedback stays on screen. Voice readout reads each live launch shot aloud so the phone can stay on its stand.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spoken feedback uses an available voice for your selected language. If a suitable voice is unavailable, feedback stays on screen. Voice readout reads each live launch shot aloud so the phone can stay on its stand."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "음성 피드백은 선택한 언어에서 사용할 수 있는 음성을 써요. 알맞은 음성이 없으면 화면에만 표시돼요. 음성 읽기는 실시간 측정의 샷마다 값을 읽어 줘서 폰을 거치대에 둔 채로 쓸 수 있어요."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "音声フィードバックは選択した言語で利用できる音声を使います。適した音声がない場合は画面表示のみになります。音声読み上げはリアルタイム計測のショットごとに値を読み上げるので、スマートフォンをスタンドに置いたままにできます。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "语音反馈使用所选语言可用的声音。若没有合适的声音，反馈只显示在屏幕上。语音播报会朗读实时测量的每一杆，手机可以一直留在支架上。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "語音回饋使用所選語言可用的聲音。若沒有合適的聲音，回饋只顯示在螢幕上。語音播報會朗讀即時測量的每一桿，手機可以一直留在支架上。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La voz usa una voz disponible para el idioma seleccionado. Si no hay una voz adecuada, los comentarios se quedan en pantalla. La lectura en voz alta anuncia cada golpe de la lectura en directo para que el teléfono pueda quedarse en su soporte."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O feedback falado usa uma voz disponível para o idioma selecionado. Se não houver voz adequada, o feedback fica na tela. A leitura em voz alta anuncia cada tacada da leitura ao vivo para que o telefone possa ficar no suporte."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gesprochenes Feedback nutzt eine verfügbare Stimme für die gewählte Sprache. Gibt es keine passende Stimme, bleibt das Feedback auf dem Bildschirm. Die Sprachansage liest jeden Schlag der Live-Anzeige vor, damit das Telefon auf dem Stativ bleiben kann."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le retour vocal utilise une voix disponible pour la langue choisie. Sans voix adaptée, le retour reste à l’écran. La lecture vocale annonce chaque coup de l’affichage en direct pour que le téléphone reste sur son support."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il feedback vocale usa una voce disponibile per la lingua selezionata. Se non c’è una voce adatta, il feedback resta sullo schermo. La lettura vocale annuncia ogni colpo della lettura dal vivo così il telefono può restare sul supporto."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เสียงตอบกลับใช้เสียงที่มีสำหรับภาษาที่เลือก หากไม่มีเสียงที่เหมาะสม ข้อความจะแสดงบนหน้าจอเท่านั้น การอ่านค่าออกเสียงจะอ่านทุกช็อตของการวัดสด เพื่อให้โทรศัพท์อยู่บนขาตั้งได้"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phản hồi bằng giọng nói dùng giọng có sẵn cho ngôn ngữ đã chọn. Nếu không có giọng phù hợp, phản hồi chỉ hiện trên màn hình. Đọc to giá trị sẽ đọc từng cú đánh của bảng đo trực tiếp để điện thoại có thể ở yên trên giá."
+          }
+        }
+      }
+    },
     "Standard deviation": {
       "extractionState": "manual",
       "localizations": {
@@ -39190,6 +40499,83 @@
           "stringUnit": {
             "state": "translated",
             "value": "Chiến thuật"
+          }
+        }
+      }
+    },
+    "Strobe of the ball after impact": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strobe of the ball after impact"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "임팩트 직후 공의 연속 궤적"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "インパクト直後のボールのストロボ像"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "击球后球的频闪图像"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "擊球後球的頻閃影像"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estroboscopia de la bola tras el impacto"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estroboscópio da bola após o impacto"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stroboskopbild des Balls nach dem Treffmoment"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stroboscopie de la balle après l’impact"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stroboscopia della palla dopo l’impatto"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ภาพสโตรบของลูกหลังกระทบ"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ảnh chớp liên tiếp của bóng sau va chạm"
           }
         }
       }
@@ -44815,6 +46201,160 @@
         }
       }
     },
+    "Too close": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Too close"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "너무 가까움"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "近すぎます"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "太近"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "太近"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Demasiado cerca"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Perto demais"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zu nah"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trop près"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Troppo vicino"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ใกล้เกินไป"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quá gần"
+          }
+        }
+      }
+    },
+    "Too far": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Too far"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "너무 멂"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "遠すぎます"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "太远"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "太遠"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Demasiado lejos"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Longe demais"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zu weit"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trop loin"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Troppo lontano"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ไกลเกินไป"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quá xa"
+          }
+        }
+      }
+    },
     "Top of backswing": {
       "extractionState": "manual",
       "localizations": {
@@ -44965,6 +46505,83 @@
           "stringUnit": {
             "state": "translated",
             "value": "Nhìn từ trên"
+          }
+        }
+      }
+    },
+    "Total": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Total"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "토탈"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "総距離"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "总距离"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "總距離"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Total"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Total"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gesamt"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Total"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Totale"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ระยะรวม"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tổng"
           }
         }
       }
@@ -48357,6 +49974,83 @@
         }
       }
     },
+    "Voice readout": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voice readout"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "음성 읽기"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "音声読み上げ"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "语音播报"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "語音播報"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lectura en voz alta"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leitura em voz alta"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sprachansage"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lecture vocale"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lettura vocale"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "อ่านค่าออกเสียง"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đọc to giá trị"
+          }
+        }
+      }
+    },
     "Waiting for the next ball position": {
       "extractionState": "manual",
       "localizations": {
@@ -51052,6 +52746,215 @@
         }
       }
     },
+    "count.clubs": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld club"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld clubs"
+                }
+              }
+            }
+          }
+        },
+        "ko": {
+          "variations": {
+            "plural": {
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "클럽 %1$lld개"
+                }
+              }
+            }
+          }
+        },
+        "ja": {
+          "variations": {
+            "plural": {
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld本のクラブ"
+                }
+              }
+            }
+          }
+        },
+        "zh-Hans": {
+          "variations": {
+            "plural": {
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld 支球杆"
+                }
+              }
+            }
+          }
+        },
+        "zh-Hant": {
+          "variations": {
+            "plural": {
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld 支球桿"
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld palo"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld palos"
+                }
+              },
+              "many": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld palos"
+                }
+              }
+            }
+          }
+        },
+        "pt-BR": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld taco"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld tacos"
+                }
+              },
+              "many": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld tacos"
+                }
+              }
+            }
+          }
+        },
+        "de": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld Schläger"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld Schläger"
+                }
+              }
+            }
+          }
+        },
+        "fr": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld club"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld clubs"
+                }
+              },
+              "many": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld clubs"
+                }
+              }
+            }
+          }
+        },
+        "it": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld bastone"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld bastoni"
+                }
+              },
+              "many": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld bastoni"
+                }
+              }
+            }
+          }
+        },
+        "th": {
+          "variations": {
+            "plural": {
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "ไม้ %1$lld อัน"
+                }
+              }
+            }
+          }
+        },
+        "vi": {
+          "variations": {
+            "plural": {
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld gậy"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "count.holes": {
       "extractionState": "manual",
       "localizations": {
@@ -52328,6 +54231,160 @@
         }
       }
     },
+    "launch.autoClub": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auto · %1$@"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "자동 · %1$@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自動 · %1$@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自动 · %1$@"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自動 · %1$@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auto · %1$@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auto · %1$@"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auto · %1$@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auto · %1$@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auto · %1$@"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "อัตโนมัติ · %1$@"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tự động · %1$@"
+          }
+        }
+      }
+    },
+    "launch.clubGuess": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Club chosen from published launch averages: %1$@. Change it if it is wrong."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "공개 발사 평균값으로 고른 클럽: %1$@. 틀리면 바꿔 주세요."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "公表された打ち出し平均値から選んだクラブ: %1$@。違う場合は変更してください。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "根据公开出球平均值选择的球杆：%1$@。如果不对，请更改。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "根據公開出球平均值選擇的球桿：%1$@。如果不對，請更改。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Palo elegido según promedios de lanzamiento publicados: %1$@. Cámbialo si no es correcto."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Taco escolhido pelas médias de lançamento publicadas: %1$@. Mude se estiver errado."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schläger aus veröffentlichten Abflug-Mittelwerten gewählt: %1$@. Ändere ihn, wenn er falsch ist."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Club choisi d’après des moyennes de lancement publiées : %1$@. Changez-le s’il est incorrect."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bastone scelto dalle medie di lancio pubblicate: %1$@. Cambialo se è sbagliato."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ไม้ที่เลือกจากค่าเฉลี่ยการออกตัวที่เผยแพร่: %1$@ หากไม่ถูกต้องให้เปลี่ยน"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gậy được chọn từ các giá trị phóng trung bình đã công bố: %1$@. Hãy đổi nếu sai."
+          }
+        }
+      }
+    },
     "launch.modeActive": {
       "extractionState": "manual",
       "localizations": {
@@ -52478,6 +54535,237 @@
           "stringUnit": {
             "state": "translated",
             "value": "Quá tối cho màn trập 1/%2$@ giây ở %1$@ fps: hình sẽ bị tối. Hãy chuyển tới nơi sáng hơn."
+          }
+        }
+      }
+    },
+    "launch.standRange": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stand about %1$@ to %2$@ from the ball."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "공에서 약 %1$@~%2$@ 떨어진 곳에 두세요."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ボールから約%1$@〜%2$@離して置いてください。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请放在距球约 %1$@ 到 %2$@ 的位置。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "請放在距球約 %1$@ 到 %2$@ 的位置。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Colócala a unos %1$@ a %2$@ de la bola."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Coloque a cerca de %1$@ a %2$@ da bola."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stell sie etwa %1$@ bis %2$@ vom Ball entfernt auf."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Placez-la à environ %1$@ à %2$@ de la balle."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Posizionala a circa %1$@–%2$@ dalla palla."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "วางห่างจากลูกประมาณ %1$@ ถึง %2$@"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đặt cách bóng khoảng %1$@ đến %2$@."
+          }
+        }
+      }
+    },
+    "launch.voice.carry": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carry %1$@ to %2$@."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "캐리 %1$@에서 %2$@."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "キャリー %1$@から%2$@。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "飞行距离 %1$@ 到 %2$@。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "飛行距離 %1$@ 到 %2$@。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carry de %1$@ a %2$@."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carry de %1$@ a %2$@."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carry %1$@ bis %2$@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carry de %1$@ à %2$@."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carry da %1$@ a %2$@."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ระยะลอย %1$@ ถึง %2$@"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carry từ %1$@ đến %2$@."
+          }
+        }
+      }
+    },
+    "launch.voice.launch": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ball speed %1$@. Launch %2$@."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "볼 스피드 %1$@. 발사각 %2$@."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ボール初速 %1$@。打ち出し角 %2$@。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "球速 %1$@。发射角 %2$@。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "球速 %1$@。發射角 %2$@。"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Velocidad de bola %1$@. Lanzamiento %2$@."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Velocidade da bola %1$@. Lançamento %2$@."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ballgeschwindigkeit %1$@. Abflugwinkel %2$@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitesse de balle %1$@. Angle de lancement %2$@."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Velocità della palla %1$@. Angolo di lancio %2$@."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ความเร็วลูก %1$@ มุมออกตัว %2$@"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tốc độ bóng %1$@. Góc phóng %2$@."
           }
         }
       }
@@ -52863,6 +55151,160 @@
           "stringUnit": {
             "state": "translated",
             "value": "Vùng ngoài nét đứt"
+          }
+        }
+      }
+    },
+    "metric.range": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@–%2$@"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@–%2$@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@–%2$@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@–%2$@"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@–%2$@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@–%2$@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@–%2$@"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@–%2$@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@–%2$@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@–%2$@"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@–%2$@"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@–%2$@"
+          }
+        }
+      }
+    },
+    "metric.rangeUnit": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@–%2$@ %3$@"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@–%2$@ %3$@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@–%2$@ %3$@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@–%2$@ %3$@"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@–%2$@ %3$@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@–%2$@ %3$@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@–%2$@ %3$@"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@–%2$@ %3$@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@–%2$@ %3$@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@–%2$@ %3$@"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@–%2$@ %3$@"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@–%2$@ %3$@"
           }
         }
       }

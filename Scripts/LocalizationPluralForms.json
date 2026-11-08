@@ -238,5 +238,53 @@
     "vi": {
       "other": "%1$lld cú đánh"
     }
+  },
+  "count.clubs": {
+    "en": {
+      "one": "%1$lld club",
+      "other": "%1$lld clubs"
+    },
+    "ko": {
+      "other": "클럽 %1$lld개"
+    },
+    "ja": {
+      "other": "%1$lld本のクラブ"
+    },
+    "zh-Hans": {
+      "other": "%1$lld 支球杆"
+    },
+    "zh-Hant": {
+      "other": "%1$lld 支球桿"
+    },
+    "es": {
+      "one": "%1$lld palo",
+      "other": "%1$lld palos",
+      "many": "%1$lld palos"
+    },
+    "pt-BR": {
+      "one": "%1$lld taco",
+      "other": "%1$lld tacos",
+      "many": "%1$lld tacos"
+    },
+    "de": {
+      "one": "%1$lld Schläger",
+      "other": "%1$lld Schläger"
+    },
+    "fr": {
+      "one": "%1$lld club",
+      "other": "%1$lld clubs",
+      "many": "%1$lld clubs"
+    },
+    "it": {
+      "one": "%1$lld bastone",
+      "other": "%1$lld bastoni",
+      "many": "%1$lld bastoni"
+    },
+    "th": {
+      "other": "ไม้ %1$lld อัน"
+    },
+    "vi": {
+      "other": "%1$lld gậy"
+    }
   }
 }

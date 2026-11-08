@@ -13,7 +13,9 @@ struct CameraView: View {
     @State private var angle = CameraAngle.faceOn
     @State private var showGrid = true
     @State private var exposure = 0.0
-    @State private var liveClub = ReferenceClub.iron7
+    @State private var speaker = LaunchSpeaker()
+    /// Shots saved to the launch log during this live session, so a mis-hit can be discarded.
+    @State private var sessionShots: [LaunchShot] = []
     var onSave: (URL, CameraAngle) -> Void
 
     var body: some View {
@@ -36,7 +38,12 @@ struct CameraView: View {
                     }
                     VStack {
                         if camera.live == .on {
-                            LiveLaunchPanel(camera: camera, club: $liveClub)
+                            // The readout can outgrow a small phone; it then scrolls above the controls instead of covering them.
+                            ViewThatFits(in: .vertical) {
+                                LiveLaunchPanel(camera: camera, discardLast: discardLastShot)
+                                ScrollView(.vertical, showsIndicators: false) { LiveLaunchPanel(camera: camera, discardLast: discardLastShot) }
+                                    .scrollBounceBehavior(.basedOnSize)
+                            }
                         } else {
                             Text(prefs.text(angle == .faceOn ? "Keep your full body and club in view." : "Place the camera along your hand line."))
                                 .font(.subheadline).multilineTextAlignment(.center)
@@ -84,16 +91,19 @@ struct CameraView: View {
                 }
             }
             .task { await camera.start() }
-            .onDisappear { camera.stop() }
-            .onChange(of: camera.liveShotCount) { _, _ in
-                guard let outcome = camera.liveOutcome,
-                      let shot = LaunchShot(measurement: outcome.measurement, club: liveClub, source: .liveCamera) else { return }
+            .onDisappear { camera.stop(); speaker.stop() }
+            .onChange(of: camera.liveShotCount) { _, count in
+                // Fires once the shot's readout is built, so the saved club is the one it was simulated with.
+                guard count > 0, let outcome = camera.liveOutcome, let readout = camera.liveReadout,
+                      let shot = LaunchShot(measurement: outcome.measurement, club: readout.club, source: .liveCamera) else { return }
                 modelContext.insert(shot)
-                do { try modelContext.save() } catch {
+                do { try modelContext.save(); sessionShots.append(shot) } catch {
                     modelContext.rollback()
                     camera.liveMessage = "The shot could not be saved. Please try again."
                 }
+                speaker.speak(readout, preferences: prefs)
             }
+            .onChange(of: camera.live) { _, _ in sessionShots = [] }
             .onChange(of: camera.savedURL) { _, url in
                 guard let url else { return }
                 onSave(url, angle)
@@ -105,8 +115,9 @@ struct CameraView: View {
             }
             .sheet(isPresented: Binding(get: { camera.liveSnapshot != nil }, set: { if !$0 { camera.liveSnapshot = nil } })) {
                 if let image = camera.liveSnapshot {
-                    LiveBallPositionSheet(image: image, direction: prefs.handedness == .right ? 1 : -1) { point, direction in
-                        camera.engine.live.setBall(at: point, direction: direction)
+                    LiveBallPositionSheet(image: image,
+                                          direction: camera.liveBallPoint == nil ? (prefs.handedness == .right ? 1 : -1) : camera.liveDirection) { point, direction in
+                        camera.setLiveBall(at: point, direction: direction)
                     }
                 }
             }
@@ -114,6 +125,19 @@ struct CameraView: View {
                 Button(prefs.text("OK"), role: .cancel) { camera.error = nil }
             } message: { Text(prefs.text(camera.error ?? "")) }
         }
+    }
+
+    /// Removes the last live shot from the launch log and the session summary (a mis-hit, a practice swing).
+    private func discardLastShot() {
+        if let shot = sessionShots.popLast() {
+            modelContext.delete(shot)
+            do { try modelContext.save() } catch {
+                modelContext.rollback()
+                camera.liveMessage = "The shot could not be deleted. Please try again."
+                return
+            }
+        }
+        camera.discardLastSessionShot()
     }
 
     private var launchStatus: String? {

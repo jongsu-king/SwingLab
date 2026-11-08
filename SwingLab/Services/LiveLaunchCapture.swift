@@ -7,8 +7,11 @@ enum LiveLaunchEvent: Sendable {
     /// Upright still of the current view, for tapping the ball.
     case snapshot(CGImage)
     case listening
+    /// The ball at address was measured where it was tapped; the verdict says whether the camera stands well.
+    case setup(LaunchSetupCheck)
     case impact
-    case measured(LaunchPipeline.Outcome)
+    /// The shot was measured; the strobe shows the frames it was measured on.
+    case measured(LaunchPipeline.Outcome, strobe: CGImage?)
     /// The shot was not measured; the readout keeps listening.
     case failure(LocalizationKey)
     /// The ball position is no longer valid and must be set again.
@@ -29,19 +32,27 @@ final class LiveLaunchCapture: NSObject, @unchecked Sendable, AVCaptureVideoData
 
     private struct Aim: Sendable {
         let sourceRect: PixelRect
+        /// Width of the upright launch region the tracker reads.
+        let regionWidth: Int
         let ball: PixelPoint
         let searchRadius: Int
         let direction: Double
     }
 
     private static let rotation = LumaRotation.clockwise
+    /// Address frames sampled right after arming, spaced so a brief occlusion cannot spoil all of them.
+    private static let setupFrameCount = 4, setupSpacing = 4
     private var frameRate = 240.0
+    private var fieldOfView: Double?
     private var sampleRate: Double?
     private var sensorSize: (width: Int, height: Int)?
     private var wantsSnapshot = false
     private var pendingAim: (point: CGPoint, direction: Double)?
     private var aim: Aim?
     private var session: LiveLaunchSession?
+    private var setupFrames: [LumaFrame] = []
+    private var setupPending = false
+    private var framesSinceSetupSample = 0
 
     override init() {
         super.init()
@@ -55,14 +66,17 @@ final class LiveLaunchCapture: NSObject, @unchecked Sendable, AVCaptureVideoData
         audioOutput.setSampleBufferDelegate(self, queue: queue)
     }
 
-    func start(frameRate: Double) {
+    /// `fieldOfView` is the lens's horizontal field of view in degrees (sensor orientation); nil
+    /// leaves the camera distance of the setup check unavailable.
+    func start(frameRate: Double, fieldOfView: Double?) {
         queue.async { [self] in
             self.frameRate = frameRate
-            aim = nil; session = nil; pendingAim = nil
+            self.fieldOfView = fieldOfView
+            clearAim()
         }
     }
 
-    func stop() { queue.async { [self] in aim = nil; session = nil; pendingAim = nil; wantsSnapshot = false } }
+    func stop() { queue.async { [self] in clearAim(); wantsSnapshot = false } }
 
     func requestSnapshot() { queue.async { [self] in wantsSnapshot = true } }
 
@@ -72,6 +86,11 @@ final class LiveLaunchCapture: NSObject, @unchecked Sendable, AVCaptureVideoData
             pendingAim = (point, direction)
             armIfReady()
         }
+    }
+
+    private func clearAim() {
+        aim = nil; session = nil; pendingAim = nil
+        setupFrames = []; setupPending = false
     }
 
     private func armIfReady() {
@@ -84,9 +103,11 @@ final class LiveLaunchCapture: NSObject, @unchecked Sendable, AVCaptureVideoData
             onEvent?(.reset("The ball was not found at the point you tapped. Tap the centre of the ball at address.")); return
         }
         aim = Aim(sourceRect: Self.rotation.sourceRect(for: region, sourceWidth: sensorSize.width, sourceHeight: sensorSize.height),
+                  regionWidth: region.width,
                   ball: PixelPoint(x: ball.x - Double(region.x), y: ball.y - Double(region.y)),
                   searchRadius: LaunchRegion.searchRadius(frameWidth: upright.width), direction: request.direction)
         session = LiveLaunchSession(frameRate: frameRate, sampleRate: sampleRate)
+        setupFrames = []; setupPending = true; framesSinceSetupSample = Self.setupSpacing
         onEvent?(.listening)
     }
 
@@ -104,7 +125,7 @@ final class LiveLaunchCapture: NSObject, @unchecked Sendable, AVCaptureVideoData
         let stride = CVPixelBufferGetBytesPerRowOfPlane(pixels, 0)
         if sensorSize.map({ $0 != (width, height) }) ?? true {
             sensorSize = (width, height)
-            if aim != nil { aim = nil; session = nil; onEvent?(.reset("The camera format changed. Set the ball position again.")) }
+            if aim != nil { clearAim(); onEvent?(.reset("The camera format changed. Set the ball position again.")) }
         }
         if wantsSnapshot {
             wantsSnapshot = false
@@ -118,7 +139,35 @@ final class LiveLaunchCapture: NSObject, @unchecked Sendable, AVCaptureVideoData
         let rect = aim.sourceRect
         guard rect.x >= 0, rect.y >= 0, rect.x + rect.width <= width, rect.y + rect.height <= height else { return }
         let frame = LumaFrame(time: time, width: rect.width, height: rect.height, bytes: Self.copy(base, stride: stride, rect: rect))
+        if setupPending {
+            framesSinceSetupSample += 1
+            if framesSinceSetupSample >= Self.setupSpacing {
+                framesSinceSetupSample = 0
+                setupFrames.append(frame)
+                if setupFrames.count >= Self.setupFrameCount {
+                    setupPending = false
+                    checkSetup(aim, frames: setupFrames)
+                    setupFrames = []
+                }
+            }
+        }
         handle(session?.appendVideo(frame) ?? [])
+    }
+
+    /// Fits the ball where it was tapped and judges the camera distance, off the capture queue.
+    private func checkSetup(_ aim: Aim, frames: [LumaFrame]) {
+        let onEvent = onEvent, frameRate = frameRate
+        let focal: Double? = fieldOfView.flatMap { fov in
+            sensorSize.flatMap { LaunchSetupChecker.focalLengthPixels(fieldOfViewDegrees: fov, widthPixels: $0.width) }
+        }
+        Task.detached(priority: .userInitiated) {
+            let rotation = Self.rotation
+            guard let scale = BallScaleFitter.fit(frames: frames.map { $0.gray(rotation) }, near: aim.ball, searchRadius: aim.searchRadius) else {
+                onEvent?(.failure("The ball was not found at the point you tapped. Tap the centre of the ball at address.")); return
+            }
+            onEvent?(.setup(LaunchSetupChecker.check(scale: scale, frameRate: frameRate, regionWidth: aim.regionWidth,
+                                                     targetDirection: aim.direction, focalLengthPixels: focal)))
+        }
     }
 
     private func audio(_ sampleBuffer: CMSampleBuffer) {
@@ -157,11 +206,14 @@ final class LiveLaunchCapture: NSObject, @unchecked Sendable, AVCaptureVideoData
                 // Measuring takes tens of milliseconds; keep the capture queue free for the next frames.
                 Task.detached(priority: .userInitiated) {
                     let rotation = Self.rotation
-                    let result = LaunchPipeline.measure(address: capture.address.map { $0.gray(rotation) },
-                                                        flight: capture.flight.map { (time: $0.time, image: $0.gray(rotation)) },
-                                                        ball: aim.ball, searchRadius: aim.searchRadius, targetDirection: aim.direction)
+                    let address = capture.address.map { $0.gray(rotation) }
+                    let flight = capture.flight.map { (time: $0.time, image: $0.gray(rotation)) }
+                    let result = LaunchPipeline.measure(address: address, flight: flight, ball: aim.ball,
+                                                        searchRadius: aim.searchRadius, targetDirection: aim.direction)
                     switch result {
-                    case let .success(outcome): onEvent?(.measured(outcome))
+                    case let .success(outcome):
+                        let strobe = address.last.map { LaunchStrobe.compose(reference: $0, flight: flight.map(\.image)) }
+                        onEvent?(.measured(outcome, strobe: strobe.flatMap { Self.image($0) }))
                     case let .failure(reason): onEvent?(.failure(LaunchVideoError(reason).key))
                     }
                 }
@@ -176,6 +228,11 @@ final class LiveLaunchCapture: NSObject, @unchecked Sendable, AVCaptureVideoData
             }
             initialized = rect.width * rect.height
         }
+    }
+
+    private static func image(_ gray: GrayImage) -> CGImage? {
+        image(LumaFrame(time: 0, width: gray.width, height: gray.height,
+                        bytes: gray.pixels.map { UInt8(max(0, min(255, ($0 * 255).rounded()))) }))
     }
 
     private static func image(_ frame: LumaFrame) -> CGImage? {

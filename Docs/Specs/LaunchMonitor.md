@@ -12,8 +12,9 @@
 | **Impact time** | `audioDerived` (WP3) | Also the real-time trigger. |
 | **Tempo / backswing / downswing** | estimated (WP2) | Pose phases. |
 | **Carry** | `simulated`, shown as a **range** | `BallFlight` with measured speed and angle. Spin is unknown, so the result is computed across the user's club spin range (My Bag) or a documented typical range per club category. Never shown as a single precise number. |
-| **Spin rate / spin axis** | **Unavailable** | v6.0 §12; not observable at 240 fps from ball texture. |
-| **Club head speed, smash factor** | **Unavailable** until club tracking (WP9) is validated | No wrist-speed proxy. |
+| **Total** | `simulated`, shown as a **range** | Carry plus bounce-and-roll (`BallRoll`, `Docs/Physics.md`) for an assumed fairway, across the same spin bracket. Added 8 Nov 2026 at the user's request; never a measurement. |
+| **Back spin** | `reference` (published bracket) | v6.0 §12: not observable at 240 fps from ball texture. The tile shows the cited spin bracket the carry is simulated across, badged "Reference — published averages". The golfer's own spin is never shown or stored. |
+| **Club head speed** | `estimated` | No club observation. The tile shows the measured ball speed divided by the published smash-factor bracket for the club, badged "Estimated". Smash factor itself stays unavailable. |
 | **Attack angle, club path, face angle** | **Unavailable** | Needs club-face observation that is not available. |
 
 ## Physics budget (why this can work, and when it cannot)
@@ -112,8 +113,53 @@ Core tests stream a synthetic shot as 1,024-sample sound buffers delivered 20 ms
 
 **Launch log (added 27 Oct, reviewer).** SwiftData V5 adds `LaunchShot` (lightweight migration from a frozen V4 snapshot). Each live readout is saved automatically, and a recorded-clip measurement can be saved with "Save shot". A shot stores ball speed (m/s) and launch angle (rad) with provenance, confidence, uncertainty, tracked positions, method, and the club chosen for the carry range. Carry is not stored. Swing → Ball Lab → Launch log lists the shots and a per-club average; the speed spread appears from 5 shots. "Delete all local data" removes them.
 
+**Launch-monitor readout (added 8 Nov 2026, user request).** The user asked for the feature set of a
+commercial iPhone launch monitor (ShotVision, as shown in an Instagram reel): six tiles, a setup
+distance guide, automatic club choice, a session count, a range picture with a replay, flight-direction
+and numbers-only toggles, and a spoken readout. Each is implemented so that the honesty rules hold.
+
+- **`LaunchReadoutBuilder`** (`Sources/SwingLabCore/LaunchReadout.swift`) turns one `LaunchMeasurement`
+  and a club into the six tiles. Ball speed and launch angle are passed through unchanged
+  (`visionDerived`). Carry, total, and apex are brackets from five `BallFlight` runs across the cited
+  spin bracket (`simulated`). Club speed is ball speed ÷ the published smash-factor bracket
+  (`estimated`, `ReferenceLaunchData.smashAssumption`). Back spin is the bracket itself, with the new
+  `Provenance.reference` case ("Reference — published averages"). The builder refuses estimated or
+  user-entered speeds, so nothing downstream can promote a guess into a readout.
+- **Total** uses `BallRoll` (`Sources/SwingLabCore/BallRoll.swift`): a tilted-bounce model with a
+  speed-dependent restitution and a rolling deceleration for an assumed fairway (`TurfSurface.fairway`).
+  `FlightResult` now reports `landingSpeed`. Unvalidated; see `Docs/Physics.md`.
+- **Auto club** (`ReferenceLaunchData.nearestClub`): the club whose published (ball speed, launch) row is
+  nearest, with a margin-based confidence that is not a probability. It only picks the spin bracket;
+  the picker overrides it, and the readout says which club was chosen and why.
+- **Setup check** (`LaunchSetupChecker`, `LaunchSetup.swift`): after the ball is tapped, the live path
+  fits the ball on four address frames, reports the camera distance from the ball's apparent size and
+  the lens field of view (`visionDerived`), and says **Too close** (fewer than 2.5 frames in view at
+  80 m/s), **Ready**, or **Too far** (ball under 10 px). The ball is still re-fitted on every shot.
+- **Strobe** (`LaunchStrobe`): the address frame and the six flight frames combined at their brightest,
+  with the tracked centres marked. A picture of what was measured; the clip itself is still not saved.
+- **Panel** (`LiveLaunchPanel`): session pills (clubs, shots), club menu with Auto, flight-direction
+  toggle, numbers-only toggle, mute toggle, the setup row, the schematic range view (`LaunchRangeView`:
+  dashed arc for the middle of the spin bracket, carry and total brackets on the ground, not to scale),
+  the strobe, the six tiles (`LaunchReadoutGrid`), and a footnote saying what the non-measured tiles are.
+  The same grid and range view appear on the recorded-clip screen; the launch log shows simulated
+  carry, total, and estimated club speed per club average.
+- **Voice** (`LaunchSpeaker`): ball speed, launch angle, and the carry bracket are spoken after each live
+  shot in the app language (`launch.voice.*` templates). Spin and club speed are not spoken.
+- **Session** (`LaunchSession`, `LaunchSession.swift`): the shots since the stream started, with per-club
+  mean ball speed and launch (from two shots), the speed spread (from five), the simulated carry
+  envelope, and the measured change from the previous shot with the same club. **Discard last shot**
+  removes a mis-hit from the session and from the launch log. When the setup verdict is not Ready, the
+  row also says where the camera could stand (`recommendedDistance`: the band where the ball is at
+  least 10 px and stays in view for 2.5 frames at 80 m/s).
+- **Orientation:** the app stays portrait; the landscape layout of the reel was not adopted.
+- **Tests:** `LaunchReadoutTests` (9) cover the roll bounds, the smash-factor estimate, the club guess,
+  the readout invariants, the setup verdicts, the strobe, and the `reference` provenance round trip;
+  `LaunchSessionTests` (3) cover the session averages, the change from the previous shot, and the
+  recommended distance band. Core total: 97. The app side has not been built here (no Xcode on this machine); every app source
+  was parse-checked and the localization, catalog, and project scripts pass.
+
 **Not yet done:**
 - Masking the club head and body near impact.
-- Saving the clip around each live shot (values are saved; see below).
-- On-device check of the live path: orientation, dropped frames, and latency.
-- Validation against TrackMan.
+- Saving the clip around each live shot (values and the strobe are kept; the strobe is not persisted).
+- On-device check of the live path: orientation, dropped frames, latency, the setup check, and the spoken readout.
+- Validation against TrackMan, and of the roll model against measured totals.

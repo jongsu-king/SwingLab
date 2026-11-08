@@ -64,8 +64,9 @@ struct SettingsView: View {
                         Image(systemName: "hare").accessibilityLabel(preferences.text("Faster"))
                     }
                 }.disabled(!preferences.voiceEnabled)
+                Toggle(preferences.text("Voice readout"), isOn: $preferences.launchVoiceEnabled)
             } header: { Text(preferences.text("Coaching")) }
-            footer: { Text(preferences.text("Spoken feedback uses an available voice for your selected language. If a suitable voice is unavailable, feedback stays on screen.")) }
+            footer: { Text(preferences.text("Spoken feedback uses an available voice for your selected language. If a suitable voice is unavailable, feedback stays on screen. Voice readout reads each live launch shot aloud so the phone can stay on its stand.")) }
 
             Section {
                 NavigationLink { PrivacyView() } label: {

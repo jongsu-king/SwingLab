@@ -48,6 +48,7 @@ struct MeasurementGuideView: View {
             entry("GPS displacement", "The distance between two recorded positions is ground displacement. It includes location uncertainty and is not measured airborne carry.")
             entry("Predicted", "Landing regions use the club averages and variability you enter. They are statistical predictions and are only as reliable as those inputs.")
             entry("Simulated", "Flight simulations use explicit launch and environment inputs. They describe a hypothetical flight, not a measurement from a recording.")
+            entry("Reference — published averages", "Published tour and USGA averages shown beside your own measurement, such as the spin bracket a carry is simulated across. They describe golfer populations, never your shot.")
             entry("Unavailable", "Unknown values stay unknown. Ordinary iPhone footage does not guarantee measurable ball speed, spin RPM, or a complete 3D flight path.")
         }
         .scrollContentBackground(.hidden)

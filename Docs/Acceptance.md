@@ -37,13 +37,13 @@ _Last updated: 30 Oct 2026, reviewer work between Rounds 4 and 5._
 | A15 | Language selection | 12 languages; the checker fails on any missing key, including keys passed through helpers; screenshots reviewed |✅ |
 | A16 | Independent units | Distance, speed, wind, and temperature switch independently everywhere |✅ |
 | A17 | Local-first storage | No account; V1→V2→V3 migration tests pass on the simulator; full deletion works | ✅ |
-| A18 | Honest provenance | Every displayed number carries a typed origin; spin stays Unavailable; ball speed is Unavailable except the experimental vision-derived launch readout (A22); audit passes | ✅ |
+| A18 | Honest provenance | Every displayed number carries a typed origin; the golfer's spin is never shown as measured (a published bracket may be shown, badged as reference); ball speed is Unavailable except the experimental vision-derived launch readout (A22); audit passes | ✅ |
 | A19 | Device performance | Recording holds the selected fps; analysis of a 10 s 240 fps clip finishes in reasonable time without thermal shutdown | ⬜ |
 | A20 | Error handling | Denied permissions, interruptions, low storage, and corrupt video each tested | 🟡 |
 | A21 | App Store readiness | Public privacy policy URL, metadata in 12 languages, TestFlight build uploaded (needs a paid developer account) | ❌ |
 
 | A22 | Launch monitor: ball speed | Real-time readout ≤ 2 s after impact. On ≥ 10 real shots recorded alongside a reference launch monitor: within ±3 %. | 🟡 |
-| A23 | Launch monitor: launch angle | Same shots: vertical launch within ±1.5°. Spin, club speed, and smash factor stay Unavailable. | 🟡 |
+| A23 | Launch monitor: launch angle | Same shots: vertical launch within ±1.5°. Spin appears only as the published bracket (reference), club speed only as an estimate from published smash factors; neither is stored or shown as measured, and smash factor stays Unavailable. | 🟡 |
 | A24 | Club & shaft catalog (user request) | Brand → category → year → model picker with search; custom entry; shafts (catalog and custom); length in inches; hosel position picker with loft/lie Δ. Every entry sourced or labelled unverified. | 🟡 |
 
 Requested by the user on 26 Oct 2026; specified in `Docs/Specs/LaunchMonitor.md`. Spin RPM stays Unavailable.
@@ -78,6 +78,8 @@ Evidence notes (reviewer, 27 Oct):
   `verify.sh` rejects string-literal provenance. Spin and club speed are always Unavailable.
 
   Bar change: on 26 Oct the user asked for a launch monitor, so ball speed may now appear as a vision-derived, experimental value (A22). The bar was reworded to match. The rule that nothing unmeasured is shown as measured is unchanged.
+
+  Bar change (8 Nov): the user asked for the six-tile readout of a commercial iPhone launch monitor (carry, total, ball speed, club speed, back spin, launch angle). Carry and total are simulated brackets, club speed is an estimate from published smash factors, and back spin is the published bracket with the new `reference` provenance. A18 and A23 were reworded to say so. Nothing unmeasured is shown or stored as measured; `LaunchReadoutTests` checks the provenance of every tile, and `LaunchSessionTests` the session arithmetic. Not yet verified on a device.
 - **A2 🟡.** The eight primary screens are reviewed in light and dark mode in all 12 languages (30 Oct), and the launch log and add-club editor in all 12, light and dark. Five layout findings (L1–L5) are fixed and re-captured, and the v6.0 §4 check is done (`Docs/Review/layout-review-12-languages.md`). Still to do: camera and live readout (need a device), launch measurement, catalog picker, and scorecard.
 - **A24 🟡.** T2 (duplicate model line) and T3 ("Unavailable" on empty inputs) fixed by the reviewer. T1 (release-year evidence) is open for Round 5.
 

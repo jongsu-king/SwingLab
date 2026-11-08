@@ -7,7 +7,7 @@
 
 <p align="center">
   <a href="https://github.com/jongsu-king/SwingLab/actions/workflows/core-tests.yml"><img src="https://github.com/jongsu-king/SwingLab/actions/workflows/core-tests.yml/badge.svg" alt="Core tests"></a>
-  <img src="https://img.shields.io/badge/tests-85%20core%20%C2%B7%2040%20app-375746" alt="Tests: 85 core, 40 app">
+  <img src="https://img.shields.io/badge/tests-97%20core%20%C2%B7%2040%20app-375746" alt="Tests: 97 core, 40 app">
   <img src="https://img.shields.io/badge/Swift-6-F05138?logo=swift&logoColor=white" alt="Swift 6">
   <img src="https://img.shields.io/badge/iOS-17%2B-202823?logo=apple&logoColor=white" alt="iOS 17+">
   <img src="https://img.shields.io/badge/SwiftUI%20%C2%B7%20Vision%20%C2%B7%20AVFoundation-375746" alt="SwiftUI, Vision, AVFoundation">
@@ -45,6 +45,7 @@
 
 - 🎥 **Swing capture and review**: high-frame-rate recording (120/240 fps where the device supports it) with sound. Vision 2D pose, eight swing phases from address to finish, and tempo. Impact is located from the recorded strike sound.
 - 🎯 **Launch monitor** <sub>experimental</sub>: film face-on at 240 fps with a 1/2000 s shutter. The ball's own diameter (42.67 mm) is the ruler for **ball speed** and **launch angle**. Turn on **Live readout** in the camera to see values right after the strike, or measure a recorded clip. Shots are kept in a **Launch log** with per-club averages.
+- 📟 **Launch-monitor readout**: six tiles per shot, **carry · total · ball speed · club speed · back spin · launch angle**. Only ball speed and launch angle are measured; carry and total are brackets simulated across the published spin range, club speed is the ball speed divided by published smash factors (estimated), and back spin is that published bracket. Every tile wears its badge. Tap the ball and the camera distance is measured with a **Too close / Ready / Too far** verdict; there is **Auto club**, a session count (clubs, shots), a schematic range with the post-impact **strobe**, flight-direction and numbers-only toggles, a session summary (per-club averages, change from the previous shot) with discard-last-shot, and a **spoken readout** after each shot, so the phone can stay on its stand.
 - 🏌️ **Club catalog**: 2000–2026, **23 brands, 1,515 clubs, 93 shafts, 17 hosel systems**. Custom shafts, length in 0.25" steps, and the loft/lie change for each sleeve position.
 - 🪂 **Hypothetical flight**: enter ball speed, launch, and spin; an RK4 physics model simulates carry, apex, and landing angle.
 - 🗺️ **Course and rounds**: MapKit course search, GPS distances, 9/18-hole scorecards, shot logging, and 50 %/80 % landing regions from your own club data.
@@ -64,7 +65,8 @@ Each value on screen carries its origin. Values one iPhone camera cannot observe
 | Estimated | Rule-based, editable · swing phases |
 | Simulated | Physics model · carry range, hypothetical flight |
 | User-entered | Typed in by you · club averages, scores |
-| **Unavailable** | Not knowable with one iPhone · **spin, club speed** |
+| Reference — published averages | Tour and USGA averages · the readout's back-spin bracket |
+| **Unavailable** | Not knowable with one iPhone · **your shot's measured spin and club speed** (the readout shows only a published bracket and an estimate) |
 
 ## How the launch monitor works
 
@@ -74,12 +76,13 @@ flowchart TD
     B --> C["⚪ Ball at address<br/>= 42.67 mm ruler"]
     C --> D["🎯 Track 6 frames<br/>after impact"]
     D --> E["Ball speed<br/>Launch angle"]
-    E --> F["Carry range<br/>(simulated over published spin)"]
-    E -.-> G["Spin · club speed<br/>Unavailable"]
+    E --> F["Carry · total range<br/>(simulated over published spin,<br/>bounce-and-roll model)"]
+    E -.-> G["Back spin: published bracket<br/>Club speed: smash-factor estimate<br/>(not measured)"]
 ```
 
 - On synthetic video it is within 0.1 % on ball speed and 0.01° on launch angle.
 - Live readout listens for the strike and runs the same measurement on buffered frames from just before and after it. On a synthetic stream the frames are ready about 0.1 s after impact; latency on a real iPhone has not been measured yet.
+- Total is carry plus a bounce-and-roll model for an assumed fairway; it has not been compared with measured totals ([Docs/Physics.md](Docs/Physics.md)).
 - It has not been checked on real shots yet. The "Experimental" label comes off only after **10+ shots beside a TrackMan land within ±3 % on ball speed and ±1.5° on launch angle**.
 - Design: [Docs/Specs/LaunchMonitor.md](Docs/Specs/LaunchMonitor.md)
 
@@ -91,7 +94,7 @@ flowchart TD
 | Check | Result |
 |---|---|
 | iOS build (Swift 6) | ✅ 0 errors · 0 warnings |
-| Core tests | ✅ 85 / 85 |
+| Core tests | ✅ 97 / 97 |
 | App · UI tests (2 simulators) | ✅ 29 + 11 |
 | Strings in 12 languages | ✅ 0 missing / 689 |
 | Real-iPhone capture · pose · GPS | ⬜ waiting for a device |
@@ -156,7 +159,7 @@ xcodebuild -project SwingLab.xcodeproj -scheme SwingLab -destination 'platform=i
 | `SwingLab/Features` | Screens: swing, course, performance, bag, hypothetical flight, launch monitor |
 | `SwingLab/Services` | Camera, video, pose, location, launch video analysis |
 | `SwingLab/Resources/Catalog` | Club, shaft, and hosel catalog JSON |
-| `Sources/SwingLabCore` | UI-free logic: units, swing phases, impact sound, flight physics, launch tracking, landing regions |
+| `Sources/SwingLabCore` | UI-free logic: units, swing phases, impact sound, flight physics, bounce and roll, launch tracking and readout, landing regions |
 | `Tests`, `SwingLabTests`, `SwingLabUITests` | Core, app, and UI tests |
 | `Scripts` | Project generation, translation build, catalog validation |
 | `Docs` | Prompts, reviews, round reports, design notes, screenshots |

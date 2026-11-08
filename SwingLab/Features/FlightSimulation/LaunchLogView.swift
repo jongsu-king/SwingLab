@@ -3,12 +3,14 @@ import SwiftData
 import SwingLabCore
 
 /// Saved camera launches, newest first, with a per-club average once there are enough shots.
-/// Carry is not listed: it is a simulated range, not a property of the shot.
+/// Carry and total are not stored with a shot: they are simulated here from each club's average
+/// launch, and say so.
 struct LaunchLogView: View {
     @Environment(AppPreferences.self) private var prefs
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \LaunchShot.date, order: .reverse) private var shots: [LaunchShot]
     @State private var error: LocalizationKey?
+    @State private var clubReadouts: [ReferenceClub: LaunchReadout] = [:]
 
     var body: some View {
         List {
@@ -37,8 +39,17 @@ struct LaunchLogView: View {
                                     SLMetricReadout(metric: spread, label: prefs.text("Standard deviation"), fractionDigits: 1, alignment: .leading)
                                 }
                             }
+                            if let readout = clubReadouts[summary.club] {
+                                HStack(alignment: .top, spacing: 24) {
+                                    SLRangeReadout(range: readout.carry, label: prefs.text("Carry"), alignment: .leading)
+                                    SLRangeReadout(range: readout.total, label: prefs.text("Total"), alignment: .leading)
+                                    SLRangeReadout(range: readout.clubSpeed, label: prefs.text("Club speed"), alignment: .leading)
+                                }
+                            }
                         }.padding(.vertical, 4)
                     }
+                    Text(prefs.text("Carry and total are simulated from the club's average launch across its published spin bracket; club speed is estimated from published smash factors. They are not stored with the shots."))
+                        .font(.caption).foregroundStyle(.secondary)
                 }.listRowBackground(SLTheme.surface)
                 Section(prefs.text("Shots")) {
                     ForEach(shots) { shot in
@@ -62,6 +73,7 @@ struct LaunchLogView: View {
             }
         }
         .scrollContentBackground(.hidden).background(SLTheme.background)
+        .task(id: shots.count) { await buildClubReadouts() }
         .navigationTitle(prefs.text("Launch log"))
         // Inline like Hypothetical flight: a large title truncates in Spanish and Portuguese.
         .navigationBarTitleDisplayMode(.inline)
@@ -97,6 +109,20 @@ struct LaunchLogView: View {
                                                    provenance: .visionDerived, method: "launchLog.mean.v1", sampleCount: angles.count),
                            speedSpread: spread)
         }
+    }
+
+    /// One readout per club from its mean launch: a handful of flight simulations, off the main actor.
+    private func buildClubReadouts() async {
+        let inputs = summaries.map { (club: $0.club, speed: $0.speed, angle: $0.angle) }
+        guard !inputs.isEmpty else { clubReadouts = [:]; return }
+        let built = await Task.detached(priority: .utility) { () -> [ReferenceClub: LaunchReadout] in
+            var result: [ReferenceClub: LaunchReadout] = [:]
+            for input in inputs {
+                result[input.club] = LaunchReadoutBuilder.build(ballSpeed: input.speed, launchAngle: input.angle, club: input.club)
+            }
+            return result
+        }.value
+        clubReadouts = built
     }
 
     private func delete(_ shot: LaunchShot) {

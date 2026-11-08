@@ -58,9 +58,41 @@ These are documented gaps, not targets.
 
 Other checks: spin-axis symmetry, start direction (lateral ≈ forward · tan 5°), headwind/tailwind/crosswind direction, thinner air → longer carry (≈ 1 600 m and 30 °C: driver 299 yd), humid air is less dense than dry air, dry air at 15 °C is 1.225 kg/m³, uphill/downhill landing, invalid inputs.
 
+## Bounce and roll (8 Nov 2026)
+
+`SwingLabCore/BallRoll.swift` adds a **total** = carry + run, at the user's request for a launch-monitor
+style readout. Every output is `.simulated` for a named surface (`TurfSurface.fairway`); the turf is
+never measured.
+
+| Step | Form |
+|---|---|
+| Tilt | The turf normal is tilted toward the incoming ball by θ_c = 15.4° · (v / 18.6 m/s) · (θ / 44.4°), capped at 40°, standing in for the ball digging in. |
+| Normal restitution | e = 0.510 − 0.0375 v_n + 0.000903 v_n², clamped to 0.12…0.9 (v_n in m/s). |
+| Tangential | The contact ends with the ball rolling on the tilted surface: v_t′ = (5 v_t − 2 r ω) / 7, with backspin ω reducing forward speed and the ball leaving with matching topspin. |
+| Hops | Each bounce adds 2 v_x v_y / g; bounces stop after 12, when a hop is shorter than a ball, or when the ball kicks back. |
+| Roll | v² / (2 a) with a = 2.0 m/s² (a signed roll backwards for a kicked-back ball). |
+
+The restitution polynomial and the reference tilt are as quoted in secondary literature for Penner's
+turf model (A. R. Penner, "The run of a golf ball", *Can. J. Phys.* 80, 2002). **They have not been
+checked against the primary paper, and the model has not been compared with measured totals.** The
+rolling deceleration is a plain assumption.
+
+Runs for the reference shots above (standard atmosphere, this flight model's landing conditions):
+
+| Shot | Landing | Run | Total |
+|---|---|---|---|
+| Driver | 28.7 m/s, 43.3°, 2094 rpm | 16.3 m (17.8 yd), 2 bounces | 290.8 yd |
+| 3-wood | 27.6 m/s, 42.3°, 2891 rpm | 14.7 m (16.0 yd), 2 bounces | 274.1 yd |
+| 7-iron | 25.3 m/s, 46.2°, 5951 rpm | 5.3 m (5.8 yd), 3 bounces | 192.4 yd |
+| Pitching wedge | 24.1 m/s, 49.7°, 8069 rpm | 1.1 m (1.2 yd), 3 bounces | 144.9 yd |
+
+`LaunchReadoutTests` only bound these (driver 10–45 m, 7-iron 2–20 m, driver > 7-iron, high-spin lob
+between −8 and 5 m) and check the responses to spin, landing angle, and surface. They are sanity
+bounds, not accuracy claims. `FlightResult.landingSpeed` was added for this model.
+
 ## Not modelled
 
-- Roll, bounce, and turf interaction. Carry only.
+- Turf firmness, slope, and moisture; the run is for one assumed fairway.
 - Wind shear with height.
 - Reynolds-number dependence of drag.
 - Spin-axis precession.

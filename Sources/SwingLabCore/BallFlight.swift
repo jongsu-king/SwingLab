@@ -69,6 +69,7 @@ public struct FlightResult: Codable, Sendable {
     public let apex: Double           // m above launch
     public let flightTime: Double     // s
     public let landingAngle: Double   // degrees below horizontal
+    public let landingSpeed: Double   // m/s at landing
     public let landingSpinRate: Double // rpm
     public let trajectory: [FlightSample]
     public let model: String
@@ -124,7 +125,7 @@ public enum BallFlight {
         // Waiting for a positive-to-negative crossing would instead run beneath the ground.
         if landingHeight == 0, velocity.y <= 0 {
             return FlightResult(carry: 0, landingPoint: .init(forward: 0, right: 0), apex: 0, flightTime: 0,
-                                landingAngle: -launch.launchAngle, landingSpinRate: launch.spinRate,
+                                landingAngle: -launch.launchAngle, landingSpeed: launch.ballSpeed, landingSpinRate: launch.spinRate,
                                 trajectory: samples, model: coefficients.id)
         }
 
@@ -159,7 +160,7 @@ public enum BallFlight {
                 return FlightResult(carry: hypot(landing.x, landing.z), landingPoint: PlanePoint(forward: landing.x, right: landing.z),
                                     apex: apex, flightTime: landingTime,
                                     landingAngle: atan2(-landingVelocity.y, hypot(landingVelocity.x, landingVelocity.z)) * 180 / .pi,
-                                    landingSpinRate: omega * 60 / (2 * .pi), trajectory: samples, model: coefficients.id)
+                                    landingSpeed: landingVelocity.length, landingSpinRate: omega * 60 / (2 * .pi), trajectory: samples, model: coefficients.id)
             }
             position = nextPosition
             velocity = nextVelocity

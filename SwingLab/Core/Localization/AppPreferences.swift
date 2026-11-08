@@ -18,6 +18,10 @@ final class AppPreferences {
     var outdoorContrast: Bool { didSet { defaults.set(outdoorContrast, forKey: "outdoorContrast") } }
     var voiceEnabled: Bool { didSet { defaults.set(voiceEnabled, forKey: "voiceEnabled") } }
     var speechRate: Double { didSet { defaults.set(speechRate, forKey: "speechRate") } }
+    /// Live readout: speak each measured shot so the phone can stay on its stand.
+    var launchVoiceEnabled: Bool { didSet { defaults.set(launchVoiceEnabled, forKey: "launchVoice") } }
+    /// Live readout: the six numbers alone instead of the range picture.
+    var launchNumbersOnly: Bool { didSet { defaults.set(launchNumbersOnly, forKey: "launchNumbersOnly") } }
     var completedOnboarding: Bool { didSet { defaults.set(completedOnboarding, forKey: "onboarded") } }
 
     init(defaults: UserDefaults = .standard) {
@@ -31,6 +35,8 @@ final class AppPreferences {
         outdoorContrast = defaults.bool(forKey: "outdoorContrast")
         voiceEnabled = defaults.bool(forKey: "voiceEnabled")
         speechRate = defaults.object(forKey: "speechRate") as? Double ?? 0.45
+        launchVoiceEnabled = defaults.object(forKey: "launchVoice") as? Bool ?? true
+        launchNumbersOnly = defaults.bool(forKey: "launchNumbersOnly")
         completedOnboarding = defaults.bool(forKey: "onboarded")
     }
     var resolvedLanguage: String { LanguageResolver.resolve(selection: languageCode, preferred: Locale.preferredLanguages) }

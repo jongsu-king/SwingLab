@@ -13,9 +13,12 @@ public struct PixelRect: Codable, Sendable, Equatable {
 /// frame ahead of it in the target direction, and mostly above it. Shared by the recorded-video and
 /// live paths so both measure the same window.
 public enum LaunchRegion {
+    /// Share of the frame width kept ahead of the ball in the target direction.
+    public static let aheadFraction = 0.65
+
     public static func around(ball: PixelPoint, frameWidth: Int, frameHeight: Int, targetDirection: Double) -> PixelRect? {
         guard frameWidth > 0, frameHeight > 0, ball.x.isFinite, ball.y.isFinite else { return nil }
-        let ahead = Int(0.65 * Double(frameWidth)), back = max(40, frameWidth / 25)
+        let ahead = Int(aheadFraction * Double(frameWidth)), back = max(40, frameWidth / 25)
         let left = targetDirection > 0 ? Int(ball.x) - back : Int(ball.x) - ahead
         let x0 = max(0, left), y0 = max(0, Int(ball.y) - Int(0.5 * Double(frameHeight)))
         let x1 = min(frameWidth, x0 + back + ahead), y1 = min(frameHeight, y0 + Int(0.5 * Double(frameHeight)) + back)

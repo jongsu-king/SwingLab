@@ -147,6 +147,19 @@ public struct ReferenceSpinAssumption: Sendable {
     }
 }
 
+/// The club nearest to a measured launch in the published tables. An estimate for choosing a
+/// spin bracket, never a measurement of the club that was swung.
+public struct ClubGuess: Sendable, Equatable {
+    public let club: ReferenceClub
+    public let rowID: String
+    /// Normalised distance to the nearest published row; smaller is closer.
+    public let distance: Double
+    public let runnerUp: ReferenceClub?
+    /// Margin over the runner-up, 0...1. Not a probability.
+    public let confidence: Double
+    public static let method = "club.nearestPublishedLaunch.v1"
+}
+
 public enum ReferenceLaunchData {
     public static let label: LocalizationKey = "Reference — published averages"
 
@@ -206,6 +219,38 @@ public enum ReferenceLaunchData {
         guard let minimum = values.map(\.siValue).min(), let maximum = values.map(\.siValue).max() else { return nil }
         return ReferenceSpinAssumption(radiansPerSecond: minimum...maximum,
             citations: values.map(\.citation), rowIDs: cited.map(\.id))
+    }
+
+    /// Published smash factors for the club, as a bracket. Dividing a measured ball speed by it
+    /// gives an *estimated* club speed; nothing about the golfer's club is observed.
+    public static func smashAssumption(club: ReferenceClub) -> ReferenceValueBand? {
+        let values = rows.filter { $0.club == club }.compactMap { $0.values[.smashFactor] }
+        guard let low = values.map(\.siValue).min(), let high = values.map(\.siValue).max() else { return nil }
+        return ReferenceValueBand(lowerSI: low, upperSI: high, citations: values.map(\.citation))
+    }
+
+    /// Normalisation for `nearestClub`: 4 m/s of ball speed counts as much as 3° of launch.
+    static let clubGuessSpeedScale = 4.0, clubGuessAngleScale = 3.0 * Double.pi / 180
+
+    /// The club whose published (ball speed, launch angle) row is nearest to a measured launch.
+    /// It only chooses which spin bracket the readout simulates with; the golfer can override it,
+    /// and an amateur's 7-iron can land on a tour 8-iron row. Nil for unmeasured speeds.
+    public static func nearestClub(ballSpeed: ProvenancedValue, launchAngle: ProvenancedValue) -> ClubGuess? {
+        guard ballSpeed.unit == "m/s", launchAngle.unit == "rad",
+              [.measured, .visionDerived].contains(ballSpeed.provenance),
+              [.measured, .visionDerived].contains(launchAngle.provenance),
+              let speed = ballSpeed.value, let angle = launchAngle.value, speed > 0 else { return nil }
+        let ranked = rows.compactMap { row -> (club: ReferenceClub, id: String, distance: Double)? in
+            guard let rowSpeed = row.values[.ballSpeed]?.siValue, let rowAngle = row.values[.launch]?.siValue else { return nil }
+            return (row.club, row.id, hypot((speed - rowSpeed) / clubGuessSpeedScale, (angle - rowAngle) / clubGuessAngleScale))
+        }.sorted { $0.distance < $1.distance }
+        guard let best = ranked.first else { return nil }
+        let runnerUp = ranked.first { $0.club != best.club }
+        // A margin over the next club, scaled down when nothing published is close at all.
+        let margin = runnerUp.map { 1 - best.distance / max($0.distance, 1e-9) } ?? 1
+        let proximity = max(0, 1 - best.distance / 4)
+        return ClubGuess(club: best.club, rowID: best.id, distance: best.distance, runnerUp: runnerUp?.club,
+                         confidence: max(0, min(1, margin * proximity)))
     }
 
     /// No recommendations or personal distance predictions. This keeps both cited inputs

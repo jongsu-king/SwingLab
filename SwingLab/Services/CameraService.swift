@@ -250,7 +250,8 @@ final class CameraEngine: NSObject, @unchecked Sendable, AVCaptureFileOutputReco
             if !streaming { removeLiveOutputs() }
             session.commitConfiguration()
             guard streaming else { onEvent?(.liveLaunch(.unsupported)); return }
-            live.start(frameRate: Double(launchFrameRate))
+            // The lens field of view (sensor orientation) turns the ball's apparent size into a camera distance.
+            live.start(frameRate: Double(launchFrameRate), fieldOfView: input.map { Double($0.device.activeFormat.videoFieldOfView) })
             onEvent?(.liveLaunch(.on))
         }
     }
@@ -343,10 +344,25 @@ final class CameraController {
     var liveListening = false
     var liveMeasuring = false
     var liveOutcome: LaunchPipeline.Outcome?
-    /// Increments once per measured shot; the camera view saves each one to the launch log.
+    /// Increments once per measured shot, after its readout is built; the camera view then saves
+    /// the shot to the launch log and reads it aloud.
     var liveShotCount = 0
     var liveMessage: LocalizationKey?
     var liveSnapshot: CGImage?
+    /// The club the readout simulates with. With `liveAutoClub` it is chosen from each launch.
+    var liveClub = ReferenceClub.iron7
+    var liveAutoClub = true
+    var liveReadout: LaunchReadout?
+    var liveStrobe: CGImage?
+    var liveSetup: LaunchSetupCheck?
+    var liveSetupPending = false
+    /// Clubs used since the live stream started, for the session count.
+    var liveSessionClubs: Set<ReferenceClub> = []
+    /// Every shot measured since the live stream started, for the session summary.
+    var liveSessionShots: [LaunchSessionShot] = []
+    var liveBallPoint: CGPoint?
+    var liveDirection = 1.0
+    private var readoutTask: Task<Void, Never>?
     private var wantsCamera = false
     init() {
         engine = CameraEngine()
@@ -373,6 +389,71 @@ final class CameraController {
     }
     func stop() { wantsCamera = false; ready = false; engine.stop() }
     func switchCamera() { ready = false; engine.configure(front: !front) }
+
+    /// `point` is normalized in the upright snapshot; `direction` +1 flies right.
+    func setLiveBall(at point: CGPoint, direction: Double) {
+        liveBallPoint = point; liveDirection = direction
+        liveSetup = nil; liveSetupPending = true
+        engine.live.setBall(at: point, direction: direction)
+    }
+
+    /// Flips the flight direction for a left-handed golfer (or a camera on the other side) without
+    /// tapping the ball again.
+    func flipLiveDirection() {
+        liveDirection = -liveDirection
+        guard let point = liveBallPoint else { return }
+        liveSetup = nil; liveSetupPending = true
+        engine.live.setBall(at: point, direction: liveDirection)
+    }
+
+    /// nil chooses the club automatically from each launch.
+    func chooseLiveClub(_ club: ReferenceClub?) {
+        liveAutoClub = club == nil
+        if let club { liveClub = club }
+        if let outcome = liveOutcome { rebuildReadout(outcome, newShot: false) }
+    }
+
+    private func rebuildReadout(_ outcome: LaunchPipeline.Outcome, newShot: Bool) {
+        readoutTask?.cancel()
+        let club: ReferenceClub? = liveAutoClub ? nil : liveClub
+        // Five flight simulations: a few tens of milliseconds, kept off the main actor.
+        readoutTask = Task.detached(priority: .userInitiated) { [weak self] in
+            let readout = LaunchReadoutBuilder.build(measurement: outcome.measurement, club: club)
+            guard !Task.isCancelled else { return }
+            await self?.apply(readout, newShot: newShot)
+        }
+    }
+
+    private func apply(_ readout: LaunchReadout?, newShot: Bool) {
+        liveReadout = readout
+        if let readout {
+            liveClub = readout.club
+            if newShot, let speed = readout.ballSpeed.value, let angle = readout.launchAngle.value {
+                liveSessionClubs.insert(readout.club)
+                let carry: ClosedRange<Double>? = readout.carry.flatMap { range in
+                    guard let low = range.low.value, let high = range.high.value, low <= high else { return nil }
+                    return low...high
+                }
+                liveSessionShots.append(LaunchSessionShot(time: .now, club: readout.club, ballSpeed: speed, launchAngle: angle, carry: carry))
+            }
+        }
+        if newShot { liveShotCount += 1 }
+    }
+
+    /// Drops a mis-hit from the session summary; the camera view removes it from the launch log.
+    func discardLastSessionShot() {
+        guard !liveSessionShots.isEmpty else { return }
+        liveSessionShots.removeLast()
+        liveSessionClubs = Set(liveSessionShots.map(\.club))
+        liveReadout = nil; liveStrobe = nil; liveOutcome = nil
+    }
+
+    private func clearLiveSession() {
+        readoutTask?.cancel()
+        liveListening = false; liveMeasuring = false; liveOutcome = nil; liveMessage = nil
+        liveReadout = nil; liveStrobe = nil; liveSetup = nil; liveSetupPending = false
+        liveSessionClubs = []; liveSessionShots = []; liveBallPoint = nil; liveShotCount = 0
+    }
     private func receive(_ event: CameraEvent) {
         switch event {
         case let .ready(formats, selected, front):
@@ -386,7 +467,7 @@ final class CameraController {
         case let .liveLaunch(state):
             // Turning the stream on or off always starts over from "set the ball position".
             live = state
-            liveListening = false; liveMeasuring = false; liveOutcome = nil; liveMessage = nil
+            clearLiveSession()
         }
     }
 
@@ -394,10 +475,14 @@ final class CameraController {
         switch event {
         case let .snapshot(image): liveSnapshot = image
         case .listening: liveListening = true; liveMessage = nil
+        case let .setup(check): liveSetup = check; liveSetupPending = false; liveMessage = nil
         case .impact: liveMeasuring = true; liveMessage = nil
-        case let .measured(outcome): liveMeasuring = false; liveOutcome = outcome; liveShotCount += 1
-        case let .failure(key): liveMeasuring = false; liveMessage = key
-        case let .reset(key): liveMeasuring = false; liveListening = false; liveMessage = key
+        case let .measured(outcome, strobe):
+            liveMeasuring = false; liveOutcome = outcome; liveStrobe = strobe
+            rebuildReadout(outcome, newShot: true)
+        case let .failure(key): liveMeasuring = false; liveSetupPending = false; liveMessage = key
+        case let .reset(key):
+            liveMeasuring = false; liveListening = false; liveSetup = nil; liveSetupPending = false; liveMessage = key
         }
     }
 }
