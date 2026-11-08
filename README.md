@@ -84,7 +84,7 @@ flowchart TD
 - 실시간 측정은 마이크로 타구음을 듣고, 버퍼에 담아 둔 직전·직후 프레임으로 같은 계산을 해요. 합성 스트림에서는 임팩트 후 약 0.1초 만에 계산할 프레임이 모여요. 실제 iPhone에서의 지연 시간은 아직 재지 않았어요.
 - 토탈은 캐리에 바운스·롤 모델(페어웨이 가정)을 더한 시뮬레이션이에요. 실제 토탈과 비교한 적은 없어요([Docs/Physics.md](Docs/Physics.md)).
 - 실제 샷으로는 아직 검증하지 않았어요. **TrackMan 옆에서 10샷 이상 찍어 볼 스피드 ±3%, 발사각 ±1.5° 안에 들어야** "실험적" 표시를 뗄 수 있어요.
-- 자세한 설계: [Docs/Specs/LaunchMonitor.md](Docs/Specs/LaunchMonitor.md)
+- 자세한 설계: [Docs/Specs/LaunchMonitor.md](Docs/Specs/LaunchMonitor.md) · **동작 원리 상세(수식·상수·예시):** [Docs/Principles/LaunchReadout.ko.md](Docs/Principles/LaunchReadout.ko.md)
 
 ## 지금 상태
 
@@ -162,7 +162,7 @@ xcodebuild -project SwingLab.xcodeproj -scheme SwingLab -destination 'platform=i
 | `Sources/SwingLabCore` | UI와 무관한 계산: 단위, 스윙 구간, 임팩트 소리, 비행 물리, 바운스·롤, 런치 추적·리드아웃, 낙하 영역 |
 | `Tests`, `SwingLabTests`, `SwingLabUITests` | 코어·앱·UI 테스트 |
 | `Scripts` | 프로젝트 생성, 번역 빌드, 카탈로그 검증 |
-| `Docs` | 프롬프트, 리뷰, 라운드 기록, 설계 문서, 스크린샷 |
+| `Docs` | 프롬프트, 리뷰, 라운드 기록, 설계 문서, 동작 원리(`Principles`), 스크린샷 |
 
 소스 파일을 추가하면 `python3 Scripts/generate_project.py`, 번역을 고치면 `python3 Scripts/build_localizations.py`를 실행해 주세요.
 

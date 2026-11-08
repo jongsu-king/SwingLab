@@ -1,5 +1,7 @@
 # Launch Monitor mode — specification (for Round 4)
 
+> How each readout value is computed, with formulas, constants, and worked numbers: [`Docs/Principles/LaunchReadout.md`](../Principles/LaunchReadout.md) (한국어: [`LaunchReadout.ko.md`](../Principles/LaunchReadout.ko.md)).
+
 **Goal:** a TrackMan-style readout within about 2 s of each shot, using **one iPhone only**. Every number must be either measured honestly or labelled as what it is (v6.0 §2, §11–13).
 
 ## What one iPhone can and cannot provide

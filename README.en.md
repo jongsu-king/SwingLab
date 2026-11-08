@@ -84,7 +84,7 @@ flowchart TD
 - Live readout listens for the strike and runs the same measurement on buffered frames from just before and after it. On a synthetic stream the frames are ready about 0.1 s after impact; latency on a real iPhone has not been measured yet.
 - Total is carry plus a bounce-and-roll model for an assumed fairway; it has not been compared with measured totals ([Docs/Physics.md](Docs/Physics.md)).
 - It has not been checked on real shots yet. The "Experimental" label comes off only after **10+ shots beside a TrackMan land within ±3 % on ball speed and ±1.5° on launch angle**.
-- Design: [Docs/Specs/LaunchMonitor.md](Docs/Specs/LaunchMonitor.md)
+- Design: [Docs/Specs/LaunchMonitor.md](Docs/Specs/LaunchMonitor.md) · **how every tile is computed, in detail:** [Docs/Principles/LaunchReadout.md](Docs/Principles/LaunchReadout.md)
 
 ## Status
 
@@ -162,7 +162,7 @@ xcodebuild -project SwingLab.xcodeproj -scheme SwingLab -destination 'platform=i
 | `Sources/SwingLabCore` | UI-free logic: units, swing phases, impact sound, flight physics, bounce and roll, launch tracking and readout, landing regions |
 | `Tests`, `SwingLabTests`, `SwingLabUITests` | Core, app, and UI tests |
 | `Scripts` | Project generation, translation build, catalog validation |
-| `Docs` | Prompts, reviews, round reports, design notes, screenshots |
+| `Docs` | Prompts, reviews, round reports, design notes, principles (`Principles`), screenshots |
 
 After adding a source file, run `python3 Scripts/generate_project.py`. After editing translations, run `python3 Scripts/build_localizations.py`.
 
