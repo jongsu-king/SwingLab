@@ -116,6 +116,28 @@ Codex가 구현하고, 리뷰어가 코드를 직접 돌려 보며 검증하는 
 
 라운드별 변경 내용은 [Releases](https://github.com/jongsu-king/SwingLab/releases)에서 볼 수 있어요.
 
+## iPhone에 바로 설치하기 (빌드 없이)
+
+[최신 릴리스](https://github.com/jongsu-king/SwingLab/releases/latest)에 서명하지 않은 `SwingLab-<버전>-ios-unsigned.ipa`가 있어요.
+Apple은 내 기기용으로 서명된 앱만 실행하므로, 설치하면서 내 Apple ID로 서명해 주는 도구를 써요.
+
+| 방법 | 설명 |
+|---|---|
+| [AltStore](https://altstore.io) / [SideStore](https://sidestore.io) (추천) | 무료 Apple ID로 설치. 서명은 7일마다 앱이 알아서 갱신해요 |
+| [Sideloadly](https://sideloadly.io) | Mac·Windows에서 USB로 설치 |
+| Xcode | 아래 "직접 빌드하기"대로 본인 팀으로 서명 |
+
+**자동 업데이트**: AltStore나 SideStore에서 *Sources → +* 로 아래 주소를 한 번 추가하면, 새 릴리스가 나올 때마다
+*My Apps*에 업데이트로 떠요.
+
+```text
+https://github.com/jongsu-king/SwingLab/releases/latest/download/altstore-source.json
+```
+
+Mac의 iOS 시뮬레이터용 `SwingLab-<버전>-ios-simulator-arm64.zip`(Apple 실리콘)도 함께 있어요:
+압축을 풀고 `xcrun simctl install booted SwingLab.app`. 모든 파일의 체크섬은 `SHA256SUMS.txt`에 있어요.
+App Store·TestFlight 배포는 Apple Developer 계정이 필요해서 아직 하지 않았어요.
+
 ## 직접 빌드하기
 
 필요한 것: Xcode 27.1 이상, iOS 17 이상. 외부 라이브러리와 API 키는 없어요.

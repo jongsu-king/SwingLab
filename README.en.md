@@ -116,6 +116,29 @@ SwingLab is built in **rounds**: Codex implements, and a reviewer runs the code 
 
 Per-round notes are on the [Releases](https://github.com/jongsu-king/SwingLab/releases) page.
 
+## Install on an iPhone (no build needed)
+
+The [latest release](https://github.com/jongsu-king/SwingLab/releases/latest) carries an unsigned
+`SwingLab-<version>-ios-unsigned.ipa`. Apple only runs apps signed for your device, so install it with a tool
+that signs it with your Apple ID:
+
+| Tool | Notes |
+|---|---|
+| [AltStore](https://altstore.io) / [SideStore](https://sidestore.io) (recommended) | Free Apple ID; the app refreshes the 7-day signature itself |
+| [Sideloadly](https://sideloadly.io) | Install over USB from a Mac or PC |
+| Xcode | Sign with your own team as described below |
+
+**Automatic updates**: in AltStore or SideStore add this source once (*Sources → +*); every new release then
+appears as an update under *My Apps*:
+
+```text
+https://github.com/jongsu-king/SwingLab/releases/latest/download/altstore-source.json
+```
+
+`SwingLab-<version>-ios-simulator-arm64.zip` runs in the iOS Simulator on an Apple-silicon Mac
+(`xcrun simctl install booted SwingLab.app`). `SHA256SUMS.txt` lists every file's checksum. App Store and
+TestFlight distribution need an Apple Developer account and are not set up.
+
 ## Build it yourself
 
 You need Xcode 27.1 or later; the app targets iOS 17 and later. There are no third-party libraries or API keys.
