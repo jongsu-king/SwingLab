@@ -7,7 +7,7 @@
 
 <p align="center">
   <a href="https://github.com/jongsu-king/SwingLab/actions/workflows/core-tests.yml"><img src="https://github.com/jongsu-king/SwingLab/actions/workflows/core-tests.yml/badge.svg" alt="Core tests"></a>
-  <img src="https://img.shields.io/badge/tests-104%20core%20%C2%B7%2040%20app-375746" alt="Tests: 104 core, 40 app">
+  <img src="https://img.shields.io/badge/tests-107%20core%20%C2%B7%2040%20app-375746" alt="Tests: 107 core, 40 app">
   <img src="https://img.shields.io/badge/Swift-6-F05138?logo=swift&logoColor=white" alt="Swift 6">
   <img src="https://img.shields.io/badge/iOS-17%2B-202823?logo=apple&logoColor=white" alt="iOS 17+">
   <img src="https://img.shields.io/badge/SwiftUI%20%C2%B7%20Vision%20%C2%B7%20AVFoundation-375746" alt="SwiftUI, Vision, AVFoundation">
@@ -45,7 +45,7 @@
 
 - 🎥 **Swing capture and review**: high-frame-rate recording (120/240 fps where the device supports it) with sound. Vision 2D pose, eight swing phases from address to finish, and tempo. Impact is located from the recorded strike sound.
 - 🎯 **Launch monitor** <sub>experimental</sub>: film face-on at 240 fps with a 1/2000 s shutter. The ball's own diameter (42.67 mm) is the ruler for **ball speed** and **launch angle**. Turn on **Live readout** in the camera to see values right after the strike, or measure a recorded clip. Shots are kept in a **Launch log** with per-club averages.
-- 📟 **Launch-monitor readout**: six tiles per shot, **carry · total · ball speed · club speed · back spin · launch angle**. Only ball speed and launch angle are measured; carry and total are brackets simulated across the published spin range, club speed is the ball speed divided by published smash factors (estimated), and back spin is that published bracket. Every tile wears its badge. Tap the ball and the camera distance is measured with a **Too close / Ready / Too far** verdict; there is **Auto club**, a session count (clubs, shots), a schematic range with the post-impact **strobe**, flight-direction and numbers-only toggles, a session summary (per-club averages, change from the previous shot) with discard-last-shot, **target and ladder drills** (a practice game scored on the simulated carry bracket, with spoken feedback), and a **spoken readout** after each shot, so the phone can stay on its stand. The launch log exports a **CSV** of the stored measurements only.
+- 📟 **Launch-monitor readout**: six tiles per shot, **carry · total · ball speed · club speed · back spin · launch angle**. Only ball speed and launch angle are measured; carry and total are brackets simulated across the published spin range, club speed is the ball speed divided by published smash factors (estimated), and back spin is that published bracket. Every tile wears its badge. Tap the ball and the camera distance is measured with a **Too close / Ready / Too far** verdict; there is **Auto club**, a session count (clubs, shots), a schematic range with the post-impact **strobe**, flight-direction and numbers-only toggles, a session summary (per-club averages, change from the previous shot) with discard-last-shot, **target and ladder drills** (a practice game scored on the simulated carry bracket, with spoken feedback), and a **spoken readout** after each shot, so the phone can stay on its stand. The launch log exports a **CSV** of the stored measurements only, can **suggest** a club's simulated carry to My Bag (written only when you accept it), and opens any shot in **Hypothetical flight**. Enter **range conditions** (temperature, altitude, humidity, wind) and every simulation adopts them.
 - 🏌️ **Club catalog**: 2000–2026, **23 brands, 1,515 clubs, 93 shafts, 17 hosel systems**. Custom shafts, length in 0.25" steps, and the loft/lie change for each sleeve position.
 - 🪂 **Hypothetical flight**: enter ball speed, launch, and spin; an RK4 physics model simulates carry, total, apex, and landing angle. Pick a **shot-shape preset** (13 combinations of draw, fade, hook, slice, push, and pull) to fill direction and spin axis, and watch the result **fly and roll from behind the ball in real flight time**, with the shape classified. Live shots play in the same scene, drawn straight because a face-on camera cannot see the shape, and labelled so.
 - 🗺️ **Course and rounds**: MapKit course search, GPS distances, 9/18-hole scorecards, shot logging, and 50 %/80 % landing regions from your own club data.
@@ -94,7 +94,7 @@ flowchart TD
 | Check | Result |
 |---|---|
 | iOS build (Swift 6) | ✅ 0 errors · 0 warnings |
-| Core tests | ✅ 104 / 104 |
+| Core tests | ✅ 107 / 107 |
 | App · UI tests (2 simulators) | ✅ 29 + 11 |
 | Strings in 12 languages | ✅ 0 missing / 689 |
 | Real-iPhone capture · pose · GPS | ⬜ waiting for a device |

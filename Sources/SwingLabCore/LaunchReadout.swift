@@ -44,14 +44,22 @@ public enum LaunchReadoutBuilder {
     public static let spinSampleCount = 5
 
     public static func build(measurement: LaunchMeasurement, club: ReferenceClub?, atmosphere: Atmosphere = .standard,
+                             wind: Wind = .calm, surface: TurfSurface = .fairway) -> LaunchReadout? {
+        build(ballSpeed: measurement.ballSpeed, launchAngle: measurement.launchAngle, club: club, atmosphere: atmosphere,
+              wind: wind, surface: surface)
+    }
+
+    /// The golfer's range conditions (air and wind) instead of the standard atmosphere.
+    public static func build(measurement: LaunchMeasurement, club: ReferenceClub?, conditions: RangeConditions,
                              surface: TurfSurface = .fairway) -> LaunchReadout? {
-        build(ballSpeed: measurement.ballSpeed, launchAngle: measurement.launchAngle, club: club, atmosphere: atmosphere, surface: surface)
+        let applied = conditions.isValid ? conditions : .standard
+        return build(measurement: measurement, club: club, atmosphere: applied.atmosphere, wind: applied.wind, surface: surface)
     }
 
     /// `club` nil chooses the nearest published club from the launch (`ClubGuess`), falling back to
     /// a 7-iron when nothing published is near. Returns nil unless the speed is actually measured.
     public static func build(ballSpeed speed: ProvenancedValue, launchAngle angle: ProvenancedValue, club: ReferenceClub?,
-                             atmosphere: Atmosphere = .standard, surface: TurfSurface = .fairway) -> LaunchReadout? {
+                             atmosphere: Atmosphere = .standard, wind: Wind = .calm, surface: TurfSurface = .fairway) -> LaunchReadout? {
         guard [.measured, .visionDerived].contains(speed.provenance), speed.unit == "m/s", angle.unit == "rad",
               let speedValue = speed.value, let angleValue = angle.value else { return nil }
         var guess: ClubGuess?
@@ -73,7 +81,7 @@ public enum LaunchReadoutBuilder {
             var flights: [(carry: Double, total: Double, apex: Double, trajectory: [FlightSample], run: Double)] = []
             for sample in samples {
                 guard let flight = try? BallFlight.simulate(LaunchConditions(ballSpeed: speedValue, launchAngle: angleValue * 180 / .pi,
-                                                                             spinRate: sample), atmosphere: atmosphere),
+                                                                             spinRate: sample), atmosphere: atmosphere, wind: wind),
                       let roll = try? BallRoll.run(landingSpeed: flight.landingSpeed, landingAngleDegrees: max(0, flight.landingAngle),
                                                    landingSpinRate: flight.landingSpinRate, surface: surface) else { continue }
                 flights.append((flight.carry, flight.carry + roll.run, flight.apex, flight.trajectory, roll.run))

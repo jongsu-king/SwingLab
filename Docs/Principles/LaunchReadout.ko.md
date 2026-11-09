@@ -340,7 +340,7 @@ f_px = (W / 2) / tan(화각 / 2)
 | 롤 모델 | 실측 비교 없음 |
 | 클럽 스피드·백스핀 | 측정이 아니므로 정확도를 논할 수 없음 |
 
-이 환경(리눅스, Swift 6.2.3)에서 코어 테스트 104개는 통과했지만 iOS 빌드와 시뮬레이터 테스트는 돌리지 못했어요. Mac에서 `xcodebuild … test`를 돌려 주세요.
+이 환경(리눅스, Swift 6.2.3)에서 코어 테스트 107개는 통과했지만 iOS 빌드와 시뮬레이터 테스트는 돌리지 못했어요. Mac에서 `xcodebuild … test`를 돌려 주세요.
 
 ---
 
@@ -427,7 +427,26 @@ relative_speed_uncertainty,tracked_positions,method
 
 ---
 
-## 22. 코드 지도
+## 23. 레인지 조건, My Bag 제안, 가상 비행으로 탐색
+
+### 23.1 레인지 조건 (`RangeConditions`)
+7절의 비행 시뮬레이션은 지금까지 표준 대기(20 °C, 해수면, 습도 50 %, 무풍)를 가정했어요. 이제 실시간 패널의 "조건"에서 **기온·고도·습도·종풍·횡풍**을 직접 넣을 수 있어요. 폰이 재는 값은 하나도 없고(기압계도 아직 안 써요), 전부 사용자 입력이에요. 캐리·토탈·레인지 장면은 이 조건으로 다시 시뮬레이션되고 배지는 그대로 "시뮬레이션"이에요.
+
+고도 → 기압은 국제표준대기(ISA) 대류권 식이에요:
+```
+p = 101 325 Pa × (1 − 2.25577×10⁻⁵ · h)^5.25588     (h: m, −500~11 000 m로 제한)
+```
+예: 1,600 m(덴버 근처) → 약 835 hPa → 공기 밀도가 낮아 캐리가 길어져요. 입력이 모델 범위(기온 −40~60 °C, 기압 500~1100 hPa, 바람 ≤ 30 m/s)를 벗어나면 표준 조건으로 되돌아가요. 테스트: 뒷바람·고지대·더위는 캐리를 늘리고 맞바람·추위는 줄이며, 횡풍은 장면 속 공을 옆으로 밀어요.
+
+### 23.2 My Bag 제안
+런치 기록의 클럽별 평균 아래 "My Bag에 제안" 버튼은 그 클럽의 **시뮬레이션 캐리 범위 가운데값**을 My Bag 클럽에 쓸 수 있게 해요. 시트가 같은 카테고리·같은 번호(7번 아이언 → 이름에 "7"이 든 아이언)인 클럽을 먼저 보여주고, 사용자가 **"사용"을 눌러야만** 저장돼요. 저장되는 순간 그 값은 My Bag의 다른 거리처럼 **사용자 입력값**이 되고, 시트에 그렇게 적혀 있어요. 제안 자체는 "측정한 캐리가 아니다"라고 명시해요.
+
+### 23.3 가상 비행으로 탐색
+런치 기록의 샷마다 "가상 비행에서 탐색"을 누르면 측정한 볼 스피드·발사각과 그 클럽의 공개 스핀 범위 가운데값이 가상 비행 입력칸에 채워져요. 거기서 구질 프리셋이나 바람을 바꿔 보며 "이 발사값이면 어떻게 날아갈까"를 시뮬레이션할 수 있어요. 입력칸에 들어간 순간부터는 다른 입력값과 똑같이 취급되고, 결과는 모두 시뮬레이션이에요.
+
+---
+
+## 24. 코드 지도
 
 | 파일 | 역할 |
 |---|---|
@@ -443,11 +462,12 @@ relative_speed_uncertainty,tracked_positions,method
 | `Sources/SwingLabCore/LaunchSession.swift` | 세션 평균·변화 |
 | `Sources/SwingLabCore/ShotShape.swift` | 구질 분류·프리셋, 재생용 위치 보간(`FlightPlayback`) |
 | `Sources/SwingLabCore/LaunchDrill.swift`, `LaunchLogExport.swift` | 타깃·래더 드릴 채점, 런치 기록 CSV |
+| `Sources/SwingLabCore/RangeConditions.swift` | 레인지 조건, ISA 고도→기압 |
 | `Sources/SwingLabCore/Provenance.swift` | 출처 종류(`reference` 포함) |
 | `SwingLab/Services/CameraService.swift` | 런치 모드(240 fps, 1/2000 s), 실시간 스트림, 컨트롤러 상태 |
 | `SwingLab/Services/LiveLaunchCapture.swift` | 프레임·소리 수신, 세팅 검사, 측정, 스트로브 |
 | `SwingLab/Services/LaunchSpeaker.swift` | 음성 읽기 |
-| `SwingLab/Features/Camera/LiveLaunchPanel.swift`, `LaunchRangeView.swift`, `DrillSetupSheet.swift` | 실시간 패널, 레인지 그림, 스트로브 보기, 드릴 설정 |
+| `SwingLab/Features/Camera/LiveLaunchPanel.swift`, `LaunchRangeView.swift`, `DrillSetupSheet.swift`, `RangeConditionsSheet.swift` | 실시간 패널, 레인지 그림, 스트로브 보기, 드릴·조건 설정 |
 | `SwingLab/Features/FlightSimulation/LaunchReadoutGrid.swift`, `LaunchMeasureView.swift`, `LaunchLogView.swift` | 타일 그리드, 영상 측정 화면, 런치 기록 |
 | `SwingLab/Features/FlightSimulation/FlightSceneView.swift`, `HypotheticalFlightView.swift` | 뒤에서 본 비행 애니메이션, 구질 프리셋·분류 |
 | `Tests/SwingLabCoreTests/LaunchMonitorTests.swift`, `LaunchMonitorLiveTests.swift`, `LaunchReadoutTests.swift`, `ShotShapeTests.swift`, `LaunchDrillTests.swift` | 합성 영상·스트림·리드아웃·구질·드릴·CSV 테스트 |

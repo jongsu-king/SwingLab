@@ -6,6 +6,9 @@ import SwingLabCore
 /// and the trajectory is dashed so it cannot be mistaken for an observed tracer.
 struct HypotheticalFlightView: View {
     @Environment(AppPreferences.self) private var prefs
+    /// Launch values to start from (a logged measurement); once in the form they are inputs like any other.
+    var seed: LaunchConditions? = nil
+    @State private var seeded = false
     @State private var ballSpeed: Double?
     @State private var launchAngle: Double?
     @State private var startDirection: Double? = 0
@@ -85,6 +88,13 @@ struct HypotheticalFlightView: View {
         .onAppear {
             if temperature == nil {
                 temperature = (prefs.temperatureUnit.fromSI(Atmosphere.standard.temperature) * 10).rounded() / 10
+            }
+            if let seed, !seeded {
+                seeded = true
+                ballSpeed = (prefs.speedUnit.fromSI(seed.ballSpeed) * 10).rounded() / 10
+                launchAngle = (seed.launchAngle * 10).rounded() / 10
+                spinRate = seed.spinRate.rounded()
+                startDirection = seed.launchDirection; spinAxis = seed.spinAxis
             }
         }
     }

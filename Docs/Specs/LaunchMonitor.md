@@ -164,11 +164,16 @@ and numbers-only toggles, and a spoken readout. Each is implemented so that the 
   the gap — with hits, streak, rung progress, spoken feedback, the band drawn in the flight scene, and a footnote
   that it is a practice game, not a landing measurement. The launch log exports a CSV of the stored measurements
   only (`LaunchLogExport`: SI units, provenance column, no simulated columns). `Docs/Principles/LaunchReadout.md` §21.
+- **Conditions, My Bag, explore** (fourth update, 8 Nov): `RangeConditions` (temperature, altitude via the ISA
+  pressure formula, humidity, wind along and across) entered by the golfer and persisted in preferences; every
+  readout re-simulates with them and invalid entries fall back to standard. The launch log offers each club's
+  simulated carry midpoint to a My Bag club (written only on the golfer's Use, then a user entry) and opens a
+  logged shot in Hypothetical flight with its measured launch as the inputs. `Docs/Principles/LaunchReadout.md` §23.
 - **Orientation:** the app stays portrait; the landscape layout of the reel was not adopted.
 - **Tests:** `LaunchReadoutTests` (9) cover the roll bounds, the smash-factor estimate, the club guess,
   the readout invariants, the setup verdicts, the strobe, and the `reference` provenance round trip;
   `LaunchSessionTests` (3) cover the session averages, the change from the previous shot, and the
-  recommended distance band; `ShotShapeTests` (3) the preset round trip through the flight model for both hands, the classification thresholds, and the playback; `LaunchDrillTests` (4) the drill scoring, ladder progression, discard, and CSV. Core total: 104. The app side has not been built here (no Xcode on this machine); every app source
+  recommended distance band; `ShotShapeTests` (3) the preset round trip through the flight model for both hands, the classification thresholds, and the playback; `LaunchDrillTests` (4) the drill scoring, ladder progression, discard, and CSV; `RangeConditionsTests` (3) the ISA pressure, the effect of conditions on the readout, and the bag mapping. Core total: 107. The app side has not been built here (no Xcode on this machine); every app source
   was parse-checked and the localization, catalog, and project scripts pass.
 
 **Not yet done:**

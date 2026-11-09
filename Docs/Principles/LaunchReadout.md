@@ -340,7 +340,7 @@ After each shot: "Ball speed 118 mph. Launch 16°. Carry 172 m to 173 m." in the
 | Roll model | no comparison with measured totals |
 | Club speed and back spin | not measurements, so accuracy does not apply |
 
-In this environment (Linux, Swift 6.2.3) the 104 core tests pass, but the iOS build and simulator tests could not be run. Please run `xcodebuild … test` on a Mac.
+In this environment (Linux, Swift 6.2.3) the 107 core tests pass, but the iOS build and simulator tests could not be run. Please run `xcodebuild … test` on a Mac.
 
 ---
 
@@ -427,7 +427,26 @@ There are **deliberately no** carry, total, spin, or club-speed columns, so a sp
 
 ---
 
-## 22. Code map
+## 23. Range conditions, My Bag suggestions, explore in Hypothetical flight
+
+### 23.1 Range conditions (`RangeConditions`)
+The flight simulations of section 7 used to assume the standard atmosphere (20 °C, sea level, 50 % humidity, calm). The live panel's **Conditions** sheet now takes **temperature, altitude, humidity, wind along and across the target line**. The phone measures none of them (the barometer is not used yet); they are the golfer's entries. Carry, total, and the scene are re-simulated with them and keep the Simulated badge.
+
+Altitude becomes pressure through the International Standard Atmosphere, troposphere only:
+```
+p = 101 325 Pa × (1 − 2.25577×10⁻⁵ · h)^5.25588     (h in m, clamped to −500…11 000 m)
+```
+Example: 1,600 m (about Denver) → roughly 835 hPa → thinner air, longer carry. Entries outside the model's range (−40…60 °C, 500…1100 hPa, wind ≤ 30 m/s) fall back to standard conditions. Tests: tailwind, altitude, and heat lengthen the carry, headwind and cold shorten it, and a crosswind moves the ball in the scene sideways.
+
+### 23.2 My Bag suggestions
+Under each club's average in the launch log, **Suggest to My Bag** offers the **middle of that club's simulated carry bracket** for a club in My Bag. The sheet lists likely matches first (same category and number: a 7-iron matches irons with "7" in the name), and nothing is written until the golfer taps **Use**. From then on the value is a **user entry** like every other My Bag distance, and the sheet says so; the suggestion itself is labelled "not a measured carry".
+
+### 23.3 Explore in Hypothetical flight
+Each logged shot has **Explore in Hypothetical flight**, which fills the simulator's inputs with the measured ball speed and launch angle and the middle of the club's published spin bracket. There the golfer can try shape presets and wind to see how that launch would fly. Once in the form the values are inputs like any other, and every output is a simulation.
+
+---
+
+## 24. Code map
 
 | File | Role |
 |---|---|
@@ -443,11 +462,12 @@ There are **deliberately no** carry, total, spin, or club-speed columns, so a sp
 | `Sources/SwingLabCore/LaunchSession.swift` | session means and changes |
 | `Sources/SwingLabCore/ShotShape.swift` | shape classification and presets, playback interpolation (`FlightPlayback`) |
 | `Sources/SwingLabCore/LaunchDrill.swift`, `LaunchLogExport.swift` | target and ladder drill scoring, launch-log CSV |
+| `Sources/SwingLabCore/RangeConditions.swift` | range conditions, ISA altitude to pressure |
 | `Sources/SwingLabCore/Provenance.swift` | provenance cases (including `reference`) |
 | `SwingLab/Services/CameraService.swift` | launch mode (240 fps, 1/2000 s), live stream, controller state |
 | `SwingLab/Services/LiveLaunchCapture.swift` | frame and sound delivery, setup check, measurement, strobe |
 | `SwingLab/Services/LaunchSpeaker.swift` | spoken readout |
-| `SwingLab/Features/Camera/LiveLaunchPanel.swift`, `LaunchRangeView.swift`, `DrillSetupSheet.swift` | live panel, range picture, strobe view, drill setup |
+| `SwingLab/Features/Camera/LiveLaunchPanel.swift`, `LaunchRangeView.swift`, `DrillSetupSheet.swift`, `RangeConditionsSheet.swift` | live panel, range picture, strobe view, drill and conditions setup |
 | `SwingLab/Features/FlightSimulation/LaunchReadoutGrid.swift`, `LaunchMeasureView.swift`, `LaunchLogView.swift` | tile grid, recorded-clip screen, launch log |
 | `SwingLab/Features/FlightSimulation/FlightSceneView.swift`, `HypotheticalFlightView.swift` | flight scene from behind, shape presets and classification |
 | `Tests/SwingLabCoreTests/LaunchMonitorTests.swift`, `LaunchMonitorLiveTests.swift`, `LaunchReadoutTests.swift`, `ShotShapeTests.swift`, `LaunchDrillTests.swift` | synthetic video, stream, readout, shape, drill, and CSV tests |

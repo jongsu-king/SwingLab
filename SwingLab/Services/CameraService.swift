@@ -360,6 +360,8 @@ final class CameraController {
     var liveSessionClubs: Set<ReferenceClub> = []
     /// Every shot measured since the live stream started, for the session summary.
     var liveSessionShots: [LaunchSessionShot] = []
+    /// Air and wind the readout simulates with (the golfer's entries, mirrored from preferences).
+    var liveConditions = RangeConditions.standard
     /// A practice game scored on each shot's simulated carry bracket; nil when none is running.
     var drill: DrillSession?
     var lastDrillResult: DrillShotResult?
@@ -416,12 +418,20 @@ final class CameraController {
         if let outcome = liveOutcome { rebuildReadout(outcome, newShot: false) }
     }
 
+    /// New conditions re-simulate the current shot's tiles without counting a new shot.
+    func setConditions(_ conditions: RangeConditions) {
+        guard conditions != liveConditions else { return }
+        liveConditions = conditions
+        if let outcome = liveOutcome { rebuildReadout(outcome, newShot: false) }
+    }
+
     private func rebuildReadout(_ outcome: LaunchPipeline.Outcome, newShot: Bool) {
         readoutTask?.cancel()
         let club: ReferenceClub? = liveAutoClub ? nil : liveClub
+        let conditions = liveConditions
         // Five flight simulations: a few tens of milliseconds, kept off the main actor.
         readoutTask = Task.detached(priority: .userInitiated) { [weak self] in
-            let readout = LaunchReadoutBuilder.build(measurement: outcome.measurement, club: club)
+            let readout = LaunchReadoutBuilder.build(measurement: outcome.measurement, club: club, conditions: conditions)
             guard !Task.isCancelled else { return }
             await self?.apply(readout, newShot: newShot)
         }

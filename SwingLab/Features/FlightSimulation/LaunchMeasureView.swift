@@ -128,8 +128,9 @@ struct LaunchMeasureView: View {
     private func build() async {
         guard let measurement = outcome?.measurement else { readout = nil; return }
         let chosen: ReferenceClub? = autoClub ? nil : club
+        let conditions = prefs.rangeConditions
         let built = await Task.detached(priority: .userInitiated) {
-            LaunchReadoutBuilder.build(measurement: measurement, club: chosen)
+            LaunchReadoutBuilder.build(measurement: measurement, club: chosen, conditions: conditions)
         }.value
         readout = built
     }

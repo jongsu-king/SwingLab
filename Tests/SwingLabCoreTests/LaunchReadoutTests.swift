@@ -273,3 +273,76 @@ final class LaunchSessionTests: XCTestCase {
         XCTAssertNil(LaunchSetupChecker.check(scale: scale(14), frameRate: 240, regionWidth: 468, targetDirection: -1, focalLengthPixels: focal).recommendedDistance)
     }
 }
+
+final class RangeConditionsTests: XCTestCase {
+    private func measured(speed: Double, angleDegrees: Double) -> LaunchMeasurement {
+        LaunchMeasurement(
+            ballSpeed: ProvenancedValue(value: speed, unit: "m/s", provenance: .visionDerived, confidence: 0.8, method: LaunchTracker.method, sampleCount: 3),
+            launchAngle: ProvenancedValue(value: angleDegrees * .pi / 180, unit: "rad", provenance: .visionDerived, confidence: 0.8,
+                                          method: LaunchTracker.method, sampleCount: 3),
+            relativeSpeedUncertainty: 0.02, residualPixels: 0.3, observations: [])
+    }
+
+    func testStandardAtmospherePressureFollowsAltitude() {
+        XCTAssertEqual(Atmosphere.pressure(atAltitude: 0), 101_325, accuracy: 1e-6)
+        XCTAssertEqual(Atmosphere.pressure(atAltitude: 1_600), 83_500, accuracy: 300)     // Denver-ish
+        XCTAssertEqual(Atmosphere.pressure(atAltitude: 5_000), 54_000, accuracy: 500)
+        XCTAssertEqual(Atmosphere.pressure(atAltitude: 20_000), Atmosphere.pressure(atAltitude: 11_000))   // clamped
+        XCTAssertEqual(Atmosphere.pressure(atAltitude: .nan), 101_325, accuracy: 1e-6)
+        XCTAssertTrue(RangeConditions.standard.isStandard)
+        XCTAssertTrue(RangeConditions.standard.isValid)
+        XCTAssertEqual(RangeConditions.standard.atmosphere, .standard)
+        XCTAssertEqual(RangeConditions.standard.wind, .calm)
+        var hot = RangeConditions.standard
+        hot.temperatureKelvin = 400
+        XCTAssertFalse(hot.isValid)
+        var gale = RangeConditions.standard
+        gale.tailwind = 31
+        XCTAssertFalse(gale.isValid)
+    }
+
+    func testReadoutAdoptsTheGolfersConditions() throws {
+        let shot = measured(speed: 70, angleDegrees: 11)
+        let standard = try XCTUnwrap(LaunchReadoutBuilder.build(measurement: shot, club: .driver, conditions: .standard))
+        var tail = RangeConditions.standard; tail.tailwind = 5
+        var head = RangeConditions.standard; head.tailwind = -5
+        var thin = RangeConditions.standard; thin.altitudeMetres = 1_600; thin.temperatureKelvin = 303.15
+        var cold = RangeConditions.standard; cold.temperatureKelvin = 273.15
+        func carry(_ conditions: RangeConditions) throws -> Double {
+            try XCTUnwrap(LaunchReadoutBuilder.build(measurement: shot, club: .driver, conditions: conditions)?.carry?.high.value)
+        }
+        let base = try carry(.standard)
+        XCTAssertGreaterThan(try carry(tail), base)
+        XCTAssertLessThan(try carry(head), base)
+        XCTAssertGreaterThan(try carry(thin), base)
+        XCTAssertLessThan(try carry(cold), base)
+        // A crosswind moves the middle flight sideways; the scene follows it.
+        var cross = RangeConditions.standard; cross.crosswind = 5
+        let drifted = try XCTUnwrap(LaunchReadoutBuilder.build(measurement: shot, club: .driver, conditions: cross))
+        XCTAssertGreaterThan(try XCTUnwrap(drifted.trajectory.last).right, 2)
+        XCTAssertEqual(try XCTUnwrap(standard.trajectory.last).right, 0, accuracy: 1e-9)
+        // Invalid conditions fall back to standard rather than failing or inventing.
+        var broken = RangeConditions.standard; broken.temperatureKelvin = .nan
+        XCTAssertEqual(try XCTUnwrap(LaunchReadoutBuilder.build(measurement: shot, club: .driver, conditions: broken)?.carry?.high.value), base, accuracy: 1e-9)
+        // Still every tile keeps its provenance.
+        XCTAssertEqual(drifted.carry?.provenance, .simulated)
+        XCTAssertEqual(drifted.ballSpeed.provenance, .visionDerived)
+    }
+
+    func testReferenceClubsMapToBagCategoriesAndNames() {
+        XCTAssertEqual(ReferenceClub.driver.bagCategoryRawValue, "Driver")
+        XCTAssertEqual(ReferenceClub.wood3.bagCategoryRawValue, "Fairway Wood")
+        XCTAssertEqual(ReferenceClub.iron7.bagCategoryRawValue, "Iron")
+        XCTAssertEqual(ReferenceClub.pitchingWedge.bagCategoryRawValue, "Wedge")
+        XCTAssertTrue(ReferenceClub.iron7.matchesBagClub(name: "7 iron", category: "Iron"))
+        XCTAssertTrue(ReferenceClub.iron7.matchesBagClub(name: "P790 7", category: "Iron"))
+        XCTAssertFalse(ReferenceClub.iron7.matchesBagClub(name: "8 iron", category: "Iron"))
+        XCTAssertFalse(ReferenceClub.iron7.matchesBagClub(name: "7 wood", category: "Fairway Wood"))
+        XCTAssertTrue(ReferenceClub.wood3.matchesBagClub(name: "3 wood", category: "Fairway Wood"))
+        XCTAssertTrue(ReferenceClub.driver.matchesBagClub(name: "Qi10", category: "Driver"))
+        XCTAssertTrue(ReferenceClub.hybrid.matchesBagClub(name: "4H", category: "Hybrid"))
+        XCTAssertTrue(ReferenceClub.pitchingWedge.matchesBagClub(name: "PW", category: "Wedge"))
+        XCTAssertFalse(ReferenceClub.pitchingWedge.matchesBagClub(name: "56", category: "Wedge"))
+        for club in ReferenceClub.allCases { XCTAssertFalse(club.bagCategoryRawValue.isEmpty) }
+    }
+}

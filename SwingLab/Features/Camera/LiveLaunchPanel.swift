@@ -11,6 +11,7 @@ struct LiveLaunchPanel: View {
     let discardLast: () -> Void
     @State private var sessionExpanded = false
     @State private var showDrillSetup = false
+    @State private var showConditions = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -30,6 +31,7 @@ struct LiveLaunchPanel: View {
                 }
                 LaunchReadoutGrid(readout: readout, compact: true)
                 LaunchReadoutFootnote(readout: readout)
+                conditionsRow
                 shotRow
             }
             if !camera.liveSessionShots.isEmpty { session }
@@ -42,6 +44,19 @@ struct LiveLaunchPanel: View {
         .environment(\.colorScheme, .dark)
         .sheet(isPresented: $showDrillSetup) {
             DrillSetupSheet { camera.startDrill($0) }
+        }
+        .sheet(isPresented: $showConditions) { RangeConditionsSheet() }
+    }
+
+    /// The air and wind the simulated tiles assume, and a way to change them.
+    private var conditionsRow: some View {
+        HStack(spacing: 8) {
+            Image(systemName: "wind").font(.caption2).accessibilityHidden(true)
+            Text(RangeConditionsSheet.summary(prefs.rangeConditions, preferences: prefs))
+                .font(.caption2).foregroundStyle(.white.opacity(0.85)).lineLimit(2)
+            Spacer(minLength: 0)
+            Button(prefs.text("Conditions")) { showConditions = true }.font(.caption)
+                .accessibilityIdentifier("camera.live.conditions")
         }
     }
 

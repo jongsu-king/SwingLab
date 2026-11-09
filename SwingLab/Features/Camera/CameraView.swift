@@ -90,7 +90,8 @@ struct CameraView: View {
                         .accessibilityLabel(prefs.text("Toggle alignment grid"))
                 }
             }
-            .task { await camera.start() }
+            .task { camera.setConditions(prefs.rangeConditions); await camera.start() }
+            .onChange(of: prefs.rangeConditions) { _, conditions in camera.setConditions(conditions) }
             .onDisappear { camera.stop(); speaker.stop() }
             .onChange(of: camera.liveShotCount) { _, count in
                 // Fires once the shot's readout is built, so the saved club is the one it was simulated with.

@@ -12,6 +12,7 @@ struct LaunchLogView: View {
     @Query(sort: \LaunchShot.date, order: .reverse) private var shots: [LaunchShot]
     @State private var error: LocalizationKey?
     @State private var clubReadouts: [ReferenceClub: LaunchReadout] = [:]
+    @State private var suggestion: BagSuggestion?
 
     var body: some View {
         List {
@@ -46,6 +47,13 @@ struct LaunchLogView: View {
                                     SLRangeReadout(range: readout.total, label: prefs.text("Total"), alignment: .leading)
                                     SLRangeReadout(range: readout.clubSpeed, label: prefs.text("Club speed"), alignment: .leading)
                                 }
+                                if let carry = readout.carry, carry.isAvailable {
+                                    Button {
+                                        suggestion = BagSuggestion(club: summary.club, carry: carry, shots: summary.count)
+                                    } label: {
+                                        Label(prefs.text("Suggest to My Bag"), systemImage: "bag").font(.caption)
+                                    }.accessibilityIdentifier("launchLog.suggest.\(summary.club.rawValue)")
+                                }
                             }
                         }.padding(.vertical, 4)
                     }
@@ -64,6 +72,12 @@ struct LaunchLogView: View {
                                 SLMetricReadout(metric: shot.ballSpeed, label: prefs.text("Ball speed"), fractionDigits: 1, alignment: .leading)
                                 SLMetricReadout(metric: shot.launchAngle, label: prefs.text("Launch angle"), fractionDigits: 1, alignment: .leading)
                             }
+                            // The measured launch seeds the simulator; spin starts at the middle of the club's published bracket.
+                            NavigationLink {
+                                HypotheticalFlightView(seed: seed(for: shot))
+                            } label: {
+                                Label(prefs.text("Explore in Hypothetical flight"), systemImage: "point.topleft.down.to.point.bottomright.curvepath").font(.caption)
+                            }.accessibilityIdentifier("launchLog.explore")
                         }
                         .padding(.vertical, 4)
                         .swipeActions {
@@ -89,6 +103,7 @@ struct LaunchLogView: View {
         }
         // Inline like Hypothetical flight: a large title truncates in Spanish and Portuguese.
         .navigationBarTitleDisplayMode(.inline)
+        .sheet(item: $suggestion) { suggestion in BagSuggestionSheet(suggestion: suggestion) }
         .alert(prefs.text("Launch log"), isPresented: Binding(get: { error != nil }, set: { if !$0 { error = nil } })) {
             Button(prefs.text("OK"), role: .cancel) { error = nil }
         } message: { Text(prefs.text(error ?? "")) }
@@ -127,14 +142,24 @@ struct LaunchLogView: View {
     private func buildClubReadouts() async {
         let inputs = summaries.map { (club: $0.club, speed: $0.speed, angle: $0.angle) }
         guard !inputs.isEmpty else { clubReadouts = [:]; return }
+        let conditions = prefs.rangeConditions
+        let applied = conditions.isValid ? conditions : .standard
         let built = await Task.detached(priority: .utility) { () -> [ReferenceClub: LaunchReadout] in
             var result: [ReferenceClub: LaunchReadout] = [:]
             for input in inputs {
-                result[input.club] = LaunchReadoutBuilder.build(ballSpeed: input.speed, launchAngle: input.angle, club: input.club)
+                result[input.club] = LaunchReadoutBuilder.build(ballSpeed: input.speed, launchAngle: input.angle, club: input.club,
+                                                                atmosphere: applied.atmosphere, wind: applied.wind)
             }
             return result
         }.value
         clubReadouts = built
+    }
+
+    private func seed(for shot: LaunchShot) -> LaunchConditions {
+        let spin = shot.referenceClub.flatMap { ReferenceLaunchData.spinAssumption(club: $0) }.map {
+            ($0.revolutionsPerMinute.lowerBound + $0.revolutionsPerMinute.upperBound) / 2
+        } ?? 5000
+        return LaunchConditions(ballSpeed: shot.ballSpeedMetersPerSecond, launchAngle: shot.launchAngleRadians * 180 / .pi, spinRate: spin.rounded())
     }
 
     private func delete(_ shot: LaunchShot) {
@@ -160,5 +185,93 @@ extension LaunchShot {
         LaunchLogRow(date: date, club: referenceClubID, source: sourceID, ballSpeedMetersPerSecond: ballSpeedMetersPerSecond,
                      launchAngleRadians: launchAngleRadians, provenance: ballSpeed.provenance, confidence: confidence,
                      relativeSpeedUncertainty: relativeSpeedUncertainty, trackedPositions: trackedPositions, method: method)
+    }
+}
+
+/// A per-club carry the golfer may copy into My Bag. It is a simulated bracket until they do.
+struct BagSuggestion: Identifiable {
+    let club: ReferenceClub
+    let carry: ReadoutRange
+    let shots: Int
+    var id: String { club.rawValue }
+    /// The middle of the bracket, the single number My Bag stores.
+    var suggestedCarryMetres: Double? {
+        guard let low = carry.low.value, let high = carry.high.value else { return nil }
+        return ((low + high) / 2).rounded()
+    }
+}
+
+/// Picks the My Bag club that gets the suggested carry. Nothing is written until the golfer taps
+/// Use; the value then counts as their own entry, which is what My Bag stores.
+struct BagSuggestionSheet: View {
+    @Environment(AppPreferences.self) private var prefs
+    @Environment(\.modelContext) private var modelContext
+    @Environment(\.dismiss) private var dismiss
+    @Query(sort: \GolfClub.createdAt) private var clubs: [GolfClub]
+    let suggestion: BagSuggestion
+    @State private var error: LocalizationKey?
+
+    var body: some View {
+        NavigationStack {
+            List {
+                Section {
+                    SLRangeReadout(range: suggestion.carry, label: prefs.text("Carry"), alignment: .leading)
+                    if let metres = suggestion.suggestedCarryMetres {
+                        LabeledContent(prefs.text("Suggested carry"), value: prefs.distance(metres))
+                    }
+                    Text(prefs.format("bag.suggestionNote", prefs.text(suggestion.club.localizationKey), Int64(suggestion.shots)))
+                        .font(.caption).foregroundStyle(.secondary)
+                } header: { Text(prefs.text(suggestion.club.localizationKey)) }
+                .listRowBackground(SLTheme.surface)
+                Section(prefs.text("Choose the club in My Bag")) {
+                    if clubs.isEmpty {
+                        Text(prefs.text("No clubs in My Bag yet. Add the club first, then come back.")).font(.subheadline).foregroundStyle(.secondary)
+                    }
+                    ForEach(ordered) { club in
+                        Button { apply(to: club) } label: {
+                            HStack {
+                                VStack(alignment: .leading, spacing: 3) {
+                                    Text(club.name).font(.headline).foregroundStyle(SLTheme.ink)
+                                    Text(prefs.text(ClubCategory(rawValue: club.category)?.localizationKey ?? "Unspecified"))
+                                        .font(.caption).foregroundStyle(.secondary)
+                                }
+                                Spacer()
+                                if let carry = club.carryMeters {
+                                    Text(prefs.distance(carry)).font(.subheadline).monospacedDigit().foregroundStyle(.secondary)
+                                } else {
+                                    Text(prefs.text("Unset")).font(.subheadline).foregroundStyle(.secondary)
+                                }
+                            }
+                        }
+                    }
+                }.listRowBackground(SLTheme.surface)
+                Section {
+                    Text(prefs.text("Using the suggestion writes the simulated carry into My Bag as your own entry. Edit it there any time."))
+                        .font(.caption).foregroundStyle(.secondary)
+                }.listRowBackground(Color.clear)
+            }
+            .scrollContentBackground(.hidden).background(SLTheme.background)
+            .navigationTitle(prefs.text("Suggest to My Bag"))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar { ToolbarItem(placement: .cancellationAction) { Button(prefs.text("Cancel")) { dismiss() } } }
+            .alert(prefs.text("My Bag"), isPresented: Binding(get: { error != nil }, set: { if !$0 { error = nil } })) {
+                Button(prefs.text("OK"), role: .cancel) { error = nil }
+            } message: { Text(prefs.text(error ?? "")) }
+        }
+    }
+
+    /// Likely matches first (same category, matching number), then the rest of the bag.
+    private var ordered: [GolfClub] {
+        let matching = clubs.filter { suggestion.club.matchesBagClub(name: $0.name, category: $0.category) }
+        return matching + clubs.filter { club in !matching.contains { $0.id == club.id } }
+    }
+
+    private func apply(to club: GolfClub) {
+        guard let metres = suggestion.suggestedCarryMetres else { return }
+        club.carryMeters = metres
+        do { try modelContext.save(); dismiss() } catch {
+            modelContext.rollback()
+            self.error = "The club could not be saved. Please try again."
+        }
     }
 }

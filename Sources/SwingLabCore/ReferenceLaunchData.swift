@@ -24,6 +24,43 @@ public enum ReferenceClub: String, CaseIterable, Codable, Sendable, Identifiable
     }
 }
 
+public extension ReferenceClub {
+    /// The My Bag category this reference club belongs to (`ClubCategory` raw values in the app).
+    var bagCategoryRawValue: String {
+        switch self {
+        case .driver: "Driver"
+        case .wood3, .wood5, .wood7: "Fairway Wood"
+        case .hybrid: "Hybrid"
+        case .iron3, .iron4, .iron5, .iron6, .iron7, .iron8, .iron9: "Iron"
+        case .pitchingWedge: "Wedge"
+        }
+    }
+
+    /// The number a golfer writes in a club's name for this club, when there is one ("7" for a 7-iron).
+    var bagNumber: String? {
+        switch self {
+        case .wood3, .iron3: "3"
+        case .iron4: "4"
+        case .wood5, .iron5: "5"
+        case .iron6: "6"
+        case .wood7, .iron7: "7"
+        case .iron8: "8"
+        case .iron9: "9"
+        case .driver, .hybrid, .pitchingWedge: nil
+        }
+    }
+
+    /// Whether a My Bag club looks like this reference club: same category, and the club's number
+    /// appears in the name when the category has numbered clubs. A heuristic for ordering a list,
+    /// never a reason to write anything without the golfer's confirmation.
+    func matchesBagClub(name: String, category: String) -> Bool {
+        guard category == bagCategoryRawValue else { return false }
+        guard let number = bagNumber else { return self != .pitchingWedge || name.localizedCaseInsensitiveContains("P") }
+        let digits = name.filter(\.isNumber)
+        return digits.contains(number) || name.localizedCaseInsensitiveContains(number)
+    }
+}
+
 public enum ReferenceMetric: String, CaseIterable, Codable, Sendable, Identifiable {
     case clubSpeed, ballSpeed, smashFactor, launch, spin, carry, apex
     public var id: String { rawValue }

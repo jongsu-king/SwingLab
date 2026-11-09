@@ -86,6 +86,9 @@ struct SLMetricReadout: View {
         case "deg":
             displayValue = value
             displayUnit = "°"
+        case "K":
+            displayValue = preferences.temperatureUnit.fromSI(value)
+            displayUnit = preferences.temperatureUnit.symbol
         case "1":
             displayValue = value
             displayUnit = ""

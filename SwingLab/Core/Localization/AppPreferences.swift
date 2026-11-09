@@ -22,6 +22,10 @@ final class AppPreferences {
     var launchVoiceEnabled: Bool { didSet { defaults.set(launchVoiceEnabled, forKey: "launchVoice") } }
     /// Live readout: the six numbers alone instead of the range picture.
     var launchNumbersOnly: Bool { didSet { defaults.set(launchNumbersOnly, forKey: "launchNumbersOnly") } }
+    /// Air and wind the readout simulations adopt; the golfer's own entries, never measured.
+    var rangeConditions: RangeConditions {
+        didSet { defaults.set(try? JSONEncoder().encode(rangeConditions), forKey: "rangeConditions") }
+    }
     var completedOnboarding: Bool { didSet { defaults.set(completedOnboarding, forKey: "onboarded") } }
 
     init(defaults: UserDefaults = .standard) {
@@ -37,6 +41,8 @@ final class AppPreferences {
         speechRate = defaults.object(forKey: "speechRate") as? Double ?? 0.45
         launchVoiceEnabled = defaults.object(forKey: "launchVoice") as? Bool ?? true
         launchNumbersOnly = defaults.bool(forKey: "launchNumbersOnly")
+        let storedConditions = defaults.data(forKey: "rangeConditions").flatMap { try? JSONDecoder().decode(RangeConditions.self, from: $0) }
+        rangeConditions = storedConditions.map { $0.isValid ? $0 : .standard } ?? .standard
         completedOnboarding = defaults.bool(forKey: "onboarded")
     }
     var resolvedLanguage: String { LanguageResolver.resolve(selection: languageCode, preferred: Locale.preferredLanguages) }
