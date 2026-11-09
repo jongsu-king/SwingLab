@@ -340,7 +340,7 @@ f_px = (W / 2) / tan(화각 / 2)
 | 롤 모델 | 실측 비교 없음 |
 | 클럽 스피드·백스핀 | 측정이 아니므로 정확도를 논할 수 없음 |
 
-이 환경(리눅스, Swift 6.2.3)에서 코어 테스트 100개는 통과했지만 iOS 빌드와 시뮬레이터 테스트는 돌리지 못했어요. Mac에서 `xcodebuild … test`를 돌려 주세요.
+이 환경(리눅스, Swift 6.2.3)에서 코어 테스트 104개는 통과했지만 iOS 빌드와 시뮬레이터 테스트는 돌리지 못했어요. Mac에서 `xcodebuild … test`를 돌려 주세요.
 
 ---
 
@@ -402,7 +402,32 @@ f = (그림 높이 − 16 − 지평선 y) × 10 / 2.4      ← 티가 아래쪽
 
 ---
 
-## 20. 코드 지도
+## 21. 드릴과 CSV 내보내기
+
+### 21.1 드릴 채점 (`DrillScorer`, `DrillSession`)
+타깃 드릴은 목표 거리 D와 허용 오차 ±T로 **목표 띠 [D−T, D+T]**를 만들어요. 샷마다 7절의 **시뮬레이션 캐리 범위 [c_lo, c_hi]**와 비교해요.
+```
+적중  : 범위가 띠와 겹침 (c_hi ≥ D−T 그리고 c_lo ≤ D+T)
+짧음  : c_hi < D−T,  차이 = c_hi − (D−T)  (음수)
+김    : c_lo > D+T,  차이 = c_lo − (D+T)  (양수)
+```
+범위 **전체**를 쓰는 이유: 캐리는 하나의 숫자가 아니라 스핀을 모르는 데서 오는 범위이고, 그 범위가 띠에 닿으면 "맞췄다"고 말할 수 있는 최대치예요. 점수는 적중 수 / 샷 수, 연속 적중(현재·최고). **마지막 샷 취소**는 드릴 기록도 되돌려요.
+
+래더 드릴은 시작 거리 S, 간격 Δ, 단계 수 N(2~12)으로 목표 D_k = S + k·Δ (k = 0…N−1)를 만들고, **적중이면 한 단계 오르고 빗나가면 그대로**예요. 마지막 단계를 맞추면 완료. 취소로 적중을 지우면 한 단계 내려와요.
+
+화면과 음성 모두 "시뮬레이션" 배지와 "연습 게임이지 공이 실제로 어디 떨어졌는지 잰 게 아니다"라는 문장이 붙어요. 음성은 "목표 적중" / "6 m 짧아요" / "4 m 길어요"처럼 차이를 읽어요.
+
+### 21.2 CSV 내보내기 (`LaunchLogExport`)
+런치 기록 화면의 공유 버튼은 저장된 **측정값만** CSV로 내보내요(SI 단위, 출처 열 포함):
+```
+date_iso8601,club,source,ball_speed_m_s,launch_angle_deg,provenance,confidence,
+relative_speed_uncertainty,tracked_positions,method
+```
+캐리·토탈·스핀·클럽 스피드 열은 **일부러 없어요**. 스프레드시트에서 시뮬레이션이 측정처럼 보이지 않게 하려는 거예요. 쉼표·따옴표·줄바꿈이 든 칸은 RFC 4180 방식으로 따옴표 처리하고, 숫자는 `en_US_POSIX` 로캘로 써서 소수점이 항상 마침표예요. 오래된 샷부터 정렬돼요.
+
+---
+
+## 22. 코드 지도
 
 | 파일 | 역할 |
 |---|---|
@@ -417,11 +442,12 @@ f = (그림 높이 − 16 − 지평선 y) × 10 / 2.4      ← 티가 아래쪽
 | `Sources/SwingLabCore/LaunchSetup.swift` | 세팅 거리·판정, 스트로브 |
 | `Sources/SwingLabCore/LaunchSession.swift` | 세션 평균·변화 |
 | `Sources/SwingLabCore/ShotShape.swift` | 구질 분류·프리셋, 재생용 위치 보간(`FlightPlayback`) |
+| `Sources/SwingLabCore/LaunchDrill.swift`, `LaunchLogExport.swift` | 타깃·래더 드릴 채점, 런치 기록 CSV |
 | `Sources/SwingLabCore/Provenance.swift` | 출처 종류(`reference` 포함) |
 | `SwingLab/Services/CameraService.swift` | 런치 모드(240 fps, 1/2000 s), 실시간 스트림, 컨트롤러 상태 |
 | `SwingLab/Services/LiveLaunchCapture.swift` | 프레임·소리 수신, 세팅 검사, 측정, 스트로브 |
 | `SwingLab/Services/LaunchSpeaker.swift` | 음성 읽기 |
-| `SwingLab/Features/Camera/LiveLaunchPanel.swift`, `LaunchRangeView.swift` | 실시간 패널, 레인지 그림, 스트로브 보기 |
+| `SwingLab/Features/Camera/LiveLaunchPanel.swift`, `LaunchRangeView.swift`, `DrillSetupSheet.swift` | 실시간 패널, 레인지 그림, 스트로브 보기, 드릴 설정 |
 | `SwingLab/Features/FlightSimulation/LaunchReadoutGrid.swift`, `LaunchMeasureView.swift`, `LaunchLogView.swift` | 타일 그리드, 영상 측정 화면, 런치 기록 |
 | `SwingLab/Features/FlightSimulation/FlightSceneView.swift`, `HypotheticalFlightView.swift` | 뒤에서 본 비행 애니메이션, 구질 프리셋·분류 |
-| `Tests/SwingLabCoreTests/LaunchMonitorTests.swift`, `LaunchMonitorLiveTests.swift`, `LaunchReadoutTests.swift`, `ShotShapeTests.swift` | 합성 영상·스트림·리드아웃·구질 테스트 |
+| `Tests/SwingLabCoreTests/LaunchMonitorTests.swift`, `LaunchMonitorLiveTests.swift`, `LaunchReadoutTests.swift`, `ShotShapeTests.swift`, `LaunchDrillTests.swift` | 합성 영상·스트림·리드아웃·구질·드릴·CSV 테스트 |

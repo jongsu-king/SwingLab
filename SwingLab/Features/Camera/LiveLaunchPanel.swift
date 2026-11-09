@@ -10,16 +10,18 @@ struct LiveLaunchPanel: View {
     let camera: CameraController
     let discardLast: () -> Void
     @State private var sessionExpanded = false
+    @State private var showDrillSetup = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             header
             if camera.liveListening || camera.liveReadout != nil { controls }
             if camera.liveListening { setupRow }
+            if camera.liveListening || camera.drill != nil { drillRow }
             if let readout = camera.liveReadout {
                 if !prefs.launchNumbersOnly {
                     HStack(alignment: .top, spacing: 10) {
-                        FlightSceneView(playback: readout.playback, faceOn: true, height: 150)
+                        FlightSceneView(playback: readout.playback, faceOn: true, target: camera.drill?.target, height: 150)
                         if let strobe = camera.liveStrobe {
                             LaunchStrobeView(image: strobe, observations: camera.liveOutcome?.measurement.observations ?? [])
                                 .frame(height: 150)
@@ -38,6 +40,71 @@ struct LiveLaunchPanel: View {
         .padding(12)
         .background(.black.opacity(0.7), in: RoundedRectangle(cornerRadius: SLTheme.cornerRadius))
         .environment(\.colorScheme, .dark)
+        .sheet(isPresented: $showDrillSetup) {
+            DrillSetupSheet { camera.startDrill($0) }
+        }
+    }
+
+    /// Target and ladder drills, scored on the simulated carry bracket of each shot.
+    private var drillRow: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            if let drill = camera.drill {
+                HStack(spacing: 8) {
+                    Label(prefs.text(drill.kind.localizationKey), systemImage: "scope").font(.caption.weight(.semibold))
+                    Spacer(minLength: 0)
+                    Button(prefs.text("Stop drill")) { camera.stopDrill() }.font(.caption)
+                        .accessibilityIdentifier("camera.live.drill.stop")
+                }
+                HStack(alignment: .top, spacing: 14) {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(prefs.text("Target distance")).font(.caption2).foregroundStyle(.secondary)
+                        Text(prefs.format("drill.target", distanceText(drill.target.distance), distanceText(drill.target.tolerance)))
+                            .font(.caption.weight(.medium)).monospacedDigit()
+                    }
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(prefs.text("Hits")).font(.caption2).foregroundStyle(.secondary)
+                        Text(prefs.format("drill.hits", Int64(drill.hits), Int64(drill.shots))).font(.caption.weight(.medium)).monospacedDigit()
+                    }
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(prefs.text("Streak")).font(.caption2).foregroundStyle(.secondary)
+                        Text(prefs.format("drill.streak", Int64(drill.streak), Int64(drill.bestStreak))).font(.caption.weight(.medium)).monospacedDigit()
+                    }
+                    if let ladder = drill.ladder {
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(prefs.text("Ladder drill")).font(.caption2).foregroundStyle(.secondary)
+                            Text(drill.isComplete ? prefs.text("Ladder complete!")
+                                 : prefs.format("drill.rung", Int64(min(drill.rung + 1, ladder.rungs)), Int64(ladder.rungs)))
+                                .font(.caption.weight(.medium)).monospacedDigit()
+                        }
+                    }
+                }
+                if let result = camera.lastDrillResult {
+                    HStack(spacing: 8) {
+                        Image(systemName: result.outcome == .hit ? "checkmark.circle.fill" : "arrow.up.and.down.circle")
+                            .foregroundStyle(result.outcome == .hit ? SLTheme.sage : .yellow).accessibilityHidden(true)
+                        Text(outcomeText(result)).font(.caption.weight(.semibold))
+                        ProvenanceBadge(provenance: .simulated)
+                    }.accessibilityElement(children: .combine)
+                    .accessibilityIdentifier("camera.live.drill.result")
+                }
+                Text(prefs.text("Drills are scored on the simulated carry bracket for the chosen club. They are a practice game, not a measurement of where the ball landed."))
+                    .font(.caption2).foregroundStyle(.white.opacity(0.6)).fixedSize(horizontal: false, vertical: true)
+            } else {
+                Button { showDrillSetup = true } label: {
+                    Label(prefs.text("Start a drill"), systemImage: "scope").font(.caption)
+                }.accessibilityIdentifier("camera.live.drill.start")
+            }
+        }
+    }
+
+    private func outcomeText(_ result: DrillShotResult) -> String {
+        let gap = SLMetricReadout.formattedValue(
+            ProvenancedValue(value: abs(result.gap), unit: "m", provenance: .simulated, method: DrillScorer.method), preferences: prefs)
+        switch result.outcome {
+        case .hit: return prefs.text("Hit")
+        case .short: return prefs.format("drill.voice.short", gap)
+        case .long: return prefs.format("drill.voice.long", gap)
+        }
     }
 
     private var header: some View {

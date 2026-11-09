@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import UniformTypeIdentifiers
 import SwingLabCore
 
 /// Saved camera launches, newest first, with a per-club average once there are enough shots.
@@ -75,6 +76,17 @@ struct LaunchLogView: View {
         .scrollContentBackground(.hidden).background(SLTheme.background)
         .task(id: shots.count) { await buildClubReadouts() }
         .navigationTitle(prefs.text("Launch log"))
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                // Measured values only, in SI with a provenance column; nothing simulated is exported.
+                ShareLink(item: LaunchLogCSVFile(csv: LaunchLogExport.csv(shots.map(\.exportRow))),
+                          preview: SharePreview(prefs.text("Launch log"))) {
+                    Label(prefs.text("Export CSV"), systemImage: "square.and.arrow.up")
+                }
+                .disabled(shots.isEmpty)
+                .accessibilityIdentifier("launchLog.export")
+            }
+        }
         // Inline like Hypothetical flight: a large title truncates in Spanish and Portuguese.
         .navigationBarTitleDisplayMode(.inline)
         .alert(prefs.text("Launch log"), isPresented: Binding(get: { error != nil }, set: { if !$0 { error = nil } })) {
@@ -131,5 +143,22 @@ struct LaunchLogView: View {
             modelContext.rollback()
             self.error = "The shot could not be deleted. Please try again."
         }
+    }
+}
+
+/// The launch log as a CSV file for the share sheet.
+struct LaunchLogCSVFile: Transferable {
+    let csv: String
+    static var transferRepresentation: some TransferRepresentation {
+        DataRepresentation(exportedContentType: .commaSeparatedText) { Data($0.csv.utf8) }
+            .suggestedFileName("SwingLab-launch-log.csv")
+    }
+}
+
+extension LaunchShot {
+    var exportRow: LaunchLogRow {
+        LaunchLogRow(date: date, club: referenceClubID, source: sourceID, ballSpeedMetersPerSecond: ballSpeedMetersPerSecond,
+                     launchAngleRadians: launchAngleRadians, provenance: ballSpeed.provenance, confidence: confidence,
+                     relativeSpeedUncertainty: relativeSpeedUncertainty, trackedPositions: trackedPositions, method: method)
     }
 }

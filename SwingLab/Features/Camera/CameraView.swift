@@ -101,7 +101,7 @@ struct CameraView: View {
                     modelContext.rollback()
                     camera.liveMessage = "The shot could not be saved. Please try again."
                 }
-                speaker.speak(readout, preferences: prefs)
+                speaker.speak(readout, drill: camera.lastDrillResult, preferences: prefs)
             }
             .onChange(of: camera.live) { _, _ in sessionShots = [] }
             .onChange(of: camera.savedURL) { _, url in

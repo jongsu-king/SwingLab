@@ -159,11 +159,16 @@ and numbers-only toggles, and a spoken readout. Each is implemented so that the 
   gets a shot-shape preset picker (`ShotShape`, 13 shapes filling launch direction and spin axis), the scene,
   the classified shape (`ShotShapeClassifier`: start within 2° is on line; curve under 1.5 % of carry is none,
   under 6 % mild, else strong), and a simulated total. `Docs/Principles/LaunchReadout.md` §19.
+- **Drills and export** (third update, 8 Nov): target and ladder drills (`DrillSession`, `LadderDrill`) scored on
+  each shot's simulated carry bracket — a hit when the bracket overlaps the target band, otherwise short or long by
+  the gap — with hits, streak, rung progress, spoken feedback, the band drawn in the flight scene, and a footnote
+  that it is a practice game, not a landing measurement. The launch log exports a CSV of the stored measurements
+  only (`LaunchLogExport`: SI units, provenance column, no simulated columns). `Docs/Principles/LaunchReadout.md` §21.
 - **Orientation:** the app stays portrait; the landscape layout of the reel was not adopted.
 - **Tests:** `LaunchReadoutTests` (9) cover the roll bounds, the smash-factor estimate, the club guess,
   the readout invariants, the setup verdicts, the strobe, and the `reference` provenance round trip;
   `LaunchSessionTests` (3) cover the session averages, the change from the previous shot, and the
-  recommended distance band; `ShotShapeTests` (3) the preset round trip through the flight model for both hands, the classification thresholds, and the playback. Core total: 100. The app side has not been built here (no Xcode on this machine); every app source
+  recommended distance band; `ShotShapeTests` (3) the preset round trip through the flight model for both hands, the classification thresholds, and the playback; `LaunchDrillTests` (4) the drill scoring, ladder progression, discard, and CSV. Core total: 104. The app side has not been built here (no Xcode on this machine); every app source
   was parse-checked and the localization, catalog, and project scripts pass.
 
 **Not yet done:**

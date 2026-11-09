@@ -340,7 +340,7 @@ After each shot: "Ball speed 118 mph. Launch 16°. Carry 172 m to 173 m." in the
 | Roll model | no comparison with measured totals |
 | Club speed and back spin | not measurements, so accuracy does not apply |
 
-In this environment (Linux, Swift 6.2.3) the 100 core tests pass, but the iOS build and simulator tests could not be run. Please run `xcodebuild … test` on a Mac.
+In this environment (Linux, Swift 6.2.3) the 104 core tests pass, but the iOS build and simulator tests could not be run. Please run `xcodebuild … test` on a Mac.
 
 ---
 
@@ -402,7 +402,32 @@ Distance lines every 50 display units, fairway edges at ±30 m, a dashed target 
 
 ---
 
-## 20. Code map
+## 21. Drills and CSV export
+
+### 21.1 Drill scoring (`DrillScorer`, `DrillSession`)
+A target drill turns a target distance D and a tolerance ±T into the **target band [D−T, D+T]**. Each shot is compared with its **simulated carry bracket [c_lo, c_hi]** from section 7:
+```
+hit   : the bracket overlaps the band (c_hi ≥ D−T and c_lo ≤ D+T)
+short : c_hi < D−T,  gap = c_hi − (D−T)  (negative)
+long  : c_lo > D+T,  gap = c_lo − (D+T)  (positive)
+```
+The **whole** bracket is used because carry is not one number but a range born of the unknown spin; the bracket touching the band is the most that can honestly be called a hit. The score is hits / shots plus the current and best streak. **Discard last shot** also rolls the drill back.
+
+A ladder drill takes a start S, a step Δ, and N rungs (2–12): targets D_k = S + k·Δ for k = 0…N−1. **A hit climbs one rung, a miss stays.** Hitting the top rung completes it; discarding that hit steps back down.
+
+Screen and voice both carry the Simulated badge and the sentence "a practice game, not a measurement of where the ball landed". The voice says "Target hit", "Short by 6 m", or "Long by 4 m".
+
+### 21.2 CSV export (`LaunchLogExport`)
+The share button on the launch log exports the stored **measurements only**, in SI with a provenance column:
+```
+date_iso8601,club,source,ball_speed_m_s,launch_angle_deg,provenance,confidence,
+relative_speed_uncertainty,tracked_positions,method
+```
+There are **deliberately no** carry, total, spin, or club-speed columns, so a spreadsheet cannot present a simulation as a measurement. Fields with commas, quotes, or line breaks are quoted per RFC 4180; numbers use the `en_US_POSIX` locale so the decimal mark is always a point. Oldest shot first.
+
+---
+
+## 22. Code map
 
 | File | Role |
 |---|---|
@@ -417,11 +442,12 @@ Distance lines every 50 display units, fairway edges at ±30 m, a dashed target 
 | `Sources/SwingLabCore/LaunchSetup.swift` | setup distance and verdict, strobe |
 | `Sources/SwingLabCore/LaunchSession.swift` | session means and changes |
 | `Sources/SwingLabCore/ShotShape.swift` | shape classification and presets, playback interpolation (`FlightPlayback`) |
+| `Sources/SwingLabCore/LaunchDrill.swift`, `LaunchLogExport.swift` | target and ladder drill scoring, launch-log CSV |
 | `Sources/SwingLabCore/Provenance.swift` | provenance cases (including `reference`) |
 | `SwingLab/Services/CameraService.swift` | launch mode (240 fps, 1/2000 s), live stream, controller state |
 | `SwingLab/Services/LiveLaunchCapture.swift` | frame and sound delivery, setup check, measurement, strobe |
 | `SwingLab/Services/LaunchSpeaker.swift` | spoken readout |
-| `SwingLab/Features/Camera/LiveLaunchPanel.swift`, `LaunchRangeView.swift` | live panel, range picture, strobe view |
+| `SwingLab/Features/Camera/LiveLaunchPanel.swift`, `LaunchRangeView.swift`, `DrillSetupSheet.swift` | live panel, range picture, strobe view, drill setup |
 | `SwingLab/Features/FlightSimulation/LaunchReadoutGrid.swift`, `LaunchMeasureView.swift`, `LaunchLogView.swift` | tile grid, recorded-clip screen, launch log |
 | `SwingLab/Features/FlightSimulation/FlightSceneView.swift`, `HypotheticalFlightView.swift` | flight scene from behind, shape presets and classification |
-| `Tests/SwingLabCoreTests/LaunchMonitorTests.swift`, `LaunchMonitorLiveTests.swift`, `LaunchReadoutTests.swift`, `ShotShapeTests.swift` | synthetic video, stream, readout, and shape tests |
+| `Tests/SwingLabCoreTests/LaunchMonitorTests.swift`, `LaunchMonitorLiveTests.swift`, `LaunchReadoutTests.swift`, `ShotShapeTests.swift`, `LaunchDrillTests.swift` | synthetic video, stream, readout, shape, drill, and CSV tests |

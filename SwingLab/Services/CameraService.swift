@@ -360,6 +360,9 @@ final class CameraController {
     var liveSessionClubs: Set<ReferenceClub> = []
     /// Every shot measured since the live stream started, for the session summary.
     var liveSessionShots: [LaunchSessionShot] = []
+    /// A practice game scored on each shot's simulated carry bracket; nil when none is running.
+    var drill: DrillSession?
+    var lastDrillResult: DrillShotResult?
     var liveBallPoint: CGPoint?
     var liveDirection = 1.0
     private var readoutTask: Task<Void, Never>?
@@ -435,10 +438,14 @@ final class CameraController {
                     return low...high
                 }
                 liveSessionShots.append(LaunchSessionShot(time: .now, club: readout.club, ballSpeed: speed, launchAngle: angle, carry: carry))
+                if drill != nil, let carry { lastDrillResult = drill?.record(carry: carry) } else { lastDrillResult = nil }
             }
         }
         if newShot { liveShotCount += 1 }
     }
+
+    func startDrill(_ session: DrillSession) { drill = session; lastDrillResult = nil }
+    func stopDrill() { drill = nil; lastDrillResult = nil }
 
     /// Drops a mis-hit from the session summary; the camera view removes it from the launch log.
     func discardLastSessionShot() {
@@ -446,6 +453,8 @@ final class CameraController {
         liveSessionShots.removeLast()
         liveSessionClubs = Set(liveSessionShots.map(\.club))
         liveReadout = nil; liveStrobe = nil; liveOutcome = nil
+        if lastDrillResult != nil { drill?.discardLast() }
+        lastDrillResult = nil
     }
 
     private func clearLiveSession() {
@@ -453,6 +462,7 @@ final class CameraController {
         liveListening = false; liveMeasuring = false; liveOutcome = nil; liveMessage = nil
         liveReadout = nil; liveStrobe = nil; liveSetup = nil; liveSetupPending = false
         liveSessionClubs = []; liveSessionShots = []; liveBallPoint = nil; liveShotCount = 0
+        drill = nil; lastDrillResult = nil
     }
     private func receive(_ event: CameraEvent) {
         switch event {

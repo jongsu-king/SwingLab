@@ -9,7 +9,8 @@ import SwingLabCore
 final class LaunchSpeaker {
     private let synthesizer = AVSpeechSynthesizer()
 
-    func speak(_ readout: LaunchReadout, preferences: AppPreferences) {
+    /// `drill` adds the drill feedback (hit, or short/long by how much) after the values.
+    func speak(_ readout: LaunchReadout, drill: DrillShotResult? = nil, preferences: AppPreferences) {
         guard preferences.launchVoiceEnabled, let voice = AVSpeechSynthesisVoice(language: preferences.resolvedLanguage) else { return }
         let speed = SLMetricReadout.formattedValue(readout.ballSpeed, preferences: preferences, fractionDigits: 0)
         let angle = SLMetricReadout.formattedValue(readout.launchAngle, preferences: preferences, fractionDigits: 0)
@@ -18,6 +19,15 @@ final class LaunchSpeaker {
             let shortest = SLMetricReadout.formattedValue(carry.low, preferences: preferences)
             let longest = SLMetricReadout.formattedValue(carry.high, preferences: preferences)
             sentence += " " + preferences.format("launch.voice.carry", shortest, longest)
+        }
+        if let drill {
+            let gap = SLMetricReadout.formattedValue(
+                ProvenancedValue(value: abs(drill.gap), unit: "m", provenance: .simulated, method: DrillScorer.method), preferences: preferences)
+            switch drill.outcome {
+            case .hit: sentence += " " + preferences.text("drill.voice.hit")
+            case .short: sentence += " " + preferences.format("drill.voice.short", gap)
+            case .long: sentence += " " + preferences.format("drill.voice.long", gap)
+            }
         }
         synthesizer.stopSpeaking(at: .immediate)
         let utterance = AVSpeechUtterance(string: sentence)

@@ -11,6 +11,8 @@ struct FlightSceneView: View {
     var shape: ShotShapeClassification? = nil
     /// The measurement was face-on: lateral motion is unknown and the ball is drawn straight.
     var faceOn = false
+    /// A drill target band drawn across the fairway.
+    var target: DrillTarget? = nil
     var height: CGFloat = 180
     @State private var startedAt = Date()
     @State private var playing = true
@@ -123,6 +125,20 @@ struct FlightSceneView: View {
             let anchor = projection.point(forward: mark, height: 0, right: -halfWidth)
             context.draw(label, at: CGPoint(x: max(12, anchor.x - 14), y: anchor.y), anchor: .trailing)
             mark += step
+        }
+        // The drill's target band across the fairway.
+        if let target {
+            var band = Path()
+            band.move(to: projection.point(forward: target.band.lowerBound, height: 0, right: -halfWidth))
+            band.addLine(to: projection.point(forward: target.band.lowerBound, height: 0, right: halfWidth))
+            band.addLine(to: projection.point(forward: target.band.upperBound, height: 0, right: halfWidth))
+            band.addLine(to: projection.point(forward: target.band.upperBound, height: 0, right: -halfWidth))
+            band.closeSubpath()
+            context.fill(band, with: .color(Self.marker.opacity(0.35)))
+            var centre = Path()
+            centre.move(to: projection.point(forward: target.distance, height: 0, right: -halfWidth))
+            centre.addLine(to: projection.point(forward: target.distance, height: 0, right: halfWidth))
+            context.stroke(centre, with: .color(Self.marker), lineWidth: 1.5)
         }
         // Where the ball comes to rest, and the carry point, once reached.
         if time >= playback.flightTime, let landing = playback.landing {
