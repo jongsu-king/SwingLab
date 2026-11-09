@@ -153,11 +153,17 @@ and numbers-only toggles, and a spoken readout. Each is implemented so that the 
   removes a mis-hit from the session and from the launch log. When the setup verdict is not Ready, the
   row also says where the camera could stand (`recommendedDistance`: the band where the ball is at
   least 10 px and stays in view for 2.5 frames at 80 m/s).
+- **Flight scene and shot shapes** (second update, 8 Nov): `FlightSceneView` plays the simulated flight from
+  behind the ball in real flight time, then the run (`FlightPlayback`). Live and recorded-clip shots are drawn
+  straight along the target line with a note that a face-on camera cannot see the shape. Hypothetical flight
+  gets a shot-shape preset picker (`ShotShape`, 13 shapes filling launch direction and spin axis), the scene,
+  the classified shape (`ShotShapeClassifier`: start within 2° is on line; curve under 1.5 % of carry is none,
+  under 6 % mild, else strong), and a simulated total. `Docs/Principles/LaunchReadout.md` §19.
 - **Orientation:** the app stays portrait; the landscape layout of the reel was not adopted.
 - **Tests:** `LaunchReadoutTests` (9) cover the roll bounds, the smash-factor estimate, the club guess,
   the readout invariants, the setup verdicts, the strobe, and the `reference` provenance round trip;
   `LaunchSessionTests` (3) cover the session averages, the change from the previous shot, and the
-  recommended distance band. Core total: 97. The app side has not been built here (no Xcode on this machine); every app source
+  recommended distance band; `ShotShapeTests` (3) the preset round trip through the flight model for both hands, the classification thresholds, and the playback. Core total: 100. The app side has not been built here (no Xcode on this machine); every app source
   was parse-checked and the localization, catalog, and project scripts pass.
 
 **Not yet done:**

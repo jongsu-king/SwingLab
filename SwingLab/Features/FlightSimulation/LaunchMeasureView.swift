@@ -83,7 +83,8 @@ struct LaunchMeasureView: View {
     private func readoutSection(_ readout: LaunchReadout) -> some View {
         VStack(alignment: .leading, spacing: 16) {
             SLSectionHeader(title: prefs.text("Launch"))
-            LaunchRangeView(readout: readout, height: 140)
+            FlightSceneView(playback: readout.playback, faceOn: true, height: 200)
+            LaunchRangeView(readout: readout, height: 120)
             LaunchReadoutGrid(readout: readout)
             LaunchReadoutFootnote(readout: readout)
             if saved {

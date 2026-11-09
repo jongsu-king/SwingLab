@@ -17,7 +17,10 @@ struct HypotheticalFlightView: View {
     @State private var pressure: Double? = Atmosphere.standard.pressure / 100
     @State private var humidity: Double? = Atmosphere.standard.relativeHumidity * 100
     @State private var landingHeight: Double? = 0
+    @State private var shapePreset: ShotShape?
     @State private var result: FlightResult?
+    @State private var simulatedLaunch: LaunchConditions?
+    @State private var run: RollResult?
     @State private var errorKey: LocalizationKey?
 
     var body: some View {
@@ -32,6 +35,11 @@ struct HypotheticalFlightView: View {
                 field("Start direction (right +)", $startDirection, unit: "°", signed: true)
                 field("Spin rate", $spinRate, unit: "rpm")
                 field("Spin axis (right curve +)", $spinAxis, unit: "°", signed: true)
+                // A preset only fills the two lateral inputs above; it is a starting point to edit.
+                Picker(prefs.text("Shot shape"), selection: $shapePreset) {
+                    Text(prefs.text("Custom")).tag(ShotShape?.none)
+                    ForEach(ShotShape.allCases) { shape in Text(prefs.text(shape.localizationKey)).tag(ShotShape?.some(shape)) }
+                }.accessibilityIdentifier("flight.shapePreset")
                 Button(prefs.text("Fill tour-average driver example")) {
                     ballSpeed = (prefs.speedUnit.fromSI(167 * 0.44704) * 10).rounded() / 10
                     launchAngle = 10.9; spinRate = 2686; startDirection = 0; spinAxis = 0
@@ -62,7 +70,17 @@ struct HypotheticalFlightView: View {
         .onChange(of: [ballSpeed, launchAngle, startDirection, spinRate, spinAxis, tailwind, crosswind,
                        temperature, pressure, humidity, landingHeight]) { _, _ in
             // A result belongs to the submitted inputs, not subsequently edited fields.
-            result = nil; errorKey = nil
+            result = nil; simulatedLaunch = nil; run = nil; errorKey = nil
+            // Editing either lateral input away from the preset makes the shape custom again.
+            if let shapePreset {
+                let preset = shapePreset.preset(for: prefs.handedness)
+                if startDirection != preset.launchDirection || spinAxis != preset.spinAxis { self.shapePreset = nil }
+            }
+        }
+        .onChange(of: shapePreset) { _, preset in
+            guard let preset else { return }
+            let values = preset.preset(for: prefs.handedness)
+            startDirection = values.launchDirection; spinAxis = values.spinAxis
         }
         .onAppear {
             if temperature == nil {
@@ -84,25 +102,36 @@ struct HypotheticalFlightView: View {
 
     private func resultSection(_ result: FlightResult) -> some View {
         Section(prefs.text("Result")) {
+            FlightSceneView(playback: FlightPlayback(samples: result.trajectory, run: run?.run ?? 0),
+                            shape: simulatedLaunch.flatMap { ShotShapeClassifier.classify(launch: $0, result: result, handedness: prefs.handedness) },
+                            height: 200)
+                .padding(.vertical, 6)
             Grid(alignment: .leading, horizontalSpacing: 20, verticalSpacing: 14) {
                 GridRow {
                     SLMetricReadout(metric: result.carryMetric, label: prefs.text("Carry"), fractionDigits: 1, alignment: .leading)
                         .accessibilityIdentifier("flight.result.carry")
+                    SLMetricReadout(metric: totalMetric(result), label: prefs.text("Total"), fractionDigits: 1, alignment: .leading)
+                }
+                GridRow {
                     SLMetricReadout(metric: result.lateralMetric, label: prefs.text("Lateral (right +)"), fractionDigits: 1, alignment: .leading)
-                }
-                GridRow {
                     SLMetricReadout(metric: result.apexMetric, label: prefs.text("Apex"), fractionDigits: 1, alignment: .leading)
-                    SLMetricReadout(metric: result.flightTimeMetric, label: prefs.text("Flight time"), fractionDigits: 2, alignment: .leading)
                 }
                 GridRow {
+                    SLMetricReadout(metric: result.flightTimeMetric, label: prefs.text("Flight time"), fractionDigits: 2, alignment: .leading)
                     SLMetricReadout(metric: result.landingAngleMetric, label: prefs.text("Landing angle"), fractionDigits: 1, alignment: .leading)
                 }
             }.padding(.vertical, 6)
             trajectoryChart(result, title: "Side view", vertical: \.height, verticalLabel: "Height")
             trajectoryChart(result, title: "Top view", vertical: \.right, verticalLabel: "Lateral (right +)")
-            Text(prefs.text("Experimental aerodynamic approximation. Carry only, no roll. Height and carry can differ substantially from real shots."))
+            Text(prefs.text("Experimental aerodynamic approximation. Total adds a bounce-and-roll model for an assumed fairway. Height, carry, and curve can differ substantially from real shots."))
                 .font(.caption).foregroundStyle(.secondary)
         }
+    }
+
+    /// Carry plus the simulated run; unavailable when the roll model refused the landing.
+    private func totalMetric(_ result: FlightResult) -> ProvenancedValue {
+        ProvenancedValue(value: run.map { result.carry + $0.run }, unit: "m", provenance: run == nil ? .unavailable : .simulated,
+                         method: LaunchReadoutBuilder.totalMethod)
     }
 
     private func trajectoryChart(_ result: FlightResult, title: LocalizationKey, vertical: KeyPath<FlightSample, Double>,
@@ -133,13 +162,17 @@ struct HypotheticalFlightView: View {
                                     relativeHumidity: humidity / 100)
         let wind = Wind(tailwind: prefs.windUnit.toSI(tailwind), rightward: prefs.windUnit.toSI(crosswind))
         do {
-            result = try BallFlight.simulate(launch, atmosphere: atmosphere, wind: wind,
-                                             landingHeight: prefs.distanceUnit.toSI(landingHeight))
+            let flight = try BallFlight.simulate(launch, atmosphere: atmosphere, wind: wind,
+                                                 landingHeight: prefs.distanceUnit.toSI(landingHeight))
+            result = flight
+            simulatedLaunch = launch
+            run = try? BallRoll.run(landingSpeed: flight.landingSpeed, landingAngleDegrees: max(0, flight.landingAngle),
+                                    landingSpinRate: flight.landingSpinRate)
             errorKey = nil
         } catch ModelError.insufficientData {
-            result = nil; errorKey = "The ball does not come down to that landing height."
+            result = nil; simulatedLaunch = nil; run = nil; errorKey = "The ball does not come down to that landing height."
         } catch {
-            result = nil; errorKey = "These values are outside the model's supported range."
+            result = nil; simulatedLaunch = nil; run = nil; errorKey = "These values are outside the model's supported range."
         }
     }
 }

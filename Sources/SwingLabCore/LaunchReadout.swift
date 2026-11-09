@@ -27,6 +27,11 @@ public struct LaunchReadout: Sendable {
     public let spin: ReadoutRange?              // rpm, reference bracket
     /// Side view of the simulated flight at the middle of the spin bracket; empty when unavailable.
     public let trajectory: [FlightSample]
+    /// Ground run after landing for that same middle flight (m, simulated).
+    public let run: Double
+    /// The middle flight and its run, for the animated scene. Lateral motion is unknown for a
+    /// face-on measurement, so the ball is drawn straight along the target line.
+    public var playback: FlightPlayback { FlightPlayback(samples: trajectory, run: run) }
     public let surface: TurfSurface
     public let citations: [ReferenceCitation]
 }
@@ -58,20 +63,20 @@ public enum LaunchReadoutBuilder {
         }
         var citations: [ReferenceCitation] = []
         var carry: ReadoutRange?, total: ReadoutRange?, apex: ReadoutRange?, spin: ReadoutRange?
-        var trajectory: [FlightSample] = []
+        var trajectory: [FlightSample] = [], run = 0.0
         if let assumption = ReferenceLaunchData.spinAssumption(club: chosen) {
             citations += assumption.citations
             let rpm = assumption.revolutionsPerMinute
             let samples = (0..<spinSampleCount).map {
                 rpm.lowerBound + Double($0) / Double(spinSampleCount - 1) * (rpm.upperBound - rpm.lowerBound)
             }
-            var flights: [(carry: Double, total: Double, apex: Double, trajectory: [FlightSample])] = []
+            var flights: [(carry: Double, total: Double, apex: Double, trajectory: [FlightSample], run: Double)] = []
             for sample in samples {
                 guard let flight = try? BallFlight.simulate(LaunchConditions(ballSpeed: speedValue, launchAngle: angleValue * 180 / .pi,
                                                                              spinRate: sample), atmosphere: atmosphere),
                       let roll = try? BallRoll.run(landingSpeed: flight.landingSpeed, landingAngleDegrees: max(0, flight.landingAngle),
                                                    landingSpinRate: flight.landingSpinRate, surface: surface) else { continue }
-                flights.append((flight.carry, flight.carry + roll.run, flight.apex, flight.trajectory))
+                flights.append((flight.carry, flight.carry + roll.run, flight.apex, flight.trajectory, roll.run))
             }
             if !flights.isEmpty {
                 func range(_ values: [Double], unit: String, method: String) -> ReadoutRange {
@@ -84,6 +89,7 @@ public enum LaunchReadoutBuilder {
                 total = range(flights.map(\.total), unit: "m", method: totalMethod)
                 apex = range(flights.map(\.apex), unit: "m", method: apexMethod)
                 trajectory = flights[flights.count / 2].trajectory
+                run = flights[flights.count / 2].run
             }
             spin = ReadoutRange(low: ProvenancedValue(value: rpm.lowerBound, unit: "rpm", provenance: .reference, method: spinMethod,
                                                       sampleCount: assumption.rowIDs.count),
@@ -93,7 +99,7 @@ public enum LaunchReadoutBuilder {
         let clubSpeed = estimatedClubSpeed(ballSpeed: speed, club: chosen)
         if let smash = ReferenceLaunchData.smashAssumption(club: chosen) { citations += smash.citations }
         return LaunchReadout(club: chosen, clubGuess: guess, ballSpeed: speed, launchAngle: angle, carry: carry, total: total,
-                             apex: apex, clubSpeed: clubSpeed, spin: spin, trajectory: trajectory, surface: surface,
+                             apex: apex, clubSpeed: clubSpeed, spin: spin, trajectory: trajectory, run: run, surface: surface,
                              citations: citations)
     }
 

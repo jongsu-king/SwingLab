@@ -19,10 +19,10 @@ struct LiveLaunchPanel: View {
             if let readout = camera.liveReadout {
                 if !prefs.launchNumbersOnly {
                     HStack(alignment: .top, spacing: 10) {
-                        LaunchRangeView(readout: readout, height: 104)
+                        FlightSceneView(playback: readout.playback, faceOn: true, height: 150)
                         if let strobe = camera.liveStrobe {
                             LaunchStrobeView(image: strobe, observations: camera.liveOutcome?.measurement.observations ?? [])
-                                .frame(height: 104)
+                                .frame(height: 150)
                         }
                     }
                 }

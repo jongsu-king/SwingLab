@@ -340,11 +340,69 @@ After each shot: "Ball speed 118 mph. Launch 16°. Carry 172 m to 173 m." in the
 | Roll model | no comparison with measured totals |
 | Club speed and back spin | not measurements, so accuracy does not apply |
 
-In this environment (Linux, Swift 6.2.3) the 97 core tests pass, but the iOS build and simulator tests could not be run. Please run `xcodebuild … test` on a Mac.
+In this environment (Linux, Swift 6.2.3) the 100 core tests pass, but the iOS build and simulator tests could not be run. Please run `xcodebuild … test` on a Mac.
 
 ---
 
-## 18. Code map
+## 19. Shot shapes and the "ball in flight" animation
+
+> Second update of 8 Nov 2026: a scene from behind the ball that plays the shot the way a launch-monitor simulator does, plus shot-shape classification and presets (draw, fade, hook, slice, push, pull, and their combinations).
+
+### 19.1 What decides a shot shape
+Two numbers: the **start direction** (horizontal launch angle, right +) and the **curve** (the lateral bend a tilted spin axis produces). The flight model has always been three-dimensional: `LaunchConditions.launchDirection`, `spinAxis`, and wind go in, and the landing point's lateral position (`landingPoint.right`) and the lateral coordinate of every trajectory sample come out.
+
+**One face-on camera sees neither.** The start direction lies along the depth axis, and the spin axis would need the spin itself (section 1). So:
+- **Live and recorded-clip measurements**: the ball is drawn flying **straight along the target line**, and the picture says "shape cannot be seen by a face-on camera". No shape tile is produced.
+- **Hypothetical flight** (typed inputs): a direction and spin axis produce a curved trajectory and a classified shape, all badged **Simulated**.
+
+### 19.2 Classification rule (`ShotShapeClassifier`)
+```
+start  = launch direction θ_s (°, right +)
+straight-line lateral at landing = landing forward distance × tan θ_s
+curve  = actual lateral at landing − straight-line lateral     (m, right +)
+curve share = |curve| / carry
+```
+- Start: |θ_s| < **2°** is on line, otherwise right or left
+- Curve: share < **1.5 %** is none, 1.5 to **6 %** mild (draw/fade), 6 % and above strong (hook/slice)
+
+The nine windows (3 starts × 3 curves) plus mild/strong give 13 names: straight · push · pull · draw · hook · fade · slice · push-draw · push-hook · push-slice · pull-fade · pull-slice · pull-hook. On a 250 m drive, under 3.75 m of curve is "none", under 15 m draw/fade, beyond that hook/slice; as a share, a 100 m wedge has its boundaries at 1.5 m and 6 m. The boundaries are **conventions**, not measurements.
+
+**Left-handers.** Names follow the right-handed convention (a draw curves left). A left-hander's start and curve are mirrored before classification, then the same names apply. The on-screen "Start (right +)" and "Curve (right +)" numbers stay in world coordinates.
+
+### 19.3 Presets
+The Shot shape picker in Hypothetical flight fills only the two lateral inputs (right-handed values; mirrored for left-handers):
+
+| Shape | Direction | Spin axis | Shape | Direction | Spin axis |
+|---|---|---|---|---|---|
+| Straight | 0 | 0 | Push | +5 | 0 |
+| Pull | −5 | 0 | Draw | 0 | −4 |
+| Hook | 0 | −24 | Fade | 0 | +4 |
+| Slice | 0 | +24 | Push-draw | +4 | −4 |
+| Push-hook | +4 | −24 | Push-slice | +4 | +20 |
+| Pull-fade | −4 | +4 | Pull-slice | −4 | +24 |
+| Pull-hook | −4 | −20 | | | |
+
+They are starting points to edit, not anyone's typical values. The tests simulate all 13 presets at a 160 mph driver launch for both hands and check that each **classifies back to its own name** (in this model a 4° axis bends about 9 m, 24° about 50 m).
+
+### 19.4 Playback (`FlightPlayback`)
+The flight model leaves a position every 50 ms, the last one at landing. For a time t the playback returns:
+- in flight: **linear interpolation** between the neighbouring samples (height never below 0);
+- after landing: the run from section 8 along the **landing direction** (the horizontal direction of the last two samples), slowing to a stop: `covered = run × (1 − (1 − f)²)`, f = elapsed / 1.5 s.
+- The live readout's scene uses the middle flight of the spin bracket and its run (`LaunchReadout.playback`).
+
+### 19.5 The scene from behind (`FlightSceneView`)
+A pinhole projection. The camera stands **10 m behind the tee, 2.4 m up**, with the horizon at 36 % of the picture height.
+```
+depth d = forward + 10
+x = centre + f × right / d
+y = horizon + f × (2.4 − height) / d
+f = (picture height − 16 − horizon y) × 10 / 2.4      ← puts the tee at the bottom edge
+```
+Distance lines every 50 display units, fairway edges at ±30 m, a dashed target line; the trace is **dashed** (so it cannot pass for an observed tracer) with a ground shadow, the ball has a shadow, a ring marks the landing and a dot the resting point. The ball's size falls with depth (at least 2.5 pt). It plays in real flight time (about 6 s for a drive plus 1.5 s of roll) and replays on tap or with the button. The label says it is not to scale and the perspective is exaggerated.
+
+---
+
+## 20. Code map
 
 | File | Role |
 |---|---|
@@ -358,10 +416,12 @@ In this environment (Linux, Swift 6.2.3) the 97 core tests pass, but the iOS bui
 | `Sources/SwingLabCore/LaunchReadout.swift` | `LaunchReadoutBuilder`, the six tiles |
 | `Sources/SwingLabCore/LaunchSetup.swift` | setup distance and verdict, strobe |
 | `Sources/SwingLabCore/LaunchSession.swift` | session means and changes |
+| `Sources/SwingLabCore/ShotShape.swift` | shape classification and presets, playback interpolation (`FlightPlayback`) |
 | `Sources/SwingLabCore/Provenance.swift` | provenance cases (including `reference`) |
 | `SwingLab/Services/CameraService.swift` | launch mode (240 fps, 1/2000 s), live stream, controller state |
 | `SwingLab/Services/LiveLaunchCapture.swift` | frame and sound delivery, setup check, measurement, strobe |
 | `SwingLab/Services/LaunchSpeaker.swift` | spoken readout |
 | `SwingLab/Features/Camera/LiveLaunchPanel.swift`, `LaunchRangeView.swift` | live panel, range picture, strobe view |
 | `SwingLab/Features/FlightSimulation/LaunchReadoutGrid.swift`, `LaunchMeasureView.swift`, `LaunchLogView.swift` | tile grid, recorded-clip screen, launch log |
-| `Tests/SwingLabCoreTests/LaunchMonitorTests.swift`, `LaunchMonitorLiveTests.swift`, `LaunchReadoutTests.swift` | synthetic video, stream, and readout tests |
+| `SwingLab/Features/FlightSimulation/FlightSceneView.swift`, `HypotheticalFlightView.swift` | flight scene from behind, shape presets and classification |
+| `Tests/SwingLabCoreTests/LaunchMonitorTests.swift`, `LaunchMonitorLiveTests.swift`, `LaunchReadoutTests.swift`, `ShotShapeTests.swift` | synthetic video, stream, readout, and shape tests |

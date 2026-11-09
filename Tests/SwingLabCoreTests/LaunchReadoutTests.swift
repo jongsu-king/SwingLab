@@ -139,6 +139,12 @@ final class LaunchReadoutTests: XCTestCase {
         XCTAssertEqual(landing.height, 0, accuracy: 1e-6)
         XCTAssertFalse(readout.citations.isEmpty)
         XCTAssertEqual(readout.surface, .fairway)
+        // The animated scene uses the middle flight and its run; it rests inside the total bracket.
+        XCTAssertGreaterThan(readout.run, 0)
+        let rest = readout.playback.rest
+        let shortestTotal = try XCTUnwrap(total.low.value), longestTotal = try XCTUnwrap(total.high.value)
+        XCTAssertTrue(rest.forward >= shortestTotal - 0.01 && rest.forward <= longestTotal + 0.01)
+        XCTAssertEqual(rest.right, 0, accuracy: 1e-9)
     }
 
     func testReadoutChoosesTheClubAutomaticallyAndRefusesEstimatedSpeeds() throws {
